@@ -1,14 +1,19 @@
 # Librería de componentes
-### Desarrollada sobre storybook
 
 **Pasos para levantar la app:**
+
+> Es necesario tener instalado [Docker](https://docs.docker.com/v17.09/engine/installation/#cloud)
+
+
 ```
-  En la consola correr los siguientes comandos 
-  
-    1 - git clone https://github.com/CardozoJavier/jampp.git 
-    3 - npm install
-    4 - npm run storybook
-    5 - Se abrirá chrome en localhost:6006
+
+En la consola correr los siguientes comandos:
+
+ 1. git clone https://github.com/CardozoJavier/jampp.git
+ 2. cd jampp
+ 3. docker-compose up
+ 4. Abrir chrome en localhost:6006
+
 ```
 
 #### Tecnologías utilizadas:
