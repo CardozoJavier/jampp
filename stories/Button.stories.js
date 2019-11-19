@@ -6,6 +6,8 @@ import {
   IconGenerator,
   DownChevronIcon,
   DownloadFileIcon,
+  EllipseIcon,
+  XIcon,
 } from '../src/Components/UI/Icons';
 
 import { 
@@ -13,6 +15,7 @@ import {
   SecondaryButtonContainer,
   AccessoryButtonContainer,
   OptionButtonContainer,
+  StatusButtonContainer,
 } from '../src/Components/Button/styles';
 
 import { Button } from '../src/Components';
@@ -151,5 +154,50 @@ export const Accesory = () => (
         }}
       />
     </AccessoryButtonContainer>
+  </>
+);
+
+export const StatusButton = () => (
+  <>
+    <StatusButtonContainer>
+      <IconGenerator 
+        renderIcon={EllipseIcon} 
+        props={{
+          left: '15px',
+          fill: palette.green.g1,
+          width: '6px',
+          height: '6px',
+        }}
+      />
+      <Button label="Status" className="button--statusok-small" />
+    </StatusButtonContainer>
+    
+    <StatusButtonContainer>
+      <Button label="Status" className="button--statusok" />
+    </StatusButtonContainer>
+
+    <StatusButtonContainer>
+      <Button label="Label" className="button--label-small" />
+      <IconGenerator
+        renderIcon={XIcon}
+        props={{
+          right: '10px',
+          width: '4px',
+          height: '4px',
+        }}
+      />
+    </StatusButtonContainer>
+    
+    <StatusButtonContainer>
+      <Button label="Label" className="button--label-medium" />
+      <IconGenerator
+        renderIcon={XIcon}
+        props={{
+          right: '15px',
+          width: '6px',
+          height: '6px',
+        }}
+      />
+    </StatusButtonContainer>
   </>
 );
