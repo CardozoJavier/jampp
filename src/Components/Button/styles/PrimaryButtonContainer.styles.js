@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import palette from './palette.styles';
+import { palette } from '../../styles';
 const { white, violet, gray } = palette; 
+
 /*
  * Primary button - Large | Medium | Small
  */
@@ -26,7 +27,8 @@ export default styled.div`
       }
       
       &-medium {
-        font-size: 11px;
+        padding: 0.75em 1.5em;
+        font-size: 12px;
       }
       
       &-small {
@@ -40,13 +42,13 @@ export default styled.div`
       }
 
       &__disabled {
-        background-color: #fff;
+        background-color: ${white};
         color: ${gray.g4};
         border: 1px solid ${gray.g1};
         cursor: default;
 
         &:hover {
-          background-color: #fff;
+          background-color: ${white};
         }
       }
     }
