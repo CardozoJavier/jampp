@@ -1,5 +1,5 @@
 export default (className, disabled) => {
-  const [block, element, modifier] = className.split(/-|_/).filter(e => e);
+  const [block, element, modifier, option] = className.split(/-|_/).filter(e => e);
   const blockDoubleDashElement = `${block}--${element}`;
   const disabledClassName = disabled ? `${blockDoubleDashElement}__disabled` : '';
 
@@ -7,6 +7,7 @@ export default (className, disabled) => {
     ${block}
     ${blockDoubleDashElement}
     ${blockDoubleDashElement}-${modifier}
+    ${blockDoubleDashElement}__${option}
     ${disabledClassName}
     ${className}
   `;
