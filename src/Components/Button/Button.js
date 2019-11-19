@@ -4,15 +4,13 @@ import { bemDestruct } from '../../utils';
 
 const handleClick = () => (alert('You clicked me!'));
 
-const Button = ({ Container, children, className, disabled }) => (
-  <Container>
-    <ButtonInput 
-      type="submit" 
-      children={children}
-      className={bemDestruct(className, disabled)}
-      onClick={disabled ? null : handleClick}
-    />
-  </Container>
+const Button = ({ label, children, className, disabled }) => (
+  <ButtonInput 
+    type="submit" 
+    children={label || children}
+    className={bemDestruct(className, disabled)}
+    onClick={disabled ? null : handleClick}
+  />
 );
 
 export default Button;
