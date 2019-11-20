@@ -8,6 +8,8 @@ const { violet, green, gray, indefinido } = palette;
 export default styled.div`
   display: flex;
   align-items: center;
+  position: relative;
+  
   &:hover {
     cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
     transition: background-color .3s;

@@ -108,7 +108,7 @@ export const Accesory = () => (
       <IconGenerator
         renderIcon={AddIcon}
         props={{
-          left: '20px',
+          left: '10px',
           fill: palette.white,
           width: '11px',
           height: '11px',
@@ -118,11 +118,11 @@ export const Accesory = () => (
       <Button label="Button" className="button--accessory-left" />
     </AccessoryButtonContainer>
     
-    <AccessoryButtonContainer disabled={true}>
+    <AccessoryButtonContainer>
       <IconGenerator
         renderIcon={AddIcon}
         props={{
-          left: '20px',
+          left: '10px',
           fill: palette.gray.g4,
           width: '11px',
           height: '11px',
@@ -136,7 +136,7 @@ export const Accesory = () => (
       <IconGenerator
         renderIcon={DownloadFileIcon}
         props={{
-          left: '28px',
+          left: '10px',
           fill: palette.gray.g4,
           width: '20px',
           height: '20px',
@@ -147,7 +147,7 @@ export const Accesory = () => (
       <IconGenerator
         renderIcon={DownChevronIcon}
         props={{
-          right: '20px',
+          right: '5px',
           fill: palette.gray.g4,
           width: '16px',
           height: '16px',
@@ -163,7 +163,7 @@ export const StatusButton = () => (
       <IconGenerator 
         renderIcon={EllipseIcon} 
         props={{
-          left: '15px',
+          left: '8px',
           fill: palette.green.g1,
           width: '6px',
           height: '6px',
@@ -181,7 +181,7 @@ export const StatusButton = () => (
       <IconGenerator
         renderIcon={XIcon}
         props={{
-          right: '10px',
+          right: '8px',
           width: '4px',
           height: '4px',
         }}
@@ -193,7 +193,7 @@ export const StatusButton = () => (
       <IconGenerator
         renderIcon={XIcon}
         props={{
-          right: '15px',
+          right: '8px',
           width: '6px',
           height: '6px',
         }}

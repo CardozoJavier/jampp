@@ -6,6 +6,10 @@ const { white, violet, gray, black } = palette;
  * Secondary button - Large | Medium | Small
  */
 export default styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+
   &:hover {
     cursor: ${({ disabled}) => disabled ? 'default' : 'pointer'};
     transition: background-color .3s;
@@ -26,9 +30,6 @@ export default styled.div`
       }
     }
   }
-
-  display: flex;
-  align-items: center
   
   .button {
     transition: background-color .3s;
