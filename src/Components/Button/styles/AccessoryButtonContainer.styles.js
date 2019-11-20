@@ -8,6 +8,23 @@ const { white, violet, gray, black } = palette;
 export default styled.div`
   &:hover {
     cursor: ${({ disabled}) => disabled ? 'default' : 'pointer'};
+    transition: background-color .3s;
+
+    .button {
+      &--accessory {
+        background-color: red;
+        color: white;
+
+        &__inverted {
+          background-color: ${gray.g05};
+          color: ${black};
+        }
+
+        &__disabled {
+          background-color: ${gray.g1};
+        }
+      }
+    }
   }
 
   display: flex;
@@ -15,7 +32,6 @@ export default styled.div`
   
   .button {
     transition: background-color .3s;
-    cursor: pointer;
     text-align: center;
     
     &:focus {
@@ -34,11 +50,6 @@ export default styled.div`
         font-size: 12px;
         font-weight: normal;
         padding: .75em 1em .75em 2.5em;
-
-        &:hover {
-          background-color: red;
-          transition: background-color .3s;
-        }
       }
       
       &-right {
@@ -54,24 +65,19 @@ export default styled.div`
       &__inverted {
         background-color: ${gray.g1};
         color: ${gray.g4};
-
-        &:hover {
-          background-color: ${gray.g05};
-          color: ${black};
-          transition: background-color .3s;
-        }
       }
 
       &__disabled {
         background-color: ${gray.g1};
         color: ${gray.g4};
         border: none;
-        cursor: default;
-
-        &:hover {
-          background-color: #eff0f5;
-        }
       }
     }
   }
 `;
+
+// &:hover {
+//   background-color: ${gray.g05};
+//   color: ${black};
+//   transition: background-color .3s;
+// }

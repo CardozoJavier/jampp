@@ -8,11 +8,22 @@ const { white, violet, gray, black } = palette;
 export default styled.div`
   &:hover {
     cursor: ${({ disabled}) => disabled ? 'default' : 'pointer'};
+    transition: background-color .3s;
+
+    .button {
+      &--secondary {
+        background-color: ${gray.g05};
+        color: ${black};
+
+        &__disabled {
+          background-color: ${gray.g1};
+        }
+      }
+    }
   }
 
   .button {
     transition: background-color .3s;
-    cursor: pointer;
     text-align: center;
     
     &:focus {
@@ -50,11 +61,6 @@ export default styled.div`
         background-color: ${gray.g1};
         color: ${gray.g4};
         border: none;
-        cursor: default;
-
-        &:hover {
-          background-color: #eff0f5;
-        }
       }
     }
   }
