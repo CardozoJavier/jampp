@@ -1,14 +1,28 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
-const { white, violet, gray } = palette; 
+const { white, violet, gray, indefinido } = palette; 
 
 /*
  * Primary button - Large | Medium | Small
  */
 export default styled.div`
+  &:hover {
+    cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
+    transition: background-color .3s;
+
+    .button {
+      &--primary {
+        background-color: ${indefinido};
+        
+        &__disabled {
+          background-color: ${white};
+        }
+      }
+    }
+  }
+
   .button {
     transition: background-color .3s;
-    cursor: pointer;
     text-align: center;
     
     &:focus {
@@ -36,20 +50,10 @@ export default styled.div`
         padding: .3em .5em;
       }
 
-      &:hover {
-        background-color: #786fb1;
-        transition: background-color .3s;
-      }
-
       &__disabled {
         background-color: ${white};
         color: ${gray.g4};
         border: 1px solid ${gray.g1};
-        cursor: default;
-
-        &:hover {
-          background-color: ${white};
-        }
       }
     }
   }

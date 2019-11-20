@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
-const { violet, green, gray } = palette;
+const { violet, green, gray, indefinido } = palette;
 
 /**
  * Mini button - normal
@@ -8,10 +8,23 @@ const { violet, green, gray } = palette;
 export default styled.div`
   display: flex;
   align-items: center;
+  &:hover {
+    cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
+    transition: background-color .3s;
+
+    .button {
+      &--statusok {
+        background-color: ${indefinido}
+      }
+
+      &--label {
+        background-color: ${indefinido};
+      }
+    }
+  }
 
   .button {
     transition: background-color .3s;
-    cursor: pointer;
     text-align: center;
 
     &:focus {
@@ -44,10 +57,6 @@ export default styled.div`
 
       &-medium {
         padding: .6em 4.5em .6em 1em;
-      }
-
-      &:hover {
-        background-color: red;
       }
     }
   }

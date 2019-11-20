@@ -1,14 +1,36 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
-const { white, violet, gray, action } = palette;
+const { white, violet, gray, action, indefinido } = palette;
 
 /*
  * Option button - Left | Middle | Right
  */
 export default styled.div`
+  &:hover {
+    cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
+    transition: background-color: .3s;
+
+    .button {
+      &--option {
+        background-color: ${indefinido};
+
+        &__selected {
+          background-color: ${indefinido};
+        }
+
+        &__default {
+          background-color: ${indefinido};
+        }
+
+        &__disabled {
+          background-color: ${white};
+        }
+      }
+    }
+  }
+
   .button {
     transition: background-color .3s;
-    cursor: pointer;
     text-align: center;
     
     &:focus {
@@ -23,11 +45,6 @@ export default styled.div`
       padding: 0.67em .62em;
       font-size: 12px;
       font-weight: 400;    
-
-      &:hover {
-        background-color: red;
-        transition: background-color .3s;
-      }
       
       &-left {
         border-radius: 5px 0 0 5px;
@@ -60,11 +77,6 @@ export default styled.div`
         background-color: ${white};
         color: ${gray.g4};
         border: 1px solid ${gray.g1};
-        cursor: default;
-
-        &:hover {
-          background-color: #fff;
-        }
       }
     }
   }  
