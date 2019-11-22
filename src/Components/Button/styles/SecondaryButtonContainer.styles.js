@@ -43,8 +43,8 @@ export default styled.div`
       }
 
       &-medium {
+        padding: 0.75em 1.5em;
         font-size: 12px;
-        font-weight: normal;
       }
 
       &-small {
@@ -57,9 +57,15 @@ export default styled.div`
         transition: background-color .3s;
       }
 
-      &__disabled {
+      &__inverted {
         background-color: ${gray.g1};
         color: ${gray.g4};
+        border: none;
+      }
+
+      &__disabled {
+        background-color: ${gray.g1};
+        color: ${gray.g1};
         border: none;
       }
     }
