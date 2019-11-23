@@ -15,11 +15,11 @@ export default styled.div`
     transition: background-color .3s;
 
     .button {
-      &--statusok {
+      &.statusok {
         background-color: ${indefinido}
       }
 
-      &--label {
+      &.label {
         background-color: ${indefinido};
       }
     }
@@ -29,36 +29,60 @@ export default styled.div`
     transition: background-color .3s;
     text-align: center;
 
+    &-large {}
+
+    &-medium {
+      font-size: 10px;
+      font-weight: normal;      
+      padding: .6em 1em;
+    }
+
+    &-small {
+      font-size: 10px;
+      font-weight: normal;
+      padding: .3em 1em;
+    }
+    
     &:focus {
       outline: none;
     }
-
-    &--statusok {
+    
+    /*************************
+     * Status button default *
+     * ***********************
+     */
+    &.statusok {
       border-radius: 9px;
-      padding: .3em 1em;
-      background-color: ${green.g0};
-      font-size: 10px;
-      font-weight: normal;
-      color: ${green.g1};
       
-      &-small {
-        padding: .3em 1.2em .3em 2em;
+      &--default {
+        background-color: ${green.g0};
+        color: ${green.g1};
+        
+        &__left {
+          padding: .3em 1.2em .3em 2em;
+        }
       }
+      
     }
     
-    &--label {
+    /************************
+     * Label button default *
+     * **********************
+     */
+    &.label {
       border-radius: 4px;
-      font-size: 10px;
-      font-weight: normal;
-      background-color: ${violet.v05};
-      color: ${gray.g4};
       
-      &-small {
-        padding: .3em 1.75em .3em 1em;
-      }
+      &--default {
+        background-color: ${violet.v05};
+        color: ${gray.g4};
 
-      &-medium {
-        padding: .6em 4.5em .6em 1em;
+        &__right {
+          padding-right: 1.75em;
+
+          &.right-icon {
+            padding-right: 4.5em;
+          }
+        }
       }
     }
   }

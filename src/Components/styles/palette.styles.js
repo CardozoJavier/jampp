@@ -2,6 +2,7 @@
  * Define commons colours for a global usage
  */
 const basePalette = {
+  indefinido: 'cyan',
   white: '#fff',
   black: '#000',
   action: '#5A47A1',

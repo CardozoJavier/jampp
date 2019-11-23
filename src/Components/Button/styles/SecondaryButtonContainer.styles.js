@@ -11,13 +11,21 @@ export default styled.div`
     transition: background-color .3s;
 
     .button {
-      &--secondary {
-        background-color: ${gray.g05};
-        color: ${black};
+      &.secondary {
 
-        &__disabled {
-          background-color: ${gray.g1};
+        &--default {
+          background-color: ${gray.g05};
+          color: ${black};
+          transition: background-color .3s;
+
+          &__disabled {
+            background-color: ${gray.g1};
+            color: ${gray.g07};
+          }
         }
+
+        &--inverted {}
+
       }
     }
   }
@@ -25,48 +33,61 @@ export default styled.div`
   .button {
     transition: background-color .3s;
     text-align: center;
-    
+
+    &-large {
+      font-size: 14px;
+    }
+
+    &-medium {
+      padding: 0.75em 1.5em;
+      font-size: 12px;
+    }
+
+    &-small {
+      font-size: 9px;
+    }
+
     &:focus {
       outline: none;
     }
 
-    &--secondary {
-      background-color: ${gray.g1};
-      color: ${gray.g4};
-      border-radius: 4px;
-      padding: 0.75em 1.5em;
+    &.secondary {
       display: flex;
       align-items: center;
+      border-radius: 4px;
       
-      &-large {
-        font-size: 14px;
+      /****************************
+       * Secondary button default *
+       * **************************
+       */
+      &--default {
+        background-color: ${gray.g1};
+        color: ${gray.g4};
+
+        &__selected {}
+
+        &__disabled {
+          color: ${gray.g07};
+        }
+
       }
 
-      &-medium {
-        padding: 0.75em 1.5em;
-        font-size: 12px;
-      }
-
-      &-small {
-        font-size: 9px;
-      }
-
-      &:hover {
-        background-color: ${gray.g05};
-        color: ${black};
-        transition: background-color .3s;
-      }
-
-      &__inverted {
+      /*****************************
+       * Secondary button inverted *
+       * ***************************
+       */      
+      &--inverted {
         background-color: ${gray.g1};
         color: ${gray.g4};
         border: none;
-      }
 
-      &__disabled {
-        background-color: ${gray.g1};
-        color: ${gray.g1};
-        border: none;
+        &__selected {}
+
+        &__disabled {
+          background-color: ${gray.g1};
+          color: ${gray.g1};
+          border: none;
+        }
       }
     }
   }
