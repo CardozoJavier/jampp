@@ -1,13 +1,14 @@
 export default (className, disabled) => {
-  const [block, element, modifier, option] = className.split(/-|_/).filter(e => e);
-  const blockDoubleDashElement = `${block}--${element}`;
-  const disabledClassName = disabled ? `${blockDoubleDashElement}__disabled` : '';
+  const [block, element, modifier, size, option] = className.split(/[ \t]|-|_/).filter(e => e);
+
+  const disabledClassName = disabled ? `${element}--${modifier}__disabled` : '';
 
   return `
     ${block}
-    ${blockDoubleDashElement}
-    ${blockDoubleDashElement}-${modifier}
-    ${blockDoubleDashElement}__${option}
+    ${element}
+    ${block}-${size}
+    ${element}--${modifier}
+    ${element}--${modifier}__${option}
     ${disabledClassName}
     ${className}
   `;
