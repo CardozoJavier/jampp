@@ -4,3 +4,4 @@ export { default as DownloadFileIconContainer } from './DownloadFileIconContaine
 export { default as EllipseIconContainer } from './EllipseIconContainer.styles';
 export { default as XIconContainer } from './XIconContainer.styles';
 export { default as InfoIconContainer } from './InfoIconContainer.styles';
+export { default as SearchIconContainer } from './SearchIconContainer.styles';
