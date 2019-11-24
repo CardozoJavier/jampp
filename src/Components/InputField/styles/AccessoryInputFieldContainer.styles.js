@@ -6,6 +6,8 @@ const { gray } = palette;
  * Accessory input field - left | right | both
  */
 export default styled.div`
+  position: relative;
+
   .input {
     transition: all .3s;
     border: 1px solid ${gray.g1};
@@ -62,7 +64,7 @@ export default styled.div`
             background-color: ${gray.g0};
             border: 1px solid ${gray.g1}
             &::placeholder {
-              color: ${gray.g07};
+              color: ${gray.g05};
             }
           }
         }

@@ -2,6 +2,8 @@ import React from 'react';
 import '../src/main.css';
 import { palette } from '../src/Components/styles';
 import {
+  Label,
+  LabelContainer,
   BasicInputFieldContainer,
   AccessoryInputFieldContainer
 } from '../src/Components/InputField/styles';
@@ -12,9 +14,7 @@ import {
 } from '../src/Components/UI/Icons';
 
 import {
-  Label,
   InputField,
-  LabelContainer,
   ControlledInputField,
 } from '../src/Components';
 
@@ -52,7 +52,6 @@ export const Accesory = () => (
       <IconGenerator
         renderIcon={SearchIcon}
         props={{
-          position: 'relative',
           top: '7px',
           left: '10px',
           fill: palette.gray.g07,
@@ -71,7 +70,6 @@ export const Accesory = () => (
       <IconGenerator
         renderIcon={DownChevronIcon}
         props={{
-          position: 'relative',
           top: '7px',
           left: '145px',
           fill: palette.gray.g07,
@@ -91,7 +89,6 @@ export const Accesory = () => (
       <IconGenerator
         renderIcon={DownChevronIcon}
         props={{ 
-          position: 'relative',
           top: '8px',
           left: '145px',
           fill: palette.gray.g2,
@@ -118,8 +115,7 @@ export const InputLabel = () => (
       <IconGenerator
         renderIcon={DownChevronIcon}
         props={{
-          position: 'relative',
-          top: '7px',
+          top: '34px',
           left: '145px',
           fill: palette.gray.g07,
           width: '16px',
