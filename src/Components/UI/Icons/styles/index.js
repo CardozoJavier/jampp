@@ -3,4 +3,4 @@ export { default as DownChevronIconContainer } from './DownChevronIconContainer.
 export { default as DownloadFileIconContainer } from './DownloadFileIconContainer.styles';
 export { default as EllipseIconContainer } from './EllipseIconContainer.styles';
 export { default as XIconContainer } from './XIconContainer.styles';
-
+export { default as InfoIconContainer } from './InfoIconContainer.styles';

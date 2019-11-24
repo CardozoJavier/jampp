@@ -6,78 +6,87 @@ const { white, violet, gray, black } = palette;
  * Secondary button - Large | Medium | Small
  */
 export default styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+
   &:hover {
     cursor: ${({ disabled}) => disabled ? 'default' : 'pointer'};
     transition: background-color .3s;
 
     .button {
-      &--accessory {
-        background-color: red;
-        color: white;
+      &.accessory {
+        
+        &--default {
+          color: ${white};
+        }
 
-        &__inverted {
+        &--inverted {
           background-color: ${gray.g05};
           color: ${black};
+
+          &__disabled {
+            background-color: ${gray.g1};
+          }
         }
 
-        &__disabled {
-          background-color: ${gray.g1};
-        }
       }
     }
   }
-
-  display: flex;
-  align-items: center
   
   .button {
     transition: background-color .3s;
+    display: flex;
     text-align: center;
+    align-items: center;
+
+    &-left {
+      font-size: 12px;
+      font-weight: normal;
+      padding: .75em 1em .75em 2.5em;
+    }
+    
+    &-right {
+      font-size: 12px;
+      padding: 0.75em 1.5em;
+    }
+    
+    &-both {
+      font-size: 12px;
+      font-weight: normal;
+      padding: .75em 2.5em;
+    }
     
     &:focus {
       outline: none;
     }
-
-    &--accessory {
-      background-color: ${violet.v1};
-      color: ${white};
+    
+    &.accessory {
       border-radius: 4px;
-      padding: 0.75em 1.5em;
-      display: flex;
-      align-items: center;
-      
-      &-left {
-        font-size: 12px;
-        font-weight: normal;
-        padding: .75em 1em .75em 2.5em;
-      }
-      
-      &-right {
-        font-size: 12px;
-      }
-      
-      &-both {
-        font-size: 12px;
-        font-weight: normal;
-        padding: .75em 2.5em;
-      }
-      
-      &__inverted {
-        background-color: ${gray.g1};
-        color: ${gray.g4};
-      }
 
-      &__disabled {
+      /****************************
+       * Accessory button default *
+       * **************************
+       */
+      &--default {
+        background-color: ${violet.v1};
+        color: ${white};
+      }
+      
+      /*****************************
+       * Accessory button inverted *
+       * ***************************
+       */
+      &--inverted {
         background-color: ${gray.g1};
         color: ${gray.g4};
-        border: none;
+
+        &__disabled {
+          background-color: ${gray.g1};
+          color: ${gray.g4};
+          border: none;
+        }
       }
     }
   }
 `;
-
-// &:hover {
-//   background-color: ${gray.g05};
-//   color: ${black};
-//   transition: background-color .3s;
-// }
