@@ -78,8 +78,9 @@ export default styled.div`
         }
       }
 
-      /**
-       * Option button inverted
+      /**************************
+       * Option button inverted *
+       * ************************
        */
       &--inverted {}      
     }
