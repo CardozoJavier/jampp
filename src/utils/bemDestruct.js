@@ -1,4 +1,7 @@
-export default (className, disabled) => {
+/**
+ * Function to destructuring class composed in each necessary class for each component
+ */
+const bemDestruct =  (className, disabled) => {
   const [block, element, modifier, size, option] = className.split(/[ \t]|-|_/).filter(e => e);
 
   const disabledClassName = disabled ? `${element}--${modifier}__disabled` : '';
@@ -13,3 +16,5 @@ export default (className, disabled) => {
     ${className}
   `;
 };
+
+export default bemDestruct;
