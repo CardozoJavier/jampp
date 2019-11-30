@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
-const { gray, white } = palette;
+const { gray, white, action } = palette;
 
 export const Box = styled.div`
   width: 15px;
@@ -20,6 +20,12 @@ export const Box = styled.div`
         
         &__selected {
           display: none;
+        }
+      }
+
+      &--filled {
+        &__selected {
+          background-color: ${action};
         }
       }
     }
