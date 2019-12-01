@@ -106,7 +106,7 @@ export const CheckboxContainer = styled.div`
     }
 
     &.basic {
-      &--default {
+      &--default, &--filled, &--clean {
         &__selected {
           background-color: ${violet.v05};
           transition: background-color .3s;
@@ -123,12 +123,7 @@ export const CheckboxContainer = styled.div`
 
   &:hover {
     cursor: pointer;
-    background-color: ${violet.v05};
+    background-color: ${gray.g0};
     transition: background-color .3s;
-    p {
-      font-weight: 900;
-      color: ${action};
-      transition: font-weight .3s;
-    }
   }
 `;

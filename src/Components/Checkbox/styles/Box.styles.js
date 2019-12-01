@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
-const { gray, white } = palette;
+const { gray, white, action } = palette;
 
 export const Box = styled.div`
   width: 15px;
   height: 15px;
   border: 1px solid ${gray.g1};
-  border-radius: 2px;
+  border-radius: 3px;
   background-color: ${white};
   position: absolute;
   right: 10px;
@@ -35,6 +35,16 @@ export const Box = styled.div`
         &__selected {
           display: none;
         }
+      }
+
+      &--filled {
+        &__selected {
+          background-color: ${action};
+        }
+      }
+
+      &--clean {
+        display: none;
       }
     }
   }
