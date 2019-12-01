@@ -6,7 +6,7 @@ export const Box = styled.div`
   width: 15px;
   height: 15px;
   border: 1px solid ${gray.g1};
-  border-radius: 2px;
+  border-radius: 3px;
   background-color: ${white};
   position: absolute;
   right: 10px;
@@ -27,6 +27,10 @@ export const Box = styled.div`
         &__selected {
           background-color: ${action};
         }
+      }
+
+      &--clean {
+        display: none;
       }
     }
   }

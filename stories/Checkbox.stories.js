@@ -17,7 +17,7 @@ export default {
 
 const { white, action } = palette;
 
-export const Options = () => (
+export const Option = () => (
   <>
     <OptionGroup>
       <Checkbox 
@@ -32,9 +32,8 @@ export const Options = () => (
         defaultClassName="checkbox basic--default-top"
         optionalClassName="checkbox basic--default-top__selected"
       />
-
       <Checkbox 
-        label="Option"
+        label="Middle option"
         Icon={CheckIcon}
         iconProps={{
           right: '10px',
@@ -45,7 +44,6 @@ export const Options = () => (
         defaultClassName="checkbox basic--default-middle"
         optionalClassName="checkbox basic--default-middle__selected"
       />
-
       <Checkbox 
         label="Bottom option"
         Icon={CheckIcon}
@@ -61,8 +59,51 @@ export const Options = () => (
     </OptionGroup>
 
     <OptionGroup>
+      <Checkbox 
+        label="Top option"
+        Icon={CheckIcon}
+        iconProps={{
+          right: '10px',
+          fill: action,
+          width: '14px',
+          height: '10px',
+        }}
+        defaultClassName="checkbox basic--default-top"
+        optionalClassName="checkbox basic--default-top__selected"
+      />
+      <Checkbox 
+        label="Middle option"
+        Icon={CheckIcon}
+        iconProps={{
+          right: '10px',
+          fill: action,
+          width: '14px',
+          height: '10px',
+        }}
+        defaultClassName="checkbox basic--default-middle"
+        optionalClassName="checkbox basic--default-middle__selected"
+      />
+      <Checkbox 
+        label="Bottom option"
+        Icon={CheckIcon}
+        iconProps={{
+          right: '10px',
+          fill: action,
+          width: '14px',
+          height: '10px',
+        }}
+        defaultClassName="checkbox basic--default-bottom"
+        optionalClassName="checkbox basic--default-bottom__selected"
+      />
+    </OptionGroup>    
+  </>
+);
+
+export const MultipleOptions = () => (
+  <>
+    <OptionGroup>
       <Checkbox
-        label="Option"
+        label="Top option"
         Icon={CheckIcon}
         iconProps={{
           right: '13px',
@@ -74,9 +115,8 @@ export const Options = () => (
         defaultClassName="checkbox basic--filled-top"
         optionalClassName="checkbox basic--filled-top__selected"
       />
-
       <Checkbox
-        label="Option"
+        label="Middle option"
         Icon={CheckIcon}
         iconProps={{
           right: '13px',
@@ -88,7 +128,6 @@ export const Options = () => (
         defaultClassName="checkbox basic--filled-middle"
         optionalClassName="checkbox basic--filled-middle__selected"
       />
-
       <Checkbox
         label="Bottom option"
         Icon={CheckIcon}
@@ -102,6 +141,6 @@ export const Options = () => (
         defaultClassName="checkbox basic--filled-bottom"
         optionalClassName="checkbox basic--filled-bottom__selected"
       />
-    </OptionGroup>
+    </OptionGroup>  
   </>
 );
