@@ -18,7 +18,7 @@ export default styled.div`
     &-top {}
 
     &.basic {
-      &--default {
+      &--default, &--filled, &--clean {
         display: none;
         
         &__selected {
