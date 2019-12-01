@@ -48,22 +48,22 @@ export default Dropdown;
 const modalOptions = [
   {
     label: 'Option 1',
-    defaultClassName: 'dropdown modal--default-top',
-    optionalClassName: 'dropdown modal--default-top__selected',
+    defaultClassName: 'dropdown modal--filled-top',
+    optionalClassName: 'dropdown modal--filled-top__selected',
   },
   {
     label: 'Option 2',
-    defaultClassName: 'dropdown modal--default-middle',
-    optionalClassName: 'dropdown modal--default-middle__selected',
+    defaultClassName: 'dropdown modal--filled-middle',
+    optionalClassName: 'dropdown modal--filled-middle__selected',
   },
   {
     label: 'Option 2b',
-    defaultClassName: 'dropdown modal--default-middle',
-    optionalClassName: 'dropdown modal--default-middle__selected',
+    defaultClassName: 'dropdown modal--filled-middle',
+    optionalClassName: 'dropdown modal--filled-middle__selected',
   },
   {
     label: 'Option 3',
-    defaultClassName: 'dropdown modal--default-bottom',
-    optionalClassName: 'dropdown modal--default-bottom__selected',
+    defaultClassName: 'dropdown modal--filled-bottom',
+    optionalClassName: 'dropdown modal--filled-bottom__selected',
   },
 ];

@@ -48,7 +48,7 @@ export const CheckboxContainer = styled.div`
       }
 
     &.modal {
-      &--default {
+      &--filled {
         &__selected {
           background-color: ${violet.v05};
           transition: background-color .3s;

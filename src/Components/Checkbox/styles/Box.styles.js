@@ -15,11 +15,9 @@ export const Box = styled.div`
     &-top {}
 
     &.modal {
-      &--default {
-        display: block;
-        
+      &--filled {
         &__selected {
-          display: none;
+          background-color: ${action};
         }
       }
     }
