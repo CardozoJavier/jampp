@@ -14,6 +14,20 @@ export default styled.div`
     vertical-align: middle;
   }
 
+  &.dropdown {
+    &-top {}
+
+    &.modal {
+      &--default {
+        display: none;
+        
+        &__selected {
+          display: block;
+        }
+      }
+    }
+  }
+
   &.checkbox {
     &-top {}
 

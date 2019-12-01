@@ -28,3 +28,8 @@ const Checkbox = ({ label, defaultClassName, optionalClassName, Icon, iconProps,
 
 export default Checkbox;
 
+/**
+ * El checkbox va a tener como variantes:
+ * - El tilde en positivo (tilde violeta, fondo transparente): usado cuando existe solo una opción tildable
+ * - El tilde en negativo (tilde blanco, fondo violeta): usados cuando existe una o varias opciones tildables
+ */

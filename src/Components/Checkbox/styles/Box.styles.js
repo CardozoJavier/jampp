@@ -11,6 +11,18 @@ export const Box = styled.div`
   position: absolute;
   right: 10px;
 
+  &.dropdown {
+    &-top {}
+
+    &.modal {
+      &--filled {
+        &__selected {
+          background-color: ${action};
+        }
+      }
+    }
+  }
+
   &.checkbox {
     &-top {}
 
