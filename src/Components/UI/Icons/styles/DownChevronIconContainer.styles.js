@@ -15,6 +15,22 @@ export default styled.div`
     vertical-align: middle;
   }
 
+  &.dropdown {
+    &.account {
+      &--full {
+        &__opened {
+          transform: rotateX(-180deg);
+          transition: all .3s;
+        }
+
+        &__closed {
+          transform: rotateX(0);
+          transition: all .3s;
+        }
+      }
+    }
+  }
+
   &:hover {
     cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
   }

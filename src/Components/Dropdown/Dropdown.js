@@ -17,7 +17,7 @@ const Dropdown = ({ iconDropdown, optionDropdown, defaultClassName, optionalClas
 
   return (
     <>
-      <DropdownInput onClick={handleClick}>
+      <DropdownInput className={bemDestruct(className)} onClick={handleClick}>
         <IconGenerator
           renderIcon={AvatarIcon}
           props={{
@@ -35,6 +35,7 @@ const Dropdown = ({ iconDropdown, optionDropdown, defaultClassName, optionalClas
             width: '24px',
             height: '24px',
             margin: '0 5px',
+            className: bemDestruct(className)
           }}
         />
       </DropdownInput>
