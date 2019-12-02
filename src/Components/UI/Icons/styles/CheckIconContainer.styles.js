@@ -41,4 +41,19 @@ export default styled.div`
       }
     }
   }
+
+
+  &.radiobutton {
+    &-top {}
+
+    &.basic {
+      &--default, &--filled, &--clean {
+        display: none;
+        
+        &__selected {
+          display: block;
+        }
+      }
+    }
+  }
 `;
