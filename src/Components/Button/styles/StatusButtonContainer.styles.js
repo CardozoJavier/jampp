@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
-const { violet, green, gray, indefinido } = palette;
+const { black, violet, green, gray, red, blue, yellow, link } = palette;
 
 /**
  * Mini button - normal
@@ -9,21 +9,7 @@ export default styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  
-  &:hover {
-    cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
-    transition: background-color .3s;
-
-    .button {
-      &.statusok {
-        background-color: ${indefinido}
-      }
-
-      &.label {
-        background-color: ${indefinido};
-      }
-    }
-  }
+  margin: 10px;
 
   .button {
     transition: background-color .3s;
@@ -35,26 +21,28 @@ export default styled.div`
       font-size: 10px;
       font-weight: normal;      
       padding: .6em 1em;
+      color: ${black};
     }
 
     &-small {
       font-size: 10px;
       font-weight: normal;
       padding: .3em 1em;
+      color: ${gray.g4};
     }
     
     &:focus {
       outline: none;
     }
     
-    /*************************
-     * Status button default *
-     * ***********************
+    /*******************************
+     * Status label button default *
+     * *****************************
      */
-    &.statusok {
+    &.status {
       border-radius: 9px;
       
-      &--default {
+      &--green {
         background-color: ${green.g0};
         color: ${green.g1};
         
@@ -62,7 +50,33 @@ export default styled.div`
           padding: .3em 1.2em .3em 2em;
         }
       }
+
+      &--red {
+        background-color: ${red.r1};
+        color: ${red.r3};
+        
+        &__left {
+          padding: .3em 1.2em .3em 2em;
+        }
+      }
       
+      &--yellow {
+        background-color: ${yellow.y0};
+        color: ${yellow.y2};
+        
+        &__left {
+          padding: .3em 1.2em .3em 2em;
+        }
+      }
+      
+      &--blue {
+        background-color: ${blue.b05};
+        color: ${link};
+        
+        &__left {
+          padding: .3em 1.2em .3em 2em;
+        }
+      }
     }
     
     /************************
@@ -74,7 +88,6 @@ export default styled.div`
       
       &--default {
         background-color: ${violet.v05};
-        color: ${gray.g4};
 
         &__right {
           padding-right: 1.75em;
