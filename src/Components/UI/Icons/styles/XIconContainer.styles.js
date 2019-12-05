@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { palette } from '../../../styles';
+const { black, action, gray } = palette;
 
 export default styled.div`
   position: absolute;
@@ -12,5 +14,25 @@ export default styled.div`
     width: ${({ width }) => width};
     height: ${({ height }) => height};
     vertical-align: middle;
+
+  }
+
+  &:hover {
+    &.button.label--default {
+      &-medium__right {
+        cursor: pointer;
+          svg {
+            fill: ${action};
+          }
+        }
+
+        &-small__right {
+          cursor: pointer;
+          svg {
+            fill: ${gray.g4};
+          }
+        }
+      }
+    }
   }
 `;

@@ -11,3 +11,8 @@ export const OptionGroup = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
+export const StatusLabelContainer = styled(StoriesContainer)`
+  justify-content: center;
+  margin: 0;
+`;
