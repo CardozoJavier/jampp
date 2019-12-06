@@ -19,13 +19,14 @@ import {
 
 import AvatarSrc from '../src/assets/guido-crego.jpg'; 
 
-import { Dropdown } from '../src/Components';
+import { Dropdown, ButtonDropdown } from '../src/Components';
+import { dropdownAction } from '../src/utils';
 
 export default {
   title: 'Dropdown',
 };
 
-const { black, green } = palette;
+const { black, green, gray } = palette;
 
 export const Account = () => (
   <>
@@ -116,4 +117,15 @@ export const Account = () => (
       />
     </DropdownContainer>
   </>
+);
+
+export const Option = () => (
+  <DropdownContainer> 
+    <ButtonDropdown
+      label="Text"
+      triggerAction={dropdownAction}
+      defaultClassName="dropdown button--default-right__closed"
+      optionalClassName="dropdown button--default-right__opened"
+      />
+  </DropdownContainer>
 );
