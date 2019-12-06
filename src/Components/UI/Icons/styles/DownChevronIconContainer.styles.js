@@ -16,8 +16,8 @@ export default styled.div`
   }
 
   &.dropdown {
-    &.account {
-      &--full {
+    &.account, &.button {
+      &--full, &--default {
         &__opened {
           transform: rotateX(-180deg);
           transition: all .3s;

@@ -11,8 +11,8 @@ export const ModalCheckboxContainer = styled.div`
   &.dropdown {
     &-right {}
 
-    &.account {
-      &--full {
+    &.account, &.button {
+      &--full, &--default {
         &__opened {
           opacity: 1;
           visibility: visible;
