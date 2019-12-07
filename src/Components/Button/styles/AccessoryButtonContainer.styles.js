@@ -14,8 +14,8 @@ export default styled.div`
     cursor: ${({ disabled}) => disabled ? 'default' : 'pointer'};
     transition: background-color .3s;
 
-    .button {
-      &.accessory {
+    .button, .dropdown {
+      &.accessory, &.button, &.option, &.label {
         
         &--inverted {
           color: ${white};
@@ -46,7 +46,7 @@ export default styled.div`
       padding: .75em 1em .75em 2.5em;
     }
     
-    &-right {
+    &-right, &-status {
       font-size: 12px;
       padding: 0.75em 2.5em .75em 1em;
     }
@@ -61,7 +61,7 @@ export default styled.div`
       outline: none;
     }
     
-    &.accessory, &.button {
+    &.accessory, &.button, &.option, &.label {
       border-radius: 4px;
 
       /****************************
