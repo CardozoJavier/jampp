@@ -1,51 +1,53 @@
 import React, { useState } from 'react';
-import { DropdownInput } from './styles';
-import { AvatarIcon } from '../UI/Icons';
-import { IconGenerator } from '../UI/Icons';
 import MultipleOptionList from '../MultipleOptionList';
+import { ButtonInput } from '../Button/styles';
+import { ButtonDropdownContainer } from './styles';
 import { bemDestruct, getClassName } from '../../utils';
+import { IconGenerator, DownChevronIcon } from '../UI/Icons';
 
 import { palette } from '../styles';
 const { gray } = palette;
 
-const Dropdown = ({ iconDropdown, optionDropdown, defaultClassName, optionalClassName, disabled }) => {
+const triggerAction = () => setTimeout(() => alert('You clicked me!'), 1000);
+
+const MultipleOptionDropdown = ({ label, children, defaultClassName, optionalClassName, disabled }) => {
   const [className, setClassName] = useState(defaultClassName);
+  const [chevron, setChevron] = useState('chevron chevron--default__closed');
+  
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
+  const toggleChevronDirection = getClassName(chevron, 'chevron chevron--default__closed', 'chevron chevron--default__opened');
 
   const handleClick = () => {
-    setClassName(toggleToClassName);  
-  }
+    // triggerAction();
+    setClassName(toggleToClassName);
+    setChevron(toggleChevronDirection);
+  };
 
   return (
     <>
-      <DropdownInput className={bemDestruct(className)} onClick={handleClick}>
-        <IconGenerator
-          renderIcon={AvatarIcon}
-          props={{
-            src: optionDropdown,
-            width: '40px',
-            height: '40px',
-            borderRadius: '100%',
-          }}
+      <ButtonDropdownContainer className={bemDestruct(className)} onClick={handleClick}>
+        <ButtonInput
+          children={label || children}
+          className={bemDestruct(className, disabled)}
         />
         <IconGenerator
-          renderIcon={iconDropdown}
+          renderIcon={DownChevronIcon}
           props={{
             position: 'relative',
+            right: '20px',
             fill: gray.g4,
-            width: '24px',
-            height: '24px',
-            margin: '0 5px',
-            className: bemDestruct(className)
+            width: '16px',
+            height: '16px',
+            className: bemDestruct(chevron),
           }}
         />
-      </DropdownInput>
+      </ButtonDropdownContainer>
       <MultipleOptionList className={className} options={modalOptions} />
     </>
   );
 };
 
-export default Dropdown;
+export default MultipleOptionDropdown;
 
 const modalOptions = [
   {

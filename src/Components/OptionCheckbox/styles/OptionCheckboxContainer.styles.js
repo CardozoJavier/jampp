@@ -10,11 +10,11 @@ export default styled.div`
   position: relative;
   min-width: 130px;
 
-  &.radiobutton {
+  &.optionCheckbox {
     
-    /******************************
-     * Radio button container TOP *
-     * ****************************
+    /*********************************
+     * Option checkbox container TOP *
+     * *******************************
      */
     &-top {
       display: flex;
@@ -24,9 +24,9 @@ export default styled.div`
       transition: all .3s;
     }
 
-    /*********************************
-     * Radio button container MIDDLE *
-     * *******************************
+    /************************************
+     * Option checkbox container MIDDLE *
+     * **********************************
      */
     &-middle {
       display: flex;
@@ -37,9 +37,9 @@ export default styled.div`
       transition: all .3s;
     }
 
-    /*********************************
-     * Radio button container BOTTOM *
-     * *******************************
+    /************************************
+     * Option checkbox container BOTTOM *
+     * **********************************
      */
     &-bottom {
       display: flex;

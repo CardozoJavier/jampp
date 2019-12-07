@@ -9,7 +9,7 @@ export default styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  margin: 10px;
+  margin: ${({ margin }) => margin || '10px'};
 
   .button {
     transition: background-color .3s;

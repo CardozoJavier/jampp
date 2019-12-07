@@ -197,7 +197,7 @@ export const Accesory = () => (
           
         }}
       />
-      <Button label="Button" defaultClassName="button accessory--default-left" />
+      <Button label="Button" defaultClassName="button accessory--inverted-left" />
     </AccessoryButtonContainer>
     
     <AccessoryButtonContainer>
@@ -211,7 +211,7 @@ export const Accesory = () => (
           
         }}
       />
-      <Button label="Button" defaultClassName="button accessory--inverted-left" />    
+      <Button label="Button" defaultClassName="button accessory--default-left" />    
     </AccessoryButtonContainer>
 
     <AccessoryButtonContainer>
@@ -225,7 +225,7 @@ export const Accesory = () => (
           
         }}
       />
-      <Button label="Export" defaultClassName="button accessory--inverted-both" />
+      <Button label="Export" defaultClassName="button accessory--default-both" />
       <IconGenerator
         renderIcon={DownChevronIcon}
         props={{

@@ -4,9 +4,9 @@ import { palette } from '../src/Components/styles';
 import {
   BeltIcon,
   HelpIcon,
+  EllipseIcon,
   IconGenerator,
   DownChevronIcon,
-  EllipseIcon,
 } from '../src/Components/UI/Icons';
 
 import {
@@ -19,13 +19,19 @@ import {
 
 import AvatarSrc from '../src/assets/guido-crego.jpg'; 
 
-import { Dropdown } from '../src/Components';
+import {
+  Dropdown,
+  OptionDropdown,
+  StatusLabelDropdown,
+  MultipleOptionDropdown,
+} from '../src/Components';
+import { dropdownAction } from '../src/utils';
 
 export default {
   title: 'Dropdown',
 };
 
-const { black, green } = palette;
+const { black, green, gray } = palette;
 
 export const Account = () => (
   <>
@@ -113,6 +119,35 @@ export const Account = () => (
         optionDropdown={AvatarSrc}
         defaultClassName="dropdown account--full-right__closed"
         optionalClassName="dropdown account--full-right__opened"
+      />
+    </DropdownContainer>
+  </>
+);
+
+export const Checkbox = () => (
+  <>
+    <DropdownContainer> 
+      <MultipleOptionDropdown
+        label="Text"
+        triggerAction={dropdownAction}
+        defaultClassName="dropdown button--default-right__closed"
+        optionalClassName="dropdown button--default-right__opened"
+        />
+    </DropdownContainer>
+
+    <DropdownContainer>
+      <OptionDropdown
+        label="Text"
+        defaultClassName="dropdown option--default-right__closed"
+        optionalClassName="dropdown option--default-right__opened"
+      />
+    </DropdownContainer>
+
+    <DropdownContainer>
+      <StatusLabelDropdown
+        label="Text"
+        defaultClassName="dropdown label--default-status__closed"
+        optionalClassName="dropdown label--default-status__opened"
       />
     </DropdownContainer>
   </>

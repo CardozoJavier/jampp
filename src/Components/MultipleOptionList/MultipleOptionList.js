@@ -1,5 +1,5 @@
 import React from 'react';
-import { ModalCheckboxContainer } from './styles';
+import { MultipleOptionListContainer } from './styles';
 import { CheckIcon } from '../UI/Icons';
 import { palette } from '../styles';
 import { Checkbox } from '../Checkbox';
@@ -7,9 +7,9 @@ import { bemDestruct } from '../../utils';
 
 const { action, white, } = palette;
 
-const ModalCheckbox = ({ className, options, }) => {
+const MultipleOptionList = ({ className, options, }) => {
   return (
-    <ModalCheckboxContainer className={bemDestruct(className)}>
+    <MultipleOptionListContainer className={bemDestruct(className)}>
       {options.map(option => (
         <Checkbox
           key={option.label}
@@ -26,8 +26,8 @@ const ModalCheckbox = ({ className, options, }) => {
           optionalClassName={option.optionalClassName}
         />
       ))}  
-    </ModalCheckboxContainer>
+    </MultipleOptionListContainer>
   );
 };
 
-export default ModalCheckbox;
+export default MultipleOptionList;

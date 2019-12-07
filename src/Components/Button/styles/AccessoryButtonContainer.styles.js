@@ -14,14 +14,14 @@ export default styled.div`
     cursor: ${({ disabled}) => disabled ? 'default' : 'pointer'};
     transition: background-color .3s;
 
-    .button {
-      &.accessory {
+    .button, .dropdown {
+      &.accessory, &.button, &.option, &.label {
         
-        &--default {
+        &--inverted {
           color: ${white};
         }
 
-        &--inverted {
+        &--default {
           background-color: ${gray.g05};
           color: ${black};
 
@@ -34,7 +34,7 @@ export default styled.div`
     }
   }
   
-  .button {
+  .button, .dropdown {
     transition: background-color .3s;
     display: flex;
     text-align: center;
@@ -46,9 +46,9 @@ export default styled.div`
       padding: .75em 1em .75em 2.5em;
     }
     
-    &-right {
+    &-right, &-status {
       font-size: 12px;
-      padding: 0.75em 1.5em;
+      padding: 0.75em 2.5em .75em 1em;
     }
     
     &-both {
@@ -61,14 +61,14 @@ export default styled.div`
       outline: none;
     }
     
-    &.accessory {
+    &.accessory, &.button, &.option, &.label {
       border-radius: 4px;
 
       /****************************
        * Accessory button default *
        * **************************
        */
-      &--default {
+      &--inverted {
         background-color: ${violet.v1};
         color: ${white};
       }
@@ -77,7 +77,7 @@ export default styled.div`
        * Accessory button inverted *
        * ***************************
        */
-      &--inverted {
+      &--default {
         background-color: ${gray.g1};
         color: ${gray.g4};
 

@@ -1,18 +1,17 @@
 import styled from 'styled-components';
 
-export const ModalCheckboxContainer = styled.div`
+export default styled.div`
   position: absolute;
   right: 0;
   top: 45px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, .1);
   border-radius: 4px;
-  min-width: 130px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .1);
 
   &.dropdown {
     &-right {}
-
-    &.account {
-      &--full {
+    
+    &.option, &.label {
+      &--default {
         &__opened {
           opacity: 1;
           visibility: visible;

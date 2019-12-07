@@ -15,9 +15,9 @@ export default styled.div`
     vertical-align: middle;
   }
 
-  &.dropdown {
-    &.account {
-      &--full {
+  &.dropdown, &.chevron {
+    &.account, &.button, &.chevron, &.label {
+      &--full, &--default {
         &__opened {
           transform: rotateX(-180deg);
           transition: all .3s;
