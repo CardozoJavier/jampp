@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { DropdownInput } from './styles';
 import { AvatarIcon } from '../UI/Icons';
 import { IconGenerator } from '../UI/Icons';
-import ModalCheckbox from '../ModalCheckbox';
+import MultipleOptionList from '../MultipleOptionList';
 import { bemDestruct, getClassName } from '../../utils';
 
 import { palette } from '../styles';
@@ -40,7 +40,7 @@ const Dropdown = ({ iconDropdown, optionDropdown, defaultClassName, optionalClas
           }}
         />
       </DropdownInput>
-      <ModalCheckbox className={className} options={modalOptions} />
+      <MultipleOptionList className={className} options={modalOptions} />
     </>
   );
 };
