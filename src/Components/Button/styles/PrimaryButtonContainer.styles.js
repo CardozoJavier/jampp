@@ -16,9 +16,13 @@ export default styled.div`
 
     .button {
       &.primary {
+        transform: translateY(-4px);
+        transition: transform .3s;
         
         &--default {
-
+          &__disabled {
+            transform: none;
+          }
         }
 
         &--inverted {
@@ -30,6 +34,7 @@ export default styled.div`
             background-color: ${gray.g0};
             color: ${gray.g2};
             border: 1px solid ${gray.g2};
+            transform: none;
           }
         }
       }
@@ -72,6 +77,7 @@ export default styled.div`
 
     &.primary {
       border-radius: 4px;
+      transition: transform .3s;
       
       /**************************
        * Primary button default *
@@ -84,8 +90,9 @@ export default styled.div`
         &__selected {}
 
         &__disabled {
+
           background-color: ${gray.g2};
-          color: ${white};
+          color: ${gray.g07};
           border: 1px solid ${gray.g2};
         }
       }
@@ -107,6 +114,7 @@ export default styled.div`
           background-color: ${white};
           color: ${black};
           border: 1px solid ${gray.g07};
+          transform: translateY(-4px);
           
           &.right-icon {
             padding: .9em 3em .9em 1.8em;

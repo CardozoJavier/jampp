@@ -28,7 +28,7 @@ export default {
 
 const { white, black, action, link, gray, violet, green, blue, yellow, red } = palette;
 
-export const Primary = () => (
+export const Solid = () => (
   <>
     <PrimaryButtonContainer>
       <Button label="Primary big button" defaultClassName="button primary--default-large" />
@@ -41,7 +41,11 @@ export const Primary = () => (
       disabled
       />
     </PrimaryButtonContainer>
+  </>
+);
 
+export const Ghost = () => (
+  <>
     <PrimaryButtonContainer>
       <Button 
         label="Primary ghost button"
@@ -236,50 +240,5 @@ export const Accesory = () => (
         }}
       />
     </AccessoryButtonContainer>
-  </>
-);
-
-export const StatusButton = () => (
-  <>
-    <StatusButtonContainer>
-      <IconGenerator 
-        renderIcon={EllipseIcon} 
-        props={{
-          left: '8px',
-          fill: green.g1,
-          width: '6px',
-          height: '6px',
-        }}
-      />
-      <Button label="Status" defaultClassName="button statusok--default-small__left" />
-    </StatusButtonContainer>
-    
-    <StatusButtonContainer>
-      <Button label="Status" defaultClassName="button statusok--default-small" />
-    </StatusButtonContainer>
-
-    <StatusButtonContainer>
-      <Button label="Label" defaultClassName="button label--default-small__right" />
-      <IconGenerator
-        renderIcon={XIcon}
-        props={{
-          right: '8px',
-          width: '4px',
-          height: '4px',
-        }}
-      />
-    </StatusButtonContainer>
-    
-    <StatusButtonContainer>
-      <Button label="Label" defaultClassName="button label--default-medium right-icon" />
-      <IconGenerator
-        renderIcon={XIcon}
-        props={{
-          right: '8px',
-          width: '6px',
-          height: '6px',
-        }}
-      />
-    </StatusButtonContainer>
   </>
 );
