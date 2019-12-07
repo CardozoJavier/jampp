@@ -1,2 +1,4 @@
 export { default as Dropdown } from './Dropdown';
-export { default as ButtonDropdown } from './ButtonDropdown';
+export { default as OptionDropdown } from './OptionDropdown';
+export { default as StatusLabelDropdown } from './StatusLabelDropdown';
+export { default as MultipleOptionDropdown } from './MultipleOptionDropdown';
