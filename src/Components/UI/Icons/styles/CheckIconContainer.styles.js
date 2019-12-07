@@ -43,7 +43,7 @@ export default styled.div`
   }
 
 
-  &.radiobutton {
+  &.optionCheckbox {
     &-top {}
 
     &.basic {

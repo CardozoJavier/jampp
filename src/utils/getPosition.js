@@ -4,7 +4,7 @@
 const getPosition = (array, index) => {
   const isTop = index === 0;
   const isBottom = (array.length - 1) === index;
-  const className = 'radiobutton basic--default';
+  const className = 'optionCheckbox basic--default';
 
   if (isTop) {
     return `${className}-top`;
