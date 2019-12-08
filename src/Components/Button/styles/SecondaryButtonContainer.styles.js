@@ -8,30 +8,45 @@ const { white, violet, gray, black } = palette;
 export default styled.div`
   &:hover {
     cursor: ${({ disabled}) => disabled ? 'default' : 'pointer'};
-    transition: background-color .3s;
+    transition: all .3s;
 
     .button {
       &.secondary {
+        transform: translateY(-4px);
 
         &--default {
+          &__disabled {
+            transform: none;
+          }
+        }
+
+        &--gray {
           background-color: ${gray.g05};
           color: ${black};
-          transition: background-color .3s;
 
           &__disabled {
+            transform: none;
             background-color: ${gray.g1};
             color: ${gray.g07};
           }
         }
 
-        &--inverted {}
+        &--inverted {
+          color: ${gray.g4};
+          border: 1px solid ${gray.g07};
 
+          &__disabled {
+            transform: none;
+            color: ${gray.g1};
+            border: 1px solid ${gray.g1};
+          }
+        }
       }
     }
   }
 
   .button {
-    transition: background-color .3s;
+    transition: all .3s;
     text-align: center;
 
     &-large {
@@ -55,12 +70,30 @@ export default styled.div`
       display: flex;
       align-items: center;
       border-radius: 4px;
-      
+
       /****************************
        * Secondary button default *
        * **************************
        */
       &--default {
+        background-color: ${violet.v1};
+        color: ${white};
+
+        &__selected {}
+
+        &__disabled {
+
+          background-color: ${gray.g2};
+          color: ${gray.g07};
+          border: 1px solid ${gray.g2};
+        }
+      }
+      
+      /*************************
+       * Secondary button gray *
+       * ***********************
+       */
+      &--gray {
         background-color: ${gray.g1};
         color: ${gray.g4};
 
@@ -68,6 +101,7 @@ export default styled.div`
 
         &__disabled {
           color: ${gray.g07};
+          background-color: ${gray.g1};
         }
 
       }
@@ -77,16 +111,14 @@ export default styled.div`
        * ***************************
        */      
       &--inverted {
-        background-color: ${gray.g1};
-        color: ${gray.g4};
-        border: none;
+        background-color: ${white};
+        color: ${gray.g07};
+        border: 1px solid ${gray.g1};
 
         &__selected {}
 
         &__disabled {
-          background-color: ${gray.g1};
           color: ${gray.g1};
-          border: none;
         }
       }
     }

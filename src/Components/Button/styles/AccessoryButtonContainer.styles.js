@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
-const { white, violet, gray, black } = palette;
+const { white, violet, gray, black, link } = palette;
 
 /*
  * Secondary button - Large | Medium | Small
@@ -9,33 +9,45 @@ export default styled.div`
   display: flex;
   align-items: center;
   position: relative;
+  transition: all .3s;
 
   &:hover {
     cursor: ${({ disabled}) => disabled ? 'default' : 'pointer'};
-    transition: background-color .3s;
+    transition: all .3s;
+    transform: ${({ disabled }) => disabled ? 'none' : 'translateY(-4px)'};
 
     .button, .dropdown {
       &.accessory, &.button, &.option, &.label {
         
-        &--inverted {
+        &--default {
           color: ${white};
+
+          &__disabled {
+            background-color: ${gray.g2};
+            color: ${gray.g07};
+          }
         }
 
-        &--default {
+        &--gray {
           background-color: ${gray.g05};
           color: ${black};
 
           &__disabled {
             background-color: ${gray.g1};
+            color: ${gray.g07};
           }
         }
+      }
+    }
 
+    .button.accessory--default-left {
+      svg {
+        fill: ${black};
       }
     }
   }
   
   .button, .dropdown {
-    transition: background-color .3s;
     display: flex;
     text-align: center;
     align-items: center;
@@ -68,23 +80,27 @@ export default styled.div`
        * Accessory button default *
        * **************************
        */
-      &--inverted {
+      &--default {
         background-color: ${violet.v1};
         color: ${white};
+
+        &__disabled {
+          background-color: ${gray.g2};
+          color: ${gray.g07};
+        }
       }
       
       /*****************************
-       * Accessory button inverted *
+       * Accessory button gray *
        * ***************************
        */
-      &--default {
+      &--gray {
         background-color: ${gray.g1};
         color: ${gray.g4};
 
         &__disabled {
           background-color: ${gray.g1};
-          color: ${gray.g4};
-          border: none;
+          color: ${gray.g07};
         }
       }
     }

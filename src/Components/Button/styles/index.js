@@ -1,4 +1,5 @@
 export { default as ButtonInput } from './ButtonInput.styles';
+export { default as LinkButtonContainer } from './LinkButtonContainer.styles';
 export { default as OptionButtonContainer } from './OptionButtonContainer.styles';
 export { default as StatusButtonContainer } from './StatusButtonContainer.styles';
 export { default as PrimaryButtonContainer } from './PrimaryButtonContainer.styles';
