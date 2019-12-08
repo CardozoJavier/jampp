@@ -2,31 +2,22 @@ import React from 'react';
 import '../src/main.css';
 import { palette } from '../src/Components/styles';
 import {
-  DownloadFileIcon,
-  DownChevronIcon,
   IconGenerator,
-  EllipseIcon,
-  InfoIcon,
   AddIcon,
-  XIcon,
 } from '../src/Components/UI/Icons';
 
 import {
   SecondaryButtonContainer,
   AccessoryButtonContainer,
-  PrimaryButtonContainer,
-  OptionButtonContainer,
-  StatusButtonContainer,
 } from '../src/Components/Button/styles';
 
 import { Button, } from '../src/Components';
-import { OptionGroup } from './styles/StoriesContainer.styles';
 
 export default {
   title: 'Secondary Button',
 };
 
-const { white, black, action, link, gray, violet, green, blue, yellow, red } = palette;
+const { white, gray, } = palette;
 
 export const SolidPurple = () => (
   <>
@@ -50,18 +41,10 @@ export const SolidGray = () => (
     <SecondaryButtonContainer disabled={true}>
       <Button label="Button" defaultClassName="button secondary--gray-medium" disabled/>
     </SecondaryButtonContainer>
-
-    <SecondaryButtonContainer>
-      <Button label="Button" defaultClassName="button secondary--inverted-medium" />
-    </SecondaryButtonContainer>
-
-    <SecondaryButtonContainer disabled={true}>
-      <Button label="Button" defaultClassName="button secondary--inverted-medium" disabled/>
-    </SecondaryButtonContainer>
   </>
 );
 
-export const Accesory = () => (
+export const AccesoryPurple = () => (
   <>
     <AccessoryButtonContainer>
       <IconGenerator
@@ -71,12 +54,28 @@ export const Accesory = () => (
           fill: white,
           width: '11px',
           height: '11px',
-          
         }}
       />
-      <Button label="Button" defaultClassName="button accessory--inverted-left" />
+      <Button label="Button" defaultClassName="button accessory--default-left" />
     </AccessoryButtonContainer>
-    
+
+    <AccessoryButtonContainer disabled={true}>
+      <IconGenerator
+        renderIcon={AddIcon}
+        props={{
+          left: '10px',
+          fill: gray.g07,
+          width: '11px',
+          height: '11px',
+        }}
+      />
+      <Button label="Button" defaultClassName="button accessory--default-left" disabled/>
+    </AccessoryButtonContainer>
+  </>
+);
+
+export const AccessoryGray = () => (
+  <>
     <AccessoryButtonContainer>
       <IconGenerator
         renderIcon={AddIcon}
@@ -85,33 +84,35 @@ export const Accesory = () => (
           fill: gray.g4,
           width: '11px',
           height: '11px',
-          
+          className: 'button accessory--default-left',
         }}
       />
-      <Button label="Button" defaultClassName="button accessory--default-left" />    
+      <Button label="Button" defaultClassName="button accessory--gray-left" />    
     </AccessoryButtonContainer>
 
-    <AccessoryButtonContainer>
+    <AccessoryButtonContainer disabled={true}>
       <IconGenerator
-        renderIcon={DownloadFileIcon}
+        renderIcon={AddIcon}
         props={{
           left: '10px',
-          fill: gray.g4,
-          width: '20px',
-          height: '20px',
-          
+          fill: gray.g07,
+          width: '11px',
+          height: '11px',
         }}
       />
-      <Button label="Export" defaultClassName="button accessory--default-both" />
-      <IconGenerator
-        renderIcon={DownChevronIcon}
-        props={{
-          right: '5px',
-          fill: gray.g4,
-          width: '16px',
-          height: '16px',
-        }}
-      />
+      <Button label="Button" defaultClassName="button accessory--gray-left" disabled/>
     </AccessoryButtonContainer>
+  </>
+);
+
+export const Ghost = () => (
+  <>
+    <SecondaryButtonContainer>
+      <Button label="Button" defaultClassName="button secondary--inverted-medium" />
+    </SecondaryButtonContainer>
+
+    <SecondaryButtonContainer disabled={true}>
+      <Button label="Button" defaultClassName="button secondary--inverted-medium" disabled/>
+    </SecondaryButtonContainer>
   </>
 );

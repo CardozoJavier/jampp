@@ -8,12 +8,11 @@ const { white, violet, gray, black } = palette;
 export default styled.div`
   &:hover {
     cursor: ${({ disabled}) => disabled ? 'default' : 'pointer'};
-    transition: background-color .3s;
+    transition: all .3s;
 
     .button {
       &.secondary {
         transform: translateY(-4px);
-        transition: all .3s;
 
         &--default {
           &__disabled {
