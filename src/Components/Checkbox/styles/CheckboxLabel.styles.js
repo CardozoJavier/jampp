@@ -4,9 +4,10 @@ const { gray } = palette;
 
 export const CheckboxLabel = styled.p`
   font-size: 12px;
-  color: ${gray.g4};
+  color: ${({ disabled }) => disabled ? gray.g1 : gray.g4};
   margin: 0;
-  margin-right: 30px;
+  margin: 0 15px;
+  cursor: default;
 
   &::after {
     display: block;
