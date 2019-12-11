@@ -8,13 +8,17 @@ import { OptionCheckbox } from '../OptionCheckbox';
 import { palette } from '../styles';
 
 const { gray } = palette;
+const chevronClassName = {
+  defaultClassName: 'chevron chevron--default__closed',
+  optionalClassName: 'chevron chevron--default__opened',
+};
 
 const OptionDropdown = ({ label, children, defaultClassName, optionalClassName, disabled }) => {
   const [className, setClassName] = useState(defaultClassName);
-  const [chevron, setChevron] = useState('chevron chevron--default__closed');
+  const [chevron, setChevron] = useState(chevronClassName.defaultClassName);
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
-  const toggleChevronDirection = getClassName(chevron, 'chevron chevron--default__closed', 'chevron chevron--default__opened');
+  const toggleChevronDirection = getClassName(chevron, chevronClassName.defaultClassName, chevronClassName.optionalClassName);
 
   const handleClick = () => {
     setClassName(toggleToClassName);

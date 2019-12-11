@@ -7,8 +7,16 @@ import { bemDestruct, getClassName } from '../../utils';
 
 import { palette } from '../styles';
 const { gray } = palette;
+const classesName = {
+  full: {
+    defaultClassName: "dropdown account--full-right__closed",
+    optionalClassName: "dropdown account--full-right__opened",
+  },
+};
 
-const Dropdown = ({ iconDropdown, optionDropdown, defaultClassName, optionalClassName, disabled }) => {
+const Dropdown = ({ iconDropdown, optionDropdown, type, disabled }) => {
+  const defaultClassName = classesName[type].defaultClassName;
+  const optionalClassName = classesName[type].optionalClassName;
   const [className, setClassName] = useState(defaultClassName);
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
 
