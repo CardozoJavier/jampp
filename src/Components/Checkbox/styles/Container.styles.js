@@ -4,10 +4,13 @@ const { gray, violet, action } = palette;
 
 export const Container = styled.div`
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   position: relative;
+  min-width: 100px;
+  justify-content: space-between;
 
-  &.dropdown {
+
+  &.checkbox {
     /***********************
      * Dropdown TOP styles *
      * *********************
@@ -20,9 +23,9 @@ export const Container = styled.div`
         transition: all .3s;
       }
 
-    /***********************
+    /**************************
      * Dropdown MIDDLE styles *
-     * *********************
+     * ************************
      */
       &-middle {
         display: flex;
@@ -33,9 +36,9 @@ export const Container = styled.div`
         transition: all .3s;
       }
 
-    /***********************
+    /**************************
      * Dropdown BOTTOM styles *
-     * *********************
+     * ************************
      */
       &-bottom {
         display: flex;
@@ -45,29 +48,35 @@ export const Container = styled.div`
         transition: all .3s;
       }
 
-    &.modal {
-      &--filled {
+    &.modal, &.basic {
+      &--filled, &--default {
+
         &__selected {
-          background-color: ${violet.v05};
-          transition: background-color .3s;
+        }
+
+        &__disabled {
           p {
-            font-weight: 900;
-            color: ${action};
-            transition: font-weight .3s;
+            color: ${gray.g1};
           }
         }
       }
     }
   }
 
-  .checkbox {
+  &.dropdown {
     &-multipleoptions {}
-
     &.basic {
       &--default {
+        padding: 10px;
+        &__selected {
+            background-color: ${violet.v05};
+            transition: background-color .3s;
 
-        &__disabled {
-          border: 1px solid ${gray.g1};
+          p {
+            font-weight: 900;
+            color: ${action};
+            transition: font-weight .3s;
+          }
         }
       }
     }
