@@ -7,18 +7,28 @@ import { IconGenerator, DownChevronIcon } from '../UI/Icons';
 
 import { palette } from '../styles';
 const { gray } = palette;
+const classesName = {
+  normal: {
+    defaultClassName: "dropdown button--gray-right__closed",
+    optionalClassName: "dropdown button--gray-right__opened",
+  },
+  chevron: {
+    defaultClassName: 'chevron chevron--default__closed',
+    optionalClassName: 'chevron chevron--default__opened',
+  },
+};
 
-const triggerAction = () => setTimeout(() => alert('You clicked me!'), 1000);
+const MultipleOptionDropdown = ({ label, children, type = 'normal', disabled }) => {
+  const defaultClassName = classesName[type].defaultClassName;
+  const optionalClassName = classesName[type].optionalClassName;
 
-const MultipleOptionDropdown = ({ label, children, defaultClassName, optionalClassName, disabled }) => {
   const [className, setClassName] = useState(defaultClassName);
-  const [chevron, setChevron] = useState('chevron chevron--default__closed');
+  const [chevron, setChevron] = useState(classesName.chevron.defaultClassName);
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
-  const toggleChevronDirection = getClassName(chevron, 'chevron chevron--default__closed', 'chevron chevron--default__opened');
+  const toggleChevronDirection = getClassName(chevron, classesName.chevron.defaultClassName, classesName.chevron.optionalClassName);
 
   const handleClick = () => {
-    // triggerAction();
     setClassName(toggleToClassName);
     setChevron(toggleChevronDirection);
   };
@@ -27,7 +37,7 @@ const MultipleOptionDropdown = ({ label, children, defaultClassName, optionalCla
     <>
       <ButtonDropdownContainer className={bemDestruct(className)} onClick={handleClick}>
         <ButtonInput
-          children={label || children}
+          children={label}
           className={bemDestruct(className, disabled)}
         />
         <IconGenerator
@@ -42,32 +52,11 @@ const MultipleOptionDropdown = ({ label, children, defaultClassName, optionalCla
           }}
         />
       </ButtonDropdownContainer>
-      <MultipleOptionList className={className} options={modalOptions} />
+      <MultipleOptionList options={children} className={className} />
     </>
   );
 };
 
 export default MultipleOptionDropdown;
 
-const modalOptions = [
-  {
-    label: 'Option 1',
-    defaultClassName: 'dropdown modal--filled-top',
-    optionalClassName: 'dropdown modal--filled-top__selected',
-  },
-  {
-    label: 'Option 2',
-    defaultClassName: 'dropdown modal--filled-middle',
-    optionalClassName: 'dropdown modal--filled-middle__selected',
-  },
-  {
-    label: 'Option 2b',
-    defaultClassName: 'dropdown modal--filled-middle',
-    optionalClassName: 'dropdown modal--filled-middle__selected',
-  },
-  {
-    label: 'Option 3',
-    defaultClassName: 'dropdown modal--filled-bottom',
-    optionalClassName: 'dropdown modal--filled-bottom__selected',
-  },
-];
+
