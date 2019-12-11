@@ -11,20 +11,24 @@ const classesName = {
     defaultClassName: "checkbox basic--default-multipleoptions",
     optionalClassName: "checkbox basic--default-multipleoptions__selected",
   },
+  dropdown: {
+    defaultClassName: "dropdown basic--default-multipleoptions",
+    optionalClassName: "dropdown basic--default-multipleoptions__selected",
+  },
 };
 
-const Checkbox = ({ label, type, right, left, disabled }) => {
+const Checkbox = ({ label, type = 'normal', right, left, disabled }) => {
   const defaultClassName = classesName[type].defaultClassName;
   const optionalClassName = classesName[type].optionalClassName;
   const [className, setClassName] = useState(defaultClassName);
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
 
   const handleClick = () => {
-    !disabled && setClassName(toggleToClassName);
+    setClassName(toggleToClassName);
   }
 
   return (
-    <Container className={bemDestruct(className, disabled)} onClick={handleClick}>
+    <Container className={bemDestruct(className, disabled)} onClick={disabled ? null : handleClick}>
       { right && <CheckboxLabel disabled={disabled}>{ label }</CheckboxLabel>}
       <CheckboxContainer>
         <Box className={bemDestruct(className, disabled)} />

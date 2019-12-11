@@ -21,7 +21,7 @@ export const Box = styled.div`
     }
   }
 
-  &.checkbox {
+  &.checkbox, &.dropdown {
     &-top {}
 
     &.basic {
