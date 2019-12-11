@@ -24,6 +24,7 @@ import {
   OptionDropdown,
   StatusLabelDropdown,
   MultipleOptionDropdown,
+  Checkbox,
 } from '../src/Components';
 import { dropdownAction } from '../src/utils';
 
@@ -78,8 +79,7 @@ export const Account = () => (
       <Dropdown
         iconDropdown={DownChevronIcon}
         optionDropdown={AvatarSrc}
-        defaultClassName="dropdown account--full-right__closed"
-        optionalClassName="dropdown account--full-right__opened"
+        type='full'
       />
     </DropdownContainer>
 
@@ -117,22 +117,21 @@ export const Account = () => (
       <Dropdown
         iconDropdown={DownChevronIcon}
         optionDropdown={AvatarSrc}
-        defaultClassName="dropdown account--full-right__closed"
-        optionalClassName="dropdown account--full-right__opened"
+        type='full'
       />
     </DropdownContainer>
   </>
 );
 
-export const Checkbox = () => (
+export const Checkboxes = () => (
   <>
     <DropdownContainer> 
-      <MultipleOptionDropdown
-        label="Text"
-        triggerAction={dropdownAction}
-        defaultClassName="dropdown button--default-right__closed"
-        optionalClassName="dropdown button--default-right__opened"
-        />
+      <MultipleOptionDropdown label="Text" type='normal'>
+        <Checkbox label="Option 1" type="dropdown" right />
+        <Checkbox label="Option 2" type="dropdown" right />
+        <Checkbox label="Option 3" type="dropdown" right />
+        <Checkbox label="Option 4" type="dropdown" right />
+      </MultipleOptionDropdown>
     </DropdownContainer>
 
     <DropdownContainer>
@@ -152,3 +151,4 @@ export const Checkbox = () => (
     </DropdownContainer>
   </>
 );
+
