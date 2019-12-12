@@ -2,10 +2,10 @@ import React from 'react';
 import { MultipleOptionListContainer, OptionContainer } from './styles';
 import { bemDestruct, isLastItem } from '../../utils';
 
-const MultipleOptionList = ({ options, className }) => (
+const MultipleOptionList = ({ children, className }) => (
   <MultipleOptionListContainer className={bemDestruct(className)}>
-    {options.map((option, index) => (
-      <OptionContainer className={`last-item__${isLastItem(options.length, index)}`}>
+    {children.map((option, index) => (
+      <OptionContainer className={`last-item__${isLastItem(children.length, index)}`}>
         {option}
       </OptionContainer>
     ))}

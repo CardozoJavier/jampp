@@ -52,7 +52,7 @@ const MultipleOptionDropdown = ({ label, children, type = 'normal', disabled }) 
           }}
         />
       </ButtonDropdownContainer>
-      <MultipleOptionList options={children} className={className} />
+      <MultipleOptionList children={children} className={className} />
     </>
   );
 };
