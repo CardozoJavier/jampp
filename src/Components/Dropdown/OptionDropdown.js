@@ -3,33 +3,42 @@ import { ButtonInput } from '../Button/styles';
 import { ButtonDropdownContainer } from './styles';
 import { getClassName, bemDestruct } from '../../utils';
 import { IconGenerator, DownChevronIcon } from '../UI/Icons';
-import { OptionCheckboxGroup, Option } from '../OptionCheckbox/styles';
-import { OptionCheckbox } from '../OptionCheckbox';
 import { palette } from '../styles';
+import { OptionList } from '../OptionList';
+import { UniqueOption } from '../UniqueOption';
 
 const { gray } = palette;
-const chevronClassName = {
-  defaultClassName: 'chevron chevron--default__closed',
-  optionalClassName: 'chevron chevron--default__opened',
+const classesName = {
+  normal: {
+    defaultClassName: "dropdown button--gray-right__closed",
+    optionalClassName: "dropdown button--gray-right__opened",
+  },
+  chevron: {
+    defaultClassName: 'chevron chevron--default__closed',
+    optionalClassName: 'chevron chevron--default__opened',
+  },
 };
 
-const OptionDropdown = ({ label, children, defaultClassName, optionalClassName, disabled }) => {
+const OptionDropdown = ({ label, children, type = 'normal', disabled }) => {
+  const defaultClassName = classesName[type].defaultClassName;
+  const optionalClassName = classesName[type].optionalClassName;
+
   const [className, setClassName] = useState(defaultClassName);
-  const [chevron, setChevron] = useState(chevronClassName.defaultClassName);
+  const [chevron, setChevron] = useState(classesName.chevron.defaultClassName);
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
-  const toggleChevronDirection = getClassName(chevron, chevronClassName.defaultClassName, chevronClassName.optionalClassName);
+  const toggleChevronDirection = getClassName(chevron, classesName.chevron.defaultClassName, classesName.chevron.optionalClassName);
 
   const handleClick = () => {
     setClassName(toggleToClassName);
     setChevron(toggleChevronDirection);
-  }
+  };
 
   return (
     <>
       <ButtonDropdownContainer className={bemDestruct(className)} onClick={handleClick}>
         <ButtonInput
-          children={label || children}
+          children={label}
           className={bemDestruct(className, disabled)}
         />
         <IconGenerator
@@ -44,15 +53,7 @@ const OptionDropdown = ({ label, children, defaultClassName, optionalClassName, 
           }}
         />
       </ButtonDropdownContainer>
-      
-      <OptionCheckboxGroup className={bemDestruct(className)}>
-        <OptionCheckbox>
-          <Option label="Option 1" value="value1" />
-          <Option label="Option 2" value="value2" />
-          <Option label="Option 3" value="value3" />
-          <Option label="Option 4" value="value4" />
-        </OptionCheckbox>
-      </OptionCheckboxGroup>
+      <OptionList OptionItem={UniqueOption} children={children} className={className} />
     </>
   );
 };
