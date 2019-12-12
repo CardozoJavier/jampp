@@ -1,32 +1,45 @@
 import React, { useState } from 'react';
-import { bemDestruct, getClassName } from '../../utils';
 import { ButtonInput } from '../Button/styles';
-import { IconGenerator, DownChevronIcon } from '../UI/Icons';
-import { OptionStatusLabelGroup } from '../OptionStatusLabel/styles';
 import { ButtonDropdownContainer } from './styles';
+import { getClassName, bemDestruct } from '../../utils';
+import { IconGenerator, DownChevronIcon } from '../UI/Icons';
 import { palette } from '../styles';
-import { OptionStatusLabel } from '../OptionStatusLabel';
-import { Option } from '../OptionCheckbox/styles';
+import { OptionList } from '../OptionList';
+import { StatusLabel } from '../StatusLabel';
 
 const { gray } = palette;
 
-const StatusLabelDropdown = ({ label, children, defaultClassName, optionalClassName, disabled }) => {
+const classesName = {
+  normal: {
+    defaultClassName: "dropdown button--gray-right__closed",
+    optionalClassName: "dropdown button--gray-right__opened",
+  },
+  chevron: {
+    defaultClassName: 'chevron chevron--default__closed',
+    optionalClassName: 'chevron chevron--default__opened',
+  },
+};
+
+const StatusLabelDropdown = ({ label, children, type = 'normal', disabled }) => {
+  const defaultClassName = classesName[type].defaultClassName;
+  const optionalClassName = classesName[type].optionalClassName;
+
   const [className, setClassName] = useState(defaultClassName);
-  const [chevron, setChevron] = useState('chevron chevron--default__closed');
+  const [chevron, setChevron] = useState(classesName.chevron.defaultClassName);
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
-  const toggleChevronDirection = getClassName(chevron, 'chevron chevron--default__closed', 'chevron chevron--default__opened');
+  const toggleChevronDirection = getClassName(chevron, classesName.chevron.defaultClassName, classesName.chevron.optionalClassName);
 
   const handleClick = () => {
     setClassName(toggleToClassName);
     setChevron(toggleChevronDirection);
-  }
+  };
 
   return (
     <>
-      <ButtonDropdownContainer className={bemDestruct(className, disabled)} onClick={handleClick}>
+      <ButtonDropdownContainer className={bemDestruct(className)} onClick={handleClick}>
         <ButtonInput
-          children={label || children}
+          children={label}
           className={bemDestruct(className, disabled)}
         />
         <IconGenerator
@@ -41,15 +54,7 @@ const StatusLabelDropdown = ({ label, children, defaultClassName, optionalClassN
           }}
         />
       </ButtonDropdownContainer>
-
-      <OptionStatusLabelGroup className={bemDestruct(className)}>
-        <OptionStatusLabel>
-            <Option label="status" value="id1" color="green" />
-            <Option label="status" value="id2" color="red" />
-            <Option label="status" value="id3" color="yellow" />
-            <Option label="status" value="id4" color="blue" />
-        </OptionStatusLabel>
-      </OptionStatusLabelGroup>
+      <OptionList OptionItem={StatusLabel} children={children} className={className} />
     </>
   );
 };
