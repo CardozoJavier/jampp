@@ -21,12 +21,13 @@ import AvatarSrc from '../src/assets/guido-crego.jpg';
 
 import {
   Dropdown,
+  Checkbox,
+  StatusLabel,
   OptionDropdown,
   StatusLabelDropdown,
   MultipleOptionDropdown,
-  Checkbox,
 } from '../src/Components';
-import { dropdownAction } from '../src/utils';
+import { Option } from '../src/Components/OptionList/styles';
 
 export default {
   title: 'Dropdown',
@@ -79,8 +80,13 @@ export const Account = () => (
       <Dropdown
         iconDropdown={DownChevronIcon}
         optionDropdown={AvatarSrc}
-        type='full'
-      />
+        type='normal'
+      >
+        <Checkbox label="Option 1" type="dropdown" right />
+        <Checkbox label="Option 2" type="dropdown" right />
+        <Checkbox label="Option 3" type="dropdown" right />
+        <Checkbox label="Option 4" type="dropdown" right />
+      </Dropdown>
     </DropdownContainer>
 
     <DropdownContainer>
@@ -117,8 +123,13 @@ export const Account = () => (
       <Dropdown
         iconDropdown={DownChevronIcon}
         optionDropdown={AvatarSrc}
-        type='full'
-      />
+        type='normal'
+      >
+        <Checkbox label="Option 1" type="dropdown" right />
+        <Checkbox label="Option 2" type="dropdown" right />
+        <Checkbox label="Option 3" type="dropdown" right />
+        <Checkbox label="Option 4" type="dropdown" right />
+      </Dropdown>
     </DropdownContainer>
   </>
 );
@@ -135,19 +146,21 @@ export const Checkboxes = () => (
     </DropdownContainer>
 
     <DropdownContainer>
-      <OptionDropdown
-        label="Text"
-        defaultClassName="dropdown option--default-right__closed"
-        optionalClassName="dropdown option--default-right__opened"
-      />
+      <OptionDropdown label="Text" type="normal">
+        <Option label="Option 1" value="value1" type="dropdown" right />
+        <Option label="Option 2" value="value2" type="dropdown" right />
+        <Option label="Option 3" value="value3" type="dropdown" right />
+        <Option label="Option 4" value="value4" type="dropdown" right />
+      </OptionDropdown>
     </DropdownContainer>
 
     <DropdownContainer>
-      <StatusLabelDropdown
-        label="Text"
-        defaultClassName="dropdown label--default-status__closed"
-        optionalClassName="dropdown label--default-status__opened"
-      />
+      <StatusLabelDropdown label="Text" type="normal">
+        <StatusLabel label="status" value="value1" color="red" type="dropdown" right />
+        <StatusLabel label="status" value="value2" color="yellow" type="dropdown" right />
+        <StatusLabel label="status" value="value3" color="green" type="dropdown" right />
+        <StatusLabel label="status" value="value4" color="blue" type="dropdown" right />
+      </StatusLabelDropdown>
     </DropdownContainer>
   </>
 );
