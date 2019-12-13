@@ -15,7 +15,7 @@ export const MultipleOptionListContainer = styled.div`
     
     &.account, &.button {
 
-      &--full, &--default, &--gray {
+      &--full, &--default, &--solid, &--basic, &--noBorder, &--noBorderLink {
         &__opened {
           opacity: 1;
           visibility: visible;
@@ -29,6 +29,10 @@ export const MultipleOptionListContainer = styled.div`
           visibility: hidden;
           transform: translate(0, 0);
         }
+      }
+
+      &--noBorder, &--noBorderLink {
+        top: 25px;
       }
     }
   }

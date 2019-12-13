@@ -11,7 +11,7 @@ export default styled.div`
     &-right {}
     
     &.option, &.label, &.button {
-      &--default, &--gray {
+      &--default, &--basic, &--solid, &--noBorder, &--noBorderLink {
         &__opened {
           opacity: 1;
           visibility: visible;
@@ -25,6 +25,10 @@ export default styled.div`
           transform: translate(0, 0);
           transition: all .3s;
         }
+      }
+
+      &--noBorder, &--noBorderLink {
+        top: 25px;
       }
     }
   }
