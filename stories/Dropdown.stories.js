@@ -134,10 +134,10 @@ export const Account = () => (
   </>
 );
 
-export const Checkboxes = () => (
+export const Basic = () => (
   <>
     <DropdownContainer> 
-      <MultipleOptionDropdown label="Text" type='normal'>
+      <MultipleOptionDropdown text="Text" type='basic' right>
         <Checkbox label="Option 1" type="dropdown" right />
         <Checkbox label="Option 2" type="dropdown" right />
         <Checkbox label="Option 3" type="dropdown" right />
@@ -146,7 +146,7 @@ export const Checkboxes = () => (
     </DropdownContainer>
 
     <DropdownContainer>
-      <OptionDropdown label="Text" type="normal">
+      <OptionDropdown text="Text" type="basic" right>
         <Option label="Option 1" value="value1" type="dropdown" right />
         <Option label="Option 2" value="value2" type="dropdown" right />
         <Option label="Option 3" value="value3" type="dropdown" right />
@@ -155,7 +155,7 @@ export const Checkboxes = () => (
     </DropdownContainer>
 
     <DropdownContainer>
-      <StatusLabelDropdown label="Text" type="normal">
+      <StatusLabelDropdown text="Text" type="basic" right>
         <StatusLabel label="status" value="value1" color="red" type="dropdown" right />
         <StatusLabel label="status" value="value2" color="yellow" type="dropdown" right />
         <StatusLabel label="status" value="value3" color="green" type="dropdown" right />
@@ -165,3 +165,95 @@ export const Checkboxes = () => (
   </>
 );
 
+export const SolidWithIcon = () => (
+  <>
+    <DropdownContainer> 
+      <MultipleOptionDropdown text="Text" type='solid' right>
+        <Checkbox label="Option 1" type="dropdown" right />
+        <Checkbox label="Option 2" type="dropdown" right />
+        <Checkbox label="Option 3" type="dropdown" right />
+        <Checkbox label="Option 4" type="dropdown" right />
+      </MultipleOptionDropdown>
+    </DropdownContainer>
+
+    <DropdownContainer>
+      <OptionDropdown text="Text" type="solid" right>
+        <Option label="Option 1" value="value1" type="dropdown" right />
+        <Option label="Option 2" value="value2" type="dropdown" right />
+        <Option label="Option 3" value="value3" type="dropdown" right />
+        <Option label="Option 4" value="value4" type="dropdown" right />
+      </OptionDropdown>
+    </DropdownContainer>
+
+    <DropdownContainer>
+      <StatusLabelDropdown text="Text" type="solid" right>
+        <StatusLabel label="status" value="value1" color="red" type="dropdown" right />
+        <StatusLabel label="status" value="value2" color="yellow" type="dropdown" right />
+        <StatusLabel label="status" value="value3" color="green" type="dropdown" right />
+        <StatusLabel label="status" value="value4" color="blue" type="dropdown" right />
+      </StatusLabelDropdown>
+    </DropdownContainer>
+  </>
+);
+
+export const NoBorder = () => (
+  <>
+    <DropdownContainer> 
+      <MultipleOptionDropdown text="Text" type='noBorder' right>
+        <Checkbox label="Option 1" type="dropdown" right />
+        <Checkbox label="Option 2" type="dropdown" right />
+        <Checkbox label="Option 3" type="dropdown" right />
+        <Checkbox label="Option 4" type="dropdown" right />
+      </MultipleOptionDropdown>
+    </DropdownContainer>
+
+    <DropdownContainer>
+      <OptionDropdown text="Text" type="noBorder" right>
+        <Option label="Option 1" value="value1" type="dropdown" right />
+        <Option label="Option 2" value="value2" type="dropdown" right />
+        <Option label="Option 3" value="value3" type="dropdown" right />
+        <Option label="Option 4" value="value4" type="dropdown" right />
+      </OptionDropdown>
+    </DropdownContainer>
+
+    <DropdownContainer>
+      <StatusLabelDropdown text="Text" type="noBorder" right>
+        <StatusLabel label="status" value="value1" color="red" type="dropdown" right />
+        <StatusLabel label="status" value="value2" color="yellow" type="dropdown" right />
+        <StatusLabel label="status" value="value3" color="green" type="dropdown" right />
+        <StatusLabel label="status" value="value4" color="blue" type="dropdown" right />
+      </StatusLabelDropdown>
+    </DropdownContainer>
+  </>
+);
+
+export const NoBorderLink = () => (
+  <>
+    <DropdownContainer> 
+      <MultipleOptionDropdown text="Advanced Options" type='noBorderLink' left>
+        <Checkbox label="Option 1" type="dropdown" right />
+        <Checkbox label="Option 2" type="dropdown" right />
+        <Checkbox label="Option 3" type="dropdown" right />
+        <Checkbox label="Option 4" type="dropdown" right />
+      </MultipleOptionDropdown>
+    </DropdownContainer>
+
+    <DropdownContainer>
+      <OptionDropdown text="Advanced Options" type="noBorderLink" left>
+        <Option label="Option 1" value="value1" type="dropdown" right />
+        <Option label="Option 2" value="value2" type="dropdown" right />
+        <Option label="Option 3" value="value3" type="dropdown" right />
+        <Option label="Option 4" value="value4" type="dropdown" right />
+      </OptionDropdown>
+    </DropdownContainer>
+
+    <DropdownContainer>
+      <StatusLabelDropdown text="Advanced Options" type="noBorderLink" left>
+        <StatusLabel label="status" value="value1" color="red" type="dropdown" right />
+        <StatusLabel label="status" value="value2" color="yellow" type="dropdown" right />
+        <StatusLabel label="status" value="value3" color="green" type="dropdown" right />
+        <StatusLabel label="status" value="value4" color="blue" type="dropdown" right />
+      </StatusLabelDropdown>
+    </DropdownContainer>
+  </>
+);
