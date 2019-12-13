@@ -44,7 +44,7 @@ export const SolidGray = () => (
   </>
 );
 
-export const AccesoryPurple = () => (
+export const PurpleWithRightIcon = () => (
   <>
     <AccessoryButtonContainer>
       <IconGenerator
@@ -74,7 +74,7 @@ export const AccesoryPurple = () => (
   </>
 );
 
-export const AccessoryGray = () => (
+export const GrayWithRightIcon = () => (
   <>
     <AccessoryButtonContainer>
       <IconGenerator
