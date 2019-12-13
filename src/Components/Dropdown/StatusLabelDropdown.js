@@ -10,9 +10,21 @@ import { StatusLabel } from '../StatusLabel';
 const { gray } = palette;
 
 const classesName = {
-  normal: {
-    defaultClassName: "dropdown button--gray-right__closed",
-    optionalClassName: "dropdown button--gray-right__opened",
+  basic: {
+    defaultClassName: "dropdown button--basic-right__closed",
+    optionalClassName: "dropdown button--basic-right__opened",
+  },
+  solid: {
+    defaultClassName: "dropdown button--solid-right__closed",
+    optionalClassName: "dropdown button--solid-right__opened",
+  },
+  noBorder: {
+    defaultClassName: "dropdown button--noBorder-right__closed",
+    optionalClassName: "dropdown button--noBorder-right__opened",
+  },
+  noBorderLink: {
+    defaultClassName: "dropdown button--noBorderLink-left__closed",
+    optionalClassName: "dropdown button--noBorderLink-left__opened",
   },
   chevron: {
     defaultClassName: 'chevron chevron--default__closed',
@@ -20,7 +32,7 @@ const classesName = {
   },
 };
 
-const StatusLabelDropdown = ({ label, children, type = 'normal', disabled }) => {
+const StatusLabelDropdown = ({ text, children, type = 'normal', left, right, disabled }) => {
   const defaultClassName = classesName[type].defaultClassName;
   const optionalClassName = classesName[type].optionalClassName;
 
@@ -38,15 +50,16 @@ const StatusLabelDropdown = ({ label, children, type = 'normal', disabled }) => 
   return (
     <>
       <ButtonDropdownContainer className={bemDestruct(className)} onClick={handleClick}>
+
         <ButtonInput
-          children={label}
+          children={text}
           className={bemDestruct(className, disabled)}
         />
         <IconGenerator
           renderIcon={DownChevronIcon}
           props={{
-            position: 'relative',
-            right: '20px',
+            position: 'unset',
+            margin: '0 5px',
             fill: gray.g4,
             width: '16px',
             height: '16px',

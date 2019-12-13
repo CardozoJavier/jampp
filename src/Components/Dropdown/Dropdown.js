@@ -10,8 +10,8 @@ import { palette } from '../styles';
 const { gray } = palette;
 const classesName = {
   normal: {
-    defaultClassName: "dropdown button--gray-right__closed",
-    optionalClassName: "dropdown button--gray-right__opened",
+    defaultClassName: "dropdown button--default-right__closed",
+    optionalClassName: "dropdown button--default-right__opened",
   },
   chevron: {
     defaultClassName: 'chevron chevron--default__closed',
