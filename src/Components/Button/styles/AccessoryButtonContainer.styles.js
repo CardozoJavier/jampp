@@ -27,6 +27,14 @@ export default styled.div`
             color: ${gray.g07};
           }
         }
+
+        &--gray {
+          color: ${black};
+
+          &__disabled {
+            color: ${gray.g07};
+          }
+        }
       }
     }
 
@@ -76,6 +84,21 @@ export default styled.div`
 
         &__disabled {
           background-color: ${gray.g2};
+          color: ${gray.g07};
+        }
+      }
+
+      /*******************************
+       * Accessory button solid gray *
+       * *****************************
+       */
+      &--gray {
+        background-color: ${gray.g1};
+        color: ${gray.g4};
+        // padding: 5px 0 5px 8px;
+
+        &__disabled {
+          background-color: ${gray.g1};
           color: ${gray.g07};
         }
       }

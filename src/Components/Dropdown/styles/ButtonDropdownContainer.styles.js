@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
 import { AccessoryButtonContainer } from '../../Button/styles';
-const { white, violet, gray, black, link } = palette;
+const { white, violet, gray, black, link, blue, action } = palette;
 
 export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
   justify-content: space-between;
@@ -14,10 +14,10 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
       &.accessory, &.button, &.option, &.label {
         &--solid {
           background-color: ${gray.g05};
-          color: ${black};
 
           &__disabled {
-            background-color: ${gray.g1};
+            cursor: default;
+            background-color: ${gray.g0};
             color: ${gray.g07};
           }
         }
@@ -27,6 +27,8 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
           color: ${black};
 
           &__disabled {
+            cursor: default;
+            border: 1px solid ${gray.g1};
             background-color: ${gray.g0};
             color: ${gray.g07};
           }
@@ -52,10 +54,10 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
       &--solid {
         background-color: ${gray.g1};
         color: ${gray.g4};
-        padding: 5px 0 5px 8px;
+        padding: 5px 5px 5px 15px;
 
         &__disabled {
-          background-color: ${gray.g1};
+          background-color: ${gray.g0};
           color: ${gray.g07};
         }
       }
@@ -77,9 +79,9 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
         }
       }
 
-      /******************************
-       * Accessory button no border *
-       * ****************************
+      /***********************************
+       * Accessory button no border link *
+       * *********************************
        */
       &--noBorder, &--noBorderLink {
         background-color: ${white};
@@ -99,13 +101,45 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
         }
 
         &__disabled {
-          background-color: ${gray.g0};
+          cursor: default;
           color: ${gray.g07};
         }
       }
       &--noBorderLink {
         color: ${link};
         padding: 0;
+
+        &__disabled {
+          color: ${blue.b05};
+        }
+      }
+
+
+      /*************************************
+       * Accessory button no border purple *
+       * ***********************************
+       */
+      &--noBorderPurple {
+        background-color: ${white};
+        color: ${action};
+        min-width: 0;
+
+        &-left {
+          &__closed, &__opened {
+            flex-direction: row;
+          }
+        }
+  
+        &-right {
+          &__closed, &__opened {
+            flex-directin: row;
+          }
+        }
+
+        &__disabled {
+          cursor: default;
+          color: ${gray.g07};
+        }
       }
     }
   }

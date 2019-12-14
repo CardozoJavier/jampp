@@ -11,7 +11,7 @@ export default styled.div`
     &-right {}
     
     &.option, &.label, &.button {
-      &--default, &--basic, &--solid, &--noBorder, &--noBorderLink {
+      &--default, &--basic, &--solid, &--noBorder, &--noBorderLink, &--noBorderPurple {
         &__opened {
           opacity: 1;
           visibility: visible;
