@@ -5,7 +5,7 @@ import { bemDestruct, isLastItem } from '../../utils';
 const MultipleOptionList = ({ children, className }) => (
   <MultipleOptionListContainer className={bemDestruct(className)}>
     {children.map((option, index) => (
-      <OptionContainer className={`last-item__${isLastItem(children.length, index)}`}>
+      <OptionContainer key={index} className={`last-item__${isLastItem(children.length, index)}`}>
         {option}
       </OptionContainer>
     ))}

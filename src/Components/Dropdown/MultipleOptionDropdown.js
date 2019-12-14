@@ -8,6 +8,10 @@ import { IconGenerator, DownChevronIcon } from '../UI/Icons';
 import { palette } from '../styles';
 const { gray } = palette;
 const classesName = {
+  chevron: {
+    defaultClassName: 'chevron chevron--default__closed',
+    optionalClassName: 'chevron chevron--default__opened',
+  },
   solid: {
     defaultClassName: "dropdown button--solid-right__closed",
     optionalClassName: "dropdown button--solid-right__opened",
@@ -15,10 +19,6 @@ const classesName = {
   basic: {
     defaultClassName: 'dropdown button--basic-right__closed',
     optionalClassName: 'dropdown button--basic-right__opened',
-  },
-  chevron: {
-    defaultClassName: 'chevron chevron--default__closed',
-    optionalClassName: 'chevron chevron--default__opened',
   },
   noBorder: {
     defaultClassName: 'dropdown button--noBorder-right__closed',
@@ -28,9 +28,13 @@ const classesName = {
     defaultClassName: 'dropdown button--noBorderLink-left__closed',
     optionalClassName: 'dropdown button--noBorderLink-left__opened',
   },
+  noBorderPurple: {
+    defaultClassName: "dropdown button--noBorderPurple-left__closed",
+    optionalClassName: "dropdown button--noBorderPurple-left__opened",
+  },
 };
 
-const MultipleOptionDropdown = ({ text, children, type = 'normal', disabled }) => {
+const MultipleOptionDropdown = ({ text, children, type = 'normal', leftIcon, disabled }) => {
   const defaultClassName = classesName[type].defaultClassName;
   const optionalClassName = classesName[type].optionalClassName;
 
@@ -47,7 +51,20 @@ const MultipleOptionDropdown = ({ text, children, type = 'normal', disabled }) =
 
   return (
     <>
-      <ButtonDropdownContainer className={bemDestruct(className)} onClick={handleClick}>
+      <ButtonDropdownContainer className={bemDestruct(className, disabled)} onClick={disabled ? null : handleClick}>
+        {leftIcon &&
+          <IconGenerator
+            renderIcon={leftIcon}
+            props={{
+              position: 'unset',
+              left: '10px',
+              fill: gray.g4,
+              width: '16px',
+              height: '16px',
+            }}
+            disabled={disabled}
+          />
+        }
         <ButtonInput
           children={text}
           className={bemDestruct(className, disabled)}
@@ -62,6 +79,7 @@ const MultipleOptionDropdown = ({ text, children, type = 'normal', disabled }) =
             height: '16px',
             className: bemDestruct(chevron),
           }}
+          disabled={disabled}
         />
       </ButtonDropdownContainer>
       <MultipleOptionList children={children} className={className} />

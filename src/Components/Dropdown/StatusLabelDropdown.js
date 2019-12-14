@@ -10,6 +10,10 @@ import { StatusLabel } from '../StatusLabel';
 const { gray } = palette;
 
 const classesName = {
+  chevron: {
+    defaultClassName: 'chevron chevron--default__closed',
+    optionalClassName: 'chevron chevron--default__opened',
+  },
   basic: {
     defaultClassName: "dropdown button--basic-right__closed",
     optionalClassName: "dropdown button--basic-right__opened",
@@ -26,13 +30,13 @@ const classesName = {
     defaultClassName: "dropdown button--noBorderLink-left__closed",
     optionalClassName: "dropdown button--noBorderLink-left__opened",
   },
-  chevron: {
-    defaultClassName: 'chevron chevron--default__closed',
-    optionalClassName: 'chevron chevron--default__opened',
+  noBorderPurple: {
+    defaultClassName: "dropdown button--noBorderPurple-left__closed",
+    optionalClassName: "dropdown button--noBorderPurple-left__opened",
   },
 };
 
-const StatusLabelDropdown = ({ text, children, type = 'normal', left, right, disabled }) => {
+const StatusLabelDropdown = ({ text, children, type = 'normal', leftIcon, disabled }) => {
   const defaultClassName = classesName[type].defaultClassName;
   const optionalClassName = classesName[type].optionalClassName;
 
@@ -49,8 +53,21 @@ const StatusLabelDropdown = ({ text, children, type = 'normal', left, right, dis
 
   return (
     <>
-      <ButtonDropdownContainer className={bemDestruct(className)} onClick={handleClick}>
-
+      <ButtonDropdownContainer className={bemDestruct(className, disabled)} onClick={disabled ? null : handleClick}>
+        {leftIcon &&
+            <IconGenerator
+              renderIcon={leftIcon}
+              props={{
+                position: 'unset',
+                left: '10px',
+                fill: gray.g4,
+                width: '16px',
+                height: '16px',
+                className: bemDestruct(className, disabled),
+              }}
+              disabled={disabled}
+            />
+          }
         <ButtonInput
           children={text}
           className={bemDestruct(className, disabled)}
@@ -65,6 +82,7 @@ const StatusLabelDropdown = ({ text, children, type = 'normal', left, right, dis
             height: '16px',
             className: bemDestruct(chevron),
           }}
+          disabled={disabled}
         />
       </ButtonDropdownContainer>
       <OptionList OptionItem={StatusLabel} children={children} className={className} />

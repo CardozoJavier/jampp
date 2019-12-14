@@ -18,6 +18,7 @@ const OptionList = ({ children, className, OptionItem }) => {
     <OptionCheckboxGroup className={bemDestruct(className)}>
       {array.map((input) => (
         <OptionItem
+          key={input.value}
           label={input.label}
           value={input.value}
           color={input.color}
