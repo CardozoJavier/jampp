@@ -8,6 +8,8 @@ export const Box = styled.div`
   border: 1px solid ${gray.g1};
   border-radius: 3px;
   background-color: ${white};
+  position: absolute;
+  right: 10px;
 
   &.dropdown {
     &-top {}
@@ -21,15 +23,15 @@ export const Box = styled.div`
     }
   }
 
-  &.checkbox, &.dropdown {
+  &.checkbox {
     &-top {}
 
     &.basic {
       &--default {
+        display: block;
         
         &__selected {
-          background-color: ${action};
-          border: 1px solid ${action};
+          display: none;
         }
       }
 

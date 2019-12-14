@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { palette } from '../../styles';
+const { violet, action } = palette;
 
 export const MultipleOptionListContainer = styled.div`
   position: absolute;
@@ -7,25 +9,30 @@ export const MultipleOptionListContainer = styled.div`
   box-shadow: 0 4px 16px rgba(0, 0, 0, .1);
   border-radius: 4px;
   min-width: 130px;
-
+  
   &.dropdown {
     &-right {}
-
+    
     &.account, &.button {
-      &--full, &--default {
+
+      &--full, &--default, &--solid, &--basic, &--noBorder, &--noBorderLink, &--noBorderPurple {
         &__opened {
           opacity: 1;
           visibility: visible;
           transform: translate(0, 10px);
-          transition: visibility 0s, opacity .3s, transform .3s;
+          transition: all .3s;
         }
 
         &__closed {
+          transition: all .3s;
           opacity: 0;
           visibility: hidden;
           transform: translate(0, 0);
-          transition: visibility 0s, opacity .3s, transform .3s;
         }
+      }
+
+      &--noBorder, &--noBorderLink {
+        top: 25px;
       }
     }
   }

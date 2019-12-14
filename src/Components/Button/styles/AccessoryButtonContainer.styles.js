@@ -29,11 +29,9 @@ export default styled.div`
         }
 
         &--gray {
-          background-color: ${gray.g05};
           color: ${black};
 
           &__disabled {
-            background-color: ${gray.g1};
             color: ${gray.g07};
           }
         }
@@ -73,7 +71,7 @@ export default styled.div`
       outline: none;
     }
     
-    &.accessory, &.button, &.option, &.label {
+    &.accessory, &.button, &.option, &.label, &.gray {
       border-radius: 4px;
 
       /****************************
@@ -89,14 +87,15 @@ export default styled.div`
           color: ${gray.g07};
         }
       }
-      
-      /*****************************
-       * Accessory button gray *
-       * ***************************
+
+      /*******************************
+       * Accessory button solid gray *
+       * *****************************
        */
       &--gray {
         background-color: ${gray.g1};
         color: ${gray.g4};
+        // padding: 5px 0 5px 8px;
 
         &__disabled {
           background-color: ${gray.g1};

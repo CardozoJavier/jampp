@@ -1,9 +1,25 @@
 import React, { useState } from 'react';
 import { IconGenerator } from '../UI/Icons';
 import { bemDestruct, getClassName, } from '../../utils';
-import { CheckboxContainer, CheckboxLabel, Box } from './styles';
+import { CheckboxContainer, CheckboxLabel, Box, Container } from './styles';
+import { CheckIcon } from '../UI/Icons';
+import { palette } from '../styles';
 
-const Checkbox = ({ label, defaultClassName, optionalClassName, Icon, iconProps, disabled }) => {
+const { white } = palette;
+const classesName = {
+  normal: {
+    defaultClassName: "checkbox basic--default-multipleoptions",
+    optionalClassName: "checkbox basic--default-multipleoptions__selected",
+  },
+  dropdown: {
+    defaultClassName: "dropdown basic--default-multipleoptions",
+    optionalClassName: "dropdown basic--default-multipleoptions__selected",
+  },
+};
+
+const Checkbox = ({ label, type = 'normal', right, left, disabled }) => {
+  const defaultClassName = classesName[type].defaultClassName;
+  const optionalClassName = classesName[type].optionalClassName;
   const [className, setClassName] = useState(defaultClassName);
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
 
@@ -12,24 +28,24 @@ const Checkbox = ({ label, defaultClassName, optionalClassName, Icon, iconProps,
   }
 
   return (
-    <CheckboxContainer
-      className={bemDestruct(className, disabled)}
-      onClick={handleClick}
-      >
-        <CheckboxLabel label={label}>{ label }</CheckboxLabel>
+    <Container className={bemDestruct(className, disabled)} onClick={disabled ? null : handleClick}>
+      { right && <CheckboxLabel disabled={disabled}>{ label }</CheckboxLabel>}
+      <CheckboxContainer>
         <Box className={bemDestruct(className, disabled)} />
         <IconGenerator
-          renderIcon={Icon}
-          props={{ ...iconProps, className: bemDestruct(className) }}
+          renderIcon={CheckIcon}
+          props={{
+            right: '1px',
+            fill: white,
+            width: '12px',
+            height: '8px',
+            disabled,
+          }}
         />
-    </CheckboxContainer>
+      </CheckboxContainer>
+      { left && <CheckboxLabel disabled={disabled}>{ label }</CheckboxLabel>}
+    </Container>
   )
 };
 
 export default Checkbox;
-
-/**
- * El checkbox va a tener como variantes:
- * - El tilde en positivo (tilde violeta, fondo transparente): usado cuando existe solo una opción tildable
- * - El tilde en negativo (tilde blanco, fondo violeta): usados cuando existe una o varias opciones tildables
- */

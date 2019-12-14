@@ -10,21 +10,25 @@ export default styled.div`
   &.dropdown {
     &-right {}
     
-    &.option, &.label {
-      &--default {
+    &.option, &.label, &.button {
+      &--default, &--basic, &--solid, &--noBorder, &--noBorderLink, &--noBorderPurple {
         &__opened {
           opacity: 1;
           visibility: visible;
           transform: translate(0, 10px);
-          transition: visibility 0s, opacity .3s, transform .3s;
+          transition: all .3s;
         }
 
         &__closed {
           opacity: 0;
           visibility: hidden;
           transform: translate(0, 0);
-          transition: visibility 0s, opacity .3s, transform .3s;
+          transition: all .3s;
         }
+      }
+
+      &--noBorder, &--noBorderLink {
+        top: 25px;
       }
     }
   }

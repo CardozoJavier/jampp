@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export default styled.div`
-  position: absolute;
+  position: ${({ position }) => position || 'absolute'};
   top: ${({ top }) => top};
   right: ${({ right }) => right};
   bottom: ${({ bottom }) => bottom};
@@ -33,10 +33,8 @@ export default styled.div`
 
     &.basic {
       &--default, &--filled, &--clean {
-        display: none;
         
         &__selected {
-          display: block;
         }
       }
     }
@@ -55,5 +53,9 @@ export default styled.div`
         }
       }
     }
+  }
+
+  &:hover {
+    cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
   }
 `;

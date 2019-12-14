@@ -7,67 +7,86 @@ import { IconGenerator, DownChevronIcon } from '../UI/Icons';
 
 import { palette } from '../styles';
 const { gray } = palette;
+const classesName = {
+  chevron: {
+    defaultClassName: 'chevron chevron--default__closed',
+    optionalClassName: 'chevron chevron--default__opened',
+  },
+  solid: {
+    defaultClassName: "dropdown button--solid-right__closed",
+    optionalClassName: "dropdown button--solid-right__opened",
+  },
+  basic: {
+    defaultClassName: 'dropdown button--basic-right__closed',
+    optionalClassName: 'dropdown button--basic-right__opened',
+  },
+  noBorder: {
+    defaultClassName: 'dropdown button--noBorder-right__closed',
+    optionalClassName: 'dropdown button--noBorder-right__opened',
+  },
+  noBorderLink: {
+    defaultClassName: 'dropdown button--noBorderLink-left__closed',
+    optionalClassName: 'dropdown button--noBorderLink-left__opened',
+  },
+  noBorderPurple: {
+    defaultClassName: "dropdown button--noBorderPurple-left__closed",
+    optionalClassName: "dropdown button--noBorderPurple-left__opened",
+  },
+};
 
-const triggerAction = () => setTimeout(() => alert('You clicked me!'), 1000);
+const MultipleOptionDropdown = ({ text, children, type = 'normal', leftIcon, disabled }) => {
+  const defaultClassName = classesName[type].defaultClassName;
+  const optionalClassName = classesName[type].optionalClassName;
 
-const MultipleOptionDropdown = ({ label, children, defaultClassName, optionalClassName, disabled }) => {
   const [className, setClassName] = useState(defaultClassName);
-  const [chevron, setChevron] = useState('chevron chevron--default__closed');
+  const [chevron, setChevron] = useState(classesName.chevron.defaultClassName);
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
-  const toggleChevronDirection = getClassName(chevron, 'chevron chevron--default__closed', 'chevron chevron--default__opened');
+  const toggleChevronDirection = getClassName(chevron, classesName.chevron.defaultClassName, classesName.chevron.optionalClassName);
 
   const handleClick = () => {
-    // triggerAction();
     setClassName(toggleToClassName);
     setChevron(toggleChevronDirection);
   };
 
   return (
     <>
-      <ButtonDropdownContainer className={bemDestruct(className)} onClick={handleClick}>
+      <ButtonDropdownContainer className={bemDestruct(className, disabled)} onClick={disabled ? null : handleClick}>
+        {leftIcon &&
+          <IconGenerator
+            renderIcon={leftIcon}
+            props={{
+              position: 'unset',
+              left: '10px',
+              fill: gray.g4,
+              width: '16px',
+              height: '16px',
+            }}
+            disabled={disabled}
+          />
+        }
         <ButtonInput
-          children={label || children}
+          children={text}
           className={bemDestruct(className, disabled)}
         />
         <IconGenerator
           renderIcon={DownChevronIcon}
           props={{
-            position: 'relative',
-            right: '20px',
+            position: 'unset',
+            margin: '0 5px',
             fill: gray.g4,
             width: '16px',
             height: '16px',
             className: bemDestruct(chevron),
           }}
+          disabled={disabled}
         />
       </ButtonDropdownContainer>
-      <MultipleOptionList className={className} options={modalOptions} />
+      <MultipleOptionList children={children} className={className} />
     </>
   );
 };
 
 export default MultipleOptionDropdown;
 
-const modalOptions = [
-  {
-    label: 'Option 1',
-    defaultClassName: 'dropdown modal--filled-top',
-    optionalClassName: 'dropdown modal--filled-top__selected',
-  },
-  {
-    label: 'Option 2',
-    defaultClassName: 'dropdown modal--filled-middle',
-    optionalClassName: 'dropdown modal--filled-middle__selected',
-  },
-  {
-    label: 'Option 2b',
-    defaultClassName: 'dropdown modal--filled-middle',
-    optionalClassName: 'dropdown modal--filled-middle__selected',
-  },
-  {
-    label: 'Option 3',
-    defaultClassName: 'dropdown modal--filled-bottom',
-    optionalClassName: 'dropdown modal--filled-bottom__selected',
-  },
-];
+

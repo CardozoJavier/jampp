@@ -1,33 +1,15 @@
 import React from 'react';
-import { MultipleOptionListContainer } from './styles';
-import { CheckIcon } from '../UI/Icons';
-import { palette } from '../styles';
-import { Checkbox } from '../Checkbox';
-import { bemDestruct } from '../../utils';
+import { MultipleOptionListContainer, OptionContainer } from './styles';
+import { bemDestruct, isLastItem } from '../../utils';
 
-const { action, white, } = palette;
-
-const MultipleOptionList = ({ className, options, }) => {
-  return (
-    <MultipleOptionListContainer className={bemDestruct(className)}>
-      {options.map(option => (
-        <Checkbox
-          key={option.label}
-          label={option.label}
-          Icon={CheckIcon}
-          iconProps={{
-            right: '13px',
-            top: '5px',
-            fill: white,
-            width: '9px',
-            height: '7px',
-          }}
-          defaultClassName={option.defaultClassName}
-          optionalClassName={option.optionalClassName}
-        />
-      ))}  
-    </MultipleOptionListContainer>
-  );
-};
+const MultipleOptionList = ({ children, className }) => (
+  <MultipleOptionListContainer className={bemDestruct(className)}>
+    {children.map((option, index) => (
+      <OptionContainer key={index} className={`last-item__${isLastItem(children.length, index)}`}>
+        {option}
+      </OptionContainer>
+    ))}
+  </MultipleOptionListContainer>
+);
 
 export default MultipleOptionList;

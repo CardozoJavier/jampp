@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { OptionCheckboxContainer } from '../../OptionCheckbox/styles';
+import { OptionCheckboxContainer } from '../../OptionList/styles';
 
 export default styled(OptionCheckboxContainer)`
-
+  padding: 8px;
 `;
