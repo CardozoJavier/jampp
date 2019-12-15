@@ -12,3 +12,4 @@ export { default as EllipseIconContainer } from './EllipseIconContainer.styles';
 export { default as ExclamationIconContainer } from './ExclamationIconContainer.styles';
 export { default as DownChevronIconContainer } from './DownChevronIconContainer.styles';
 export { default as DownloadFileIconContainer } from './DownloadFileIconContainer.styles';
+export { default as ToggleCircleIconContainer } from './ToggleCircleIconContainer.styles'; 
