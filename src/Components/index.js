@@ -4,6 +4,8 @@ export {
   StatusLabelDropdown,
   MultipleOptionDropdown,
 } from './Dropdown';
+export { Card } from './Card';
+export { Modal } from './Modal';
 export { Button } from './Button';
 export { Checkbox } from './Checkbox';
 export { InputField } from './InputField';
