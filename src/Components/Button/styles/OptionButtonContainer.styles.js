@@ -10,15 +10,15 @@ export default styled.div`
     cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
     transition: all .3s;
 
-    .button {
-      &.option {
+    .button, &.optionCheckbox {
+      &.option, &.basic {
 
         &--default {
           &__selected {
           }
           
           &__disabled {
-            background-color: ${white};
+            cursor: default;
           }
         }
 
@@ -27,7 +27,7 @@ export default styled.div`
     }
   }
 
-  .button {
+  .button, &.optionCheckbox {
     transition: all .3s;
     text-align: center;
     font-size: 12px;
@@ -35,7 +35,7 @@ export default styled.div`
     padding: 0.67em .62em;
     border-radius: 4px;
 
-    &-left {
+    &-top {
       border-radius: 5px 0 0 5px;
       margin-right: 5px;
     }
@@ -45,7 +45,7 @@ export default styled.div`
       margin: 0 5px;
     }
 
-    &-right {
+    &-bottom {
       border-radius: 0 5px 5px 0;
       margin-left: 5px;
     }
@@ -54,7 +54,7 @@ export default styled.div`
       outline: none;
     }
 
-    &.option {
+    &.option, &.basic {
       
       /*************************
        * Option button default *
@@ -73,8 +73,8 @@ export default styled.div`
 
         &__disabled {
           background-color: ${white};
-          color: ${gray.g4};
-          border: 1px solid ${action};
+          color: ${gray.g1};
+          border: 1px solid ${gray.g1};
         }
       }
 
