@@ -4,6 +4,7 @@ export { default as AddIconContainer } from './AddIconContainer.styles';
 export { default as BeltIconContainer } from './BeltIconContainer.styles';
 export { default as InfoIconContainer } from './InfoIconContainer.styles';
 export { default as HelpIconContainer } from './HelpIconContainer.styles';
+export { default as TrashIconContainer } from './TrashIconContainer.styles';
 export { default as CheckIconContainer } from './CheckIconContainer.styles';
 export { default as SearchIconContainer } from './SearchIconContainer.styles';
 export { default as AvatarIconContainer } from './AvatarIconContainer.styles';
