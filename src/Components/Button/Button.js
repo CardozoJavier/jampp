@@ -4,7 +4,7 @@ import { bemDestruct, getClassName } from '../../utils';
 
 const triggerAction = () => setTimeout(() => alert('You clicked me!'), 1000);
 
-const Button = ({ label, children, defaultClassName, optionalClassName, disabled }) => {
+const Button = ({ label, children, type, defaultClassName, optionalClassName, disabled }) => {
   const [className, setClassName] = useState(defaultClassName);
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
 
