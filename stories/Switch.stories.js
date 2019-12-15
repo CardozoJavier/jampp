@@ -23,7 +23,7 @@ export const Switch = () => (
     </SwitchGroup>
 
     <OptionButtonContainer>
-      <Button type="switch">
+      <Button defaultClassName='button option--default-medium__selected' optionalClassName='button option--default-medium'>
         <strong>Button</strong> Text
       </Button>
     </OptionButtonContainer>
