@@ -1,118 +1,44 @@
 import React from 'react';
 import '../src/main.css';
-import { palette } from '../src/Components/styles';
-import {
-  IconGenerator,
-  AddIcon,
-} from '../src/Components/UI/Icons';
-
-import {
-  SecondaryButtonContainer,
-  AccessoryButtonContainer,
-} from '../src/Components/Button/styles';
-
+import { AddIcon } from '../src/Components/UI/Icons';
 import { Button, } from '../src/Components';
 
 export default {
   title: 'Secondary Button',
 };
 
-const { white, gray, } = palette;
 
 export const SolidPurple = () => (
   <>
-    <SecondaryButtonContainer>
-      <Button label="Button" defaultClassName="button secondary--default-medium" />
-    </SecondaryButtonContainer>
-
-
-    <SecondaryButtonContainer disabled={true}>
-      <Button label="Button" defaultClassName="button secondary--default-medium" disabled />
-    </SecondaryButtonContainer>
+    <Button label="Button" type="secondary-default-medium" />
+    <Button label="Button" type="secondary-default-medium" disabled />
   </>
 );
 
 export const SolidGray = () => (
   <>
-    <SecondaryButtonContainer>
-      <Button label="Button" defaultClassName="button secondary--gray-medium" />
-    </SecondaryButtonContainer>
-
-    <SecondaryButtonContainer disabled={true}>
-      <Button label="Button" defaultClassName="button secondary--gray-medium" disabled/>
-    </SecondaryButtonContainer>
+    <Button label="Button" type="secondary-gray-medium" />
+    <Button label="Button" type="secondary-gray-medium" disabled/>
   </>
 );
 
 export const PurpleWithRightIcon = () => (
   <>
-    <AccessoryButtonContainer>
-      <IconGenerator
-        renderIcon={AddIcon}
-        props={{
-          left: '10px',
-          fill: white,
-          width: '11px',
-          height: '11px',
-        }}
-      />
-      <Button label="Button" defaultClassName="button accessory--default-left" />
-    </AccessoryButtonContainer>
-
-    <AccessoryButtonContainer disabled={true}>
-      <IconGenerator
-        renderIcon={AddIcon}
-        props={{
-          left: '10px',
-          fill: gray.g07,
-          width: '11px',
-          height: '11px',
-        }}
-      />
-      <Button label="Button" defaultClassName="button accessory--default-left" disabled/>
-    </AccessoryButtonContainer>
+    <Button label="Button" type="accessory-default-left" icon={AddIcon} />
+    <Button label="Button" type="accessory-default-left" icon={AddIcon} disabled/>
   </>
 );
 
 export const GrayWithRightIcon = () => (
   <>
-    <AccessoryButtonContainer>
-      <IconGenerator
-        renderIcon={AddIcon}
-        props={{
-          left: '10px',
-          fill: gray.g4,
-          width: '11px',
-          height: '11px',
-          className: 'button accessory--default-left',
-        }}
-      />
-      <Button label="Button" defaultClassName="button accessory--gray-left" />    
-    </AccessoryButtonContainer>
-
-    <AccessoryButtonContainer disabled={true}>
-      <IconGenerator
-        renderIcon={AddIcon}
-        props={{
-          left: '10px',
-          fill: gray.g07,
-          width: '11px',
-          height: '11px',
-        }}
-      />
-      <Button label="Button" defaultClassName="button accessory--gray-left" disabled/>
-    </AccessoryButtonContainer>
+    <Button label="Button" type="accessory-gray-left" icon={AddIcon} />
+    <Button label="Button" type="accessory-gray-left" icon={AddIcon} disabled />
   </>
 );
 
 export const Ghost = () => (
   <>
-    <SecondaryButtonContainer>
-      <Button label="Button" defaultClassName="button secondary--inverted-medium" />
-    </SecondaryButtonContainer>
-
-    <SecondaryButtonContainer disabled={true}>
-      <Button label="Button" defaultClassName="button secondary--inverted-medium" disabled/>
-    </SecondaryButtonContainer>
+    <Button label="Button" type="secondary-inverted-medium" />
+    <Button label="Button" type="secondary-inverted-medium" disabled/>
   </>
 );

@@ -24,33 +24,8 @@ const { white, black, action, link, gray, violet, green, blue, yellow, red } = p
 
 export const Default = () => (
   <>
-    <StatusButtonContainer>
-      <Button label="Label" defaultClassName="button label--default-small__right" />
-      <IconGenerator
-        renderIcon={XIcon}
-        props={{
-          fill: gray.g07,
-          right: '8px',
-          width: '4px',
-          height: '4px',
-          className: 'button label--default-small__right',
-        }}
-      />
-    </StatusButtonContainer>
-    
-    <StatusButtonContainer>
-      <Button label="Label" defaultClassName="button label--default-medium right-icon" />
-      <IconGenerator
-        renderIcon={XIcon}
-        props={{
-          fill: gray.g07,
-          right: '8px',
-          width: '6px',
-          height: '6px',
-          className: 'button label--default-medium__right',
-        }}
-      />
-    </StatusButtonContainer>
+      <Button label="Label" type="label-small-right" icon={XIcon} />
+      <Button label="Label" type="label-default-medium" icon={XIcon} />
   </>
 );
 

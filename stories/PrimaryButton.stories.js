@@ -1,9 +1,5 @@
 import React from 'react';
 import '../src/main.css';
-import {
-  PrimaryButtonContainer,
-} from '../src/Components/Button/styles';
-
 import { Button, } from '../src/Components';
 
 export default {
@@ -12,36 +8,14 @@ export default {
 
 export const Solid = () => (
   <>
-    <PrimaryButtonContainer>
-      <Button label="Primary big button" defaultClassName="button primary--default-large" />
-    </PrimaryButtonContainer>
-
-    <PrimaryButtonContainer disabled={true}>
-      <Button
-      label="Primary big button"
-      defaultClassName="button primary--default-large"
-      disabled
-      />
-    </PrimaryButtonContainer>
+    <Button label="Primary big button" type="primary-default-large" />
+    <Button label="Primary big button" type="primary-default-large" disabled />
   </>
 );
 
 export const Ghost = () => (
   <>
-    <PrimaryButtonContainer>
-      <Button 
-        label="Primary ghost button"
-        defaultClassName="button primary--inverted-large"
-        optionalClassName="button primary--inverted-large__selected"  
-      />
-    </PrimaryButtonContainer>
-
-    <PrimaryButtonContainer disabled={true}>
-      <Button 
-        label="Primary ghost button"
-        defaultClassName="button primary--inverted-large"
-        disabled
-      />
-    </PrimaryButtonContainer>
+    <Button label="Primary ghost button" type="primary-inverted-large" />
+    <Button label="Primary ghost button" type="primary-inverted-large" disabled />
   </>
 );
