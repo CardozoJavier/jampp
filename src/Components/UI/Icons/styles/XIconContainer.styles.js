@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { palette } from '../../../styles';
-const { black, action, gray } = palette;
+const { black, action, gray, violet } = palette;
 
 export default styled.div`
   position: ${({ position }) => position || 'absolute'};
@@ -17,8 +17,28 @@ export default styled.div`
     vertical-align: middle;
   }
 
+  &.icon {
+    svg {
+      fill: ${gray.g07};
+    }
+    &-medium {}
+    &-small {}
+
+    &.label {
+
+      &--default {
+
+        &__right {
+
+          &.right-icon {
+          }
+        }
+      }
+    }
+  }
+
   &:hover {
-    &.button.label--default {
+    &.icon.label--default {
       &-medium__right {
         cursor: pointer;
           svg {
