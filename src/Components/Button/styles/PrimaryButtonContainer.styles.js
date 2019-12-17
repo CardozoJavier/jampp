@@ -14,7 +14,7 @@ export default styled.div`
     cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
     transition: background-color .3s;
 
-    .button {
+    &.button {
       &.primary {
         transform: translateY(-4px);
         transition: transform .3s;
@@ -51,7 +51,7 @@ export default styled.div`
     }
   }
 
-  .button {
+  &.button {
     transition: background-color .3s;
     text-align: center;
     
@@ -135,13 +135,13 @@ export default styled.div`
     }
   }
 
-  .right-icon {
-    padding: .9em 3em .9em 1.8em;
-  }
+  // .right-icon {
+  //   padding: .9em 3em .9em 1.8em;
+  // }
 
-  .icon--info-disabled {
-    svg {
-      fill: ${gray.g2};
-    }
-  }
+  // .icon--info-disabled {
+  //   svg {
+  //     fill: ${gray.g2};
+  //   }
+  // }
 `;

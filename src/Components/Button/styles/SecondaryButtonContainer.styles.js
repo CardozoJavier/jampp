@@ -6,11 +6,13 @@ const { white, violet, gray, black } = palette;
  * Secondary button - Large | Medium | Small
  */
 export default styled.div`
+  display: flex;
+  
   &:hover {
     cursor: ${({ disabled}) => disabled ? 'default' : 'pointer'};
     transition: all .3s;
 
-    .button {
+    &.button {
       &.secondary {
         transform: translateY(-4px);
 
@@ -45,7 +47,7 @@ export default styled.div`
     }
   }
 
-  .button {
+  &.button {
     transition: all .3s;
     text-align: center;
 
