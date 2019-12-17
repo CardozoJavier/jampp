@@ -1,38 +1,108 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
+import { XIconContainer, EllipseIconContainer } from '../../UI/Icons/styles';
 const { black, violet, green, gray, red, blue, yellow, link } = palette;
 
 /**
- * Mini button - normal
+ * Label status | medium - small | green | red | yellow | blue
  */
 export default styled.div`
   display: flex;
-  align-items: center;
-  position: relative;
+  justify-content: space-between;
   margin: ${({ margin }) => margin || '10px'};
 
-  .button {
+  &.button {
     transition: background-color .3s;
     text-align: center;
 
-    &-large {}
+    /****************************
+     * Status label color green *
+     ****************************
+     */
+    &-green {
+      background-color: ${green.g0};
+      color: ${green.g1};
+      
+      ${EllipseIconContainer} {
+        fill: ${green.g1};
+      }
+    }
 
+    /**************************
+     * Status label color red *
+     **************************
+     */
+    &-red {
+      background-color: ${red.r1};
+      color: ${red.r3};
+      
+      ${EllipseIconContainer} {
+        fill: ${red.r3};
+      }
+    }
+
+    /*****************************
+     * Status label color yellow *
+     *****************************
+     */    
+    &-yellow {
+      background-color: ${yellow.y0};
+      color: ${yellow.y2};
+      
+      ${EllipseIconContainer} {
+        fill: ${yellow.y2};
+      }
+    }
+    
+    /***************************
+     * Status label color blue *
+     ***************************
+     */
+    &-blue {
+      background-color: ${blue.b05};
+      color: ${link};
+      
+      ${EllipseIconContainer} {
+        fill: ${link};
+      }
+    }
+
+    /*****************************
+     * Default label medium size *
+     *****************************
+     */
     &-medium {
+      min-width: 80px;
       font-size: 10px;
       font-weight: normal;      
       padding: .6em 1em;
       color: ${black};
+
+      ${XIconContainer} {
+        svg {
+          width: 6px;
+          height: 6px;
+        }
+      }
     }
 
+    /****************************
+     * Default label small size *
+     ****************************
+     */
     &-small {
       font-size: 10px;
       font-weight: normal;
       padding: .3em 1em;
       color: ${gray.g4};
-    }
-    
-    &:focus {
-      outline: none;
+
+      ${XIconContainer} {
+        margin-left: 5px;
+        svg {
+          width: 5px;
+          height: 5px;
+        }
+      }
     }
     
     /*******************************
@@ -40,41 +110,23 @@ export default styled.div`
      * *****************************
      */
     &.status {
+      align-items: baseline;
       border-radius: 9px;
+      flex-direction: row-reverse;
       
-      &--green {
-        background-color: ${green.g0};
-        color: ${green.g1};
-        
-        &__left {
-          padding: .3em 1.2em .3em 2em;
-        }
+      ${EllipseIconContainer} {
+        margin-right: 5px;
       }
 
-      &--red {
-        background-color: ${red.r1};
-        color: ${red.r3};
-        
-        &__left {
-          padding: .3em 1.2em .3em 2em;
-        }
-      }
-      
-      &--yellow {
-        background-color: ${yellow.y0};
-        color: ${yellow.y2};
-        
-        &__left {
-          padding: .3em 1.2em .3em 2em;
-        }
-      }
-      
-      &--blue {
-        background-color: ${blue.b05};
-        color: ${link};
-        
-        &__left {
-          padding: .3em 1.2em .3em 2em;
+      &--small {
+        font-size: 10px;
+        padding: .3em 1em;
+
+        ${EllipseIconContainer} {
+          svg {
+            width: 6px;
+            height: 6px;
+          }
         }
       }
     }
@@ -84,18 +136,14 @@ export default styled.div`
      * **********************
      */
     &.label {
+      align-items: center;
       border-radius: 4px;
-      
+      ${XIconContainer} {
+        fill: ${gray.g07};
+      }
+
       &--default {
         background-color: ${violet.v05};
-
-        &__right {
-          padding-right: 1.75em;
-
-          &.right-icon {
-            padding-right: 4.5em;
-          }
-        }
       }
     }
   }
