@@ -10,22 +10,20 @@ export default {
 
 export const Switch = () => (
   <>
-    <SwitchGroup OptionItem={SwitchButton} className="">
-      <Option label="Choice" value="value1" type="left" />
-      <Option label="Choice" value="value2" type="middle" />
-      <Option label="Choice" value="value3" type="right" />
+    <SwitchGroup OptionItem={SwitchButton} type="button">
+      <Option label="Choice" id="option1" type="left" />
+      <Option label="Choice" id="option2" type="middle" />
+      <Option label="Choice" id="option3" type="right" />
     </SwitchGroup>
 
-    <SwitchGroup OptionItem={SwitchButton} className="" disabled={true}>
-      <Option label="Choice" value="value1" type="left" />
-      <Option label="Choice" value="value2" type="middle" />
-      <Option label="Choice" value="value3" type="right" />
+    <SwitchGroup OptionItem={SwitchButton} type="button" disabled={true}>
+      <Option label="Choice" id="option1" type="left" />
+      <Option label="Choice" id="option2" type="middle" />
+      <Option label="Choice" id="option3" type="right" />
     </SwitchGroup>
 
-    <OptionButtonContainer>
-      <Button defaultClassName='button option--default-medium__selected' optionalClassName='button option--default-medium'>
-        <strong>Button</strong> Text
-      </Button>
-    </OptionButtonContainer>
+    <Button type='option-default-medium'>
+      <strong>Button</strong> Text
+    </Button>
   </>
 );
