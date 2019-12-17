@@ -15,11 +15,11 @@ const Button = ({ label, children, icon, type, disabled }) => {
   };
 
   return (
-    <ButtonContainer disabled={disabled}>
+    <ButtonContainer className={bemDestruct(className, disabled)} disabled={disabled}>
       <ButtonInput
         children={label || children}
-        className={bemDestruct(className, disabled)}
-        onClick={handleClick}
+        // className={bemDestruct(className, disabled)}
+        onClick={disabled ? null : () => handleClick()}
       />
       {icon &&
         <IconGenerator
