@@ -10,7 +10,7 @@ export default styled.div`
     cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
     transition: all .3s;
 
-    .button, &.optionCheckbox {
+    &.button, &.optionCheckbox {
       &.option, &.basic {
 
         &--default {
@@ -27,7 +27,7 @@ export default styled.div`
     }
   }
 
-  .button, &.optionCheckbox {
+  &.button, &.optionCheckbox {
     transition: all .3s;
     text-align: center;
     font-size: 12px;
@@ -57,7 +57,7 @@ export default styled.div`
     &.option, &.basic {
       
       /*************************
-       * Option button default *
+       * Switch button default *
        * ***********************
        */
       &--default {
