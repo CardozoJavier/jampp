@@ -3,39 +3,40 @@ import { palette } from '../../../styles';
 const { black, action, gray, violet } = palette;
 
 export default styled.div`
-  position: ${({ position }) => position || 'absolute'};
-  top: ${({ top }) => top};
-  right: ${({ right }) => right};
-  bottom: ${({ bottom }) => bottom};
-  left: ${({ left }) => left};
-  margin: ${({ margin }) => margin};
+  display: flex;
+  // position: ${({ position }) => position || 'absolute'};
+  // top: ${({ top }) => top};
+  // right: ${({ right }) => right};
+  // bottom: ${({ bottom }) => bottom};
+  // left: ${({ left }) => left};
+  // margin: ${({ margin }) => margin};
 
-  svg {
-    fill: ${({ fill }) => fill};
-    width: ${({ width }) => width};
-    height: ${({ height }) => height};
-    vertical-align: middle;
-  }
+  // svg {
+  //   fill: ${({ fill }) => fill};
+  //   width: ${({ width }) => width};
+  //   height: ${({ height }) => height};
+  //   vertical-align: middle;
+  // }
 
-  &.icon {
-    svg {
-      fill: ${gray.g07};
-    }
-    &-medium {}
-    &-small {}
+  // &.icon {
+  //   svg {
+  //     fill: ${gray.g07};
+  //   }
+  //   &-medium {}
+  //   &-small {}
 
-    &.label {
+  //   &.label {
 
-      &--default {
+  //     &--default {
 
-        &__right {
+  //       &__right {
 
-          &.right-icon {
-          }
-        }
-      }
-    }
-  }
+  //         &.right-icon {
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 
   &:hover {
     &.icon.label--default {
