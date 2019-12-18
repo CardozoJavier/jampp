@@ -10,15 +10,15 @@ export default {
 
 export const SolidPurple = () => (
   <>
-    <Button label="Button" type="secondary-default-medium" />
-    <Button label="Button" type="secondary-default-medium" disabled />
+    <Button label="Solid secondary button" type="secondary-default-medium" />
+    <Button label="Solid secondary button" type="secondary-default-medium" disabled />
   </>
 );
 
 export const SolidGray = () => (
   <>
-    <Button label="Button" type="secondary-gray-medium" />
-    <Button label="Button" type="secondary-gray-medium" disabled/>
+    <Button label="Solid gray secondary button" type="secondary-gray-medium" />
+    <Button label="Solid gray secondary button" type="secondary-gray-medium" disabled/>
   </>
 );
 
