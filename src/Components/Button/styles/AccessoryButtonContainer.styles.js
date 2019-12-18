@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
 import { AddIconContainer } from '../../UI/Icons/styles';
+import { ButtonInput } from '.';
 const { white, violet, gray, black, link } = palette;
 
 /*
@@ -29,9 +30,12 @@ export default styled.div`
         }
 
         &--gray {
+          background-color: ${gray.g05};
           color: ${black};
 
           &__disabled {
+            transform: none;
+            background-color: ${gray.g1};
             color: ${gray.g07};
           }
         }
@@ -56,19 +60,37 @@ export default styled.div`
       flex-direction: row-reverse;
 
       ${AddIconContainer} {
-        margin-right: 7px;
+        margin-left: 10px;
+      }
+
+      ${ButtonInput} {
+        padding: 10px 20px 10px 10px;
       }
     }
     
     &-right, &-status {
       font-size: 12px;
-      padding: 0.75em 2.5em .75em 1em;
+      
+      ${AddIconContainer} {
+        margin-right: 10px;
+      }
+
+      ${ButtonInput} {
+        padding: 10px 10px 10px 20px;
+      }
     }
     
     &-both {
       font-size: 12px;
       font-weight: normal;
-      padding: .75em 2.5em;
+
+      ${AddIconContainer} {
+        margin-right: 10px;
+      }
+
+      ${ButtonInput} {
+        padding: 10px 20px;
+      }
     }
     
     &:focus {
@@ -77,7 +99,10 @@ export default styled.div`
     
     &.accessory, &.button, &.option, &.label, &.gray {
       border-radius: 4px;
-      padding: .75em 1em;
+
+      ${ButtonInput} {
+        padding: .75em 1em;
+      }
 
       ${AddIconContainer} {
         svg {
