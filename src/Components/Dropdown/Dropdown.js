@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import MultipleOptionList from '../MultipleOptionList';
-import { ButtonInput } from '../Button/styles';
 import { ButtonDropdownContainer } from './styles';
 import { bemDestruct, getClassName } from '../../utils';
-import { IconGenerator, DownChevronIcon, AvatarIcon } from '../UI/Icons';
+import { IconGenerator, AvatarIcon } from '../UI/Icons';
 
 
 import { palette } from '../styles';
@@ -19,7 +18,7 @@ const classesName = {
   },
 };
 
-const Dropdown = ({ iconDropdown, optionDropdown, label, children, type = 'normal', disabled }) => {
+const Dropdown = ({ iconDropdown, avatar, label, children, type = 'normal', disabled }) => {
   const defaultClassName = classesName[type].defaultClassName;
   const optionalClassName = classesName[type].optionalClassName;
 
@@ -40,7 +39,7 @@ const Dropdown = ({ iconDropdown, optionDropdown, label, children, type = 'norma
         <IconGenerator
            renderIcon={AvatarIcon}
            props={{
-             src: optionDropdown,
+             src: avatar,
              width: '40px',
              height: '40px',
              borderRadius: '100%',
