@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
-const { white, violet, gray, indefinido, black } = palette; 
+import ButtonInput from './ButtonInput.styles';
+const { white, violet, gray, black } = palette; 
 
 /*
  * Primary button - Large | Medium | Small
@@ -58,17 +59,23 @@ export default styled.div`
     &-large {
       font-size: 16px;
       font-weight: 500;
-      padding: .9em 1.8em;
+      ${ButtonInput} {
+        padding: 15px 30px;
+      }
     }
     
     &-medium {
-      padding: 0.75em 1.5em;
       font-size: 12px;
+      ${ButtonInput} {
+        padding: 0.75em 1.5em;
+      }
     }
     
     &-small {
       font-size: 9px;
-      padding: .3em .5em;
+      ${ButtonInput} {
+        padding: .3em .5em;
+      } 
     }
 
     &:focus {

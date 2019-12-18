@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
 import { AddIconContainer } from '../../UI/Icons/styles';
-import { ButtonInput } from '.';
+import ButtonInput from './ButtonInput.styles';
 const { white, violet, gray, black, link } = palette;
 
 /*

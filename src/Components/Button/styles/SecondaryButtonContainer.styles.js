@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
+import ButtonInput from './ButtonInput.styles';
 const { white, violet, gray, black } = palette;
 
 /*
@@ -56,7 +57,9 @@ export default styled.div`
     }
 
     &-medium {
-      padding: 0.75em 1.5em;
+      ${ButtonInput} {
+        padding: 10px 15px;
+      }
       font-size: 12px;
     }
 

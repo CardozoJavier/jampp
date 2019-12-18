@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
-const { white, violet, gray, action, indefinido } = palette;
+import ButtonInput from './ButtonInput.styles';
+const { white, violet, gray, action } = palette;
 
 /*
  * Option button - Left | Middle | Right
@@ -32,7 +33,6 @@ export default styled.div`
     text-align: center;
     font-size: 12px;
     font-weight: 400;    
-    padding: 0.67em .62em;
     border-radius: 4px;
 
     &-top {
@@ -55,7 +55,10 @@ export default styled.div`
     }
 
     &.option, &.basic {
-      
+      ${ButtonInput} {
+        padding: 10px 15px;
+      }
+
       /*************************
        * Switch button default *
        * ***********************
