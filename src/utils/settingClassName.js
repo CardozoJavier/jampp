@@ -2,9 +2,9 @@ import getPosition from './getPosition';
 /**
  * Children is parsed for setting initial className to each radio button
  */
-const settingClassName = (children, currentId, elementClassName) => {
+const settingClassName = (children, currentId, defaultClassName) => {
   const inputsArray = children.map(({ props: { label, id, color } }, index) => {
-    const className = currentId === id ? `${getPosition(children, index, elementClassName)}__selected` : `${getPosition(children, index)}`;
+    const className = currentId === id ? `${getPosition(children, index, defaultClassName)}__selected` : `${getPosition(children, index, defaultClassName)}`;
     return {
       label,
       id,
@@ -12,7 +12,6 @@ const settingClassName = (children, currentId, elementClassName) => {
       className,
     };
   });
-
   return inputsArray;
 }
 

@@ -1,10 +1,5 @@
 import {
-  AccessoryButtonContainer,
-  SecondaryButtonContainer,
-  PrimaryButtonContainer,
   OptionButtonContainer,
-  StatusButtonContainer,
-  LinkButtonContainer,
 } from './styles';
 
 
