@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
-import { AccessoryButtonContainer } from '../../Button/styles';
+import { AccessoryButtonContainer, ButtonInput } from '../../Button/styles';
 const { white, violet, gray, black, link, blue, action } = palette;
 
 export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
@@ -47,6 +47,10 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
     &.accessory, &.button, &.option, &.label {
       border-radius: 4px;
 
+      &--default {
+        background-color: ${white};
+      }
+
       /*******************************
        * Accessory button solid gray *
        * *****************************
@@ -70,7 +74,11 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
         background-color: ${white};
         color: ${gray.g4};
         border: 1px solid ${gray.g1};
-        padding: 5px 0 5px 8px;
+
+        ${ButtonInput} {
+          padding: 5px 0 5px 8px;
+          font-size: 12px;
+        }
 
 
         &__disabled {

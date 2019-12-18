@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
+import { SwitchButtonInput } from './SwitchButtonInput.styles';
 const { white, violet, gray, action, indefinido } = palette;
 
 /*
@@ -27,15 +28,14 @@ export const OptionButtonContainer = styled.div`
     }
   }
 
-  &.button, &.optionCheckbox {
+  &.button {
     transition: all .3s;
     text-align: center;
     font-size: 12px;
     font-weight: 400;    
-    padding: 0.67em .62em;
     border-radius: 4px;
 
-    &-top {
+    &-first {
       border-radius: 5px 0 0 5px;
       margin-right: 5px;
     }
@@ -45,7 +45,7 @@ export const OptionButtonContainer = styled.div`
       margin: 0 5px;
     }
 
-    &-bottom {
+    &-last {
       border-radius: 0 5px 5px 0;
       margin-left: 5px;
     }
@@ -55,6 +55,9 @@ export const OptionButtonContainer = styled.div`
     }
 
     &.option, &.basic {
+      ${SwitchButtonInput} {
+        padding: 10px 15px;
+      }
       
       /*************************
        * Switch button default *

@@ -6,7 +6,7 @@ export default styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 7px 8px;
+  padding: 10px;
   position: relative;
   min-width: 130px;
 
@@ -19,7 +19,7 @@ export default styled.div`
     &-top {
       display: flex;
       position: relative;
-      border-radius: 5px 5px 0 0;
+      border-radius: 4px 4px 0 0;
       border-bottom: 1px solid ${gray.g1};
       transition: all .3s;
     }
@@ -45,7 +45,7 @@ export default styled.div`
       display: flex;
       align-items: center;
       position: relative;
-      border-radius: 0 0 5px 5px;
+      border-radius: 0 0 4px 4px;
       transition: all .3s;
     }
 
