@@ -21,26 +21,16 @@ const OptionList = ({ children, type, disabled, className, OptionItem }) => {
   }
 
   return (
-    <OptionCheckboxGroup className={bemDestruct(className)}>
+    <OptionCheckboxGroup className={bemDestruct(className, disabled)}>
       {array.map((input) => (
-        <OptionContainer
-          onClick={(e) => handleCheck(e, input.id, defaultClassName)}
-          className={bemDestruct(input.className, disabled)}
-          disabled={disabled}
+        <OptionItem
+          className={input.className}
+          handleCheck={handleCheck}
+          label={input.label}
+          color={input.color}
           key={input.id}
-        >
-          <OptionLabel>{ input.label }</OptionLabel>
-          <IconGenerator
-            renderIcon={CheckIcon}
-            props={{
-              right: '10px',
-              fill: white,
-              width: '14px',
-              height: '10px',
-              className: bemDestruct(input.className),
-            }}
-          />
-        </OptionContainer>
+          id={input.id}
+        />
       ))}
     </OptionCheckboxGroup>
   );
