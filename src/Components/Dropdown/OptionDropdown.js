@@ -6,6 +6,7 @@ import { IconGenerator, DownChevronIcon } from '../UI/Icons';
 import { palette } from '../styles';
 import { OptionList } from '../OptionList';
 import dropdownProps from './dropdownProps';
+import { UniqueOption } from '../UniqueOption';
 
 const { gray } = palette;
 
@@ -55,7 +56,7 @@ const OptionDropdown = ({ text, children, type = 'basic', leftIcon, disabled }) 
           disabled={disabled}
         />
       </ButtonDropdownContainer>
-      <OptionList type="unique-option" children={children} className={className} />
+      <OptionList type="unique-option" OptionItem={UniqueOption} children={children} className={className} />
     </>
   );
 };

@@ -3,17 +3,17 @@ import { palette } from '../../../styles';
 const { gray } = palette;
 
 export default styled.div`
-  position: ${({ position }) => position || 'absolute'};
-  top: ${({ top }) => top};
-  right: ${({ right }) => right};
-  bottom: ${({ bottom }) => bottom};
-  left: ${({ left }) => left};
+  // position: ${({ position }) => position || 'absolute'};
+  // top: ${({ top }) => top};
+  // right: ${({ right }) => right};
+  // bottom: ${({ bottom }) => bottom};
+  // left: ${({ left }) => left};
 
   svg {
-    fill: ${({ fill }) => fill};
-    width: ${({ width }) => width};
-    height: ${({ height }) => height};
-    vertical-align: middle;
+    // fill: ${({ fill }) => fill};
+    // width: ${({ width }) => width};
+    // height: ${({ height }) => height};
+    // vertical-align: middle;
   }
 
   &.dropdown {

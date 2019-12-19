@@ -9,11 +9,12 @@ const { black, violet, green, gray, red, blue, yellow, link } = palette;
 export default styled.div`
   display: flex;
   justify-content: space-between;
-  margin: ${({ margin }) => margin || '10px'};
+  margin: ${({ margin }) => margin};
 
   &.button {
     transition: background-color .3s;
     text-align: center;
+    padding: 0;
 
     /****************************
      * Status label color green *

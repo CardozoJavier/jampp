@@ -6,6 +6,7 @@ import { IconGenerator, DownChevronIcon } from '../UI/Icons';
 import { palette } from '../styles';
 import { OptionList } from '../OptionList';
 import dropdownProps from './dropdownProps';
+import { StatusLabel } from '../StatusLabel';
 
 const { gray } = palette;
 
@@ -55,7 +56,7 @@ const StatusLabelDropdown = ({ text, children, type = 'basic', leftIcon, disable
           disabled={disabled}
         />
       </ButtonDropdownContainer>
-      <OptionList type="status-option" children={children} className={className} />
+      <OptionList type="status-option" OptionItem={StatusLabel} children={children} className={className} />
     </>
   );
 };

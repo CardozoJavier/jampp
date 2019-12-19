@@ -10,13 +10,13 @@ export default styled.div`
   position: relative;
   min-width: 130px;
 
-  &.optionCheckbox {
+  &.unique, &.status {
     
     /*********************************
      * Option checkbox container TOP *
      * *******************************
      */
-    &-top {
+    &-first {
       display: flex;
       position: relative;
       border-radius: 4px 4px 0 0;
@@ -41,7 +41,7 @@ export default styled.div`
      * Option checkbox container BOTTOM *
      * **********************************
      */
-    &-bottom {
+    &-last {
       display: flex;
       align-items: center;
       position: relative;
@@ -49,7 +49,7 @@ export default styled.div`
       transition: all .3s;
     }
 
-    &.basic {
+    &.option {
       &--default {
         &__selected {
           background-color: ${violet.v05};

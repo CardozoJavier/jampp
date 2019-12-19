@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
 import { AccessoryButtonContainer, ButtonInput } from '../../Button/styles';
+import { DownloadFileIconContainer } from '../../UI/Icons/styles';
 const { white, violet, gray, black, link, blue, action } = palette;
 
 export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
@@ -44,6 +45,13 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
   }
   
   &.button, &.dropdown {
+    ${DownloadFileIconContainer} {
+      width: 20px;
+      height: 20px;
+      fill: ${gray.g4};
+      margin-left: 10px;
+    }
+
     &.accessory, &.button, &.option, &.label {
       border-radius: 4px;
 
@@ -58,7 +66,11 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
       &--solid {
         background-color: ${gray.g1};
         color: ${gray.g4};
-        padding: 5px 5px 5px 15px;
+        ${ButtonInput} {
+          font-size: 12px;
+          padding: 10px 0;
+        }
+
 
         &__disabled {
           background-color: ${gray.g0};
@@ -76,7 +88,6 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
         border: 1px solid ${gray.g1};
 
         ${ButtonInput} {
-          padding: 5px 0 5px 8px;
           font-size: 12px;
         }
 
