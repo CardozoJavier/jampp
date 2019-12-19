@@ -25,17 +25,33 @@ export const Default = () => (
 export const Status = () => (
   <StatusLabelContainer>
     <LabelContainer>
-      <Button label="Status" type="status-small-green" />
-      <Button label="Status" type="status-small-red" />
-      <Button label="Status" type="status-small-yellow" />
-      <Button label="Status" type="status-small-blue" />
+      <div style={{ margin: '5px' }}>
+        <Button label="Status" type="status-small-green" />
+      </div>
+      <div style={{ margin: '5px' }}>
+        <Button label="Status" type="status-small-red" />
+      </div>
+      <div style={{ margin: '5px' }}>
+        <Button label="Status" type="status-small-yellow" />
+      </div>
+      <div style={{ margin: '5px' }}>
+        <Button label="Status" type="status-small-blue" />
+      </div>
     </LabelContainer>
 
     <LabelContainer>
-      <Button label="Status" type="status-small-green" icon={EllipseIcon} />
-      <Button label="Status" type="status-small-red" icon={EllipseIcon} />
-      <Button label="Status" type="status-small-yellow" icon={EllipseIcon} />
-      <Button label="Status" type="status-small-blue" icon={EllipseIcon} />
+      <div style={{ margin: '5px' }}>
+        <Button label="Status" type="status-small-green" icon={EllipseIcon} />
+      </div>
+      <div style={{ margin: '5px' }}>
+        <Button label="Status" type="status-small-red" icon={EllipseIcon} />
+      </div>
+      <div style={{ margin: '5px' }}>
+        <Button label="Status" type="status-small-yellow" icon={EllipseIcon} />
+      </div>
+      <div style={{ margin: '5px' }}>
+        <Button label="Status" type="status-small-blue" icon={EllipseIcon} />
+      </div>
     </LabelContainer>
   </StatusLabelContainer>
 );

@@ -162,17 +162,19 @@ export const Basic = () => (
         <StatusLabel label="status" id="id4" color="blue" type="dropdown" right />
       </StatusLabelDropdown>
     </DropdownContainer>
-{/*
-    <DropdownContainer direction='column' align='start'>
-      <DropdownLabel>Text</DropdownLabel>
-      <StatusLabelDropdown text="Text" type="basic" disabled={true}>
-        <StatusLabel label="status" id="id1" color="red" type="dropdown" right />
-        <StatusLabel label="status" id="id2" color="yellow" type="dropdown" right />
-        <StatusLabel label="status" id="id3" color="green" type="dropdown" right />
-        <StatusLabel label="status" id="id4" color="blue" type="dropdown" right />
-      </StatusLabelDropdown>
-    </DropdownContainer> */}
   </>
+);
+
+export const BasicWithLabel = () => (
+  <DropdownContainer direction='column' align='start'>
+    <DropdownLabel>Text</DropdownLabel>
+    <StatusLabelDropdown text="Text" type="basic" disabled={true}>
+      <StatusLabel label="status" id="id1" color="red" type="dropdown" right />
+      <StatusLabel label="status" id="id2" color="yellow" type="dropdown" right />
+      <StatusLabel label="status" id="id3" color="green" type="dropdown" right />
+      <StatusLabel label="status" id="id4" color="blue" type="dropdown" right />
+    </StatusLabelDropdown>
+  </DropdownContainer>
 );
 
 export const SolidWithIcon = () => (
