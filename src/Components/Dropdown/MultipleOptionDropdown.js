@@ -30,13 +30,7 @@ const MultipleOptionDropdown = ({ text, children, type = 'basic', leftIcon, disa
         {leftIcon &&
           <IconGenerator
             renderIcon={leftIcon}
-            props={{
-              position: 'unset',
-              left: '10px',
-              fill: gray.g4,
-              width: '16px',
-              height: '16px',
-            }}
+            props={{}}
             disabled={disabled}
           />
         }
@@ -44,11 +38,6 @@ const MultipleOptionDropdown = ({ text, children, type = 'basic', leftIcon, disa
         <IconGenerator
           renderIcon={DownChevronIcon}
           props={{
-            position: 'unset',
-            margin: '0 5px',
-            fill: gray.g4,
-            width: '16px',
-            height: '16px',
             className: bemDestruct(chevron),
           }}
           disabled={disabled}

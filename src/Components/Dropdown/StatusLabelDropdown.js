@@ -31,14 +31,7 @@ const StatusLabelDropdown = ({ text, children, type = 'basic', leftIcon, disable
         {leftIcon &&
             <IconGenerator
               renderIcon={leftIcon}
-              props={{
-                position: 'unset',
-                left: '10px',
-                fill: gray.g4,
-                width: '16px',
-                height: '16px',
-                className: bemDestruct(className, disabled),
-              }}
+              props={{}}
               disabled={disabled}
             />
           }
@@ -46,11 +39,6 @@ const StatusLabelDropdown = ({ text, children, type = 'basic', leftIcon, disable
         <IconGenerator
           renderIcon={DownChevronIcon}
           props={{
-            position: 'unset',
-            margin: '0 5px',
-            fill: gray.g4,
-            width: '16px',
-            height: '16px',
             className: bemDestruct(chevron),
           }}
           disabled={disabled}
