@@ -49,6 +49,12 @@ const inputProps = {
   "searchbar": {
     defaultClassName: 'input accessory--searchbar-medium__left',
   },
+  "error-message": {
+    defaultClassName: "input basic--default-medium",
+    onFocusClassName: "input basic--default-medium__focus",
+    onBlurClassName: "input basic--default-medium__blur",
+    errorClassName: "input basic--default-medium__error",
+  },
 };
 
 export default inputProps;

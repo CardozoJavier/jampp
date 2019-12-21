@@ -9,3 +9,7 @@ export {
   CustomPlaceholderNormal,
   CustomPlaceholderBold,
 } from './InputControlled.styles';
+export {
+  InputErrorMessageContainer,
+  ErrorMessage,
+} from './InputErrorMessage.styles';
