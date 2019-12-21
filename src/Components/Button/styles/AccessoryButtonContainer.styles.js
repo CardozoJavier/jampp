@@ -33,6 +33,10 @@ export default styled.div`
           background-color: ${gray.g05};
           color: ${black};
 
+          ${AddIconContainer} {
+            fill: ${black};
+          }
+
           &__disabled {
             transform: none;
             background-color: ${gray.g1};
