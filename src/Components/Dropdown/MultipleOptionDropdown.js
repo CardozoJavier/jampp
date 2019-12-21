@@ -4,45 +4,20 @@ import { ButtonInput } from '../Button/styles';
 import { ButtonDropdownContainer } from './styles';
 import { bemDestruct, getClassName } from '../../utils';
 import { IconGenerator, DownChevronIcon } from '../UI/Icons';
+import dropdownProps from './dropdownProps';
 
 import { palette } from '../styles';
 const { gray } = palette;
-const classesName = {
-  chevron: {
-    defaultClassName: 'chevron chevron--default__closed',
-    optionalClassName: 'chevron chevron--default__opened',
-  },
-  solid: {
-    defaultClassName: "dropdown button--solid-right__closed",
-    optionalClassName: "dropdown button--solid-right__opened",
-  },
-  basic: {
-    defaultClassName: 'dropdown button--basic-right__closed',
-    optionalClassName: 'dropdown button--basic-right__opened',
-  },
-  noBorder: {
-    defaultClassName: 'dropdown button--noBorder-right__closed',
-    optionalClassName: 'dropdown button--noBorder-right__opened',
-  },
-  noBorderLink: {
-    defaultClassName: 'dropdown button--noBorderLink-left__closed',
-    optionalClassName: 'dropdown button--noBorderLink-left__opened',
-  },
-  noBorderPurple: {
-    defaultClassName: "dropdown button--noBorderPurple-left__closed",
-    optionalClassName: "dropdown button--noBorderPurple-left__opened",
-  },
-};
 
-const MultipleOptionDropdown = ({ text, children, type = 'normal', leftIcon, disabled }) => {
-  const defaultClassName = classesName[type].defaultClassName;
-  const optionalClassName = classesName[type].optionalClassName;
+const MultipleOptionDropdown = ({ text, children, type = 'basic', leftIcon, disabled }) => {
+  const defaultClassName = dropdownProps[type].defaultClassName;
+  const optionalClassName = dropdownProps[type].optionalClassName;
 
   const [className, setClassName] = useState(defaultClassName);
-  const [chevron, setChevron] = useState(classesName.chevron.defaultClassName);
+  const [chevron, setChevron] = useState(dropdownProps.chevron.defaultClassName);
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
-  const toggleChevronDirection = getClassName(chevron, classesName.chevron.defaultClassName, classesName.chevron.optionalClassName);
+  const toggleChevronDirection = getClassName(chevron, dropdownProps.chevron.defaultClassName, dropdownProps.chevron.optionalClassName);
 
   const handleClick = () => {
     setClassName(toggleToClassName);
@@ -55,28 +30,14 @@ const MultipleOptionDropdown = ({ text, children, type = 'normal', leftIcon, dis
         {leftIcon &&
           <IconGenerator
             renderIcon={leftIcon}
-            props={{
-              position: 'unset',
-              left: '10px',
-              fill: gray.g4,
-              width: '16px',
-              height: '16px',
-            }}
+            props={{}}
             disabled={disabled}
           />
         }
-        <ButtonInput
-          children={text}
-          className={bemDestruct(className, disabled)}
-        />
+        <ButtonInput children={text} />
         <IconGenerator
           renderIcon={DownChevronIcon}
           props={{
-            position: 'unset',
-            margin: '0 5px',
-            fill: gray.g4,
-            width: '16px',
-            height: '16px',
             className: bemDestruct(chevron),
           }}
           disabled={disabled}
@@ -88,5 +49,3 @@ const MultipleOptionDropdown = ({ text, children, type = 'normal', leftIcon, dis
 };
 
 export default MultipleOptionDropdown;
-
-

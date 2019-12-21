@@ -4,20 +4,20 @@ import { bemDestruct } from '../../utils';
 import { OptionContainer, OptionLabel } from './styles';
 import { palette } from '../styles';
 
-const { action } = palette;
+const { white } = palette;
 
-const UniqueOption = ({ value, label, className, handleCheck }) => (
+const UniqueOption = ({ id, label, className, handleCheck }) => (
   <OptionContainer
-    key={value}
+    key={id}
     className={bemDestruct(className)}
-    onClick={(e) => handleCheck(e, value)}
+    onClick={(e) => handleCheck(e, id)}
   >
     <OptionLabel>{ label }</OptionLabel>
     <IconGenerator
       renderIcon={CheckIcon}
       props={{
         right: '10px',
-        fill: action,
+        fill: white,
         width: '14px',
         height: '10px',
         className: bemDestruct(className),

@@ -3,16 +3,15 @@ import { StatusLabelContainer } from './styles';
 import { Button } from '../Button';
 import { StatusButtonContainer } from '../Button/styles';
 import { bemDestruct } from '../../utils';
+import { EllipseIcon } from '../UI/Icons';
 
-const StatusLabel = ({ label, value, color, className, handleCheck }) => (
+const StatusLabel = ({ label, id, color, className, handleCheck }) => (
   <StatusLabelContainer 
-    key={value}
+    key={id}
     className={bemDestruct(className)}
-    onClick={(e) => handleCheck(e, value)}
+    onClick={(e) => handleCheck(e, id)}
   >
-    <StatusButtonContainer margin={'0'}>
-      <Button label={label} defaultClassName={`button status--${color}-small`} />
-    </StatusButtonContainer>
+    <Button label={label} type={`status-small-${color}`} icon={EllipseIcon} />
   </StatusLabelContainer>
 );
 

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
+import { AddIconContainer } from '../../UI/Icons/styles';
+import ButtonInput from './ButtonInput.styles';
 const { white, violet, gray, black, link } = palette;
 
 /*
@@ -8,7 +10,6 @@ const { white, violet, gray, black, link } = palette;
 export default styled.div`
   display: flex;
   align-items: center;
-  position: relative;
   transition: all .3s;
 
   &:hover {
@@ -16,7 +17,7 @@ export default styled.div`
     transition: all .3s;
     transform: ${({ disabled }) => disabled ? 'none' : 'translateY(-4px)'};
 
-    .button, .dropdown {
+    &.button, .dropdown {
       &.accessory, &.button, &.option, &.label {
         
         &--default {
@@ -29,9 +30,16 @@ export default styled.div`
         }
 
         &--gray {
+          background-color: ${gray.g05};
           color: ${black};
 
+          ${AddIconContainer} {
+            fill: ${black};
+          }
+
           &__disabled {
+            transform: none;
+            background-color: ${gray.g1};
             color: ${gray.g07};
           }
         }
@@ -45,7 +53,7 @@ export default styled.div`
     }
   }
   
-  .button, .dropdown {
+  &.button, .dropdown {
     display: flex;
     text-align: center;
     align-items: center;
@@ -53,18 +61,40 @@ export default styled.div`
     &-left {
       font-size: 12px;
       font-weight: normal;
-      padding: .75em 1em .75em 2.5em;
+      flex-direction: row-reverse;
+
+      ${AddIconContainer} {
+        margin-left: 10px;
+      }
+
+      ${ButtonInput} {
+        padding: 10px 20px 10px 10px;
+      }
     }
     
     &-right, &-status {
       font-size: 12px;
-      padding: 0.75em 2.5em .75em 1em;
+      
+      ${AddIconContainer} {
+        margin-right: 10px;
+      }
+
+      ${ButtonInput} {
+        padding: 10px 10px 10px 20px;
+      }
     }
     
     &-both {
       font-size: 12px;
       font-weight: normal;
-      padding: .75em 2.5em;
+
+      ${AddIconContainer} {
+        margin-right: 10px;
+      }
+
+      ${ButtonInput} {
+        padding: 10px 20px;
+      }
     }
     
     &:focus {
@@ -74,6 +104,17 @@ export default styled.div`
     &.accessory, &.button, &.option, &.label, &.gray {
       border-radius: 4px;
 
+      ${ButtonInput} {
+        padding: .75em 1em;
+      }
+
+      ${AddIconContainer} {
+        svg {
+          width: 11px;
+          height: 11px;
+        }
+      }
+
       /****************************
        * Accessory button default *
        * **************************
@@ -82,9 +123,17 @@ export default styled.div`
         background-color: ${violet.v1};
         color: ${white};
 
+        ${AddIconContainer} {
+          fill: ${white};
+        }
+
         &__disabled {
           background-color: ${gray.g2};
           color: ${gray.g07};
+          
+          ${AddIconContainer} {
+            fill: ${gray.g07};
+          }
         }
       }
 
@@ -97,9 +146,17 @@ export default styled.div`
         color: ${gray.g4};
         // padding: 5px 0 5px 8px;
 
+        ${AddIconContainer} {
+          fill: ${gray.g4};
+        }
+
         &__disabled {
           background-color: ${gray.g1};
           color: ${gray.g07};
+
+          ${AddIconContainer} {
+            fill: ${gray.g07};
+          }
         }
       }
     }

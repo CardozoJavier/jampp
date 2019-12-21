@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
+import { AddIconContainer } from '../../UI/Icons/styles';
 const { link, gray } = palette;
 
 /**
@@ -8,15 +9,18 @@ const { link, gray } = palette;
 export default styled.div`
   display: flex;
   align-items: center;
-  position: relative;
 
   &:hover {
     cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
   }
 
-  .button {
+  &.button {
     &-left {
-      padding: .3em .3em .3em 1.5em;
+      flex-direction: row-reverse;
+      
+      ${AddIconContainer} {
+        margin-right: 5px;
+      }
     }
     
     /*************************
@@ -24,12 +28,27 @@ export default styled.div`
      * ***********************
      */
     &.link {
+      ${AddIconContainer} {
+        svg {
+          width: 8px;
+          height: 8px;
+        }
+      }
+
       &--default {
         font-size: 12px;
         color: ${link};
 
+        ${AddIconContainer} {
+          fill: ${link};
+        }
+        
         &__disabled {
           color: ${gray.g05};
+          
+          ${AddIconContainer} {
+            fill: ${gray.g05};
+          }
         }
       }
     }

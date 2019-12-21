@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
-import ButtonInput from './ButtonInput.styles';
-const { white, violet, gray, action } = palette;
+import { SwitchButtonInput } from './SwitchButtonInput.styles';
+const { white, violet, gray, action, indefinido } = palette;
 
 /*
  * Option button - Left | Middle | Right
  */
-export default styled.div`
+export const OptionButtonContainer = styled.div`
   &:hover {
     cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
     transition: all .3s;
@@ -28,14 +28,14 @@ export default styled.div`
     }
   }
 
-  &.button, &.optionCheckbox {
+  &.button {
     transition: all .3s;
     text-align: center;
     font-size: 12px;
     font-weight: 400;    
     border-radius: 4px;
 
-    &-top {
+    &-first {
       border-radius: 5px 0 0 5px;
       margin-right: 5px;
     }
@@ -45,7 +45,7 @@ export default styled.div`
       margin: 0 5px;
     }
 
-    &-bottom {
+    &-last {
       border-radius: 0 5px 5px 0;
       margin-left: 5px;
     }
@@ -55,10 +55,10 @@ export default styled.div`
     }
 
     &.option, &.basic {
-      ${ButtonInput} {
+      ${SwitchButtonInput} {
         padding: 10px 15px;
       }
-
+      
       /*************************
        * Switch button default *
        * ***********************

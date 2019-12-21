@@ -64,7 +64,6 @@ export const Account = () => (
           props={{
             position: 'relative',
             right: '12px',
-            bottom: '3px',
             fill: green.g1,
             width: '10px',
             height: '10px',
@@ -81,7 +80,7 @@ export const Account = () => (
       </AccountStatement>
       <Dropdown
         iconDropdown={DownChevronIcon}
-        optionDropdown={AvatarSrc}
+        avatar={AvatarSrc}
         type='normal'
       >
         <Checkbox label="Option 1" type="dropdown" right />
@@ -115,7 +114,6 @@ export const Account = () => (
           props={{
             position: 'relative',
             right: '17px',
-            bottom: '3px',
             fill: green.g1,
             width: '10px',
             height: '10px',
@@ -124,7 +122,7 @@ export const Account = () => (
       </NotificationContainer>
       <Dropdown
         iconDropdown={DownChevronIcon}
-        optionDropdown={AvatarSrc}
+        avatar={AvatarSrc}
         type='normal'
       >
         <Checkbox label="Option 1" type="dropdown" right />
@@ -149,32 +147,34 @@ export const Basic = () => (
 
     <DropdownContainer>
       <OptionDropdown text="Text" type="basic">
-        <Option label="Option 1" value="value1" type="dropdown" right />
-        <Option label="Option 2" value="value2" type="dropdown" right />
-        <Option label="Option 3" value="value3" type="dropdown" right />
-        <Option label="Option 4" value="value4" type="dropdown" right />
+        <Option label="Option 1" id="id1" type="dropdown" right />
+        <Option label="Option 2" id="id2" type="dropdown" right />
+        <Option label="Option 3" id="id3" type="dropdown" right />
+        <Option label="Option 4" id="id4" type="dropdown" right />
       </OptionDropdown>
     </DropdownContainer>
-
+ 
     <DropdownContainer>
       <StatusLabelDropdown text="Text" type="basic">
-        <StatusLabel label="status" value="value1" color="red" type="dropdown" right />
-        <StatusLabel label="status" value="value2" color="yellow" type="dropdown" right />
-        <StatusLabel label="status" value="value3" color="green" type="dropdown" right />
-        <StatusLabel label="status" value="value4" color="blue" type="dropdown" right />
-      </StatusLabelDropdown>
-    </DropdownContainer>
-
-    <DropdownContainer direction='column' align='start'>
-      <DropdownLabel>Text</DropdownLabel>
-      <StatusLabelDropdown text="Text" type="basic" disabled={true}>
-        <StatusLabel label="status" value="value1" color="red" type="dropdown" right />
-        <StatusLabel label="status" value="value2" color="yellow" type="dropdown" right />
-        <StatusLabel label="status" value="value3" color="green" type="dropdown" right />
-        <StatusLabel label="status" value="value4" color="blue" type="dropdown" right />
+        <StatusLabel label="status" id="id1" color="red" type="dropdown" right />
+        <StatusLabel label="status" id="id2" color="yellow" type="dropdown" right />
+        <StatusLabel label="status" id="id3" color="green" type="dropdown" right />
+        <StatusLabel label="status" id="id4" color="blue" type="dropdown" right />
       </StatusLabelDropdown>
     </DropdownContainer>
   </>
+);
+
+export const BasicWithLabel = () => (
+  <DropdownContainer direction='column' align='start'>
+    <DropdownLabel>Text</DropdownLabel>
+    <StatusLabelDropdown text="Text" type="basic" disabled={true}>
+      <StatusLabel label="status" id="id1" color="red" type="dropdown" right />
+      <StatusLabel label="status" id="id2" color="yellow" type="dropdown" right />
+      <StatusLabel label="status" id="id3" color="green" type="dropdown" right />
+      <StatusLabel label="status" id="id4" color="blue" type="dropdown" right />
+    </StatusLabelDropdown>
+  </DropdownContainer>
 );
 
 export const SolidWithIcon = () => (
@@ -190,28 +190,28 @@ export const SolidWithIcon = () => (
 
     <DropdownContainer>
       <OptionDropdown text="Dropdown solid w/icon" type="solid" leftIcon={DownloadFileIcon}>
-        <Option label="Option 1" value="value1" type="dropdown" right />
-        <Option label="Option 2" value="value2" type="dropdown" right />
-        <Option label="Option 3" value="value3" type="dropdown" right />
-        <Option label="Option 4" value="value4" type="dropdown" right />
+        <Option label="Option 1" id="id1" type="dropdown" right />
+        <Option label="Option 2" id="id2" type="dropdown" right />
+        <Option label="Option 3" id="id3" type="dropdown" right />
+        <Option label="Option 4" id="id4" type="dropdown" right />
       </OptionDropdown>
     </DropdownContainer>
 
     <DropdownContainer>
       <StatusLabelDropdown text="Dropdown solid w/icon" type="solid" leftIcon={DownloadFileIcon}>
-        <StatusLabel label="status" value="value1" color="red" type="dropdown" right />
-        <StatusLabel label="status" value="value2" color="yellow" type="dropdown" right />
-        <StatusLabel label="status" value="value3" color="green" type="dropdown" right />
-        <StatusLabel label="status" value="value4" color="blue" type="dropdown" right />
+        <StatusLabel label="status" id="id1" color="red" type="dropdown" right />
+        <StatusLabel label="status" id="id2" color="yellow" type="dropdown" right />
+        <StatusLabel label="status" id="id3" color="green" type="dropdown" right />
+        <StatusLabel label="status" id="id4" color="blue" type="dropdown" right />
       </StatusLabelDropdown>
     </DropdownContainer>
 
     <DropdownContainer>
       <StatusLabelDropdown text="Dropdown solid w/icon" type="solid" leftIcon={DownloadFileIcon} disabled={true}>
-        <StatusLabel label="status" value="value1" color="red" type="dropdown" right />
-        <StatusLabel label="status" value="value2" color="yellow" type="dropdown" right />
-        <StatusLabel label="status" value="value3" color="green" type="dropdown" right />
-        <StatusLabel label="status" value="value4" color="blue" type="dropdown" right />
+        <StatusLabel label="status" id="id1" color="red" type="dropdown" right />
+        <StatusLabel label="status" id="id2" color="yellow" type="dropdown" right />
+        <StatusLabel label="status" id="id3" color="green" type="dropdown" right />
+        <StatusLabel label="status" id="id4" color="blue" type="dropdown" right />
       </StatusLabelDropdown>
     </DropdownContainer>
   </>
@@ -230,28 +230,28 @@ export const NoBorder = () => (
 
     <DropdownContainer>
       <OptionDropdown text="Text" type="noBorder">
-        <Option label="Option 1" value="value1" type="dropdown" right />
-        <Option label="Option 2" value="value2" type="dropdown" right />
-        <Option label="Option 3" value="value3" type="dropdown" right />
-        <Option label="Option 4" value="value4" type="dropdown" right />
+        <Option label="Option 1" id="id1" type="dropdown" right />
+        <Option label="Option 2" id="id2" type="dropdown" right />
+        <Option label="Option 3" id="id3" type="dropdown" right />
+        <Option label="Option 4" id="id4" type="dropdown" right />
       </OptionDropdown>
     </DropdownContainer>
 
     <DropdownContainer>
       <StatusLabelDropdown text="Text" type="noBorder">
-        <StatusLabel label="status" value="value1" color="red" type="dropdown" right />
-        <StatusLabel label="status" value="value2" color="yellow" type="dropdown" right />
-        <StatusLabel label="status" value="value3" color="green" type="dropdown" right />
-        <StatusLabel label="status" value="value4" color="blue" type="dropdown" right />
+        <StatusLabel label="status" id="id1" color="red" type="dropdown" right />
+        <StatusLabel label="status" id="id2" color="yellow" type="dropdown" right />
+        <StatusLabel label="status" id="id3" color="green" type="dropdown" right />
+        <StatusLabel label="status" id="id4" color="blue" type="dropdown" right />
       </StatusLabelDropdown>
     </DropdownContainer>
 
     <DropdownContainer>
       <StatusLabelDropdown text="Text" type="noBorder" disabled={true}>
-        <StatusLabel label="status" value="value1" color="red" type="dropdown" right />
-        <StatusLabel label="status" value="value2" color="yellow" type="dropdown" right />
-        <StatusLabel label="status" value="value3" color="green" type="dropdown" right />
-        <StatusLabel label="status" value="value4" color="blue" type="dropdown" right />
+        <StatusLabel label="status" id="id1" color="red" type="dropdown" right />
+        <StatusLabel label="status" id="id2" color="yellow" type="dropdown" right />
+        <StatusLabel label="status" id="id3" color="green" type="dropdown" right />
+        <StatusLabel label="status" id="id4" color="blue" type="dropdown" right />
       </StatusLabelDropdown>
     </DropdownContainer>
   </>
@@ -270,28 +270,28 @@ export const NoBorderLink = () => (
 
     <DropdownContainer>
       <OptionDropdown text="Advanced Options" type="noBorderLink">
-        <Option label="Option 1" value="value1" type="dropdown" right />
-        <Option label="Option 2" value="value2" type="dropdown" right />
-        <Option label="Option 3" value="value3" type="dropdown" right />
-        <Option label="Option 4" value="value4" type="dropdown" right />
+        <Option label="Option 1" id="id1" type="dropdown" right />
+        <Option label="Option 2" id="id2" type="dropdown" right />
+        <Option label="Option 3" id="id3" type="dropdown" right />
+        <Option label="Option 4" id="id4" type="dropdown" right />
       </OptionDropdown>
     </DropdownContainer>
 
     <DropdownContainer>
       <StatusLabelDropdown text="Advanced Options" type="noBorderLink">
-        <StatusLabel label="status" value="value1" color="red" type="dropdown" right />
-        <StatusLabel label="status" value="value2" color="yellow" type="dropdown" right />
-        <StatusLabel label="status" value="value3" color="green" type="dropdown" right />
-        <StatusLabel label="status" value="value4" color="blue" type="dropdown" right />
+        <StatusLabel label="status" id="id1" color="red" type="dropdown" right />
+        <StatusLabel label="status" id="id2" color="yellow" type="dropdown" right />
+        <StatusLabel label="status" id="id3" color="green" type="dropdown" right />
+        <StatusLabel label="status" id="id4" color="blue" type="dropdown" right />
       </StatusLabelDropdown>
     </DropdownContainer>
 
     <DropdownContainer>
       <StatusLabelDropdown text="Advanced Options" type="noBorderLink" disabled={true}>
-        <StatusLabel label="status" value="value1" color="red" type="dropdown" right />
-        <StatusLabel label="status" value="value2" color="yellow" type="dropdown" right />
-        <StatusLabel label="status" value="value3" color="green" type="dropdown" right />
-        <StatusLabel label="status" value="value4" color="blue" type="dropdown" right />
+        <StatusLabel label="status" id="id1" color="red" type="dropdown" right />
+        <StatusLabel label="status" id="id2" color="yellow" type="dropdown" right />
+        <StatusLabel label="status" id="id3" color="green" type="dropdown" right />
+        <StatusLabel label="status" id="id4" color="blue" type="dropdown" right />
       </StatusLabelDropdown>
     </DropdownContainer>
   </>
@@ -310,19 +310,19 @@ export const NoBorderPurple = () => (
 
     <DropdownContainer>
       <OptionDropdown text="Advertiser" type="noBorderPurple">
-        <Option label="Option 1" value="value1" type="dropdown" right />
-        <Option label="Option 2" value="value2" type="dropdown" right />
-        <Option label="Option 3" value="value3" type="dropdown" right />
-        <Option label="Option 4" value="value4" type="dropdown" right />
+        <Option label="Option 1" id="id1" type="dropdown" right />
+        <Option label="Option 2" id="id2" type="dropdown" right />
+        <Option label="Option 3" id="id3" type="dropdown" right />
+        <Option label="Option 4" id="id4" type="dropdown" right />
       </OptionDropdown>
     </DropdownContainer>
 
     <DropdownContainer>
       <StatusLabelDropdown text="Advertiser" type="noBorderPurple">
-        <StatusLabel label="status" value="value1" color="red" type="dropdown" right />
-        <StatusLabel label="status" value="value2" color="yellow" type="dropdown" right />
-        <StatusLabel label="status" value="value3" color="green" type="dropdown" right />
-        <StatusLabel label="status" value="value4" color="blue" type="dropdown" right />
+        <StatusLabel label="status" id="id1" color="red" type="dropdown" right />
+        <StatusLabel label="status" id="id2" color="yellow" type="dropdown" right />
+        <StatusLabel label="status" id="id3" color="green" type="dropdown" right />
+        <StatusLabel label="status" id="id4" color="blue" type="dropdown" right />
       </StatusLabelDropdown>
     </DropdownContainer>
   </>

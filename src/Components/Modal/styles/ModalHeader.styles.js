@@ -8,6 +8,13 @@ export const ModalHeader = styled(CardHeader)`
   align-items: center;
   margin: 15px;
 
+  ${XIconContainer} {
+    svg {
+      width: 6px;
+      height: 6px;
+    }
+  }
+
   ${XIconContainer}:hover {
     cursor: pointer;
   }

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
-const { green, red, blue, link, black } = palette;
+import { XIconContainer } from '../../UI/Icons/styles';
+const { gray, green, red, blue, link, black } = palette;
 
 export const NotificationHeaderContainer = styled.div`
   display: flex;
@@ -11,6 +12,21 @@ export const NotificationHeaderContainer = styled.div`
   
   &.notification {
     &.header {
+
+      ${XIconContainer} {
+        margin-right: 20px;
+        fill: ${gray.g3};
+        svg {
+          height: 10px;
+          width: 10px;
+        }
+      }
+
+      ${XIconContainer}:hover {
+        fill: ${black};
+        cursor: pointer; 
+      }
+
       &--success {
         background-color: ${green.g0};
         color: ${green.g1};
@@ -25,11 +41,6 @@ export const NotificationHeaderContainer = styled.div`
         background-color: ${blue.b05};
         color: ${link};
       }
-    }
-
-    svg:hover {
-      fill: ${black};
-      cursor: pointer; 
     }
   }
 `;

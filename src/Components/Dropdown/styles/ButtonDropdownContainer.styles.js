@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
-import { AccessoryButtonContainer } from '../../Button/styles';
+import { AccessoryButtonContainer, ButtonInput } from '../../Button/styles';
+import { DownloadFileIconContainer, DownChevronIconContainer } from '../../UI/Icons/styles';
 const { white, violet, gray, black, link, blue, action } = palette;
 
 export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
@@ -33,6 +34,14 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
             color: ${gray.g07};
           }
         }
+
+        &--noBorder {
+          color: ${black};
+
+          &__disabled {
+            color: ${gray.g4};
+          }
+        }
       }
     }
   }
@@ -44,8 +53,26 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
   }
   
   &.button, &.dropdown {
+    ${DownloadFileIconContainer} {
+      width: 20px;
+      height: 20px;
+      fill: ${gray.g4};
+      margin-left: 10px;
+    }
+    ${DownChevronIconContainer} {
+      position: unset;
+      width: 16px;
+      height: 16px;
+      fill: ${gray.g4};
+      margin: 0 5px;
+    }
+
     &.accessory, &.button, &.option, &.label {
       border-radius: 4px;
+
+      &--default {
+        background-color: ${white};
+      }
 
       /*******************************
        * Accessory button solid gray *
@@ -54,11 +81,19 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
       &--solid {
         background-color: ${gray.g1};
         color: ${gray.g4};
-        padding: 5px 5px 5px 15px;
+        ${ButtonInput} {
+          font-size: 12px;
+          padding: 10px 0;
+        }
+
 
         &__disabled {
           background-color: ${gray.g0};
           color: ${gray.g07};
+
+          ${DownloadFileIconContainer}, ${DownChevronIconContainer} {
+            fill: ${gray.g07};
+          }
         }
       }
 
@@ -70,7 +105,10 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
         background-color: ${white};
         color: ${gray.g4};
         border: 1px solid ${gray.g1};
-        padding: 5px 0 5px 8px;
+
+        ${ButtonInput} {
+          font-size: 12px;
+        }
 
 
         &__disabled {
@@ -84,9 +122,14 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
        * *********************************
        */
       &--noBorder, &--noBorderLink {
+        align-items: baseline;
         background-color: ${white};
         color: ${gray.g4};
         min-width: 0;
+
+        ${ButtonInput} {
+          font-size: 12px;
+        }
 
         &-left {
           &__closed, &__opened {
@@ -123,6 +166,10 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
         background-color: ${white};
         color: ${action};
         min-width: 0;
+
+        ${ButtonInput} {
+          font-size: 12px;
+        }
 
         &-left {
           &__closed, &__opened {
