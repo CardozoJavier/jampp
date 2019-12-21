@@ -6,10 +6,11 @@ import {
 } from '../src/Components/UI/Icons';
 
 import {
+  InputLabel,
   InputBasic,
   InputAccessory,
-  InputLabel,
   InputControlled,
+  InputErrorMessage,
 } from '../src/Components/InputField';
 export default {
   title: 'Input'
@@ -39,4 +40,14 @@ export const InputWithLabel = () => (
 
 export const WithBoldPlaceholder = () => (
   <InputControlled label="Text" boldPlaceholder="Text" placeholder="text" type="controlled" id="input1" />
+);
+
+export const WithErrorMessage = () => (
+  <InputErrorMessage
+    errorMessage="Warning here"
+    placeholder="Input value"
+    label="Label"
+    id="input1" 
+    type="error-message"
+  />
 );
