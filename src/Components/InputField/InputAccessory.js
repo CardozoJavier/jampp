@@ -1,6 +1,6 @@
 import React from 'react';
 import { InputAccessoryContainer } from './styles';
-import InputField from './InputField';
+import InputText from './InputText';
 import inputProps from './inputProps';
 import { IconGenerator } from '../UI/Icons';
 
@@ -10,7 +10,7 @@ const InputAccessory = ({ placeholder, type, icon, disabled }) => {
 
   return (
     <InputAccessoryContainer>
-      <InputField 
+      <InputText 
         placeholder={placeholder}
         className={defaultClassName}
         disabled={disabled}

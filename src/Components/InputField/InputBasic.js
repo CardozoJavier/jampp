@@ -1,6 +1,6 @@
 import React from 'react';
 import { InputBasicContainer, LabelContainer, Label } from './styles';
-import InputField from './InputField';
+import InputText from './InputText';
 import inputProps from './inputProps';
 
 const InputBasic = ({ placeholder, label, id, type, disabled }) => {
@@ -10,7 +10,7 @@ const InputBasic = ({ placeholder, label, id, type, disabled }) => {
       <LabelContainer>
         <Label htmlFor={id}>{label}</Label>
       </LabelContainer>
-      <InputField
+      <InputText
         id={id}
         placeholder={placeholder}
         className={defaultClassName}
