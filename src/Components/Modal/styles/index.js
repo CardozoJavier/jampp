@@ -3,3 +3,7 @@ export { ModalHeader } from './ModalHeader.styles';
 export { ModalFooter } from './ModalFooter.styles';
 export { ModalContainer } from './ModalContainer.styles';
 export { IconTitleContainer } from './IconTitleContainer.styles';
+export { PrimaryAction } from './PrimaryAction.styles';
+export { SecondaryAction } from './SecondaryAction.styles';
+export { HeaderTitle } from './HeaderTitle.styles';
+export { CenteredModalContainer } from './CenteredModalContainer.styles';
