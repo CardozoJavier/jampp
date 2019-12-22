@@ -5,3 +5,4 @@ export { default as StatusButtonContainer } from './StatusButtonContainer.styles
 export { default as PrimaryButtonContainer } from './PrimaryButtonContainer.styles';
 export { default as SecondaryButtonContainer } from './SecondaryButtonContainer.styles';
 export { default as AccessoryButtonContainer } from './AccessoryButtonContainer.styles';
+export { default as SecondaryActionButtonContainer } from './SecondaryActionButtonContainer.styles';
