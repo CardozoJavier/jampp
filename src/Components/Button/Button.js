@@ -16,8 +16,9 @@ const Button = ({ label, children, icon, type, disabled }) => {
 
   return (
     <ButtonContainer
-      onClick={disabled ? null : () => handleClick()}
-      className={bemDestruct(className, disabled)} disabled={disabled}
+      onClick={disabled ? null : handleClick}
+      className={bemDestruct(className, disabled)}
+      disabled={disabled}
     >
       <ButtonInput children={label || children} />
       {icon &&

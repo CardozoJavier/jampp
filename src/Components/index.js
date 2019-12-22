@@ -13,5 +13,4 @@ export { OptionList } from './OptionList';
 export { StatusLabel } from './StatusLabel';
 export { ToggleSwitch } from './ToggleSwitch';
 export { UniqueOption } from './UniqueOption';
-export { ControlledInputField } from './InputField';
 export { NotificationHeader } from './NotificationHeader';
