@@ -23,6 +23,10 @@ export default styled.div`
           }
         }
 
+        &--action {
+          transform: none;
+        }
+
         &--gray {
           background-color: ${gray.g05};
           color: ${black};
@@ -80,7 +84,7 @@ export default styled.div`
        * Secondary button default *
        * **************************
        */
-      &--default {
+      &--default, &--action {
         background-color: ${violet.v1};
         color: ${white};
 
