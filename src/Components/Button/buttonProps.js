@@ -1,4 +1,5 @@
 import {
+  SecondaryActionButtonContainer,
   AccessoryButtonContainer,
   SecondaryButtonContainer,
   PrimaryButtonContainer,
@@ -45,6 +46,20 @@ const buttonProps = {
     defaultClassName: 'button secondary--default-medium',
     optionalClassName: '',
     ButtonContainer: SecondaryButtonContainer,
+    iconClassName: '',
+    iconProps: {},
+  },
+  "primary-action-medium": {
+    defaultClassName: 'button secondary--action-medium',
+    optionalClassName: '',
+    ButtonContainer: SecondaryButtonContainer,
+    iconClassName: '',
+    iconProps: {},
+  },
+  "secondary-action-medium": {
+    defaultClassName: 'button secondary--action-medium',
+    optionalClassName: '',
+    ButtonContainer: SecondaryActionButtonContainer,
     iconClassName: '',
     iconProps: {},
   },
