@@ -1,59 +1,81 @@
 import { palette } from '../styles';
+import { InputFieldContainer } from './styles';
 const { gray } = palette;
 
 /**
  * Properties for inputs field by type
  */
 const inputProps = {
-  basic: {
+  "basic-medium": {
     defaultClassName: 'input basic--default-medium',
+    onFocusClassName: "input basic--default-medium__focus",
+    onBlurClassName: "input basic--default-medium__blur",
+    errorClassName: "",
+    InputContainer: InputFieldContainer,
   },
-  "accessory-left": {
-    defaultClassName: 'input accessory--default-medium__left',
+  "icon-small-left": {
+    defaultClassName: 'input basic--small-left',
+    onFocusClassName: "input basic--small-left__focus",
+    onBlurClassName: "input basic--small-left__blur",
+    errorClassName: "",
+    InputContainer: InputFieldContainer,
     iconProps: {
-      top: '7px',
-      left: '10px',
       fill: gray.g07,
       width: '11px',
       height: '11px',
-      verticalAlign: 'middle',
     },
   },
-  "accessory-right": {
+  "searchbar": {
+    defaultClassName: 'input basic--medium-left',
+    onFocusClassName: "input basic--medium-left__focus",
+    onBlurClassName: "input basic--medium-left__blur",
+    errorClassName: "",
+    InputContainer: InputFieldContainer,
+    iconProps: {
+      fill: gray.g07,
+      width: '11px',
+      height: '11px',
+    },
+  },
+  "icon-right-medium": {
     defaultClassName: 'input accessory--default-medium__right',
     iconProps: {
       top: '7px',
       left: '145px',
-      fill: palette.gray.g07,
+      fill: gray.g07,
       width: '16px',
       height: '16px',
       verticalAlign: 'middle',
     },
   },
-  "label-right": {
+  "label-medium": {
     defaultClassName: 'input accessory--default-medium__right',
     iconProps: {
       top: '34px',
       left: '145px',
-      fill: palette.gray.g07,
+      fill: gray.g07,
       width: '16px',
       height: '16px',
       verticalAlign: 'middle',
     },
   },
-  controlled: {
+  "controlled-medium": {
     inputClassName: "input basic--default-medium",
     defaultClassName: "placeholder controlled--default-medium",
-    optionalClassName: "placeholder controlled--default-medium__selected",
+    optionalClassName: "placeholder controlled--default-medium__typing",
+    onFocusClassName: "border controlled--default-medium__focus",
+    onBlurClassName: "border controlled--default-medium__blur",
+
   },
-  "searchbar": {
-    defaultClassName: 'input accessory--searchbar-medium__left',
+  "searchbar-large": {
+    defaultClassName: 'input accessory--searchbar-large__left',
   },
-  "error-message": {
+  "error-message-medium": {
     defaultClassName: "input basic--default-medium",
     onFocusClassName: "input basic--default-medium__focus",
     onBlurClassName: "input basic--default-medium__blur",
     errorClassName: "input basic--default-medium__error",
+    InputContainer: InputFieldContainer,
   },
 };
 
