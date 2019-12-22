@@ -8,6 +8,23 @@ export const InputErrorMessageContainer = styled.div`
   align-items: center;
   margin-top: 5px;
 
+  &:hover {
+    &.input {
+      &.basic {
+        &--default {
+          border: 1px solid ${gray.g07};
+          input::placeholder {
+            color: ${gray.g3};
+          }
+
+          &__error {
+            border: 1px solid ${red.r3};
+          }
+        }
+      }
+    }
+  }
+
   &.input {
     &-medium {}
    
@@ -47,15 +64,10 @@ export const InputErrorMessageContainer = styled.div`
           border: 1px solid ${gray.g1};
         }
 
-        &:hover {
-          &__focus {
-            border: 1px solid ${gray.g07};
-            input::placeholder {
-              color: ${gray.g3};
-            }
-          }
-          &__error {
-            border: 1px solid ${red.r3};
+        &__focus {
+          border: 1px solid ${gray.g07};
+          input::placeholder {
+            color: ${gray.g3};
           }
         }
       }
