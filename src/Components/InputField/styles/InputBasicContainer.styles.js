@@ -26,7 +26,6 @@ export default styled.div`
   &.input {
     transition: all .3s;
     border: 1px solid ${gray.g1};
-    // color: ${gray.g4};
 
     &::placeholder {
       color: ${gray.g07};
@@ -46,14 +45,6 @@ export default styled.div`
         input::placeholder {
           color: ${gray.g07};
         }
-        
-        // &:hover, &:focus {
-        //   transition: all .3s;
-        //   border: 1px solid ${gray.g3};
-        //   &::placeholder {
-        //     color: ${gray.g3};
-        //   }
-        // }
 
         &__blur {
           border: 1px solid ${gray.g1};
