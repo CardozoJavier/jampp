@@ -6,10 +6,11 @@ export { default as InputAccessoryContainer } from './InputAccessoryContainer.st
 export {
   ControlledInputFieldContainer,
   CustomPlaceholderContainer,
+  InputControlledContainer,
   CustomPlaceholderNormal,
   CustomPlaceholderBold,
 } from './InputControlled.styles';
 export {
-  InputErrorMessageContainer,
+  InputFieldContainer,
   ErrorMessage,
-} from './InputErrorMessage.styles';
+} from './InputField.styles';
