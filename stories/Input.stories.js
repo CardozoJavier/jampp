@@ -2,52 +2,48 @@ import React from 'react';
 import '../src/main.css';
 import {
   SearchIcon,
-  DownChevronIcon,
 } from '../src/Components/UI/Icons';
 
 import {
-  InputLabel,
-  InputBasic,
-  InputAccessory,
   InputControlled,
-  InputErrorMessage,
+  InputField,
 } from '../src/Components/InputField';
 export default {
   title: 'Input'
 };
 
 export const Basic = () => (
-  <>
-    <InputBasic placeholder="Text" type="basic" />
-    <InputBasic placeholder="Text" type="basic" disabled />
-  </>
+  <InputField placeholder="Text" type="basic-medium" />
 );
 
 export const WithIcon = () => (
-  <>
-    <InputAccessory placeholder="Text" type="accessory-left" icon={SearchIcon} />
-    <InputAccessory placeholder="Text" type="accessory-right" icon={DownChevronIcon} />
-    <InputAccessory placeholder="Text" type="accessory-right" icon={DownChevronIcon} disabled />
-  </>
+  <InputField placeholder="Text" type="icon-small-left" icon={SearchIcon} />
 );
 
 export const InputWithLabel = () => (
-  <>
-    <InputLabel placeholder="Text" label="Text" id="input1" type="label-right" icon={DownChevronIcon} />
-    <InputBasic placeholder="Text" label="Text" id="input2" type="basic" />
-  </>
+  <InputField placeholder="Text" label="Label" id="id1" type="basic-medium" />
 );
 
 export const WithBoldPlaceholder = () => (
-  <InputControlled label="Text" boldPlaceholder="Text" placeholder="text" type="controlled" id="input1" />
+  <InputControlled label="Text" boldPlaceholder="Text" placeholder="text" type="controlled-medium" id="input1" />
 );
 
 export const WithErrorMessage = () => (
-  <InputErrorMessage
-    errorMessage="Warning here"
-    placeholder="Input value"
-    label="Label"
-    id="input1" 
-    type="error-message"
-  />
+  <>
+    <InputField
+      errorMessage="Warning here"
+      placeholder="Input value"
+      label="Label"
+      id="input1" 
+      type="error-message-medium"
+    />
+
+    <InputField
+      placeholder="Input value"
+      label="Label"
+      id="input2" 
+      type="error-message-medium"
+      disabled={true}
+    />
+  </>
 );

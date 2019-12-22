@@ -1,6 +1,6 @@
 import React from 'react';
 import { InputAccessoryContainer, LabelContainer, Label } from './styles';
-import InputField from './InputField';
+import InputText from './InputText';
 import inputProps from './inputProps';
 import { IconGenerator } from '../UI/Icons';
 
@@ -15,7 +15,7 @@ const InputLabel = ({ placeholder, id, label, type, icon, disabled }) => {
           <Label htmlFor={id}>{label}</Label>
         </LabelContainer>
       }
-      <InputField
+      <InputText
         id={id}
         placeholder={placeholder}
         className={defaultClassName}

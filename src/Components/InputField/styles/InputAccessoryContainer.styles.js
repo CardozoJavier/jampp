@@ -6,9 +6,25 @@ const { gray } = palette;
  * Accessory input field - left | right | both
  */
 export default styled.div`
-  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
 
-  .input {
+  &:hover {
+    &.input {
+      &.basic {
+        &--default {
+          border: 1px solid ${gray.g07};
+          input::placeholder {
+            color: ${gray.g3};
+          }
+        }
+      }
+    }
+  }
+
+
+  &.input {
     transition: all .3s;
     border: 1px solid ${gray.g1};
     color: ${gray.g4};
@@ -20,7 +36,6 @@ export default styled.div`
     &-large {}
 
     &-medium {
-      padding: .8em;
     }
 
     &-small {}
@@ -31,15 +46,12 @@ export default styled.div`
 
       &--default {
         &__left {
-          padding: .8em .7em .8em 3em;
         }
   
         &__right {
-          padding: .8em 3em .8em .7em;
         }
   
         &__both {
-          padding: .8em 3em;
         }
 
         &:hover, &:focus {
