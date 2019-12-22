@@ -6,10 +6,27 @@ const { gray } = palette;
  * Basic input field - large | medium | small
  */
 export default styled.div`
-  .input {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+
+  &:hover {
+    &.input {
+      &.basic {
+        &--default {
+          border: 1px solid ${gray.g07};
+          input::placeholder {
+            color: ${gray.g3};
+          }
+        }
+      }
+    }
+  }
+
+  &.input {
     transition: all .3s;
     border: 1px solid ${gray.g1};
-    color: ${gray.g4};
+    // color: ${gray.g4};
 
     &::placeholder {
       color: ${gray.g07};
@@ -18,7 +35,6 @@ export default styled.div`
     &-large {}
 
     &-medium {
-      padding: .8em .7em;
     }
 
     &-small {}
@@ -27,11 +43,25 @@ export default styled.div`
       border-radius: 4px;
 
       &--default {
+        input::placeholder {
+          color: ${gray.g07};
+        }
+        
+        // &:hover, &:focus {
+        //   transition: all .3s;
+        //   border: 1px solid ${gray.g3};
+        //   &::placeholder {
+        //     color: ${gray.g3};
+        //   }
+        // }
 
-        &:hover, &:focus {
-          transition: all .3s;
-          border: 1px solid ${gray.g3};
-          &::placeholder {
+        &__blur {
+          border: 1px solid ${gray.g1};
+        }
+
+        &__focus {
+          border: 1px solid ${gray.g07};
+          input::placeholder {
             color: ${gray.g3};
           }
         }
