@@ -1,4 +1,8 @@
 export {
+  TabGroup,
+  Tab,
+} from './Tab';
+export {
   Dropdown,
   OptionDropdown,
   StatusLabelDropdown,
