@@ -10,6 +10,8 @@ export { default as SearchIconContainer } from './SearchIconContainer.styles';
 export { default as AvatarIconContainer } from './AvatarIconContainer.styles';
 export { default as SuccessIconContainer } from './SuccessIconContainer.styles';
 export { default as EllipseIconContainer } from './EllipseIconContainer.styles';
+export { default as BillingIconContainer } from './BillingIconContainer.styles';
+export { default as AddAccountIconContainer } from './AddAccountIconContainer.styles';
 export { default as ExclamationIconContainer } from './ExclamationIconContainer.styles';
 export { default as DownChevronIconContainer } from './DownChevronIconContainer.styles';
 export { default as DownloadFileIconContainer } from './DownloadFileIconContainer.styles';
