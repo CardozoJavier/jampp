@@ -95,7 +95,7 @@ export const InputFieldContainer = styled.div`
           border: 1px solid ${gray.g1};
         }
 
-        &__focus {
+        &:hover, &__focus {
           border: 1px solid ${gray.g07};
           input::placeholder {
             color: ${gray.g3};
