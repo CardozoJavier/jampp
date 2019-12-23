@@ -1,9 +1,10 @@
 export {
+  Radio,
+  TextContainer,
   InputTypeRadio,
+  RadioButtonLabel,
+  RadioButtonSuffix,
+  RadioButtonContainer,
   InputTypeRadioContainer,
   RadioButtonGroupContainer,
-  RadioButtonContainer,
-  RadioButtonSubLabel,
-  RadioButtonLabel,
-  Radio,
 } from './RadioButton.styles';

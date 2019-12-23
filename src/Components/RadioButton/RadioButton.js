@@ -1,8 +1,16 @@
 import React from 'react';
-import { RadioButtonContainer, RadioButtonLabel, RadioButtonSubLabel, InputTypeRadioContainer, InputTypeRadio, Radio } from './styles';
+import {
+  Radio,
+  TextContainer,
+  InputTypeRadio,
+  RadioButtonLabel,
+  RadioButtonSuffix,
+  RadioButtonContainer,
+  InputTypeRadioContainer,
+} from './styles';
 import { bemDestruct } from '../../utils';
 
-const RadioButton = ({ id, name, text, value, onChange, checked, subLabel, disabled }) => (
+const RadioButton = ({ id, name, text = '', value, onChange, checked, suffix, disabled }) => (
   <RadioButtonContainer>
     <InputTypeRadioContainer disabled={disabled}>
       <InputTypeRadio
@@ -15,15 +23,17 @@ const RadioButton = ({ id, name, text, value, onChange, checked, subLabel, disab
       />
       <Radio className={bemDestruct('input radio--visible', disabled)} />
     </InputTypeRadioContainer>
-    <RadioButtonLabel
-      htmlFor={id}
-      checked={checked}
-      disabled={disabled}
-      className={bemDestruct('input label--default', disabled)}
-    >
-      {text}
-    </RadioButtonLabel>
-    {subLabel && <RadioButtonSubLabel>{subLabel}</RadioButtonSubLabel>}
+    <TextContainer>
+      <RadioButtonLabel
+        htmlFor={id}
+        checked={checked}
+        disabled={disabled}
+        className={bemDestruct('input label--default', disabled)}
+      >
+        {text}
+      </RadioButtonLabel>
+      {suffix && <RadioButtonSuffix>{suffix}</RadioButtonSuffix>}
+    </TextContainer>
   </RadioButtonContainer>
 );
 

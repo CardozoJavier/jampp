@@ -19,6 +19,7 @@ const RadioButtonGroup = ({ children, name, defaultValue, onChange }) => {
           key={radio.props.id}
           onChange={radio.props.disabled ? null : handleChange}
           text={radio.props.text}
+          suffix={radio.props.suffix}
           value={radio.props.value}
           disabled={radio.props.disabled}
           checked={selectedOption === radio.props.id}
