@@ -15,21 +15,28 @@ const classesName = {
     defaultClassName: "dropdown basic--default-multipleoptions",
     optionalClassName: "dropdown basic--default-multipleoptions__selected",
   },
+  label: {
+    defaultLabel: "checkbox label--default",
+    selectedLabel: "checkbox label--default__selected",
+  },
 };
 
 const Checkbox = ({ label, type = 'normal', right, left, disabled }) => {
-  const defaultClassName = classesName[type].defaultClassName;
-  const optionalClassName = classesName[type].optionalClassName;
+  const { defaultClassName, optionalClassName } = classesName[type];
+  const { defaultLabel, selectedLabel } = classesName['label'];
   const [className, setClassName] = useState(defaultClassName);
+  const [labelClassName, setLabelClassName] = useState(defaultLabel);
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
+  const toggleToLabelClassName = getClassName(labelClassName, defaultLabel, selectedLabel);
 
   const handleClick = () => {
     setClassName(toggleToClassName);
+    setLabelClassName(toggleToLabelClassName);
   }
 
   return (
-    <Container className={bemDestruct(className, disabled)} onClick={disabled ? null : handleClick}>
-      { right && <CheckboxLabel disabled={disabled}>{ label }</CheckboxLabel>}
+    <Container className={bemDestruct(className, disabled)} onClick={disabled ? null : handleClick} disabled={disabled}>
+      { right && <CheckboxLabel className={bemDestruct(labelClassName)} disabled={disabled}>{ label }</CheckboxLabel>}
       <CheckboxContainer>
         <Box className={bemDestruct(className, disabled)} />
         <IconGenerator
@@ -43,7 +50,7 @@ const Checkbox = ({ label, type = 'normal', right, left, disabled }) => {
           }}
         />
       </CheckboxContainer>
-      { left && <CheckboxLabel disabled={disabled}>{ label }</CheckboxLabel>}
+      { left && <CheckboxLabel className={bemDestruct(labelClassName)} disabled={disabled}>{ label }</CheckboxLabel>}
     </Container>
   )
 };
