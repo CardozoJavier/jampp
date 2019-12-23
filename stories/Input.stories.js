@@ -13,37 +13,49 @@ export default {
 };
 
 export const Basic = () => (
-  <InputField placeholder="Text" type="basic-medium" />
+  <div style={{ width: '250px' }}>
+    <InputField placeholder="Text" type="basic-medium" />
+  </div>
 );
 
 export const WithIcon = () => (
-  <InputField placeholder="Text" type="icon-small-left" icon={SearchIcon} />
+  <div style={{ width: '250px' }}>
+    <InputField placeholder="Text" type="icon-small-left" icon={SearchIcon} />
+  </div>
 );
 
 export const InputWithLabel = () => (
-  <InputField placeholder="Text" label="Label" id="id1" type="basic-medium" />
+  <div style={{ width: '250px' }}>
+    <InputField placeholder="Text" label="Label" id="id1" type="basic-medium" />
+  </div>
 );
 
 export const WithBoldPlaceholder = () => (
-  <InputControlled label="Text" boldPlaceholder="Text" placeholder="text" type="controlled-medium" id="input1" />
+  <div style={{ width: '250px' }}>
+    <InputControlled label="Text" boldPlaceholder="Text" placeholder="text" type="controlled-medium" id="input1" />
+  </div>
 );
 
 export const WithErrorMessage = () => (
   <>
-    <InputField
-      errorMessage="Warning here"
-      placeholder="Input value"
-      label="Label"
-      id="input1" 
-      type="error-message-medium"
-    />
+    <div style={{ width: '250px' }}>
+      <InputField
+        errorMessage="Warning here"
+        placeholder="Input value"
+        label="Label"
+        id="input1" 
+        type="error-message-medium"
+        />
+    </div>
 
-    <InputField
-      placeholder="Input value"
-      label="Label"
-      id="input2" 
-      type="error-message-medium"
-      disabled={true}
-    />
+    <div style={{ width: '250px' }}>
+      <InputField
+        placeholder="Input value"
+        label="Label"
+        id="input2" 
+        type="error-message-medium"
+        disabled={true}
+      />
+    </div>
   </>
 );

@@ -67,9 +67,6 @@ const inputProps = {
     onBlurClassName: "border controlled--default-medium__blur",
 
   },
-  "searchbar-large": {
-    defaultClassName: 'input accessory--searchbar-large__left',
-  },
   "error-message-medium": {
     defaultClassName: "input basic--default-medium",
     onFocusClassName: "input basic--default-medium__focus",

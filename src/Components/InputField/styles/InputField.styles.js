@@ -20,7 +20,7 @@ export const InputFieldContainer = styled.div`
       }
 
       &.basic {
-        &--default {
+        &--default, &--medium, &--small {
           border: 1px solid ${gray.g07};
           input::placeholder {
             color: ${gray.g3};
@@ -117,14 +117,6 @@ export const InputFieldContainer = styled.div`
             color: ${gray.g05};
           }
         }
-      }
-
-      &--medium {
-        min-width: 600px;
-      }
-
-      &--small {
-        min-width: 300px;
       }
     }
   }

@@ -2,15 +2,9 @@ import React from 'react';
 import '../src/main.css';
 import {
   SearchIcon,
-  DownChevronIcon,
 } from '../src/Components/UI/Icons';
 
 import {
-  InputLabel,
-  InputBasic,
-  InputAccessory,
-  InputControlled,
-  InputErrorMessage,
   InputField,
 } from '../src/Components/InputField';
 export default {
@@ -19,7 +13,7 @@ export default {
 
 
 export const WithIcon = () => (
-  <>
+  <div style={{ width: '600px' }}>
     <InputField placeholder="Text" type="searchbar" icon={SearchIcon} />
-  </>
+  </div>
 );
