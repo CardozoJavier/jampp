@@ -41,6 +41,10 @@ export default styled.div`
             transform: none;
             background-color: ${gray.g1};
             color: ${gray.g07};
+            
+            ${AddIconContainer} {
+              fill: ${gray.g07};
+            }
           }
         }
       }
