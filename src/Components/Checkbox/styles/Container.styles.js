@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
+import { CheckboxLabel } from './CheckboxLabel.styles';
 const { gray, violet, action } = palette;
 
 export const Container = styled.div`
@@ -8,6 +9,7 @@ export const Container = styled.div`
   position: relative;
   min-width: 70px;
   justify-content: space-between;
+  cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
 
 
   &.checkbox {

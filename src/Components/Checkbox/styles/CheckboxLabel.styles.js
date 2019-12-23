@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
-const { gray } = palette;
+const { gray, action } = palette;
 
 export const CheckboxLabel = styled.p`
   font-size: 12px;
@@ -15,5 +15,20 @@ export const CheckboxLabel = styled.p`
     color: transparent;
     overflow: hidden;
     visibility: hidden;
+  }
+
+  &.checkbox {
+    &.label {
+      &--default{
+        &__selected {
+          color: ${action};
+        }
+
+        &__disabled {
+          cursor: default;
+          color: ${gray.g1};
+        }
+      }
+    }
   }
 `;
