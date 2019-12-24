@@ -6,6 +6,7 @@ export { default as InfoIconContainer } from './InfoIconContainer.styles';
 export { default as HelpIconContainer } from './HelpIconContainer.styles';
 export { default as TrashIconContainer } from './TrashIconContainer.styles';
 export { default as CheckIconContainer } from './CheckIconContainer.styles';
+export { default as ArrowIconContainer } from './ArrowIconContainer.styles';
 export { default as SearchIconContainer } from './SearchIconContainer.styles';
 export { default as AvatarIconContainer } from './AvatarIconContainer.styles';
 export { default as SuccessIconContainer } from './SuccessIconContainer.styles';
