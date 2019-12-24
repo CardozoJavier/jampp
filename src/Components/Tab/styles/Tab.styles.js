@@ -6,7 +6,6 @@ const { gray, action } = palette;
 export const TabGroupContainer = styled.div`
   display: flex;
   width: 100%;
-  padding: 3px 0;
   border-bottom: 1px solid ${gray.g05};
 `;
 
@@ -29,6 +28,7 @@ export const TabText = styled.p`
 
 export const InputContainer = styled(InputTypeRadioContainer)`
   width: 200px;
+  height: 28px;
 `;
 
 export const InputRadio = styled(InputTypeRadio)`
