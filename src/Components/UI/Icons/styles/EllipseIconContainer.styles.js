@@ -8,10 +8,10 @@ export default styled.div`
   // bottom: ${({ bottom }) => bottom};
   // left: ${({ left }) => left};
 
-  // svg {
-  //   fill: ${({ fill }) => fill};
-  //   width: ${({ width }) => width};
-  //   height: ${({ height }) => height};
-  //   vertical-align: middle;
-  // }
+  svg {
+    fill: ${({ fill }) => fill};
+    width: ${({ width }) => width};
+    height: ${({ height }) => height};
+    vertical-align: middle;
+  }
 `;

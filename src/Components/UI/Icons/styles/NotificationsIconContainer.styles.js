@@ -5,7 +5,7 @@ export default styled.div`
   right: ${({ right }) => right};
   bottom: ${({ bottom }) => bottom};
   left: ${({ left }) => left};
-  margin: ${({ margin }) => margin};
+  margin: ${({ margin }) => margin || '0 10px 0 5px'};
 
   svg {
     fill: ${({ fill }) => fill};
