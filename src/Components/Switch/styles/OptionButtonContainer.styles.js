@@ -15,7 +15,9 @@ export const OptionButtonContainer = styled.div`
       &.option, &.basic {
 
         &--default {
+          border: 1px solid ${gray.g07};
           &__selected {
+            border: 1px solid ${action};
           }
           
           &__disabled {
@@ -37,17 +39,14 @@ export const OptionButtonContainer = styled.div`
 
     &-first {
       border-radius: 5px 0 0 5px;
-      margin-right: 5px;
     }
 
     &-middle {
       border-radius: 0;
-      margin: 0 5px;
     }
 
     &-last {
       border-radius: 0 5px 5px 0;
-      margin-left: 5px;
     }
 
     &:focus {

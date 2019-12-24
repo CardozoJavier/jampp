@@ -5,13 +5,17 @@ export default styled.div`
   top: ${({ top }) => top};
   right: ${({ right }) => right};
   bottom: ${({ bottom }) => bottom};
-  left: ${({ left }) => left};
+  left: ${({ left }) => left};  
 
   svg {
     fill: none;
     width: ${({ width }) => width};
     height: ${({ height }) => height};
     vertical-align: middle;
+  }
+
+  path {
+    stroke: ${({ fill }) => fill};
   }
 
   &.dropdown {

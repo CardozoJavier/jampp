@@ -17,7 +17,7 @@ export default styled.div`
 
     &.button {
       &.primary {
-        transform: translateY(-4px);
+        transform: ${({ fixed }) => fixed ? 'none' : 'translateY(-4px)'};
         transition: transform .3s;
         
         &--default {

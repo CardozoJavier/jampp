@@ -15,7 +15,7 @@ export default styled.div`
 
     &.button {
       &.secondary {
-        transform: translateY(-4px);
+        transform: ${({ fixed }) => fixed ? 'none' : 'translateY(-4px)'};
 
         &--default {
           &__disabled {

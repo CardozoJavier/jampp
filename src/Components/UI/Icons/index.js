@@ -5,6 +5,7 @@ export { default as BeltIcon } from './BeltIcon';
 export { default as InfoIcon } from './InfoIcon';
 export { default as CheckIcon } from './CheckIcon';
 export { default as TrashIcon } from './TrashIcon';
+export { default as ArrowIcon } from './ArrowIcon';
 export { default as SearchIcon } from './SearchIcon';
 export { default as AvatarIcon } from './AvatarIcon';
 export { default as BillingIcon } from './BillingIcon';
