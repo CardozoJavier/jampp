@@ -1,7 +1,11 @@
 export {
-  TabGroup,
   Tab,
+  TabGroup,
 } from './Tab';
+export {
+  Step,
+  Breadcrumb,
+} from './Breadcrumb';
 export {
   Dropdown,
   OptionDropdown,
@@ -20,3 +24,4 @@ export { RadioButton } from './RadioButton';
 export { ToggleSwitch } from './ToggleSwitch';
 export { UniqueOption } from './UniqueOption';
 export { NotificationHeader } from './NotificationHeader';
+export { FooterBreadcrumb } from './FooterBreadcrumb';
