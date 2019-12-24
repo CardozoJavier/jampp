@@ -15,7 +15,9 @@ export default styled.div`
       &.option, &.basic {
 
         &--default {
+          border: 1px solid ${gray.g07};
           &__selected {
+            border: 1px solid ${action};
           }
           
           &__disabled {
