@@ -15,7 +15,7 @@ export default styled.div`
   &:hover {
     cursor: ${({ disabled}) => disabled ? 'default' : 'pointer'};
     transition: all .3s;
-    transform: ${({ disabled }) => disabled ? 'none' : 'translateY(-4px)'};
+    transform: ${({ disabled, fixed }) => disabled || fixed ? 'none' : 'translateY(-4px)'};
 
     &.button, .dropdown {
       &.accessory, &.button, &.option, &.label {

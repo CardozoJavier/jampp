@@ -4,13 +4,14 @@ import buttonProps from './buttonProps';
 import { IconGenerator } from '../UI/Icons';
 import { bemDestruct, getClassName } from '../../utils';
 
-const Button = ({ label, children, icon, type, disabled }) => {
+const Button = ({ label, children, icon, type, disabled, onClick, fixed }) => {
   const { defaultClassName, optionalClassName, ButtonContainer, iconProps, iconClassName } = buttonProps[type];
 
   const [className, setClassName] = useState(defaultClassName);
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
 
   const handleClick = () => {
+    onClick && onClick();
     setClassName(toggleToClassName);
   };
 
@@ -19,6 +20,7 @@ const Button = ({ label, children, icon, type, disabled }) => {
       onClick={disabled ? null : handleClick}
       className={bemDestruct(className, disabled)}
       disabled={disabled}
+      fixed={fixed}
     >
       <ButtonInput children={label || children} />
       {icon &&
