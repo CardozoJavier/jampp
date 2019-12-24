@@ -1,3 +1,10 @@
+export {
+  EmailField,
+  ButtonContainer,
+  EmailFieldContainer,
+  OptionItemContainer,
+  OptionListContainer,
+} from './OptionListAccount.styles';
 export { default as Option } from './Option.styles';
 export { default as OptionLabel } from './OptionLabel.styles';
 export { default as OptionContainer } from './OptionContainer.styles';

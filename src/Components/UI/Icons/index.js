@@ -17,3 +17,4 @@ export { default as ExclamationIcon } from './ExclamationIcon';
 export { default as DownChevronIcon } from './DownChevronIcon';
 export { default as DownloadFileIcon } from './DownloadFileIcon';
 export { default as ToggleCircleIcon } from './ToggleCircleIcon';
+export { default as NotificationsIcon } from './NotificationsIcon';

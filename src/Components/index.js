@@ -9,6 +9,7 @@ export {
 export {
   Dropdown,
   OptionDropdown,
+  AccountDropdown,
   StatusLabelDropdown,
   MultipleOptionDropdown,
 } from './Dropdown';
