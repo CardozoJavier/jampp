@@ -13,6 +13,7 @@ import {
 import {
   AccountTitle,
   DropdownLabel,
+  IconsContainer,
   AccountStatement,
   DropdownContainer,
   AccountDescription,
@@ -26,10 +27,13 @@ import {
   Checkbox,
   StatusLabel,
   OptionDropdown,
+  AccountDropdown,
   StatusLabelDropdown,
   MultipleOptionDropdown,
 } from '../src/Components';
 import { Option } from '../src/Components/OptionList/styles';
+import { NotificationsIcon } from '../src/Components/UI/Icons';
+import { Header } from '../src/Components/Header';
 
 export default {
   title: 'Dropdown',
@@ -39,38 +43,35 @@ const { black, green, gray } = palette;
 
 export const Account = () => (
   <>
-    <DropdownContainer>
-      <IconGenerator
-        renderIcon={HelpIcon}
-        props={{
-          fill: black,
-          width: '20px',
-          height: '18px',
-          margin: '0 10px'
-        }}
-      />
+    {/* <DropdownContainer>
       <NotificationContainer>
-        <IconGenerator
-          renderIcon={BeltIcon}
-          props={{
-            fill: black,
-            width: '18px',
-            height: '18px',
-            margin: '0 5px',
-          }}
-        />
-        <IconGenerator
-          renderIcon={EllipseIcon}
-          props={{
-            position: 'relative',
-            right: '12px',
-            fill: green.g1,
-            width: '10px',
-            height: '10px',
-          }}
-        />
+        <HelpIcon />
+        <NotificationsIcon />
       </NotificationContainer>
-      <AccountStatement>
+      <AccountDropdown avatar={AvatarSrc} name="Guido Crego" description="Jampp - Head of product" email="guido.crego@jampp.com">
+        <Option label="Organization name A" id="id1" right />
+        <Option label="Organization name B" id="id2" right />
+        <Option label="Organization name C" id="id3" right />
+        <Option label="Organization name D" id="id4" right />
+      </AccountDropdown>
+    </DropdownContainer> */}
+    <div style={{ width: '100%', backgroundColor: 'white' }}>
+    <DropdownContainer>
+      <NotificationContainer>
+        <HelpIcon />
+        <NotificationsIcon />
+      </NotificationContainer>
+      <AccountDropdown avatar={AvatarSrc} name="Guido Crego" description="Jampp - Head of product" email="guido.crego@jampp.com">
+        <Option label="Organization name A" id="id1" right />
+        <Option label="Organization name B" id="id2" right />
+        <Option label="Organization name C" id="id3" right />
+        <Option label="Organization name D" id="id4" right />
+      </AccountDropdown>
+    </DropdownContainer>
+    </div>
+
+
+      {/* <AccountStatement>
         <AccountTitle>
           Guido Crego
         </AccountTitle>
@@ -78,59 +79,23 @@ export const Account = () => (
           Jampp - Head of product
         </AccountDescription>
       </AccountStatement>
-      <Dropdown
-        iconDropdown={DownChevronIcon}
-        avatar={AvatarSrc}
-        type='normal'
-      >
+      <Dropdown avatar={AvatarSrc} type='normal'>
         <Checkbox label="Option 1" type="dropdown" right />
         <Checkbox label="Option 2" type="dropdown" right />
         <Checkbox label="Option 3" type="dropdown" right />
         <Checkbox label="Option 4" type="dropdown" right />
-      </Dropdown>
-    </DropdownContainer>
+      </Dropdown> */}
 
-    <DropdownContainer>
-      <IconGenerator
-        renderIcon={HelpIcon}
-        props={{
-          fill: black,
-          width: '20px',
-          height: '18px',
-        }}
-      />
-      <NotificationContainer>
-        <IconGenerator
-          renderIcon={BeltIcon}
-          props={{
-            fill: black,
-            width: '18px',
-            height: '18px',
-            margin: '0 10px',
-          }}
-        />
-        <IconGenerator
-          renderIcon={EllipseIcon}
-          props={{
-            position: 'relative',
-            right: '17px',
-            fill: green.g1,
-            width: '10px',
-            height: '10px',
-          }}
-        />
-      </NotificationContainer>
-      <Dropdown
-        iconDropdown={DownChevronIcon}
-        avatar={AvatarSrc}
-        type='normal'
-      >
+    {/* <DropdownContainer>
+      <HelpIcon />
+      <BeltEllipseIcon />
+      <Dropdown avatar={AvatarSrc} type='normal'>
         <Checkbox label="Option 1" type="dropdown" right />
         <Checkbox label="Option 2" type="dropdown" right />
         <Checkbox label="Option 3" type="dropdown" right />
         <Checkbox label="Option 4" type="dropdown" right />
       </Dropdown>
-    </DropdownContainer>
+    </DropdownContainer> */}
   </>
 );
 
