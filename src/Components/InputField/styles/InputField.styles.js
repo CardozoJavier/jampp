@@ -7,6 +7,7 @@ export const InputFieldContainer = styled.div`
   display: flex;
   align-items: center;
   margin-top: 5px;
+  background-color: white;
 
   &:hover {
     &.input {
