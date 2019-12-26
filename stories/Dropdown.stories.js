@@ -8,6 +8,7 @@ import {
   IconGenerator,
   DownChevronIcon,
   DownloadFileIcon,
+  JamppImage,
 } from '../src/Components/UI/Icons';
 
 import {
@@ -55,7 +56,9 @@ export const Account = () => (
         <Option label="Organization name D" id="id4" right />
       </AccountDropdown>
     </DropdownContainer> */}
-    <div style={{ width: '100%', backgroundColor: 'white' }}>
+    <div style={{ width: '100%', backgroundColor: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 10px',  height: '52px' }}>
+    <JamppImage />
+      
     <DropdownContainer>
       <NotificationContainer>
         <HelpIcon />
