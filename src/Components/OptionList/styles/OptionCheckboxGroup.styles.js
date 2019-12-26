@@ -6,6 +6,7 @@ export default styled.div`
   top: 45px;
   border-radius: 4px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, .1);
+  background-color: white;
 
   &.dropdown {
     &-right {}
