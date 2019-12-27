@@ -14,15 +14,15 @@ const dropdownProps = {
     defaultClassName: "dropdown button--solid-right__closed",
     optionalClassName: "dropdown button--solid-right__opened",
   },
-  noBorder: {
+  "no-border": {
     defaultClassName: "dropdown button--noBorder-right__closed",
     optionalClassName: "dropdown button--noBorder-right__opened",
   },
-  noBorderLink: {
+  "no-border-link": {
     defaultClassName: "dropdown button--noBorderLink-left__closed",
     optionalClassName: "dropdown button--noBorderLink-left__opened",
   },
-  noBorderPurple: {
+  "no-border-purple": {
     defaultClassName: "dropdown button--noBorderPurple-left__closed",
     optionalClassName: "dropdown button--noBorderPurple-left__opened",
   },

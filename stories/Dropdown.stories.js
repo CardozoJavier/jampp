@@ -56,7 +56,7 @@ export const Account = () => (
         <Option label="Organization name D" id="id4" right />
       </AccountDropdown>
     </DropdownContainer> */}
-    <div style={{ width: '100%', backgroundColor: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 10px',  height: '52px' }}>
+    {/* <div style={{ width: '100%', backgroundColor: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 10px',  height: '52px' }}>
     <JamppImage />
       
     <DropdownContainer>
@@ -71,7 +71,7 @@ export const Account = () => (
         <Option label="Organization name D" id="id4" right />
       </AccountDropdown>
     </DropdownContainer>
-    </div>
+    </div> */}
 
 
       {/* <AccountStatement>
@@ -188,7 +188,7 @@ export const SolidWithIcon = () => (
 export const NoBorder = () => (
   <>
     <DropdownContainer> 
-      <MultipleOptionDropdown text="Text" type='noBorder'>
+      <MultipleOptionDropdown text="Text" type='no-border'>
         <Checkbox label="Option 1" type="dropdown" right />
         <Checkbox label="Option 2" type="dropdown" right />
         <Checkbox label="Option 3" type="dropdown" right />
@@ -197,7 +197,7 @@ export const NoBorder = () => (
     </DropdownContainer>
 
     <DropdownContainer>
-      <OptionDropdown text="Text" type="noBorder">
+      <OptionDropdown text="Text" type="no-border">
         <Option label="Option 1" id="id1" type="dropdown" right />
         <Option label="Option 2" id="id2" type="dropdown" right />
         <Option label="Option 3" id="id3" type="dropdown" right />
@@ -206,7 +206,7 @@ export const NoBorder = () => (
     </DropdownContainer>
 
     <DropdownContainer>
-      <StatusLabelDropdown text="Text" type="noBorder">
+      <StatusLabelDropdown text="Text" type="no-border">
         <StatusLabel label="status" id="id1" color="red" type="dropdown" right />
         <StatusLabel label="status" id="id2" color="yellow" type="dropdown" right />
         <StatusLabel label="status" id="id3" color="green" type="dropdown" right />
@@ -215,7 +215,7 @@ export const NoBorder = () => (
     </DropdownContainer>
 
     <DropdownContainer>
-      <StatusLabelDropdown text="Text" type="noBorder" disabled={true}>
+      <StatusLabelDropdown text="Text" type="no-border" disabled={true}>
         <StatusLabel label="status" id="id1" color="red" type="dropdown" right />
         <StatusLabel label="status" id="id2" color="yellow" type="dropdown" right />
         <StatusLabel label="status" id="id3" color="green" type="dropdown" right />
@@ -228,7 +228,7 @@ export const NoBorder = () => (
 export const NoBorderLink = () => (
   <>
     <DropdownContainer> 
-      <MultipleOptionDropdown text="Advanced Options" type='noBorderLink'>
+      <MultipleOptionDropdown text="Advanced Options" type='no-border-link'>
         <Checkbox label="Option 1" type="dropdown" right />
         <Checkbox label="Option 2" type="dropdown" right />
         <Checkbox label="Option 3" type="dropdown" right />
@@ -237,7 +237,7 @@ export const NoBorderLink = () => (
     </DropdownContainer>
 
     <DropdownContainer>
-      <OptionDropdown text="Advanced Options" type="noBorderLink">
+      <OptionDropdown text="Advanced Options" type="no-border-link">
         <Option label="Option 1" id="id1" type="dropdown" right />
         <Option label="Option 2" id="id2" type="dropdown" right />
         <Option label="Option 3" id="id3" type="dropdown" right />
@@ -246,7 +246,7 @@ export const NoBorderLink = () => (
     </DropdownContainer>
 
     <DropdownContainer>
-      <StatusLabelDropdown text="Advanced Options" type="noBorderLink">
+      <StatusLabelDropdown text="Advanced Options" type="no-border-link">
         <StatusLabel label="status" id="id1" color="red" type="dropdown" right />
         <StatusLabel label="status" id="id2" color="yellow" type="dropdown" right />
         <StatusLabel label="status" id="id3" color="green" type="dropdown" right />
@@ -255,7 +255,7 @@ export const NoBorderLink = () => (
     </DropdownContainer>
 
     <DropdownContainer>
-      <StatusLabelDropdown text="Advanced Options" type="noBorderLink" disabled={true}>
+      <StatusLabelDropdown text="Advanced Options" type="no-border-link" disabled={true}>
         <StatusLabel label="status" id="id1" color="red" type="dropdown" right />
         <StatusLabel label="status" id="id2" color="yellow" type="dropdown" right />
         <StatusLabel label="status" id="id3" color="green" type="dropdown" right />
@@ -268,7 +268,7 @@ export const NoBorderLink = () => (
 export const NoBorderPurple = () => (
   <>
     <DropdownContainer> 
-      <MultipleOptionDropdown text="Advertiser" type='noBorderPurple'>
+      <MultipleOptionDropdown text="Advertiser" type='no-border-purple'>
         <Checkbox label="Option 1" type="dropdown" right />
         <Checkbox label="Option 2" type="dropdown" right />
         <Checkbox label="Option 3" type="dropdown" right />
@@ -277,7 +277,7 @@ export const NoBorderPurple = () => (
     </DropdownContainer>
 
     <DropdownContainer>
-      <OptionDropdown text="Advertiser" type="noBorderPurple">
+      <OptionDropdown text="Advertiser" type="no-border-purple">
         <Option label="Option 1" id="id1" type="dropdown" right />
         <Option label="Option 2" id="id2" type="dropdown" right />
         <Option label="Option 3" id="id3" type="dropdown" right />
@@ -286,7 +286,7 @@ export const NoBorderPurple = () => (
     </DropdownContainer>
 
     <DropdownContainer>
-      <StatusLabelDropdown text="Advertiser" type="noBorderPurple">
+      <StatusLabelDropdown text="Advertiser" type="no-border-purple">
         <StatusLabel label="status" id="id1" color="red" type="dropdown" right />
         <StatusLabel label="status" id="id2" color="yellow" type="dropdown" right />
         <StatusLabel label="status" id="id3" color="green" type="dropdown" right />

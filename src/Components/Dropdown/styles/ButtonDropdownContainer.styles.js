@@ -7,6 +7,7 @@ const { white, violet, gray, black, link, blue, action } = palette;
 export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
   justify-content: space-between;
   min-width: 70px;
+  background-color: transparent;
 
   &:hover {
     transform: none;
@@ -123,7 +124,7 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
        */
       &--noBorder, &--noBorderLink {
         align-items: baseline;
-        background-color: ${white};
+        background-color: transparent;
         color: ${gray.g4};
         min-width: 0;
 
@@ -163,7 +164,7 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
        * ***********************************
        */
       &--noBorderPurple {
-        background-color: ${white};
+        background-color: transparent;
         color: ${action};
         min-width: 0;
 
