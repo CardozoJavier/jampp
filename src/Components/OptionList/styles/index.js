@@ -1,4 +1,5 @@
 export {
+  MenuTitle,
   EmailField,
   ButtonContainer,
   EmailFieldContainer,

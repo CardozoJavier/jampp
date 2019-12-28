@@ -30,3 +30,8 @@ export const ButtonContainer = styled.div`
   margin-top: 15px;
   width: 95px;
 `;
+
+export const MenuTitle = styled.p`
+  margin: 15px 0;
+  font-size: 14px;
+`;
