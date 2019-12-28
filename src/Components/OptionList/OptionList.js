@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { OptionCheckboxGroup, OptionLabel } from './styles';
+import { OptionCheckboxGroup, MenuTitle } from './styles';
 import { bemDestruct, settingClassName } from '../../utils';
 import { CheckIcon, IconGenerator } from '../UI/Icons';
 import { palette } from '../styles';
@@ -7,7 +7,7 @@ import optionListProps from './optionListProps';
 
 const { white } = palette;
 
-const OptionList = ({ children, type, disabled, className, OptionItem }) => {
+const OptionList = ({ children, type, disabled, className, menuTitle, OptionItem }) => {
   const { defaultClassName, optionalClassName, OptionContainer, iconProps, iconClassName } = optionListProps[type];
   const childrenParsed = settingClassName(children, -1, defaultClassName);
   const [array, setArray] = useState(childrenParsed);
@@ -22,6 +22,7 @@ const OptionList = ({ children, type, disabled, className, OptionItem }) => {
 
   return (
     <OptionCheckboxGroup className={bemDestruct(className, disabled)}>
+      {menuTitle && <MenuTitle>{menuTitle}</MenuTitle>}
       {array.map((input) => (
         <OptionItem
           className={input.className}
