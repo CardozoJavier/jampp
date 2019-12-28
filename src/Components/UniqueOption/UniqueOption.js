@@ -17,7 +17,7 @@ const UniqueOption = ({ id, label, className, handleCheck }) => (
       renderIcon={CheckIcon}
       props={{
         right: '10px',
-        fill: white,
+        fill: 'transparent',
         width: '14px',
         height: '10px',
         className: bemDestruct(className),

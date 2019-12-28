@@ -1,7 +1,6 @@
 export { default as XIcon } from './XIcon';
 export { default as AddIcon } from './AddIcon';
 export { default as HelpIcon } from './HelpIcon';
-export { default as BeltIcon } from './BeltIcon';
 export { default as InfoIcon } from './InfoIcon';
 export { default as CheckIcon } from './CheckIcon';
 export { default as TrashIcon } from './TrashIcon';
@@ -17,3 +16,5 @@ export { default as ExclamationIcon } from './ExclamationIcon';
 export { default as DownChevronIcon } from './DownChevronIcon';
 export { default as DownloadFileIcon } from './DownloadFileIcon';
 export { default as ToggleCircleIcon } from './ToggleCircleIcon';
+export { default as NotificationsIcon } from './NotificationsIcon';
+export { default as JamppImage } from './JamppImage';

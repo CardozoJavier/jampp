@@ -7,6 +7,7 @@ const { white, violet, gray, black, link, blue, action } = palette;
 export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
   justify-content: space-between;
   min-width: 70px;
+  background-color: transparent;
 
   &:hover {
     transform: none;
@@ -123,7 +124,7 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
        */
       &--noBorder, &--noBorderLink {
         align-items: baseline;
-        background-color: ${white};
+        background-color: transparent;
         color: ${gray.g4};
         min-width: 0;
 
@@ -162,8 +163,8 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
        * Accessory button no border purple *
        * ***********************************
        */
-      &--noBorderPurple {
-        background-color: ${white};
+      &--noBorderPurple, &--header, &--expandable {
+        background-color: transparent;
         color: ${action};
         min-width: 0;
 
@@ -176,16 +177,34 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
             flex-direction: row;
           }
         }
-  
+        
         &-right {
           &__closed, &__opened {
-            flex-directin: row;
+            flex-direction: row;
           }
         }
-
+        
         &__disabled {
           cursor: default;
           color: ${gray.g07};
+        }
+      }
+      
+      &--header {
+        z-index: 1;
+        padding: 5px 10px
+
+        &__opened {
+          background-color: white;
+          box-shadow: 0px -8px 12px -2px rgba(0,0,0,.1);
+        }
+      }
+      
+      &--expandable {
+        justify-content: flex-start;
+
+        ${ButtonInput} {
+          padding: .75em 0;
         }
       }
     }

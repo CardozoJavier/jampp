@@ -9,7 +9,7 @@ export const OptionContainer = styled(OptionCheckboxContainer)`
 
   &.unique {
     &.option {
-      &--default {
+      &--default, &--header {
         &__selected {
           background-color: ${violet.v05};
           transition: background-color .3s;

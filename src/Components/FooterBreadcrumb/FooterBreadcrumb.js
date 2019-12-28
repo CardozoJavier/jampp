@@ -18,13 +18,13 @@ const FooterBreadcrumb = ({ children }) => {
 
   return (
     <Container>
-      <Button label="Back" type="secondary-inverted-medium" onClick={handleBack} fixed />
+      <Button label="Back" type="secondary-inverted-medium" onClick={handleBack} />
       <Breadcrumb currentStep={stepIndex}>
         {children.map((stepItem, index) => (
           <Step key={index} text={stepItem.props.text} />
         ))}
       </Breadcrumb>
-      <Button label="Next" type="secondary-default-medium" onClick={handleNext} fixed />
+      <Button label="Next" type="secondary-default-medium" onClick={handleNext} />
     </Container>
   );
 };

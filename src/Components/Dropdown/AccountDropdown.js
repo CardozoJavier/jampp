@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import MultipleOptionList from '../MultipleOptionList';
-import { ButtonDropdownContainer } from './styles';
-import { bemDestruct, getClassName } from '../../utils';
+import OptionDropdown from './OptionDropdown';
+import { AccountStatement, AccountTitle, AccountDescription, AccountDropdownContainer } from './styles';
 import { IconGenerator, AvatarIcon, DownChevronIcon } from '../UI/Icons';
-
-
+import { bemDestruct, getClassName } from '../../utils';
 import { palette } from '../styles';
+import OptionListAccount from '../OptionList/OptionListAccount';
+import { UniqueOption } from '../UniqueOption';
+
 const { gray } = palette;
 const classesName = {
   normal: {
@@ -18,9 +19,8 @@ const classesName = {
   },
 };
 
-const Dropdown = ({ avatar, label, children, type = 'normal', disabled }) => {
-  const defaultClassName = classesName[type].defaultClassName;
-  const optionalClassName = classesName[type].optionalClassName;
+const AccountDropdown = ({ name, description, email, type = 'normal', avatar, children }) => {
+  const { defaultClassName, optionalClassName } = classesName[type];
 
   const [className, setClassName] = useState(defaultClassName);
   const [chevron, setChevron] = useState(classesName.chevron.defaultClassName);
@@ -35,16 +35,20 @@ const Dropdown = ({ avatar, label, children, type = 'normal', disabled }) => {
 
   return (
     <>
-      <ButtonDropdownContainer className={bemDestruct(className)} onClick={handleClick}>
+      <AccountDropdownContainer className={bemDestruct(className)} onClick={handleClick}>
+        <AccountStatement>
+          <AccountTitle>{name}</AccountTitle>
+          <AccountDescription>{description}</AccountDescription>
+        </AccountStatement>
         <IconGenerator
-           renderIcon={AvatarIcon}
-           props={{
-             src: avatar,
-             width: '40px',
-             height: '40px',
-             borderRadius: '100%',
-           }}
-         />
+          renderIcon={AvatarIcon}
+          props={{
+            src: avatar,
+            width: '40px',
+            height: '40px',
+            borderRadius: '100%',
+          }}
+        />
         <IconGenerator
           renderIcon={DownChevronIcon}
           props={{
@@ -56,10 +60,17 @@ const Dropdown = ({ avatar, label, children, type = 'normal', disabled }) => {
             className: bemDestruct(chevron),
           }}
         />
-      </ButtonDropdownContainer>
-      <MultipleOptionList children={children} className={className} />
+      </AccountDropdownContainer>
+
+      <OptionListAccount
+        type="unique-option"
+        OptionItem={UniqueOption}
+        children={children}
+        className={className}
+        email={email}
+      />
     </>
   );
 };
 
-export default Dropdown;
+export default AccountDropdown;

@@ -22,6 +22,8 @@ export const OptionButtonContainer = styled.div`
           
           &__disabled {
             cursor: default;
+            color: ${gray.g1};
+            border: 1px solid ${gray.g1};
           }
         }
 

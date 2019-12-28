@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import MultipleOptionList from '../MultipleOptionList';
 import { ButtonInput } from '../Button/styles';
 import { ButtonDropdownContainer } from './styles';
-import { bemDestruct, getClassName } from '../../utils';
+import { getClassName, bemDestruct } from '../../utils';
 import { IconGenerator, DownChevronIcon } from '../UI/Icons';
-import dropdownProps from './dropdownProps';
-
 import { palette } from '../styles';
+import { OptionList } from '../OptionList';
+import dropdownProps from './dropdownProps';
+import { UniqueOption } from '../UniqueOption';
+
 const { gray } = palette;
 
-const MultipleOptionDropdown = ({ text, children, type = 'basic', leftIcon, disabled }) => {
+const ExpandableDropdown = ({ text, children, type = 'basic', leftIcon, disabled }) => {
   const { defaultClassName, optionalClassName, buttonClassName } = dropdownProps[type];
 
   const [className, setClassName] = useState(defaultClassName);
@@ -23,16 +24,10 @@ const MultipleOptionDropdown = ({ text, children, type = 'basic', leftIcon, disa
     setChevron(toggleChevronDirection);
   };
 
+  
   return (
     <>
       <ButtonDropdownContainer className={bemDestruct(buttonClassName, disabled)} onClick={disabled ? null : handleClick}>
-        {leftIcon &&
-          <IconGenerator
-            renderIcon={leftIcon}
-            props={{}}
-            disabled={disabled}
-          />
-        }
         <ButtonInput children={text} />
         <IconGenerator
           renderIcon={DownChevronIcon}
@@ -42,9 +37,9 @@ const MultipleOptionDropdown = ({ text, children, type = 'basic', leftIcon, disa
           disabled={disabled}
         />
       </ButtonDropdownContainer>
-      <MultipleOptionList children={children} className={className} />
+      <OptionList type="unique-option" OptionItem={UniqueOption} children={children} className={className} />
     </>
   );
 };
 
-export default MultipleOptionDropdown;
+export default ExpandableDropdown;
