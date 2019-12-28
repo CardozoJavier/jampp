@@ -11,6 +11,7 @@ export {
   OptionDropdown,
   AccountDropdown,
   StatusLabelDropdown,
+  HeaderOptionDropdown,
   MultipleOptionDropdown,
 } from './Dropdown';
 export { Card } from './Card';
