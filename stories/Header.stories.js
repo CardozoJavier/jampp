@@ -13,7 +13,9 @@ import {
 import AvatarSrc from '../src/assets/guido-crego.jpg'; 
 
 import {
+  OptionDropdown,
   AccountDropdown,
+  AdAccountsDropdown,
   HeaderOptionDropdown,
 } from '../src/Components';
 import { HeaderContainer } from '../src/Components/Header/styles';
@@ -95,12 +97,21 @@ export const AdAccountsLevel = () => (
           <HelpIcon />
           <NotificationsIcon />
         </NotificationContainer>
-        <AccountDropdown avatar={AvatarSrc} name="Guido Crego" description="Jampp - Head of product" email="guido.crego@jampp.com">
-          <Option label="Organization name A" id="id1" right />
-          <Option label="Organization name B" id="id2" right />
-          <Option label="Organization name C" id="id3" right />
-          <Option label="Organization name D" id="id4" right />
-        </AccountDropdown>
+
+        <AdAccountsDropdown avatar={AvatarSrc} name="Guido Crego" description="Jampp - Head of product" email="guido.crego@jampp.com">
+          <OptionDropdown text="Organization name A" type="expandable-no-border-purple">
+            <Option label="Ad Account Name A" id="id1" type="dropdown" right />
+            <Option label="Ad Account Name B" id="id2" type="dropdown" right />
+            <Option label="Ad Account Name C" id="id3" type="dropdown" right />
+            <Option label="Ad Account Name D" id="id4" type="dropdown" right />
+          </OptionDropdown>
+          <OptionDropdown text="Organization name B" type="expandable-no-border-purple">
+            <Option label="Ad pepe Name A" id="id11" type="dropdown" right />
+            <Option label="Ad pepe Name B" id="id21" type="dropdown" right />
+            <Option label="Ad pepe Name C" id="id31" type="dropdown" right />
+            <Option label="Ad pepe Name D" id="id41" type="dropdown" right />
+          </OptionDropdown>
+        </AdAccountsDropdown>
       </DropdownContainer>
     </HeaderContainer>
   </>

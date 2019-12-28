@@ -10,6 +10,7 @@ export {
   Dropdown,
   OptionDropdown,
   AccountDropdown,
+  AdAccountsDropdown,
   StatusLabelDropdown,
   HeaderOptionDropdown,
   MultipleOptionDropdown,
