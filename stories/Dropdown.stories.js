@@ -2,105 +2,28 @@ import React from 'react';
 import '../src/main.css';
 import { palette } from '../src/Components/styles';
 import {
-  BeltIcon,
-  HelpIcon,
-  EllipseIcon,
-  IconGenerator,
-  DownChevronIcon,
   DownloadFileIcon,
-  JamppImage,
 } from '../src/Components/UI/Icons';
 
 import {
-  AccountTitle,
   DropdownLabel,
-  IconsContainer,
-  AccountStatement,
   DropdownContainer,
-  AccountDescription,
-  NotificationContainer,
 } from '../src/Components/Dropdown/styles';
 
-import AvatarSrc from '../src/assets/guido-crego.jpg'; 
 
 import {
   Dropdown,
   Checkbox,
   StatusLabel,
   OptionDropdown,
-  AccountDropdown,
   StatusLabelDropdown,
   MultipleOptionDropdown,
 } from '../src/Components';
 import { Option } from '../src/Components/OptionList/styles';
-import { NotificationsIcon } from '../src/Components/UI/Icons';
-import { Header } from '../src/Components/Header';
 
 export default {
   title: 'Dropdown',
 };
-
-const { black, green, gray } = palette;
-
-export const Account = () => (
-  <>
-    {/* <DropdownContainer>
-      <NotificationContainer>
-        <HelpIcon />
-        <NotificationsIcon />
-      </NotificationContainer>
-      <AccountDropdown avatar={AvatarSrc} name="Guido Crego" description="Jampp - Head of product" email="guido.crego@jampp.com">
-        <Option label="Organization name A" id="id1" right />
-        <Option label="Organization name B" id="id2" right />
-        <Option label="Organization name C" id="id3" right />
-        <Option label="Organization name D" id="id4" right />
-      </AccountDropdown>
-    </DropdownContainer> */}
-    {/* <div style={{ width: '100%', backgroundColor: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 10px',  height: '52px' }}>
-    <JamppImage />
-      
-    <DropdownContainer>
-      <NotificationContainer>
-        <HelpIcon />
-        <NotificationsIcon />
-      </NotificationContainer>
-      <AccountDropdown avatar={AvatarSrc} name="Guido Crego" description="Jampp - Head of product" email="guido.crego@jampp.com">
-        <Option label="Organization name A" id="id1" right />
-        <Option label="Organization name B" id="id2" right />
-        <Option label="Organization name C" id="id3" right />
-        <Option label="Organization name D" id="id4" right />
-      </AccountDropdown>
-    </DropdownContainer>
-    </div> */}
-
-
-      {/* <AccountStatement>
-        <AccountTitle>
-          Guido Crego
-        </AccountTitle>
-        <AccountDescription>
-          Jampp - Head of product
-        </AccountDescription>
-      </AccountStatement>
-      <Dropdown avatar={AvatarSrc} type='normal'>
-        <Checkbox label="Option 1" type="dropdown" right />
-        <Checkbox label="Option 2" type="dropdown" right />
-        <Checkbox label="Option 3" type="dropdown" right />
-        <Checkbox label="Option 4" type="dropdown" right />
-      </Dropdown> */}
-
-    {/* <DropdownContainer>
-      <HelpIcon />
-      <BeltEllipseIcon />
-      <Dropdown avatar={AvatarSrc} type='normal'>
-        <Checkbox label="Option 1" type="dropdown" right />
-        <Checkbox label="Option 2" type="dropdown" right />
-        <Checkbox label="Option 3" type="dropdown" right />
-        <Checkbox label="Option 4" type="dropdown" right />
-      </Dropdown>
-    </DropdownContainer> */}
-  </>
-);
 
 export const Basic = () => (
   <>
