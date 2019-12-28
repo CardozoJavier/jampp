@@ -163,7 +163,7 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
        * Accessory button no border purple *
        * ***********************************
        */
-      &--noBorderPurple {
+      &--noBorderPurple, &--header {
         background-color: transparent;
         color: ${action};
         min-width: 0;
@@ -177,18 +177,28 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
             flex-direction: row;
           }
         }
-  
+        
         &-right {
           &__closed, &__opened {
-            flex-directin: row;
+            flex-direction: row;
           }
         }
-
+        
         &__disabled {
           cursor: default;
           color: ${gray.g07};
         }
       }
-    }
+      
+      &--header {
+        z-index: 1;
+        padding: 5px 10px
+
+        &__opened {
+          background-color: white;
+          box-shadow: 0px -8px 12px -2px rgba(0,0,0,.1);
+        }
+      } 
+    }å
   }
 `;

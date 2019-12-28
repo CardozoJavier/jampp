@@ -11,6 +11,13 @@ const optionListProps = {
     iconClassName: '',
     iconProps: {},
   },
+  "header-unique-option": {
+    defaultClassName: "unique option--header",
+    optionalClassName: "",
+    OptionContainer: OptionContainer,
+    iconClassName: '',
+    iconProps: {},
+  },
   "status-option": {
     defaultClassName: "status option--default",
     optionalClassName: "",

@@ -12,7 +12,7 @@ export default styled.div`
     &-right {}
     
     &.option, &.label, &.button {
-      &--default, &--basic, &--solid, &--noBorder, &--noBorderLink, &--noBorderPurple {
+      &--default, &--basic, &--solid, &--noBorder, &--noBorderLink, &--noBorderPurple, &--header {
         &__opened {
           opacity: 1;
           visibility: visible;
@@ -30,6 +30,13 @@ export default styled.div`
 
       &--noBorder, &--noBorderLink {
         top: 25px;
+      }
+
+      &--header {
+        top: 25px;
+        left: 0;
+        padding: 0 20px 20px 20px;
+        min-width: 220px;
       }
     }
   }

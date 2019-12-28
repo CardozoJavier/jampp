@@ -26,6 +26,10 @@ const dropdownProps = {
     defaultClassName: "dropdown button--noBorderPurple-left__closed",
     optionalClassName: "dropdown button--noBorderPurple-left__opened",
   },
+  "header-no-border-purple": {
+    defaultClassName: "dropdown button--header-left__closed",
+    optionalClassName: "dropdown button--header-left__opened",
+  },
 };
 
 export default dropdownProps;
