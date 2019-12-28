@@ -163,7 +163,7 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
        * Accessory button no border purple *
        * ***********************************
        */
-      &--noBorderPurple, &--header {
+      &--noBorderPurple, &--header, &--expandable {
         background-color: transparent;
         color: ${action};
         min-width: 0;
@@ -198,7 +198,15 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
           background-color: white;
           box-shadow: 0px -8px 12px -2px rgba(0,0,0,.1);
         }
-      } 
-    }å
+      }
+      
+      &--expandable {
+        justify-content: flex-start;
+
+        ${ButtonInput} {
+          padding: .75em 0;
+        }
+      }
+    }
   }
 `;

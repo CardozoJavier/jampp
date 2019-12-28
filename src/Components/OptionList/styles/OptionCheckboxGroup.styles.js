@@ -8,10 +8,10 @@ export default styled.div`
   box-shadow: 0 4px 16px rgba(0, 0, 0, .1);
   background-color: white;
 
-  &.dropdown {
+  &.dropdown, &.expandable {
     &-right {}
     
-    &.option, &.label, &.button {
+    &.option, &.label, &.button, &.list {
       &--default, &--basic, &--solid, &--noBorder, &--noBorderLink, &--noBorderPurple, &--header {
         &__opened {
           opacity: 1;
@@ -37,6 +37,30 @@ export default styled.div`
         left: 0;
         padding: 0 20px 20px 20px;
         min-width: 220px;
+      }
+    }
+  }
+
+  &.expandable {
+    transform: none;
+    &.list {
+      &--default {
+        border-radius: 0;
+        position: unset;
+        box-shadow: none;
+        
+        &__opened {
+          margin: 0 0 20px 20px;
+          transform: none;
+          height: auto
+          transition: none;
+        }
+
+        &__closed {
+          height: 0;
+          transition: none;
+          transform: none;
+        }
       }
     }
   }

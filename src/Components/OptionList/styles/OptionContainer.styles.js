@@ -7,8 +7,8 @@ const { action, gray, violet } = palette;
 export default styled(OptionCheckboxContainer)`
   padding: 10px;
 
-  &.unique {
-    &.option {
+  &.unique, &.expandable {
+    &.option, &.unique {
       &--default {
         &__selected {
           background-color: ${violet.v05};
