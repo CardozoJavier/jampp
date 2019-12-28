@@ -6,6 +6,7 @@ import {
 } from '../src/Components/UI/Icons';
 
 import {
+  HeaderContainer,
   DropdownContainer,
   NotificationContainer,
 } from '../src/Components/Dropdown/styles';
@@ -18,7 +19,6 @@ import {
   AdAccountsDropdown,
   HeaderOptionDropdown,
 } from '../src/Components';
-import { HeaderContainer } from '../src/Components/Header/styles';
 import { Option } from '../src/Components/OptionList/styles';
 import { NotificationsIcon } from '../src/Components/UI/Icons';
 

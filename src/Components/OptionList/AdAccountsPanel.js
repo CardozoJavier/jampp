@@ -8,6 +8,7 @@ import {
 } from './styles';
 import { bemDestruct } from '../../utils';
 import { SearchIcon } from '../UI/Icons';
+import { InputField } from '../InputField';
 import { Button } from '../Button';
 import { ExpandableDropdown } from '../Dropdown';
 
