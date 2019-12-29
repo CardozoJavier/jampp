@@ -6,7 +6,7 @@ const { gray } = palette;
  * Properties for inputs field by type
  */
 const inputProps = {
-  "basic-medium": {
+  "basic": {
     defaultClassName: 'input basic--default-medium',
     onFocusClassName: "input basic--default-medium__focus",
     onBlurClassName: "input basic--default-medium__blur",
@@ -37,7 +37,7 @@ const inputProps = {
       height: '11px',
     },
   },
-  "icon-right-medium": {
+  "icon-right": {
     defaultClassName: 'input accessory--default-medium__right',
     iconProps: {
       top: '7px',
@@ -48,7 +48,7 @@ const inputProps = {
       verticalAlign: 'middle',
     },
   },
-  "label-medium": {
+  "label": {
     defaultClassName: 'input accessory--default-medium__right',
     iconProps: {
       top: '34px',
@@ -59,7 +59,7 @@ const inputProps = {
       verticalAlign: 'middle',
     },
   },
-  "controlled-medium": {
+  "controlled": {
     inputClassName: "input basic--default-medium",
     defaultClassName: "placeholder controlled--default-medium",
     optionalClassName: "placeholder controlled--default-medium__typing",
@@ -67,7 +67,7 @@ const inputProps = {
     onBlurClassName: "border controlled--default-medium__blur",
 
   },
-  "error-message-medium": {
+  "error-message": {
     defaultClassName: "input basic--default-medium",
     onFocusClassName: "input basic--default-medium__focus",
     onBlurClassName: "input basic--default-medium__blur",
