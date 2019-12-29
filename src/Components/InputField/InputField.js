@@ -6,14 +6,14 @@ import inputProps from './inputProps';
 
 /**
  * InputField component should be called with
- * @param {string} type - (Required) It's to define styles of input field.
- * @param {string} errorMessage - (Optional) String to be display on error event.
- * @param {string} placeholder - (Optional) It's to display text into input field.
- * @param {boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
- * @param {function} icon - (Optional) Function that returns an svg icon.
- * @param {string} label - (Optional) Text to be display in label.
- * @param {id} id - (Optional) ID to be use for label refering to input field.
- * @param {function} onError - (Optional) Function to check input values and trigger error message. 
+ * @param {String} type - (Required) It's to define styles of input field.
+ * @param {String} errorMessage - (Optional) String to be display on error event.
+ * @param {String} placeholder - (Optional) It's to display text into input field.
+ * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ * @param {Function} icon - (Optional) Function that returns an svg icon.
+ * @param {String} label - (Optional) Text to be display in label.
+ * @param {String} id - (Optional) ID to be use for label refering to input field.
+ * @param {Function} onError - (Optional) Function to check input values and trigger error message. 
  */
 const InputField = ({ placeholder, errorMessage, label, id, type, icon, onError, disabled }) => {
   const { defaultClassName, optionalClassName, errorClassName, onBlurClassName, onFocusClassName, InputContainer, iconProps } = inputProps[type];
