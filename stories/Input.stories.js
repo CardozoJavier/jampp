@@ -14,14 +14,14 @@ export default {
 
 /**
  * InputField component should be called with
- * @prop {string} type - (Required) It's to define styles of input field.
- * @param {function} onError - (Optional) Function to check input values and trigger error message. It receive the input value in first argument.
- * @prop {string} errorMessage - (Optional) String to be display on error event.
- * @prop {string} placeholder - (Optional) It's to display text into input field.
- * @prop {boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
- * @prop {function} icon - (Optional) Function that returns an svg icon.
- * @prop {string} label - (Optional) Text to be display in label.
- * @prop {id} id - (Optional) ID to be use for label refering to input field.
+ * @prop {String} type - (Required) It's to define styles of input field.
+ * @prop {Function} onError - (Optional) Function to check input values and trigger error message. It receive the input value in first argument.
+ * @prop {String} errorMessage - (Optional) String to be display on error event.
+ * @prop {String} placeholder - (Optional) It's to display text into input field.
+ * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ * @prop {Function} icon - (Optional) Function that returns an svg icon.
+ * @prop {String} label - (Optional) Text to be display in label.
+ * @prop {String} id - (Optional) ID to be use for label refering to input field.
  */
 export const Basic = () => (
   <div style={{ width: '250px' }}>

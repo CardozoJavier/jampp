@@ -10,14 +10,14 @@ export default {
 
 /**
  * TabGroup component should be called with
- * @prop {string} name - (Required) Name of tabs group necesary to implement several groups in the same component.
- * @prop {string} defaultActive - (Optional) It select the default active tab. It should match with tab id.
- * @prop {function} onChange - (Optional) Callback to trigger on onChange event. It receive the id option in first argument.
+ * @prop {String} name - (Required) Name of tabs group necesary to implement several groups in the same component.
+ * @prop {String} defaultActive - (Optional) It select the default active tab. It should match with tab id.
+ * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive the id option in first argument.
  *  
  *  Tab component should be called with
- *  @prop {string} text - (Required) It's the name of tab.
- *  @prop {id} id - (Required) It's an unique ID to identifier each tab in TabGroup.
- *  @prop {function} - (Optional) Function that returns an svg icon.
+ *  @prop {String} text - (Required) It's the name of tab.
+ *  @prop {String} id - (Required) It's an unique ID to identifier each tab in TabGroup.
+ *  @prop {Function} icon - (Optional) Function that returns an svg icon.
  */
 export const Tabs = () => (
   <div style={{ width: '600px' }}>
