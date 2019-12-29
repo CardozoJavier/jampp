@@ -7,12 +7,20 @@ import {
   Input,
   LabelContainer,
   Label,
-  InputBasicContainer,
   InputControlledContainer,
 } from './styles';
 import { bemDestruct } from '../../utils';
 import inputProps from './inputProps';
 
+/**
+ * InputControlled component should be called with
+ * @param {string} type - (Required) It's to define styles of input field.
+ * @param {string} placeholder - (Optional) It's to display text into input field. It'll be in second place.
+ * @param {string} boldPlaceholder - (Optional) It's to display bold text into input field. It'll be in first place.
+ * @param {boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ * @param {string} label - (Optional) Text to be display in label.
+ * @param {id} id - (Optional) ID to be use for label refering to input field.
+ */
 const InputControlled = ({
   id,
   type,
@@ -21,7 +29,7 @@ const InputControlled = ({
   placeholder,
   boldPlaceholder,
 }) => {
-  const { defaultClassName, optionalClassName, inputClassName, onFocusClassName, onBlurClassName } = inputProps[type];
+  const { defaultClassName, optionalClassName, onFocusClassName, onBlurClassName } = inputProps[type];
   const [className, setClassName] = useState(defaultClassName);
   const [input, setInput] = useState(false);
 
