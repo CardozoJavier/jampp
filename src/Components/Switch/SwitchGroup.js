@@ -3,8 +3,11 @@ import buttonProps from './buttonProps';
 import { SwitchGroupContainer, SwitchButtonInput } from './styles';
 import { bemDestruct, settingClassName } from '../../utils';
 
-const SwitchGroup = ({ children, type, disabled }) => {
+const SwitchGroup = ({ children, type, onChange, disabled }) => {
   const { defaultClassName, optionalClassName, ButtonContainer, iconProps, iconClassName } = buttonProps[type];
+  if (!Array.isArray(children)) {
+    children = [children];
+  }
   const childrenParsed = settingClassName(children, -1, defaultClassName);
   const [array, setArray] = useState(childrenParsed);
   
@@ -14,6 +17,7 @@ const SwitchGroup = ({ children, type, disabled }) => {
   const handleCheck = (e, id) => {
     const inputsArray = settingClassName(children, id, defaultClassName);
     setArray(inputsArray);
+    onChange && onChange(id);
   }
 
   return (
@@ -22,8 +26,7 @@ const SwitchGroup = ({ children, type, disabled }) => {
           <ButtonContainer className={bemDestruct(input.className, disabled)} disabled={disabled} key={input.id}>
             <SwitchButtonInput
               onClick={disabled ? null : (e) => handleCheck(e, input.id, defaultClassName)}
-              children={input.label || children}
-              color={input.color}
+              children={input.label}
             />
           </ButtonContainer>
         )
