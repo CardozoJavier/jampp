@@ -106,10 +106,10 @@ export const AdAccountsLevel = () => (
             <Option label="Ad Account Name D" id="id4" type="dropdown" right />
           </OptionDropdown>
           <OptionDropdown text="Organization name B" type="expandable-no-border-purple">
-            <Option label="Ad pepe Name A" id="id11" type="dropdown" right />
-            <Option label="Ad pepe Name B" id="id21" type="dropdown" right />
-            <Option label="Ad pepe Name C" id="id31" type="dropdown" right />
-            <Option label="Ad pepe Name D" id="id41" type="dropdown" right />
+            <Option label="Ad Account Name A" id="id11" type="dropdown" right />
+            <Option label="Ad Account Name B" id="id21" type="dropdown" right />
+            <Option label="Ad Account Name C" id="id31" type="dropdown" right />
+            <Option label="Ad Account Name D" id="id41" type="dropdown" right />
           </OptionDropdown>
         </AdAccountsDropdown>
       </DropdownContainer>

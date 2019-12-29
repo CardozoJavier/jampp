@@ -49,6 +49,16 @@ export const ControlledInputFieldContainer = styled.div`
     }
   }
 
+  &.placeholder {
+    &.controlled {
+      &--default {
+        &__typing {
+          border: 1px solid ${gray.g3};
+        }
+      }
+    }
+  } 
+
   &.border {
     &-medium {}
 
@@ -62,15 +72,6 @@ export const ControlledInputFieldContainer = styled.div`
   } 
 `;
 
-export const CustomPlaceholderContainer = styled.label`
-  position: absolute;
-  margin-left: 8px;
-
-  &:hover {
-    cursor: text;
-  }
-`;
-
 export const CustomPlaceholderNormal = styled.p`
   color: ${gray.g07};
   display: inline;
@@ -81,6 +82,28 @@ export const CustomPlaceholderNormal = styled.p`
 export const CustomPlaceholderBold = styled(CustomPlaceholderNormal)`
   font-weight: 900;
 `;
+
+export const CustomPlaceholderContainer = styled.label`
+  position: absolute;
+  margin-left: 8px;
+
+  &:hover {
+    cursor: text;
+  }
+
+  &.border {
+    &.controlled {
+      &--default {
+        &__focus {
+          p {
+            color: ${gray.g3};
+          }
+        }
+      }
+    }
+  }
+`;
+
 
 export const InputControlledContainer = styled.div`
   display: flex;

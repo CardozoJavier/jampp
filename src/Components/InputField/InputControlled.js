@@ -32,7 +32,7 @@ const InputControlled = ({
       setClassName(optionalClassName);
     } else {
       setInput(false);
-      setClassName(defaultClassName);
+      setClassName(onFocusClassName);
     };
   };
 
