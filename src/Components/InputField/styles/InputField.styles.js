@@ -33,11 +33,9 @@ export const InputFieldContainer = styled.div`
 
           &__disabled {
             border: 1px solid ${gray.g1};
-
             input {
               background-color: ${gray.g0};
             }
-  
             input::placeholder {
               color: ${gray.g05};
             }

@@ -29,7 +29,16 @@ export const ControlledInputFieldContainer = styled.div`
             color: ${gray.g07};
           }
 
-          &__focus, &__typing {
+          &__focus, &__typing {}
+
+          &__disabled {
+            border: 1px solid ${gray.g1};
+            input {
+              background-color: ${gray.g0};
+            }
+            p {
+              color: ${gray.g05};
+            }
           }
         }
       }
@@ -37,9 +46,7 @@ export const ControlledInputFieldContainer = styled.div`
   }
 
   .placeholder {
-    
     &-medium {}
-    
     &.controlled {
       &--default {
         &__typing {
@@ -54,6 +61,16 @@ export const ControlledInputFieldContainer = styled.div`
       &--default {
         &__typing {
           border: 1px solid ${gray.g3};
+        }
+
+        &__disabled {
+          border: 1px solid ${gray.g1};
+          input {
+            background-color: ${gray.g0};
+          }
+          p {
+            color: ${gray.g05};
+          }
         }
       }
     }
