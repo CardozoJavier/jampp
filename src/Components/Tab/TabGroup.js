@@ -4,9 +4,10 @@ import { TabGroupContainer } from './styles';
 
 const TabGroup = ({ children, name, defaultActive, onChange }) => {
   const [selectedOption, setSelectedOption] = useState(defaultActive);
-  const handleChange = (id, value, e) => {
+
+  const handleChange = (id) => {
     setSelectedOption(id);
-    onChange && onChange(value, e);
+    onChange && onChange(id);
   };
 
   return (
@@ -18,7 +19,6 @@ const TabGroup = ({ children, name, defaultActive, onChange }) => {
           key={tab.props.id}
           icon={tab.props.icon}
           text={tab.props.text}
-          value={tab.props.value}
           disabled={tab.props.disabled}
           checked={selectedOption === tab.props.id}
           onChange={tab.props.disabled ? null : handleChange}

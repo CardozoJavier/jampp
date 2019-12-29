@@ -3,16 +3,15 @@ import { TabContainer, TabText, InputContainer, InputRadio, TabButton } from './
 import { bemDestruct } from '../../utils';
 import { IconGenerator } from '../UI/Icons';
 
-const Tab = ({ id, name, text, value, onChange, icon, checked, disabled }) => (
+const Tab = ({ id, name, text, onChange, icon, checked, disabled }) => (
   <TabContainer>
     <InputContainer disabled={disabled}>
       <InputRadio
         id={id}
         type="radio"
         name={name}
-        value={value}
         checked={checked}
-        onChange={e => onChange(id, value, e)}
+        onChange={() => onChange(id)}
       />
       <TabButton role="button">
         <TabText

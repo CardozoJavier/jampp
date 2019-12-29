@@ -10,15 +10,15 @@ export default {
 
 /**
  * TabGroup component should be called with
- * @prop {string} defaultActive - (Optional) It select the default active tab. It should match with tab id.
  * @prop {string} name - (Required) Name of tabs group necesary to implement several groups in the same component.
+ * @prop {string} defaultActive - (Optional) It select the default active tab. It should match with tab id.
+ * @prop {function} onChange - (Optional) Callback to trigger on onChange event. It receive the id option in first argument.
  *  
  *  Tab component should be called with
  *  @prop {string} text - (Required) It's the name of tab.
  *  @prop {id} id - (Required) It's an unique ID to identifier each tab in TabGroup.
  *  @prop {function} - (Optional) Function that returns an svg icon.
  */
-
 export const Tabs = () => (
   <div style={{ width: '600px' }}>
     <TabGroup defaultActive="tab1" name="group1">
@@ -30,9 +30,10 @@ export const Tabs = () => (
 
 export const WithLeftIcon = () => (
   <div style={{ width: '600px' }}>
-    <TabGroup defaultActive="tab1">
+    <TabGroup defaultActive="tab1" name="group2" onChange={id => console.log(id)}>
       <Tab text="Active tab long name" id="tab1" icon={BillingIcon} />
       <Tab text="Inactive tab long name" id="tab2" icon={AddAccountIcon} />
     </TabGroup>
   </div>
 );
+
