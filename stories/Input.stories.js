@@ -12,9 +12,20 @@ export default {
   title: 'Input'
 };
 
+/**
+ * InputField component should be called with
+ * @prop {string} type - (Required) It's to define styles of input field.
+ * @param {function} onError - (Optional) Function to check input values and trigger error message. It receive the input value in first argument.
+ * @prop {string} errorMessage - (Optional) String to be display on error event.
+ * @prop {string} placeholder - (Optional) It's to display text into input field.
+ * @prop {boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ * @prop {function} icon - (Optional) Function that returns an svg icon.
+ * @prop {string} label - (Optional) Text to be display in label.
+ * @prop {id} id - (Optional) ID to be use for label refering to input field.
+ */
 export const Basic = () => (
   <div style={{ width: '250px' }}>
-    <InputField placeholder="Text" type="basic-medium" />
+    <InputField placeholder="Text" type="basic" />
   </div>
 );
 
@@ -26,13 +37,7 @@ export const WithIcon = () => (
 
 export const InputWithLabel = () => (
   <div style={{ width: '250px' }}>
-    <InputField placeholder="Text" label="Label" id="id1" type="basic-medium" />
-  </div>
-);
-
-export const WithBoldPlaceholder = () => (
-  <div style={{ width: '250px' }}>
-    <InputControlled label="Text" boldPlaceholder="Text" placeholder="text" type="controlled-medium" id="input1" />
+    <InputField placeholder="Text" label="Label" id="id1" type="basic" />
   </div>
 );
 
@@ -44,8 +49,9 @@ export const WithErrorMessage = () => (
         placeholder="Input value"
         label="Label"
         id="input1" 
-        type="error-message-medium"
-        />
+        type="error-message"
+        onError={value => /\d/.test(value)}
+      />
     </div>
 
     <div style={{ width: '250px' }}>
@@ -53,9 +59,24 @@ export const WithErrorMessage = () => (
         placeholder="Input value"
         label="Label"
         id="input2" 
-        type="error-message-medium"
+        type="error-message"
         disabled={true}
       />
     </div>
   </>
+);
+
+/**
+ * InputControlled component should be called with
+ * @prop {string} type - (Required) It's to define styles of input field.
+ * @prop {string} placeholder - (Optional) It's to display text into input field. It'll be in second place.
+ * @prop {string} boldPlaceholder - (Optional) It's to display bold text into input field. It'll be in first place.
+ * @prop {boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ * @prop {string} label - (Optional) Text to be display in label.
+ * @prop {id} id - (Optional) ID to be use for label refering to input field.
+ */
+export const WithBoldPlaceholder = () => (
+  <div style={{ width: '250px' }}>
+    <InputControlled label="Text" boldPlaceholder="Text" placeholder="text" type="controlled" id="input1" />
+  </div>
 );
