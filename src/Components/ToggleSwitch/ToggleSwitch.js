@@ -9,15 +9,29 @@ const classesName = {
     defaultClassName: 'toggle switch--green-default__off',
     optionalClassName: 'toggle switch--green-default__on'
   },
+  blue: {
+    defaultClassName: 'toggle switch--blue-default__off',
+    optionalClassName: 'toggle switch--blue-default__on'
+  },
+  red: {
+    defaultClassName: 'toggle switch--red-default__off',
+    optionalClassName: 'toggle switch--red-default__on'
+  },
+  yellow: {
+    defaultClassName: 'toggle switch--yellow-default__off',
+    optionalClassName: 'toggle switch--yellow-default__on'
+  },
 };
 
-const ToggleSwitch = ({ color, disabled }) => {
-  const defaultClassName = classesName[color].defaultClassName;
-  const optionalClassName = classesName[color].optionalClassName;
+const ToggleSwitch = ({ color = 'green', disabled, onChange }) => {
+  const { defaultClassName, optionalClassName } = classesName[color];
   const [className, setClassName] = useState(defaultClassName);
+  const [status, setStatus] = useState(false);
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
 
   const handleClick = () => {
+    onChange && onChange(!status);
+    setStatus(!status);
     setClassName(toggleToClassName);
   };
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { palette } from '../../../styles';
-const { green } = palette;
+const { green, blue, red, yellow } = palette;
 
 export default styled.div`
   position: ${({ position }) => position || 'absolute'};
@@ -24,20 +24,47 @@ export default styled.div`
     }
 
     &.switch {
-      &--green {
+      &--green, &--red, &--blue, &--yellow {
         &__on {
           transform: translateX(15px);
-          circle {
-            stroke: ${green.g1};
-          }
         }
 
         &__off {
           transform: translateX(0);
         }
       }
+
+      &--green {
+        &__on {
+          circle {
+            stroke: ${green.g1};
+          }
+        }
+      }
+
+      &--red {
+        &__on {
+          circle {
+            stroke: ${red.r1};
+          }
+        }
+      }
+
+      &--blue {
+        &__on {
+          circle {
+            stroke: ${blue.b05};
+          }
+        }
+      }
+
+      &--yellow {
+        &__on {
+          circle {
+            stroke: ${yellow.y0};
+          }
+        }
+      }
     }
   }
-
-
 `;
