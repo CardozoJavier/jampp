@@ -7,9 +7,9 @@ export default {
 
 /**
  * Toggle component can be called with
- * @prop {string} color - Used for setting the active color on switch. Can be 'green' (default), 'blue', 'red', 'yellow'.
- * @prop {function} onChange - Callback to trigger on onChange event. It receive one argument (true or false).
- * @prop {boolean} disabled - Flag to disable component if param is true.
+ * @prop {string} color - (Optional) Used for setting the active color on switch. Can be 'green' (default), 'blue', 'red', 'yellow'.
+ * @prop {function} onChange - (Optional) Callback to trigger on onChange event. It receive one argument (true or false).
+ * @prop {boolean} disabled - (Optional) Flag to disable component if param is true.
  */ 
 export const Toggle = () => (
   <>

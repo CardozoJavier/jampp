@@ -3,7 +3,7 @@ import buttonProps from './buttonProps';
 import { SwitchGroupContainer, SwitchButtonInput } from './styles';
 import { bemDestruct, settingClassName } from '../../utils';
 
-const SwitchGroup = ({ children, type, onChange, disabled }) => {
+const SwitchGroup = ({ children, type = 'button', onChange, disabled }) => {
   const { defaultClassName, optionalClassName, ButtonContainer, iconProps, iconClassName } = buttonProps[type];
   if (!Array.isArray(children)) {
     children = [children];
