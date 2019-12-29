@@ -4,8 +4,15 @@ import {
 
 
 const buttonProps = {
-  "button": {
+  "options": {
     defaultClassName: 'button basic--default',
+    optionalClassName: '',
+    iconClassName: '',
+    ButtonContainer: OptionButtonContainer,
+    iconProps: {},
+  },
+  "button": {
+    defaultClassName: 'button standalone--default',
     optionalClassName: '',
     iconClassName: '',
     ButtonContainer: OptionButtonContainer,

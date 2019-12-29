@@ -10,7 +10,9 @@ export default {
 /**
  * SwitchGroup component should be used with
  * @prop {array} children - (Required) They're the options to be display.
- * @prop {function} onChange - (Optional) Callback to trigger on onChange event. It receive the id option in first argument .
+ * @prop {string} type - (Optional) It's for use a different option component. 'options' is default value.
+ * @prop {function} onChange - (Optional) Callback to trigger on onChange event. It receive the id option in first argument.
+ * @prop {boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * 
  *  Option component should be used with
  *  @prop {string} label - (Optional) It's a text to be display inside button.
@@ -18,7 +20,7 @@ export default {
  */
 export const Switch = () => (
   <>
-    <SwitchGroup onChange={(id) => setTimeout(() => alert(id + ' is selected'), 500)}>
+    <SwitchGroup onChange={(id) => console.log(id + ' is selected')}>
       <Option label="Choice" id="option1" />
       <Option label="Choice" id="option2" />
       <Option label="Choice" id="option3" />
@@ -30,8 +32,13 @@ export const Switch = () => (
       <Option label="Choice" id="option3" />
     </SwitchGroup>
 
-    <Button type='option-default-medium' id="option1">
-      <strong>Button</strong> Text
-    </Button>
+    <SwitchGroup type="button">
+      <Button type='option-default-medium' id="option1">
+        <strong>Button</strong> Text
+      </Button>
+      <Button type='option-default-medium' id="option2">
+        <strong>Button</strong> Text
+      </Button>
+    </SwitchGroup>
   </>
 );

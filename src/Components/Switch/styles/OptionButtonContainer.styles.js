@@ -12,7 +12,7 @@ export const OptionButtonContainer = styled.div`
     transition: all .3s;
 
     &.button, &.optionCheckbox {
-      &.option, &.basic {
+      &.option, &.basic, &.standalone {
 
         &--default {
           border: 1px solid ${gray.g07};
@@ -55,7 +55,7 @@ export const OptionButtonContainer = styled.div`
       outline: none;
     }
 
-    &.option, &.basic {
+    &.option, &.basic, &.standalone {
       ${SwitchButtonInput} {
         padding: 10px 15px;
       }
@@ -87,6 +87,19 @@ export const OptionButtonContainer = styled.div`
        * ************************
        */
       &--inverted {}      
+    }
+
+    &.standalone--default {
+      margin: 0 10px;
+      &-first, &-middle, &-last {
+        border-radius: 4px;
+        &__selected {
+          border-radius: 4px;
+          border: 1px solid ${action};
+          background-color: ${violet.v05};
+          color: ${action};
+        }
+      }
     }
   }  
 `;
