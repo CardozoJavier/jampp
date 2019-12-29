@@ -24,7 +24,7 @@ export const ToggleSwitchContainer = styled.div`
       
       &-default {}
       &.switch {
-        &--green {
+        &--green, &--blue, &--red, &--yellow {
           &__disabled {
             cursor: default;
             background-color: ${gray.g0};
