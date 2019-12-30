@@ -5,13 +5,13 @@ import { bemDestruct, settingClassName } from '../../utils';
 
 /**
  * SwitchGroup component should be used with
- * @param {Array} children - (Required) They're the options to be display.
+ * @param {Array} children - (Required) The options to be display.
  * @param {String} type - (Optional) It's for use a different option component. 'options' is default value.
  * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive the id option in first argument.
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  */
 const SwitchGroup = ({ children, type = 'options', onChange, disabled }) => {
-  const { defaultClassName, optionalClassName, ButtonContainer, iconProps, iconClassName } = buttonProps[type];
+  const { defaultClassName, ButtonContainer } = buttonProps[type];
   if (!Array.isArray(children)) {
     children = [children];
   }

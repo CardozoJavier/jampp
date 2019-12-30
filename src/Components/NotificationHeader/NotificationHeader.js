@@ -22,6 +22,11 @@ const types = {
   },
 };
 
+/**
+ * NotificationHeader component should be called with
+ * @param {String} text - (Optional) Message to be desplayed into header.
+ * @param {String} type - (Required) It's define the header styles.
+ */
 const NotificationHeader = ({ text, type }) => (
   <NotificationHeaderContainer className={bemDestruct(types[type].className)}>
     <TextContainer>

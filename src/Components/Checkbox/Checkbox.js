@@ -21,6 +21,15 @@ const classesName = {
   },
 };
 
+/**
+ *  Checkbox component should be called with
+ *  @param {String} type - (Required) Define dropdown classes for styling.
+ *  @param {Boolean} right - (Required) It's required if left prop is not set. It's define the position of checkbox regarding text.
+ *  @param {Boolean} left - (Required) It's required if right prop is not set. It's define the position of checkbox regarding text.
+ *  @param {String} label - (Optional) It's a text to be display next to checkbox.
+ *  @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ * 
+ */
 const Checkbox = ({ label, type = 'normal', right, left, disabled }) => {
   const { defaultClassName, optionalClassName } = classesName[type];
   const { defaultLabel, selectedLabel } = classesName['label'];

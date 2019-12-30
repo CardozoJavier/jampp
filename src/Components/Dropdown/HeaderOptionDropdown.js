@@ -7,6 +7,14 @@ import { OptionList } from '../OptionList';
 import { UniqueOption } from '../UniqueOption';
 import { ButtonInput } from '../Button/styles';
 
+/**
+ * HeaderOptionDropdown component should be called with
+ * @param {String} text - (Required) Text to be displayed inside button.
+ * @param {String} type - (Required) Define dropdown classes for styling.
+ * @param {String} menuTitle - (Required) It's the title in dropdown opened.
+ * @param {Array} children - (Required) They're the options to be display.
+ * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ */
 const HeaderOptionDropdown = ({ children, text, type, menuTitle, disabled, }) => {
   const { defaultClassName, optionalClassName } = dropdownProps[type];
   const chevronDefaultClassName = dropdownProps.chevron.defaultClassName;
