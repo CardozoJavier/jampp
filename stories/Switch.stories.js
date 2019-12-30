@@ -35,6 +35,22 @@ export const Group = () => (
   </>
 );
 
+/**
+ * SwitchGroup component should be used with
+ * @prop {Array} children - (Required) They're the options to be display.
+ * @prop {String} type - (Optional) It's for use a different option component. 'options' is default value.
+ * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive the id option in first argument.
+ * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ * 
+ *  Button component should be used with
+ *  @prop {String} label - (Required) Text to be display inside button.
+ *  @prop {String} type - (Required) Define button classes for styling.
+ *  @prop {Boolean} fixed - (Optional) Disabled move up transform on hover.
+ *  @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ *  @prop {Function} icon - (Optional) Function that returns an svg icon.
+ *  @prop {Function} onClick - (Optional) Callback to trigger on onClick event.
+ *  @prop {Object} children - (Optional) HTML element to be rendered, e.g.: strong tag inside button.
+ */
 export const WithBoldText = () => (
   <SwitchGroup type="button">
     <Button type='option-default-medium' id="option1">

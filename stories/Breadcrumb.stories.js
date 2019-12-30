@@ -7,11 +7,15 @@ export default {
   title: 'Breadcrumb',
 };
 
+/**
+ * Breadcrumb component should be called with
+ * @prop {Number} currentStep - (Required) Index that define the active step. From 0 to length-1 of array steps. Default value is 0.
+ * 
+ *  Step component should be called with
+ *  @prop {String} text - (Required) It's the name step.
+ */
 export const Default = () => (
-  /**
-   * @prop {Number} currentStep Number that define the active step
-   */
-  <Breadcrumb currentStep={0}>
+  <Breadcrumb>
     <Step text="1. Setup Campaing" />
     <Step text="2. Create AdGroup" />
     <Step text="3. Creatives" />
@@ -19,7 +23,7 @@ export const Default = () => (
 );
 
 export const Footer = () => (
-  <FooterBreadcrumb>
+  <FooterBreadcrumb currentStep={1}>
     <Step text="1. Setup Campaing" />
     <Step text="2. Create AdGroup" />
     <Step text="3. Creatives" />

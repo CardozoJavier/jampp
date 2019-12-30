@@ -6,6 +6,11 @@ export default {
   title: 'Notification Header',
 };
 
+/**
+ * NotificationHeader component should be called with
+ * @prop {String} text - (Optional) Message to be desplayed into header.
+ * @prop {String} type - (Required) It's define the header styles.
+ */
 export const Success = () => (
   <NotificationHeader text="Success message to go here" type="success" />
 );
