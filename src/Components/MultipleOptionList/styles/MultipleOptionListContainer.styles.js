@@ -32,7 +32,7 @@ export const MultipleOptionListContainer = styled.div`
         }
       }
 
-      &--noBorder, &--noBorderLink {
+      &--noBorder, &--noBorderLink, &--noBorderPurple {
         top: 25px;
       }
     }

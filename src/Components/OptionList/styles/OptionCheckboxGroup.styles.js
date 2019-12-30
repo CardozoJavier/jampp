@@ -28,7 +28,7 @@ export default styled.div`
         }
       }
 
-      &--noBorder, &--noBorderLink {
+      &--noBorder, &--noBorderLink, &--noBorderPurple {
         top: 25px;
       }
 
