@@ -30,7 +30,7 @@ export const Tabs = () => (
 
 export const WithLeftIcon = () => (
   <div style={{ width: '600px' }}>
-    <TabGroup defaultActive="tab1" name="group2" onChange={id => console.log(id)}>
+    <TabGroup defaultActive="tab1" name="group2" onChange={id => console.log(id + ' is active')}>
       <Tab text="Active tab long name" id="tab1" icon={BillingIcon} />
       <Tab text="Inactive tab long name" id="tab2" icon={AddAccountIcon} />
     </TabGroup>

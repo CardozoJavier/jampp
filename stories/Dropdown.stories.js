@@ -14,7 +14,7 @@ import {
 import {
   Dropdown,
   Checkbox,
-  StatusLabel,
+  StatusLabelOption,
   OptionDropdown,
   StatusLabelDropdown,
   MultipleOptionDropdown,
@@ -48,7 +48,7 @@ export default {
  * @prop {String} type - (Required) Define dropdown classes for styling.
  * @prop {String} text - (Required) Text to be displayed inside button.
  *  
- *  StatusLabel component should be used with
+ *  StatusLabelOption component should be used with
  *  @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
  *  @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
  *  @prop {String} label - (Optional) It's a text to be display inside button.
@@ -75,10 +75,10 @@ export const Basic = () => (
  
     <DropdownContainer>
       <StatusLabelDropdown text="Text" type="basic">
-        <StatusLabel label="status" id="id1" color="red" />
-        <StatusLabel label="status" id="id2" color="yellow" />
-        <StatusLabel label="status" id="id3" color="green" />
-        <StatusLabel label="status" id="id4" color="blue" />
+        <StatusLabelOption label="status" id="id1" color="red" />
+        <StatusLabelOption label="status" id="id2" color="yellow" />
+        <StatusLabelOption label="status" id="id3" color="green" />
+        <StatusLabelOption label="status" id="id4" color="blue" />
       </StatusLabelDropdown>
     </DropdownContainer>
   </>
@@ -90,7 +90,7 @@ export const Basic = () => (
  * @prop {String} text - (Required) Text to be displayed inside button.
  * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  *  
- *  StatusLabel component should be used with
+ *  StatusLabelOption component should be used with
  *  @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
  *  @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
  *  @prop {String} label - (Optional) It's a text to be display inside button.
@@ -99,10 +99,10 @@ export const BasicWithLabel = () => (
   <DropdownContainer direction='column' align='start'>
     <DropdownLabel>Text</DropdownLabel>
     <StatusLabelDropdown text="Text" type="basic" disabled={true}>
-      <StatusLabel label="status" id="id1" color="red" />
-      <StatusLabel label="status" id="id2" color="yellow" />
-      <StatusLabel label="status" id="id3" color="green" />
-      <StatusLabel label="status" id="id4" color="blue" />
+      <StatusLabelOption label="status" id="id1" color="red" />
+      <StatusLabelOption label="status" id="id2" color="yellow" />
+      <StatusLabelOption label="status" id="id3" color="green" />
+      <StatusLabelOption label="status" id="id4" color="blue" />
     </StatusLabelDropdown>
   </DropdownContainer>
 );
@@ -130,7 +130,7 @@ export const BasicWithLabel = () => (
  * @prop {String} type - (Required) Define dropdown classes for styling.
  * @prop {String} text - (Required) Text to be displayed inside button.
  *  
- *  StatusLabel component should be used with
+ *  StatusLabelOption component should be used with
  *  @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
  *  @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
  *  @prop {String} label - (Optional) It's a text to be display inside button.
@@ -157,19 +157,19 @@ export const SolidWithIcon = () => (
 
     <DropdownContainer>
       <StatusLabelDropdown text="Dropdown solid w/icon" type="solid" leftIcon={DownloadFileIcon}>
-        <StatusLabel label="status" id="id1" color="red" />
-        <StatusLabel label="status" id="id2" color="yellow" />
-        <StatusLabel label="status" id="id3" color="green" />
-        <StatusLabel label="status" id="id4" color="blue" />
+        <StatusLabelOption label="status" id="id1" color="red" />
+        <StatusLabelOption label="status" id="id2" color="yellow" />
+        <StatusLabelOption label="status" id="id3" color="green" />
+        <StatusLabelOption label="status" id="id4" color="blue" />
       </StatusLabelDropdown>
     </DropdownContainer>
 
     <DropdownContainer>
       <StatusLabelDropdown text="Dropdown solid w/icon" type="solid" leftIcon={DownloadFileIcon} disabled={true}>
-        <StatusLabel label="status" id="id1" color="red" />
-        <StatusLabel label="status" id="id2" color="yellow" />
-        <StatusLabel label="status" id="id3" color="green" />
-        <StatusLabel label="status" id="id4" color="blue" />
+        <StatusLabelOption label="status" id="id1" color="red" />
+        <StatusLabelOption label="status" id="id2" color="yellow" />
+        <StatusLabelOption label="status" id="id3" color="green" />
+        <StatusLabelOption label="status" id="id4" color="blue" />
       </StatusLabelDropdown>
     </DropdownContainer>
   </>
@@ -198,7 +198,7 @@ export const SolidWithIcon = () => (
  * @prop {String} type - (Required) Define dropdown classes for styling.
  * @prop {String} text - (Required) Text to be displayed inside button.
  *  
- *  StatusLabel component should be used with
+ *  StatusLabelOption component should be used with
  *  @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
  *  @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
  *  @prop {String} label - (Optional) It's a text to be display inside button.
@@ -225,19 +225,19 @@ export const NoBorder = () => (
 
     <DropdownContainer>
       <StatusLabelDropdown text="Text" type="no-border">
-        <StatusLabel label="status" id="id1" color="red" />
-        <StatusLabel label="status" id="id2" color="yellow" />
-        <StatusLabel label="status" id="id3" color="green" />
-        <StatusLabel label="status" id="id4" color="blue" />
+        <StatusLabelOption label="status" id="id1" color="red" />
+        <StatusLabelOption label="status" id="id2" color="yellow" />
+        <StatusLabelOption label="status" id="id3" color="green" />
+        <StatusLabelOption label="status" id="id4" color="blue" />
       </StatusLabelDropdown>
     </DropdownContainer>
 
     <DropdownContainer>
       <StatusLabelDropdown text="Text" type="no-border" disabled={true}>
-        <StatusLabel label="status" id="id1" color="red" />
-        <StatusLabel label="status" id="id2" color="yellow" />
-        <StatusLabel label="status" id="id3" color="green" />
-        <StatusLabel label="status" id="id4" color="blue" />
+        <StatusLabelOption label="status" id="id1" color="red" />
+        <StatusLabelOption label="status" id="id2" color="yellow" />
+        <StatusLabelOption label="status" id="id3" color="green" />
+        <StatusLabelOption label="status" id="id4" color="blue" />
       </StatusLabelDropdown>
     </DropdownContainer>
   </>
@@ -266,7 +266,7 @@ export const NoBorder = () => (
  * @prop {String} type - (Required) Define dropdown classes for styling.
  * @prop {String} text - (Required) Text to be displayed inside button.
  *  
- *  StatusLabel component should be used with
+ *  StatusLabelOption component should be used with
  *  @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
  *  @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
  *  @prop {String} label - (Optional) It's a text to be display inside button.
@@ -293,19 +293,19 @@ export const NoBorderLink = () => (
 
     <DropdownContainer>
       <StatusLabelDropdown text="Advanced Options" type="no-border-link">
-        <StatusLabel label="status" id="id1" color="red" />
-        <StatusLabel label="status" id="id2" color="yellow" />
-        <StatusLabel label="status" id="id3" color="green" />
-        <StatusLabel label="status" id="id4" color="blue" />
+        <StatusLabelOption label="status" id="id1" color="red" />
+        <StatusLabelOption label="status" id="id2" color="yellow" />
+        <StatusLabelOption label="status" id="id3" color="green" />
+        <StatusLabelOption label="status" id="id4" color="blue" />
       </StatusLabelDropdown>
     </DropdownContainer>
 
     <DropdownContainer>
       <StatusLabelDropdown text="Advanced Options" type="no-border-link" disabled={true}>
-        <StatusLabel label="status" id="id1" color="red" />
-        <StatusLabel label="status" id="id2" color="yellow" />
-        <StatusLabel label="status" id="id3" color="green" />
-        <StatusLabel label="status" id="id4" color="blue" />
+        <StatusLabelOption label="status" id="id1" color="red" />
+        <StatusLabelOption label="status" id="id2" color="yellow" />
+        <StatusLabelOption label="status" id="id3" color="green" />
+        <StatusLabelOption label="status" id="id4" color="blue" />
       </StatusLabelDropdown>
     </DropdownContainer>
   </>
@@ -334,7 +334,7 @@ export const NoBorderLink = () => (
  * @prop {String} type - (Required) Define dropdown classes for styling.
  * @prop {String} text - (Required) Text to be displayed inside button.
  *  
- *  StatusLabel component should be used with
+ *  StatusLabelOption component should be used with
  *  @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
  *  @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
  *  @prop {String} label - (Optional) It's a text to be display inside button.
@@ -361,10 +361,10 @@ export const NoBorderPurple = () => (
 
     <DropdownContainer>
       <StatusLabelDropdown text="Advertiser" type="no-border-purple">
-        <StatusLabel label="status" id="id1" color="red" />
-        <StatusLabel label="status" id="id2" color="yellow" />
-        <StatusLabel label="status" id="id3" color="green" />
-        <StatusLabel label="status" id="id4" color="blue" />
+        <StatusLabelOption label="status" id="id1" color="red" />
+        <StatusLabelOption label="status" id="id2" color="yellow" />
+        <StatusLabelOption label="status" id="id3" color="green" />
+        <StatusLabelOption label="status" id="id4" color="blue" />
       </StatusLabelDropdown>
     </DropdownContainer>
   </>
