@@ -18,6 +18,7 @@ import { ExpandableDropdown } from '../Dropdown';
  *  @param {Array} children - (Required) The options to be display in expandable dropdown.
  *  @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  *  @param {String} className - (Required) It's the className that switching between closed and opened dropdown.
+ *  @return {React Component} A view for panel account with input field, a selectable list and sign out button.
  */
 const AdAccountsList = ({ children, email, disabled, className }) => (
   <OptionListContainer className={bemDestruct(className, disabled)}>

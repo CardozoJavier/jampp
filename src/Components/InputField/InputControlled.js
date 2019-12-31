@@ -20,6 +20,7 @@ import inputProps from './inputProps';
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @param {String} label - (Optional) Text to be display in label.
  * @param {String} id - (Optional) ID to be use for label refering to input field.
+ * @return {React Component} A view for input field with custom bold placeholder.
  */
 const InputControlled = ({
   id,

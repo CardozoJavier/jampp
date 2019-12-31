@@ -7,6 +7,7 @@ import { IconGenerator, XIcon } from '../UI/Icons';
  * @param {String} title - (Optional)  It's the modal title displayed with an X icon on your right.
  * @param {Boolean} footer - (Optional) It's define modal with or with not footer.
  * @param {Function} icon - (Optional) Function that returns an svg icon.
+ * @return {React Component} A view for plain modal with title with or not icon and footer.
  */
 const Modal = ({ title, footer, icon }) => (
   <ModalContainer>

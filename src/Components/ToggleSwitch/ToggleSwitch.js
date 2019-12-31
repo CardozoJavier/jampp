@@ -28,6 +28,7 @@ const classesName = {
  * @param {String} color - (Optional) Used for setting the active color on switch. Can be 'green' (default), 'blue', 'red', 'yellow'.
  * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive one argument (true or false).
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ * @return {React Component} A view for toggle switch.
  */ 
 const ToggleSwitch = ({ color = 'green', disabled, onChange }) => {
   const { defaultClassName, optionalClassName } = classesName[color];

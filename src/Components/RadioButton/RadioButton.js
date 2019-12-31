@@ -19,6 +19,7 @@ import { bemDestruct } from '../../utils';
  * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive the radio button id in first argument.
  * @param {String} suffix - (Optional) Text to be displayed below of radio button.
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ * @return {React Component} A view for radio button with or not label and suffix.
  */
 const RadioButton = ({ id, name, text = '', onChange, checked, suffix, disabled }) => (
   <RadioButtonContainer>

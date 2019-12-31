@@ -14,6 +14,7 @@ import inputProps from './inputProps';
  * @param {String} label - (Optional) Text to be display in label.
  * @param {String} id - (Optional) ID to be use for label refering to input field.
  * @param {Function} onError - (Optional) Function to check input values and trigger error message. 
+ * @return {React Component} A view for input field with icon and action on error.
  */
 const InputField = ({ placeholder, errorMessage, label, id, type, icon, onError, disabled }) => {
   const { defaultClassName, optionalClassName, errorClassName, onBlurClassName, onFocusClassName, InputContainer, iconProps } = inputProps[type];
@@ -38,7 +39,7 @@ const InputField = ({ placeholder, errorMessage, label, id, type, icon, onError,
   }
 
   const handleChange = ({ target: { value }}) => {
-    const error = onError(value);
+    const error = onError ? onError(value) : null;
 
     if (error) {
       setError(true);

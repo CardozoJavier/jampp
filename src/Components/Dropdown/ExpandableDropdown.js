@@ -3,14 +3,20 @@ import { ButtonInput } from '../Button/styles';
 import { ButtonDropdownContainer } from './styles';
 import { getClassName, bemDestruct } from '../../utils';
 import { IconGenerator, DownChevronIcon } from '../UI/Icons';
-import { palette } from '../styles';
 import { OptionList } from '../OptionList';
 import dropdownProps from './dropdownProps';
 import { UniqueOption } from '../UniqueOption';
 
-const { gray } = palette;
 
-const ExpandableDropdown = ({ text, children, type = 'basic', leftIcon, disabled }) => {
+/**
+ * ExpandableDropdown component should be called with
+ * @param {String} type - (Required) It's defines the classes for displaying or not the option list, and button styles.
+ * @param {String} text - (Required) Text to be displayed inside button.
+ * @param {Array} children - (Required) The options to be display.
+ * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ * @return {React Component} A view for button and expandable dropdown of unique option selectable.
+ */
+const ExpandableDropdown = ({ text, children, type = 'basic', disabled }) => {
   const { defaultClassName, optionalClassName, buttonClassName } = dropdownProps[type];
 
   const [className, setClassName] = useState(defaultClassName);

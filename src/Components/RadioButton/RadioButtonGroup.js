@@ -8,6 +8,7 @@ import RadioButton from './RadioButton';
  * @param {String} name - (Required) String to handle radiobuttons into a group.
  * @param {String} defaultValue - (Optional)  It's to check a default radio button. It should match with RadioButton id.
  * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive the radio button id in first argument.
+ * @return {React Component} A view for radio buttons group.
  */
 const RadioButtonGroup = ({ children, name, defaultValue, onChange }) => {
   const [selectedOption, setSelectedOption] = useState(defaultValue);

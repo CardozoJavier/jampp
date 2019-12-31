@@ -7,22 +7,23 @@ import {
   EmailField,
 } from './styles';
 import { bemDestruct, settingClassName } from '../../utils';
-import { CheckIcon, IconGenerator, SearchIcon } from '../UI/Icons';
-import { palette } from '../styles';
+import { SearchIcon } from '../UI/Icons';
 import optionListProps from './optionListProps';
 import { InputField } from '../InputField';
 import { Button } from '../Button';
 
-const { white } = palette;
 
-const OptionList = ({ children, type, email, disabled, className, OptionItem }) => {
-  const {
-    iconProps,
-    iconClassName,
-    OptionContainer,
-    defaultClassName,
-    optionalClassName,
-  } = optionListProps[type];
+/**
+ * OptionListAccount component should be called with
+ * @param {String} type - (Required) It's defines the classes for button styles.
+ * @param {String} email - (Required) It's the email to be displayed above of sign-out button.
+ * @param {Array} children - (Required) The options to be displayed.
+ * @param {String} className - (Required) The className determines if list is opened or closed.
+ * @param {Function} OptionItem - (Required) It's each option component styled to be displayed into list.
+ * @return {React Component} A view for panel account with input field, a selectable list and sign out button.
+ */
+const OptionListAccount = ({ children, type, email, className, OptionItem }) => {
+  const { defaultClassName } = optionListProps[type];
   const isThereChildren = !!children;
   const childrenParsed = isThereChildren ? settingClassName(children, -1, defaultClassName) : [];
   const [array, setArray] = useState(childrenParsed);
@@ -36,7 +37,7 @@ const OptionList = ({ children, type, email, disabled, className, OptionItem }) 
   }
 
   return (
-    <OptionListContainer className={bemDestruct(className, disabled)}>
+    <OptionListContainer className={bemDestruct(className)}>
       {isThereChildren &&
         <>
           <InputField placeholder="Filter organization" type="icon-small-left" icon={SearchIcon} />
@@ -64,4 +65,4 @@ const OptionList = ({ children, type, email, disabled, className, OptionItem }) 
   );
 };
 
-export default OptionList;
+export default OptionListAccount;
