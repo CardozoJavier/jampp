@@ -23,22 +23,31 @@ const classesName = {
 
 /**
  *  Checkbox component should be called with
+ *  @param {String} id - (Optional) It's an unique ID to identifier each checkbox.
+ *  @param {String} label - (Optional) It's a text to be display next to checkbox.
  *  @param {String} type - (Required) Define dropdown classes for styling.
  *  @param {Boolean} right - (Required) It's required if left prop is not set. It's define the position of checkbox regarding text.
  *  @param {Boolean} left - (Required) It's required if right prop is not set. It's define the position of checkbox regarding text.
- *  @param {String} label - (Optional) It's a text to be display next to checkbox.
+ *  @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive one argument (true or false).
+ *  @param {Boolean} checked - (Optional) It's determines if checkbox is checked or not by default.
  *  @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
- * 
+ *  @return {React Component} A view for checkbox.
  */
-const Checkbox = ({ label, type = 'normal', right, left, disabled }) => {
+const Checkbox = ({ id, label, type = 'normal', right, left, onChange, checked = false, disabled }) => {
   const { defaultClassName, optionalClassName } = classesName[type];
   const { defaultLabel, selectedLabel } = classesName['label'];
-  const [className, setClassName] = useState(defaultClassName);
+  const initialState = checked ? optionalClassName : defaultClassName;
+
+  const [className, setClassName] = useState(initialState);
   const [labelClassName, setLabelClassName] = useState(defaultLabel);
+  const [status, setStatus] = useState(checked);
+  
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const toggleToLabelClassName = getClassName(labelClassName, defaultLabel, selectedLabel);
 
   const handleClick = () => {
+    onChange && onChange(id, !status);
+    setStatus(!status);
     setClassName(toggleToClassName);
     setLabelClassName(toggleToLabelClassName);
   }
