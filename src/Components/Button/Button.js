@@ -13,8 +13,9 @@ import { bemDestruct, getClassName } from '../../utils';
  * @param {Function} icon - (Optional) Function that returns an svg icon.
  * @param {Function} onClick - (Optional) Callback to trigger on onClick event.
  * @param {Object} children - (Optional) HTML element to be rendered, e.g.: strong tag inside button.
+ * @return {React Component} A view for button.
  */
-const Button = ({ label, children, icon, type, disabled, onClick, fixed }) => {
+const Button = ({ label, children, icon, type, disabled, onClick, onClickIcon, fixed }) => {
   const { defaultClassName, optionalClassName, ButtonContainer, iconProps, iconClassName } = buttonProps[type];
 
   const [className, setClassName] = useState(defaultClassName);
@@ -36,7 +37,11 @@ const Button = ({ label, children, icon, type, disabled, onClick, fixed }) => {
       {icon &&
         <IconGenerator
           renderIcon={icon}
-          props={{ ...iconProps, className: bemDestruct(iconClassName, disabled) }}
+          props={{
+            ...iconProps,
+            className: bemDestruct(iconClassName, disabled),
+            onClick: onClickIcon
+          }}
         />
       }
     </ButtonContainer>
