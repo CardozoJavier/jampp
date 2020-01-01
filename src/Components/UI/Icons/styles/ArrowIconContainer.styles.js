@@ -8,9 +8,12 @@ export default styled.div`
   margin: ${({ margin }) => margin || '0 10px'};
 
   svg {
-    fill: ${({ fill }) => fill};
     width: ${({ width }) => width};
     height: ${({ height }) => height};
     vertical-align: middle;
+
+    path {
+      fill: ${({ fill }) => fill};
+    }
   }
 `;
