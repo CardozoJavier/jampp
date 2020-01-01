@@ -12,11 +12,14 @@ export default styled.div`
   // height: ${({ height }) => height};
 
 
-  // svg {
-  //   width: ${({ width }) => width};
-  //   height: ${({ height }) => height};
-  //   fill: ${({ fill }) => fill};
-  // }
+  svg {
+    width: ${({ width }) => width};
+    height: ${({ height }) => height};
+
+    path {
+      fill: ${({ fill }) => fill};
+    }
+  }
 
   // &.icon {
   //   &.accessory{

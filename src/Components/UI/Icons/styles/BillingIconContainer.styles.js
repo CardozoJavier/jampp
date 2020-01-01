@@ -7,5 +7,6 @@ export default styled.div`
 
   path {
     fill: ${({ checked }) => checked ? action : gray.g3};
+    fill: ${({ fill }) => fill};
   }
 `;

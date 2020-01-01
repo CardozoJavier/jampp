@@ -115,6 +115,9 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
         &__disabled {
           background-color: ${gray.g0};
           color: ${gray.g07};
+          ${DownChevronIconContainer} {
+            fill: ${gray.g07};
+          }
         }
       }
 
@@ -147,6 +150,9 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
         &__disabled {
           cursor: default;
           color: ${gray.g07};
+          ${DownChevronIconContainer} {
+            fill: ${gray.g2};
+          }
         }
       }
       &--noBorderLink {

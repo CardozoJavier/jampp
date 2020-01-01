@@ -10,10 +10,13 @@ export default styled.div`
   // left: ${({ left }) => left};
 
   svg {
-    // fill: ${({ fill }) => fill};
-    // width: ${({ width }) => width};
-    // height: ${({ height }) => height};
-    // vertical-align: middle;
+    width: ${({ width }) => width};
+    height: ${({ height }) => height};
+    vertical-align: middle;
+
+    path {
+      fill: ${({ fill }) => fill};
+    }
   }
 
   &.dropdown {
