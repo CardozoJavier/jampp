@@ -19,7 +19,7 @@ const { gray } = palette;
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @return {React Component} A view for button and dropdown of unique option selectable.
  */
-const OptionDropdown = ({ text, children, type = 'basic', leftIcon, disabled }) => {
+const OptionDropdown = ({ text, children, type = 'basic', leftIcon, onChange, disabled }) => {
   const { defaultClassName, optionalClassName, buttonClassName } = dropdownProps[type];
 
   const [className, setClassName] = useState(defaultClassName);
@@ -52,7 +52,7 @@ const OptionDropdown = ({ text, children, type = 'basic', leftIcon, disabled }) 
           disabled={disabled}
         />
       </ButtonDropdownContainer>
-      <OptionList type="unique-option" OptionItem={UniqueOption} children={children} className={className} />
+      <OptionList type="unique-option" OptionItem={UniqueOption} children={children} className={className} onChange={onChange} />
     </>
   );
 };

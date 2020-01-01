@@ -20,12 +20,13 @@ export default {
  * @prop {String} placeholder - (Optional) It's to display text into input field.
  * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @prop {Function} icon - (Optional) Function that returns an svg icon.
+ * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument.
  * @prop {String} label - (Optional) Text to be display in label.
  * @prop {String} id - (Optional) ID to be use for label refering to input field.
  */
 export const Basic = () => (
   <div style={{ width: '250px' }}>
-    <InputField placeholder="Text" type="basic" />
+    <InputField placeholder="Text" type="basic" onChange={value => console.log(value)} />
   </div>
 );
 

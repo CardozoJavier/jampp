@@ -3,7 +3,6 @@ import { OptionCheckboxGroup, MenuTitle } from './styles';
 import { bemDestruct, settingClassName } from '../../utils';
 import optionListProps from './optionListProps';
 
-
 /**
  * OptionList component should be called with
  * @param {Array} children - (Required) The options to be displayed.
@@ -11,9 +10,10 @@ import optionListProps from './optionListProps';
  * @param {String} className - (Required) The className determines if list is opened or closed.
  * @param {String} menuTitle - (Optional) It's the title in dropdown opened.
  * @param {Function} OptionItem - (Required) It's each option component styled to be displayed into list.
+ * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
  * @return {React Component} A view in which one option can be selected.
  */
-const OptionList = ({ children, type, className, menuTitle, OptionItem }) => {
+const OptionList = ({ children, type, className, menuTitle, OptionItem, onChange }) => {
   const { defaultClassName } = optionListProps[type];
   const childrenParsed = settingClassName(children, -1, defaultClassName);
   const [array, setArray] = useState(childrenParsed);
@@ -24,6 +24,7 @@ const OptionList = ({ children, type, className, menuTitle, OptionItem }) => {
   const handleCheck = (e, id) => {
     const inputsArray = settingClassName(children, id, defaultClassName);
     setArray(inputsArray);
+    onChange && onChange(id);
   }
 
   return (

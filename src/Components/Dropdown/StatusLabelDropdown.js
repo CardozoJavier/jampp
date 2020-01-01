@@ -3,12 +3,9 @@ import { ButtonInput } from '../Button/styles';
 import { ButtonDropdownContainer } from './styles';
 import { getClassName, bemDestruct } from '../../utils';
 import { IconGenerator, DownChevronIcon } from '../UI/Icons';
-import { palette } from '../styles';
 import { OptionList } from '../OptionList';
 import dropdownProps from './dropdownProps';
 import { StatusLabelOption } from '../StatusLabelOption';
-
-const { gray } = palette;
 
 /**
  * StatusLabelDropdown component should be called with
@@ -16,10 +13,11 @@ const { gray } = palette;
  * @param {String} text - (Required) Text to be displayed inside button.
  * @param {Array} children - (Required) The options to be display.
  * @param {Function} leftIcon - (Optional) Function that returns an svg icon to be displayed inside button.
+ * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @return {React Component} A view for button and dropdown of unique status label selectable.
  */
-const StatusLabelDropdown = ({ text, children, type = 'basic', leftIcon, disabled }) => {
+const StatusLabelDropdown = ({ text, children, type = 'basic', leftIcon, onChange, disabled }) => {
   const { defaultClassName, optionalClassName, buttonClassName } = dropdownProps[type];
 
   const [className, setClassName] = useState(defaultClassName);
@@ -52,7 +50,7 @@ const StatusLabelDropdown = ({ text, children, type = 'basic', leftIcon, disable
           disabled={disabled}
         />
       </ButtonDropdownContainer>
-      <OptionList type="status-option" OptionItem={StatusLabelOption} children={children} className={className} />
+      <OptionList type="status-option" OptionItem={StatusLabelOption} children={children} className={className} onChange={onChange} />
     </>
   );
 };
