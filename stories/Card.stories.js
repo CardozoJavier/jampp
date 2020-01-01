@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Modal } from '../src/Components';
+import { Card } from '../src/Components';
 
 export default {
   title: 'Cards',

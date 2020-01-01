@@ -28,7 +28,7 @@ const classesName = {
  *  @param {String} type - (Required) Define dropdown classes for styling.
  *  @param {Boolean} right - (Required) It's required if left prop is not set. It's define the position of checkbox regarding text.
  *  @param {Boolean} left - (Required) It's required if right prop is not set. It's define the position of checkbox regarding text.
- *  @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive one argument (true or false).
+ *  @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive two arguments: checkbox id and true/false value.
  *  @param {Boolean} checked - (Optional) It's determines if checkbox is checked or not by default.
  *  @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  *  @return {React Component} A view for checkbox.
