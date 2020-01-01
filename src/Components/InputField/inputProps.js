@@ -21,8 +21,8 @@ const inputProps = {
     InputContainer: InputFieldContainer,
     iconProps: {
       fill: gray.g07,
-      width: '11px',
-      height: '11px',
+      width: '13px',
+      height: '13px',
     },
   },
   "searchbar": {
@@ -33,8 +33,8 @@ const inputProps = {
     InputContainer: InputFieldContainer,
     iconProps: {
       fill: gray.g07,
-      width: '11px',
-      height: '11px',
+      width: '13px',
+      height: '13px',
     },
   },
   "icon-right": {
