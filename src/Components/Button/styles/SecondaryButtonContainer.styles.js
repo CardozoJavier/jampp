@@ -25,7 +25,7 @@ export default styled.div`
         }
 
         &--action {
-          transform: none;
+          // transform: none;
         }
 
         &--gray {

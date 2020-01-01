@@ -59,7 +59,7 @@ const OptionListAccount = ({ children, type, email, className, OptionItem }) => 
         </>
       }
       <ButtonContainer>
-        <Button label="Sign out" type="secondary-gray-medium" fixed />
+        <Button label="Sign out" type="secondary-gray-medium" />
       </ButtonContainer>
     </OptionListContainer>
   );

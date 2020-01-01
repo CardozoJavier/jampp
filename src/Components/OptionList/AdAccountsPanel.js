@@ -40,7 +40,7 @@ const AdAccountsList = ({ children, email, disabled, className }) => (
     </EmailFieldContainer>
 
     <ButtonContainer>
-      <Button label="Sign out" type="secondary-gray-medium" fixed />
+      <Button label="Sign out" type="secondary-gray-medium" />
     </ButtonContainer>
   </OptionListContainer>
 );
