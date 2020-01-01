@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
-const { gray, green } = palette;
+const { gray, green, blue, red, yellow } = palette;
 
 export const ToggleSwitchContainer = styled.div`
   border-radius: 15px;
@@ -24,7 +24,7 @@ export const ToggleSwitchContainer = styled.div`
       
       &-default {}
       &.switch {
-        &--green {
+        &--green, &--blue, &--red, &--yellow {
           &__disabled {
             cursor: default;
             background-color: ${gray.g0};
@@ -44,6 +44,45 @@ export const ToggleSwitchContainer = styled.div`
       &--green {
         &__on {
           background-color: ${green.g1};
+        }
+
+        &__disabled {
+          background-color: ${gray.g0};
+          circle {
+            stroke: ${gray.g0};
+          }
+        }
+      }
+
+      &--red {
+        &__on {
+          background-color: ${red.r1};
+        }
+
+        &__disabled {
+          background-color: ${gray.g0};
+          circle {
+            stroke: ${gray.g0};
+          }
+        }
+      }
+
+      &--blue {
+        &__on {
+          background-color: ${blue.b05};
+        }
+
+        &__disabled {
+          background-color: ${gray.g0};
+          circle {
+            stroke: ${gray.g0};
+          }
+        }
+      }
+
+      &--yellow {
+        &__on {
+          background-color: ${yellow.y0};
         }
 
         &__disabled {

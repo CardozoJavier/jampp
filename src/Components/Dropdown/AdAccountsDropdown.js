@@ -18,8 +18,17 @@ const classesName = {
   },
 };
 
-const AdAccountsDropdown = ({ name, description, email, type = 'normal', avatar, children }) => {
-  const { defaultClassName, optionalClassName } = classesName[type];
+/**
+ *  AdAccountsDropdown component should be called with
+ *  @param {String} avatar - (Required) The relative or absolute path of an image to be rendered in header. 
+ *  @param {String} name - (Required) It's the name to be displayed next to avatar.
+ *  @param {String} description - (Required) It's the description to be displayed below of name.
+ *  @param {String} email - (Required) It's the email to be displayed above of sign-out button.
+ *  @param {Array} children - (Required) The options to be display.
+ *  @return {React Component} A view for account dropdown with avatar and multiple expandable dropdowns inside.
+ */
+const AdAccountsDropdown = ({ name, description, email, avatar, children }) => {
+  const { defaultClassName, optionalClassName } = classesName['normal'];
 
   const [className, setClassName] = useState(defaultClassName);
   const [chevron, setChevron] = useState(classesName.chevron.defaultClassName);

@@ -33,11 +33,9 @@ export const InputFieldContainer = styled.div`
 
           &__disabled {
             border: 1px solid ${gray.g1};
-
             input {
               background-color: ${gray.g0};
             }
-  
             input::placeholder {
               color: ${gray.g05};
             }
@@ -96,7 +94,7 @@ export const InputFieldContainer = styled.div`
           border: 1px solid ${gray.g1};
         }
 
-        &:hover, &__focus {
+        &__focus {
           border: 1px solid ${gray.g07};
           input::placeholder {
             color: ${gray.g3};

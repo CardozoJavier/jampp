@@ -7,6 +7,6 @@ export const HeaderContainer = styled.div`
   background-color: white;
   align-items: center;
   padding: 0 10px;
-  height: 52px;
+  height: 56px;
 `;
 

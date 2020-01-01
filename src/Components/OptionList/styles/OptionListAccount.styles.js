@@ -6,7 +6,7 @@ const { black, gray } = palette;
 export const OptionListContainer = styled(OptionCheckboxGroup)`
   width: 250px;
   padding: 48px 20px 20px 20px;
-  top: -16px;
+  top: -12px;
   right: -5px;
   background-color: #fff;
 `;

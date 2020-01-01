@@ -7,12 +7,21 @@ import {
   Input,
   LabelContainer,
   Label,
-  InputBasicContainer,
   InputControlledContainer,
 } from './styles';
 import { bemDestruct } from '../../utils';
 import inputProps from './inputProps';
 
+/**
+ * InputControlled component should be called with
+ * @param {String} type - (Required) It's to define styles of input field.
+ * @param {String} placeholder - (Optional) It's to display text into input field. It'll be in second place.
+ * @param {String} boldPlaceholder - (Optional) It's to display bold text into input field. It'll be in first place.
+ * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ * @param {String} label - (Optional) Text to be display in label.
+ * @param {String} id - (Optional) ID to be use for label refering to input field.
+ * @return {React Component} A view for input field with custom bold placeholder.
+ */
 const InputControlled = ({
   id,
   type,
@@ -21,7 +30,7 @@ const InputControlled = ({
   placeholder,
   boldPlaceholder,
 }) => {
-  const { defaultClassName, optionalClassName, inputClassName, onFocusClassName, onBlurClassName } = inputProps[type];
+  const { defaultClassName, optionalClassName, onFocusClassName, onBlurClassName } = inputProps[type];
   const [className, setClassName] = useState(defaultClassName);
   const [input, setInput] = useState(false);
 
@@ -32,7 +41,7 @@ const InputControlled = ({
       setClassName(optionalClassName);
     } else {
       setInput(false);
-      setClassName(defaultClassName);
+      setClassName(onFocusClassName);
     };
   };
 

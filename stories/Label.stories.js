@@ -7,51 +7,63 @@ import {
 
 import { StatusLabelContainer } from './styles/StoriesContainer.styles';
 
-import { Button, } from '../src/Components';
-import { LabelContainer } from '../src/Components/InputField/styles';
+import { StatusLabel, DefaultLabel } from '../src/Components';
 
 export default {
   title: 'Label',
 };
 
-
+/**
+ * DefaultLabel component should be called with
+ * @prop {String} text - (Required) Text to be display inside label.
+ * @prop {String} size - (Optional) Define label size, it can be small or medium. Small is default.
+ * @prop {Function} onClose - (Optional) Callback to trigger on onClick event on X icon.
+ */
 export const Default = () => (
   <>
-    <Button label="Label" type="label-default-small" icon={XIcon} />
-    <Button label="Label" type="label-default-medium" icon={XIcon} />
+    <DefaultLabel text="Label" size="small" />
+    <DefaultLabel text="Label" size="medium" onClose={() => console.log('Closing label is clicked')} />
   </>
 );
 
+/**
+ * StatusLabel component should be called with
+ * @prop {String} text - (Required) Text to be display inside label.
+ * @prop {String} color - (Required) Define the color pill.
+ * @prop {Function} icon - (Optional) Function that returns an svg icon.
+ */
 export const Status = () => (
   <StatusLabelContainer>
-    <LabelContainer>
+    <div>
       <div style={{ margin: '5px' }}>
-        <Button label="Status" type="status-small-green" />
+        <StatusLabel text="Status" color="green" />
       </div>
       <div style={{ margin: '5px' }}>
-        <Button label="Status" type="status-small-red" />
+        <StatusLabel text="Status" color="red" />
       </div>
       <div style={{ margin: '5px' }}>
-        <Button label="Status" type="status-small-yellow" />
+        <StatusLabel text="Status" color="yellow" />
       </div>
       <div style={{ margin: '5px' }}>
-        <Button label="Status" type="status-small-blue" />
+        <StatusLabel text="Status" color="blue" />
       </div>
-    </LabelContainer>
+    </div>
 
-    <LabelContainer>
+    <div>
       <div style={{ margin: '5px' }}>
-        <Button label="Status" type="status-small-green" icon={EllipseIcon} />
+        <StatusLabel text="Status" color="green" icon={EllipseIcon} />
       </div>
       <div style={{ margin: '5px' }}>
-        <Button label="Status" type="status-small-red" icon={EllipseIcon} />
+        <StatusLabel text="Status" color="red" icon={EllipseIcon} />
       </div>
       <div style={{ margin: '5px' }}>
-        <Button label="Status" type="status-small-yellow" icon={EllipseIcon} />
+        <StatusLabel text="Status" color="yellow" icon={EllipseIcon} />
       </div>
       <div style={{ margin: '5px' }}>
-        <Button label="Status" type="status-small-blue" icon={EllipseIcon} />
+        <StatusLabel text="Status" color="blue" icon={EllipseIcon} />
       </div>
-    </LabelContainer>
+    </div>
   </StatusLabelContainer>
 );
+
+

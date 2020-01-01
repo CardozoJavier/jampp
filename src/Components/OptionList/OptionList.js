@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import { OptionCheckboxGroup, MenuTitle } from './styles';
 import { bemDestruct, settingClassName } from '../../utils';
-import { CheckIcon, IconGenerator } from '../UI/Icons';
-import { palette } from '../styles';
 import optionListProps from './optionListProps';
 
-const { white } = palette;
-
-const OptionList = ({ children, type, disabled, className, menuTitle, OptionItem }) => {
-  const { defaultClassName, optionalClassName, OptionContainer, iconProps, iconClassName } = optionListProps[type];
+/**
+ * OptionList component should be called with
+ * @param {Array} children - (Required) The options to be displayed.
+ * @param {String} type - (Required) It's defines the classes for button styles.
+ * @param {String} className - (Required) The className determines if list is opened or closed.
+ * @param {String} menuTitle - (Optional) It's the title in dropdown opened.
+ * @param {Function} OptionItem - (Required) It's each option component styled to be displayed into list.
+ * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
+ * @return {React Component} A view in which one option can be selected.
+ */
+const OptionList = ({ children, type, className, menuTitle, OptionItem, onChange }) => {
+  const { defaultClassName } = optionListProps[type];
   const childrenParsed = settingClassName(children, -1, defaultClassName);
   const [array, setArray] = useState(childrenParsed);
 
@@ -18,10 +24,11 @@ const OptionList = ({ children, type, disabled, className, menuTitle, OptionItem
   const handleCheck = (e, id) => {
     const inputsArray = settingClassName(children, id, defaultClassName);
     setArray(inputsArray);
+    onChange && onChange(id);
   }
 
   return (
-    <OptionCheckboxGroup className={bemDestruct(className, disabled)}>
+    <OptionCheckboxGroup className={bemDestruct(className)}>
       {menuTitle && <MenuTitle>{menuTitle}</MenuTitle>}
       {array.map((input) => (
         <OptionItem

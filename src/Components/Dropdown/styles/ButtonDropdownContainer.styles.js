@@ -40,7 +40,7 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
           color: ${black};
 
           &__disabled {
-            color: ${gray.g4};
+            color: ${gray.g07};
           }
         }
       }

@@ -3,16 +3,26 @@ import { TabContainer, TabText, InputContainer, InputRadio, TabButton } from './
 import { bemDestruct } from '../../utils';
 import { IconGenerator } from '../UI/Icons';
 
-const Tab = ({ id, name, text, value, onChange, icon, checked, disabled }) => (
+/**
+ * Tab component should be called with
+ * @param {String} id - (Required) It's an unique ID to identifier each tab in TabGroup.
+ * @param {String} name - (Required) String to handle radiobuttons into a group.
+ * @param {String} text - (Required) It's the name of tab.
+ * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive the id option in first argument.
+ * @param {Function} icon - (Optional) Function that returns an svg icon.
+ * @param {Boolean} checked - (Required) Indicate if tab is selected or not.
+ * @param {Boolean} disabled - (Optional) Disable component if is true.
+ * @return {React Component} A view for an individual tab.
+ */
+const Tab = ({ id, name, text, onChange, icon, checked, disabled }) => (
   <TabContainer>
     <InputContainer disabled={disabled}>
       <InputRadio
         id={id}
         type="radio"
         name={name}
-        value={value}
         checked={checked}
-        onChange={e => onChange(id, value, e)}
+        onChange={() => onChange(id)}
       />
       <TabButton role="button">
         <TabText

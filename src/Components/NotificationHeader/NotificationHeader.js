@@ -22,7 +22,13 @@ const types = {
   },
 };
 
-const NotificationHeader = ({ text, type }) => (
+/**
+ * NotificationHeader component should be called with
+ * @param {String} text - (Optional) Message to be desplayed into header.
+ * @param {String} type - (Required) It's define the header styles.
+ * @return {React Component} A view for notifications header with X icon on right.
+ */
+const NotificationHeader = ({ text, type, onClose }) => (
   <NotificationHeaderContainer className={bemDestruct(types[type].className)}>
     <TextContainer>
       <IconGenerator
@@ -47,6 +53,7 @@ const NotificationHeader = ({ text, type }) => (
         width: '8px',
         height: '8px',
         margin: '0 20px 0 0',
+        onClick: onClose,
       }}
     />
   </NotificationHeaderContainer>

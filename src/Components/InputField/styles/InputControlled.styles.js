@@ -29,7 +29,16 @@ export const ControlledInputFieldContainer = styled.div`
             color: ${gray.g07};
           }
 
-          &__focus, &__typing {
+          &__focus, &__typing {}
+
+          &__disabled {
+            border: 1px solid ${gray.g1};
+            input {
+              background-color: ${gray.g0};
+            }
+            p {
+              color: ${gray.g05};
+            }
           }
         }
       }
@@ -37,9 +46,7 @@ export const ControlledInputFieldContainer = styled.div`
   }
 
   .placeholder {
-    
     &-medium {}
-    
     &.controlled {
       &--default {
         &__typing {
@@ -48,6 +55,26 @@ export const ControlledInputFieldContainer = styled.div`
       }
     }
   }
+
+  &.placeholder {
+    &.controlled {
+      &--default {
+        &__typing {
+          border: 1px solid ${gray.g3};
+        }
+
+        &__disabled {
+          border: 1px solid ${gray.g1};
+          input {
+            background-color: ${gray.g0};
+          }
+          p {
+            color: ${gray.g05};
+          }
+        }
+      }
+    }
+  } 
 
   &.border {
     &-medium {}
@@ -62,15 +89,6 @@ export const ControlledInputFieldContainer = styled.div`
   } 
 `;
 
-export const CustomPlaceholderContainer = styled.label`
-  position: absolute;
-  margin-left: 8px;
-
-  &:hover {
-    cursor: text;
-  }
-`;
-
 export const CustomPlaceholderNormal = styled.p`
   color: ${gray.g07};
   display: inline;
@@ -81,6 +99,28 @@ export const CustomPlaceholderNormal = styled.p`
 export const CustomPlaceholderBold = styled(CustomPlaceholderNormal)`
   font-weight: 900;
 `;
+
+export const CustomPlaceholderContainer = styled.label`
+  position: absolute;
+  margin-left: 8px;
+
+  &:hover {
+    cursor: text;
+  }
+
+  &.border {
+    &.controlled {
+      &--default {
+        &__focus {
+          p {
+            color: ${gray.g3};
+          }
+        }
+      }
+    }
+  }
+`;
+
 
 export const InputControlledContainer = styled.div`
   display: flex;

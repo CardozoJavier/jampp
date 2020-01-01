@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
-import { CheckboxLabel } from './CheckboxLabel.styles';
 const { gray, violet, action } = palette;
 
 export const Container = styled.div`

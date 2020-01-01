@@ -12,7 +12,14 @@ import { InputField } from '../InputField';
 import { Button } from '../Button';
 import { ExpandableDropdown } from '../Dropdown';
 
-
+/**
+ *  AdAccountsList component should be called with
+ *  @param {String} email - (Required) It's the email to be displayed above of sign-out button.
+ *  @param {Array} children - (Required) The options to be display in expandable dropdown.
+ *  @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ *  @param {String} className - (Required) It's the className that switching between closed and opened dropdown.
+ *  @return {React Component} A view for panel account with input field, a selectable list and sign out button.
+ */
 const AdAccountsList = ({ children, email, disabled, className }) => (
   <OptionListContainer className={bemDestruct(className, disabled)}>
     <InputField placeholder="Filter organization" type="icon-small-left" icon={SearchIcon} />
@@ -33,7 +40,7 @@ const AdAccountsList = ({ children, email, disabled, className }) => (
     </EmailFieldContainer>
 
     <ButtonContainer>
-      <Button label="Sign out" type="secondary-gray-medium" fixed />
+      <Button label="Sign out" type="secondary-gray-medium" />
     </ButtonContainer>
   </OptionListContainer>
 );

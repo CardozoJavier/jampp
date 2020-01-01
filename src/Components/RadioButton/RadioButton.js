@@ -10,16 +10,26 @@ import {
 } from './styles';
 import { bemDestruct } from '../../utils';
 
-const RadioButton = ({ id, name, text = '', value, onChange, checked, suffix, disabled }) => (
+/**
+ * RadioButton component should be called with
+ * @param {String} id - (Required) It's an unique ID to identifier each radiobutton in group.
+ * @param {Boolean} checked - (Required) Indicate if tab is selected or not.
+ * @param {String} name - (Required) Name of radiobuttons group necesary to handle check states.
+ * @param {String} text - (Optional) Text to be displayed next to radio button.
+ * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive the radio button id in first argument.
+ * @param {String} suffix - (Optional) Text to be displayed below of radio button.
+ * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ * @return {React Component} A view for radio button with or not label and suffix.
+ */
+const RadioButton = ({ id, name, text = '', onChange, checked, suffix, disabled }) => (
   <RadioButtonContainer>
     <InputTypeRadioContainer disabled={disabled}>
       <InputTypeRadio
         id={id}
         type="radio"
         name={name}
-        value={value}
         checked={checked}
-        onChange={e => onChange(id, value, e)}
+        onChange={() => onChange(id)}
       />
       <Radio className={bemDestruct('input radio--visible', disabled)} />
     </InputTypeRadioContainer>
