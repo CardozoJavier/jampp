@@ -9,7 +9,7 @@ import { IconGenerator, XIcon } from '../UI/Icons';
  * @param {Function} icon - (Optional) Function that returns an svg icon.
  * @return {React Component} A view for plain modal with title with or not icon and footer.
  */
-const Modal = ({ title, footer, icon }) => (
+const Modal = ({ title, footer, icon, children }) => (
   <ModalContainer>
     {icon &&
       <IconTitleContainer>
@@ -38,6 +38,7 @@ const Modal = ({ title, footer, icon }) => (
         />
       </ModalHeader>
     }
+    {children}
     {footer &&
       <ModalFooter />
     }
