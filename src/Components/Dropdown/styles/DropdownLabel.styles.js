@@ -1,6 +1,9 @@
 import styled from 'styled-components';
+import { palette } from '../../styles';
+const { gray } = palette;
 
-export const DropdownLabel = styled.p`
+export const DropdownLabel = styled.label`
   font-size: 12px;
-  margin: 5px 0;
+  margin: 0;
+  color: ${gray.g4};
 `;

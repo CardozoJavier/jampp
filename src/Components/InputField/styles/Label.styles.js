@@ -1,6 +1,8 @@
 import styled from 'styled-components';
+import { palette } from '../../styles';
+const { gray } = palette;
 
 export default styled.label`
-  margin-left: 3px;
   font-size: 12px;
+  color: ${gray.g4};
 `;

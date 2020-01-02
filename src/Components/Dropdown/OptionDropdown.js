@@ -37,12 +37,12 @@ const OptionDropdown = ({ text, children, type = 'basic', leftIcon, onChange, di
     <>
       <ButtonDropdownContainer className={bemDestruct(buttonClassName, disabled)} onClick={disabled ? null : handleClick}>
         {leftIcon &&
-            <IconGenerator
-              renderIcon={leftIcon}
-              props={{}}
-              disabled={disabled}
-            />
-          }
+          <IconGenerator
+            renderIcon={leftIcon}
+            props={{}}
+            disabled={disabled}
+          />
+        }
         <ButtonInput children={text} />
         <IconGenerator
           renderIcon={DownChevronIcon}

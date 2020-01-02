@@ -54,7 +54,7 @@ const InputField = ({ placeholder, errorMessage, label, id, type, icon, onError,
 
   return (
     <LabelContainer>
-      <Label htmlFor={id}>{label}</Label>
+      {label && <Label htmlFor={id}>{label}</Label>}
       <InputContainer
         onClick={disabled ? null : handleClick}
         className={bemDestruct(className, disabled)}
