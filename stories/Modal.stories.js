@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Button } from '../src/Components';
 import { CenteredModal } from '../src/Components/Modal';
-import { HeaderTitle, } from '../src/Components/Modal/styles';
+import { HeaderTitle, ModalFooter, } from '../src/Components/Modal/styles';
 import { TrashIcon } from '../src/Components/UI/Icons';
 
 export default {
@@ -11,7 +11,6 @@ export default {
 /**
  * Modal component can be called with
  * @prop {String} title - (Optional)  It's the modal title displayed with an X icon on your right.
- * @prop {Boolean} footer - (Optional) It's define modal with or with not footer.
  * @prop {Function} icon - (Optional) Function that returns an svg icon.
  */
 export const PlainModal = () => (
@@ -19,7 +18,9 @@ export const PlainModal = () => (
 );
 
 export const WithTitle = () => (
-  <Modal title="Title" footer />
+  <Modal title="Title">
+    <ModalFooter />
+  </Modal>
 );
 
 export const WithTitleIcon = () => (
