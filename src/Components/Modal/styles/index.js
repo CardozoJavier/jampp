@@ -1,9 +1,11 @@
 export {
   ModalRowContainer,
+  ModalContainerA,
+  ModalContainer,
   ModalFooter,
   ModalHeader,
   ModalTitle,
-  ModalContainer,
+  ModalText,
 } from './Modal.styles';
 export { HeaderTitle } from './HeaderTitle.styles';
 export { PrimaryAction } from './PrimaryAction.styles';
