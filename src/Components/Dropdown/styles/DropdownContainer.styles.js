@@ -4,7 +4,7 @@ export const DropdownContainer = styled.div`
   display: flex;
   position: relative;
   flex-direction: ${({ direction }) => direction || ''};
-  align-items: ${({ align }) => align || 'center'};
+  align-items: ${({ alignItems }) => alignItems || 'center'};
   margin: ${({ margin }) => margin};
   padding: ${({ padding }) => padding};
   width: ${({ width }) => width};
