@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Button } from '../src/Components';
 import { CenteredModal } from '../src/Components/Modal';
-import { HeaderTitle, ModalFooter, } from '../src/Components/Modal/styles';
+import { HeaderTitle, ModalFooter, ModalContainer, } from '../src/Components/Modal/styles';
 import { TrashIcon } from '../src/Components/UI/Icons';
 
 export default {
@@ -14,17 +14,24 @@ export default {
  * @prop {Function} icon - (Optional) Function that returns an svg icon.
  */
 export const PlainModal = () => (
-  <Modal />
+  <ModalContainer width="600px">
+    <Modal />
+  </ModalContainer>
 );
 
 export const WithTitle = () => (
-  <Modal title="Title">
-    <ModalFooter />
-  </Modal>
+  <ModalContainer width="600px">
+    <Modal title="Title">
+      <ModalFooter />
+    </Modal>
+  </ModalContainer>
+
 );
 
 export const WithTitleIcon = () => (
-  <Modal title="Title" icon={TrashIcon} />
+  <ModalContainer width="600px">
+    <Modal title="Title" icon={TrashIcon} />
+  </ModalContainer>
 );
 
 /**

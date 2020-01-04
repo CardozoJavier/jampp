@@ -57,7 +57,7 @@ export const OptionButtonContainer = styled.div`
 
     &.option, &.basic, &.standalone {
       ${SwitchButtonInput} {
-        padding: 10px 15px;
+        padding: 8px 15px;
       }
       
       /*************************
