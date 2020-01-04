@@ -1,27 +1,33 @@
 import React from 'react';
 import {
+  Step,
   Modal,
-  InputField,
-  MultipleOptionDropdown,
   Button,
+  Card,
   Checkbox,
+  InputField,
   OptionDropdown,
   FooterBreadcrumb,
-  Step,
+  MultipleOptionDropdown,
 } from '../src/Components';
 import {
   DropdownLabel,
   DropdownContainer,
 } from '../src/Components/Dropdown/styles';
 import {
-  ModalRowContainer,
-  ModalContainerA,
-  ModalFooter,
   ModalText,
+  ModalFooter,
   ModalContainer,
+  CreationHeader,
+  ModalContainerA,
+  CreationContainer,
+  ModalRowContainer,
+  CreationHeaderTitle,
+  CreationHeaderDescription,
 } from '../src/Components/Modal/styles';
+import { CardContainer } from '../src/Components/Card/styles';
 import { Option } from '../src/Components/OptionList/styles';
-import { TrashIcon, FilterIcon } from '../src/Components/UI/Icons';
+import { FilterIcon } from '../src/Components/UI/Icons';
 import { palette } from '../src/Components/styles';
 import { SwitchGroup } from '../src/Components/Switch';
 import { LabelContainer } from '../src/Components/InputField/styles';
@@ -39,18 +45,18 @@ export const ModalA = () => (
         <LabelContainer padding="0 10px 0 0" margin="0 5px 0 0">
           <InputField label="Advertiser Name" id='input1' placeholder="Name" type="basic" onChange={value => console.log(value)} />
         </LabelContainer>
-        <DropdownContainer width='100%' direction='column' align='start' margin="0 0 0 15px">
+        <DropdownContainer width='100%' direction='column' alignItems='start' margin="0 0 0 15px">
           <DropdownLabel>Vertical</DropdownLabel>
           <MultipleOptionDropdown text="Select Vertical" type='basic' />
         </DropdownContainer>
       </ModalRowContainer>
 
       <ModalRowContainer padding="20px" justifyContent="space-between">
-        <DropdownContainer width='100%' direction='column' align='start' margin="0 15px 0 0">
+        <DropdownContainer width='100%' direction='column' alignItems='start' margin="0 15px 0 0">
           <DropdownLabel>Country</DropdownLabel>
           <OptionDropdown text="Argentina" type='basic' />
         </DropdownContainer>
-        <DropdownContainer width='100%' direction='column' align='start' margin="0 0 0 15px">
+        <DropdownContainer width='100%' direction='column' alignItems='start' margin="0 0 0 15px">
           <DropdownLabel>Region</DropdownLabel>
           <MultipleOptionDropdown text="Select Region" type='basic' />
         </DropdownContainer>
@@ -58,7 +64,7 @@ export const ModalA = () => (
 
 
       <ModalRowContainer padding="20px" justifyContent="space-between">
-        <DropdownContainer width='47.5%' direction='column' align='start' margin="0 15px 0 0">
+        <DropdownContainer width='47.5%' direction='column' alignItems='start' margin="0 15px 0 0">
           <DropdownLabel>Domain</DropdownLabel>
           <MultipleOptionDropdown text="http://www.yourdomain.com/" type='basic'>
             <Checkbox label="Option 1" type="dropdown" right />
@@ -98,7 +104,7 @@ export const ModalC = () => (
   <ModalContainer width="600px">
     <Modal title="Modal Title">
       <ModalRowContainer padding='0 20px' justifyContent="space-between">
-        <DropdownContainer width='50%' direction='column' align='start'>
+        <DropdownContainer width='50%' direction='column' alignItems='start'>
           <DropdownLabel>Vertical</DropdownLabel>
           <MultipleOptionDropdown text="Select Vertical" type='basic' />
         </DropdownContainer>
@@ -115,11 +121,11 @@ export const ModalC = () => (
 
 
       <ModalRowContainer padding='0 20px 20px 20px' justifyContent="flex-start">
-        <DropdownContainer width='50%' direction='column' align='start'>
+        <DropdownContainer width='50%' direction='column' alignItems='start'>
           <DropdownLabel>Domain</DropdownLabel>
           <MultipleOptionDropdown text="http://www.yourdomain.com/" type='basic' />
         </DropdownContainer>
-        <DropdownContainer width='25%' direction='column' align='start' margin="0 0 0 40px">
+        <DropdownContainer width='25%' direction='column' alignItems="start" margin="0 0 0 40px">
           <DropdownLabel>Domain</DropdownLabel>
           <MultipleOptionDropdown text="Text" type='basic' />
         </DropdownContainer>
@@ -133,45 +139,55 @@ export const ModalC = () => (
 );
 
 export const ModalD = () => (
-  <div style={{ display: 'flex', flexDirection: 'column', justifyContent: "space-between", height: '100vh', width: '100%', alignItems: 'center', }}>
-    <ModalContainer width="920px">
-      <Modal title="Title" type="">
-        <ModalRowContainer padding="20px" justifyContent="">
-          <LabelContainer width="50%" margin="0 40px 0 0">
-            <InputField label="Advertiser Name" id='input1' placeholder="Name" type="basic" onChange={value => console.log(value)} />
-          </LabelContainer>
-          <SwitchGroup>
-            <Option label="Choice" id="id1" />
-            <Option label="Choice" id="id2" />
-          </SwitchGroup>
-        </ModalRowContainer>
-        <ModalRowContainer padding='0 20px 20px 20px' justifyContent="flex-start">
-          <DropdownContainer width='50%' direction='column' align='start'>
-            <DropdownLabel>Domain</DropdownLabel>
-            <MultipleOptionDropdown text="http://www.yourdomain.com/" type='basic' />
-          </DropdownContainer>
-          <DropdownContainer width='17%' direction='column' align='start' margin="0 0 0 40px">
-            <DropdownLabel>Domain</DropdownLabel>
-            <MultipleOptionDropdown text="Text" type='basic' />
-          </DropdownContainer>
-        </ModalRowContainer>
-        <ModalRowContainer padding="20px 20px 40px 20px" justifyContent="space-between">
-          <DropdownContainer width='50%' direction='column' align='start' margin="0">
-            <DropdownLabel>Domain</DropdownLabel>
-            <MultipleOptionDropdown text="http://www.yourdomain.com/" type='basic'>
-              <Checkbox label="Option 1" type="dropdown" right />
-              <Checkbox label="Option 2" type="dropdown" right />
-              <Checkbox label="Option 3" type="dropdown" right />
-              <Checkbox label="Option 4" type="dropdown" right />
-            </MultipleOptionDropdown>
-          </DropdownContainer>
-        </ModalRowContainer>
-      </Modal>
-    </ModalContainer>
+  <CreationContainer>
+    <div>
+      <CreationHeader>
+        <CreationHeaderTitle>
+          Title
+        </CreationHeaderTitle>
+        <CreationHeaderDescription>
+          Description text to go here
+        </CreationHeaderDescription>
+      </CreationHeader>
+      <CardContainer width="920px">
+        <Card title="Title">
+          <ModalRowContainer padding="20px" justifyContent="">
+            <LabelContainer width="50%" margin="0 40px 0 0">
+              <InputField label="Advertiser Name" id='input1' placeholder="Name" type="basic" onChange={value => console.log(value)} />
+            </LabelContainer>
+            <SwitchGroup>
+              <Option label="Choice" id="id1" />
+              <Option label="Choice" id="id2" />
+            </SwitchGroup>
+          </ModalRowContainer>
+          <ModalRowContainer padding='0 20px 20px 20px' justifyContent="flex-start">
+            <DropdownContainer width='50%' direction='column' alignItems='start'>
+              <DropdownLabel>Domain</DropdownLabel>
+              <MultipleOptionDropdown text="http://www.yourdomain.com/" type='basic' />
+            </DropdownContainer>
+            <DropdownContainer width='17%' direction='column' alignItems='start' margin="0 0 0 40px">
+              <DropdownLabel>Domain</DropdownLabel>
+              <MultipleOptionDropdown text="Text" type='basic' />
+            </DropdownContainer>
+          </ModalRowContainer>
+          <ModalRowContainer padding="20px 20px 40px 20px" justifyContent="space-between">
+            <DropdownContainer width='50%' direction='column' alignItems='start' margin="0">
+              <DropdownLabel>Domain</DropdownLabel>
+              <MultipleOptionDropdown text="http://www.yourdomain.com/" type='basic'>
+                <Checkbox label="Option 1" type="dropdown" right />
+                <Checkbox label="Option 2" type="dropdown" right />
+                <Checkbox label="Option 3" type="dropdown" right />
+                <Checkbox label="Option 4" type="dropdown" right />
+              </MultipleOptionDropdown>
+            </DropdownContainer>
+          </ModalRowContainer>
+        </Card>
+      </CardContainer>
+    </div>
 
     <FooterBreadcrumb>
       <Step text="1. Step 1" />
       <Step text="2. Step 2" />
     </FooterBreadcrumb>
-  </div>
+  </CreationContainer>
 );
