@@ -8,12 +8,15 @@ const { gray } = palette;
 
 
 export const ModalContainer = styled(CardContainer)`
+  height: auto;
   border: none;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
   padding: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-height: ${({ minHeight }) => minHeight};
+  width: ${({ width }) => width};
 `;
 
 export const ModalTitle = styled(CardTitle)`
@@ -51,7 +54,7 @@ export const ModalFooter = styled.div`
 
 export const ModalRowContainer = styled.div`
   display: flex;
-  width: 100%;
+  width: ${({ width }) => width};
   padding: ${({ padding }) => padding}
   justify-content: ${({ justifyContent }) => justifyContent};
   align-items: flex-end;

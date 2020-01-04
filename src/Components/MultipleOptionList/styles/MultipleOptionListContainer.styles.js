@@ -10,7 +10,7 @@ export const MultipleOptionListContainer = styled.div`
   border-radius: 4px;
   min-width: 130px;
   background-color: white;
-  z-index: 1;
+  // z-index: 1;
   
   &.dropdown {
     &-right {}
