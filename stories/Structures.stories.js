@@ -185,7 +185,7 @@ export const ModalD = () => (
       </CardContainer>
     </div>
 
-    <FooterBreadcrumb>
+    <FooterBreadcrumb prevButtonText="Back" nextButtonText="Create Ad Account">
       <Step text="1. Step 1" />
       <Step text="2. Step 2" />
     </FooterBreadcrumb>
