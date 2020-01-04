@@ -39,9 +39,11 @@ export const WithTitleIcon = () => (
  * @prop {Function} children - (Required)  It's the modal title to be displayed.
  */
 export const Centered = () => (
-  <CenteredModal>
-    <HeaderTitle>{"Are you sure you want to do this?"}</HeaderTitle>
-    <Button label="Yes, action" type="primary-action-medium" />
-    <Button label="No, cancel" type="secondary-action-medium" />
-  </CenteredModal>
+  <ModalContainer width="600px" minHeight="0">
+    <CenteredModal>
+      <HeaderTitle>{"Are you sure you want to do this?"}</HeaderTitle>
+      <Button label="Yes, action" type="primary-action-medium" />
+      <Button label="No, cancel" type="secondary-action-medium" />
+    </CenteredModal>
+  </ModalContainer>
 );
