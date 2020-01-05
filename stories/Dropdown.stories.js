@@ -12,7 +12,6 @@ import {
 
 import {
   Checkbox,
-  StatusLabelOption,
   OptionDropdown,
   StatusLabelDropdown,
   MultipleOptionDropdown,
@@ -31,7 +30,7 @@ export const Basic = () => (
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
         */}
-      <MultipleOptionDropdown text="Text" type='basic'>
+      <MultipleOptionDropdown text="Text" type="basic">
         {/**
           * Checkbox component should be called with
           * @prop {String} type - (Required) Define dropdown classes for styling.
@@ -75,22 +74,22 @@ export const Basic = () => (
         */}
       <StatusLabelDropdown text="Text" type="basic" onChange={optionId => console.log('Option ' + optionId + ' is selected')}>
         {/**
-          * StatusLabelOption component should be used with
+          * Option component should be used with
           * @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
           * @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
           * @prop {String} label - (Optional) It's a text to be display inside button.
           */}
-        <StatusLabelOption label="status" id="red" color="red" />
-        <StatusLabelOption label="status" id="yellow" color="yellow" />
-        <StatusLabelOption label="status" id="green" color="green" />
-        <StatusLabelOption label="status" id="blue" color="blue" />
+        <Option label="status" id="red" color="red" />
+        <Option label="status" id="yellow" color="yellow" />
+        <Option label="status" id="green" color="green" />
+        <Option label="status" id="blue" color="blue" />
       </StatusLabelDropdown>
     </DropdownContainer>
   </>
 );
 
 export const BasicWithLabel = () => (
-  <DropdownContainer direction='column' align='start'>
+  <DropdownContainer direction="column" align="start" alignItems="flex-start">
     <DropdownLabel>Text</DropdownLabel>
     {/**
       * StatusLabelDropdown component should be called with
@@ -100,15 +99,15 @@ export const BasicWithLabel = () => (
       */}
     <StatusLabelDropdown text="Text" type="basic" disabled={true}>
       {/**
-        * StatusLabelOption component should be used with
+        * Option component should be used with
         * @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
         * @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
         * @prop {String} label - (Optional) It's a text to be display inside button.
         */}
-      <StatusLabelOption label="status" id="id1" color="red" />
-      <StatusLabelOption label="status" id="id2" color="yellow" />
-      <StatusLabelOption label="status" id="id3" color="green" />
-      <StatusLabelOption label="status" id="id4" color="blue" />
+      <Option label="status" id="id1" color="red" />
+      <Option label="status" id="id2" color="yellow" />
+      <Option label="status" id="id3" color="green" />
+      <Option label="status" id="id4" color="blue" />
     </StatusLabelDropdown>
   </DropdownContainer>
 );
@@ -121,7 +120,7 @@ export const SolidWithIcon = () => (
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
         */}
-      <MultipleOptionDropdown text="Dropdown solid w/icon" type='solid' leftIcon={DownloadFileIcon}>
+      <MultipleOptionDropdown text="Dropdown solid w/icon" type="solid" leftIcon={DownloadFileIcon}>
         {/**
           * Checkbox component should be called with
           * @prop {String} type - (Required) Define dropdown classes for styling.
@@ -165,24 +164,24 @@ export const SolidWithIcon = () => (
         */}
       <StatusLabelDropdown text="Dropdown solid w/icon" type="solid" leftIcon={DownloadFileIcon}>
         {/**
-          * StatusLabelOption component should be used with
+          * Option component should be used with
           * @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
           * @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
           * @prop {String} label - (Optional) It's a text to be display inside button.
           */}
-        <StatusLabelOption label="status" id="id1" color="red" />
-        <StatusLabelOption label="status" id="id2" color="yellow" />
-        <StatusLabelOption label="status" id="id3" color="green" />
-        <StatusLabelOption label="status" id="id4" color="blue" />
+        <Option label="status" id="id1" color="red" />
+        <Option label="status" id="id2" color="yellow" />
+        <Option label="status" id="id3" color="green" />
+        <Option label="status" id="id4" color="blue" />
       </StatusLabelDropdown>
     </DropdownContainer>
 
     <DropdownContainer>
       <StatusLabelDropdown text="Dropdown solid w/icon" type="solid" leftIcon={DownloadFileIcon} disabled={true}>
-        <StatusLabelOption label="status" id="id1" color="red" />
-        <StatusLabelOption label="status" id="id2" color="yellow" />
-        <StatusLabelOption label="status" id="id3" color="green" />
-        <StatusLabelOption label="status" id="id4" color="blue" />
+        <Option label="status" id="id1" color="red" />
+        <Option label="status" id="id2" color="yellow" />
+        <Option label="status" id="id3" color="green" />
+        <Option label="status" id="id4" color="blue" />
       </StatusLabelDropdown>
     </DropdownContainer>
   </>
@@ -196,7 +195,7 @@ export const NoBorder = () => (
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
         */}
-      <MultipleOptionDropdown text="Text" type='no-border'>
+      <MultipleOptionDropdown text="Text" type="no-border">
         {/**
           * Checkbox component should be called with
           * @prop {String} type - (Required) Define dropdown classes for styling.
@@ -240,24 +239,24 @@ export const NoBorder = () => (
         */}
       <StatusLabelDropdown text="Text" type="no-border">
         {/**
-          * StatusLabelOption component should be used with
+          * Option component should be used with
           * @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
           * @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
           * @prop {String} label - (Optional) It's a text to be display inside button.
           */}
-        <StatusLabelOption label="status" id="id1" color="red" />
-        <StatusLabelOption label="status" id="id2" color="yellow" />
-        <StatusLabelOption label="status" id="id3" color="green" />
-        <StatusLabelOption label="status" id="id4" color="blue" />
+        <Option label="status" id="id1" color="red" />
+        <Option label="status" id="id2" color="yellow" />
+        <Option label="status" id="id3" color="green" />
+        <Option label="status" id="id4" color="blue" />
       </StatusLabelDropdown>
     </DropdownContainer>
 
     <DropdownContainer>
       <StatusLabelDropdown text="Text" type="no-border" disabled={true}>
-        <StatusLabelOption label="status" id="id1" color="red" />
-        <StatusLabelOption label="status" id="id2" color="yellow" />
-        <StatusLabelOption label="status" id="id3" color="green" />
-        <StatusLabelOption label="status" id="id4" color="blue" />
+        <Option label="status" id="id1" color="red" />
+        <Option label="status" id="id2" color="yellow" />
+        <Option label="status" id="id3" color="green" />
+        <Option label="status" id="id4" color="blue" />
       </StatusLabelDropdown>
     </DropdownContainer>
   </>
@@ -271,7 +270,7 @@ export const NoBorderLink = () => (
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
         */}
-      <MultipleOptionDropdown text="Advanced Options" type='no-border-link'>
+      <MultipleOptionDropdown text="Advanced Options" type="no-border-link">
         {/**
           * Checkbox component should be called with
           * @prop {String} type - (Required) Define dropdown classes for styling.
@@ -315,24 +314,24 @@ export const NoBorderLink = () => (
         */}
       <StatusLabelDropdown text="Advanced Options" type="no-border-link">
         {/**
-          * StatusLabelOption component should be used with
+          * Option component should be used with
           * @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
           * @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
           * @prop {String} label - (Optional) It's a text to be display inside button.
           */}
-        <StatusLabelOption label="status" id="id1" color="red" />
-        <StatusLabelOption label="status" id="id2" color="yellow" />
-        <StatusLabelOption label="status" id="id3" color="green" />
-        <StatusLabelOption label="status" id="id4" color="blue" />
+        <Option label="status" id="id1" color="red" />
+        <Option label="status" id="id2" color="yellow" />
+        <Option label="status" id="id3" color="green" />
+        <Option label="status" id="id4" color="blue" />
       </StatusLabelDropdown>
     </DropdownContainer>
 
     <DropdownContainer>
       <StatusLabelDropdown text="Advanced Options" type="no-border-link" disabled={true}>
-        <StatusLabelOption label="status" id="id1" color="red" />
-        <StatusLabelOption label="status" id="id2" color="yellow" />
-        <StatusLabelOption label="status" id="id3" color="green" />
-        <StatusLabelOption label="status" id="id4" color="blue" />
+        <Option label="status" id="id1" color="red" />
+        <Option label="status" id="id2" color="yellow" />
+        <Option label="status" id="id3" color="green" />
+        <Option label="status" id="id4" color="blue" />
       </StatusLabelDropdown>
     </DropdownContainer>
   </>
@@ -346,7 +345,7 @@ export const NoBorderPurple = () => (
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
         */}
-      <MultipleOptionDropdown text="Advertiser" type='no-border-purple'>
+      <MultipleOptionDropdown text="Advertiser" type="no-border-purple">
         {/**
           * Checkbox component should be called with
           * @prop {String} type - (Required) Define dropdown classes for styling.
@@ -390,15 +389,15 @@ export const NoBorderPurple = () => (
         */}
       <StatusLabelDropdown text="Advertiser" type="no-border-purple">
         {/**
-          * StatusLabelOption component should be used with
+          * Option component should be used with
           * @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
           * @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
           * @prop {String} label - (Optional) It's a text to be display inside button.
           */}
-        <StatusLabelOption label="status" id="id1" color="red" />
-        <StatusLabelOption label="status" id="id2" color="yellow" />
-        <StatusLabelOption label="status" id="id3" color="green" />
-        <StatusLabelOption label="status" id="id4" color="blue" />
+        <Option label="status" id="id1" color="red" />
+        <Option label="status" id="id2" color="yellow" />
+        <Option label="status" id="id3" color="green" />
+        <Option label="status" id="id4" color="blue" />
       </StatusLabelDropdown>
     </DropdownContainer>
   </>
