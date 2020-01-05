@@ -20,7 +20,7 @@ const setBorderColor = (index, currentStep) => {
 
 /**
  * Breadcrumb component should be called with
- * @param {Array} children - (Required) They're the steps to be display.
+ * @param {Node} children - (Required) They're the steps to be display.
  * @param {Number} currentStep - (Required) Index that define the active step. From 0 to length-1 of array steps.
  * @return {React Component} A view for breadcrumb.
  */
@@ -41,15 +41,12 @@ const Breadcrumb = ({ children, currentStep }) => (
 );
 
 Breadcrumb.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.shape({
-    props: PropTypes.shape({
-      text: PropTypes.string.isRequired,
-    }),
-  })).isRequired,
+  children: PropTypes.node.isRequired,
   currentStep: PropTypes.number,
 };
 
 Breadcrumb.defaultProps = {
+  children: [],
   currentStep: 0,
 };
 

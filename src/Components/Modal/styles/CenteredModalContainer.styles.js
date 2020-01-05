@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ModalContainer } from './ModalContainer.styles';
+import { ModalContainer } from './Modal.styles';
 
 
 export const CenteredModalContainer = styled(ModalContainer)`

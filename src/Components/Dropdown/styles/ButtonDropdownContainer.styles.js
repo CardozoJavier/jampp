@@ -8,6 +8,8 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
   justify-content: space-between;
   min-width: 70px;
   background-color: transparent;
+  width: 100%;
+  margin-top: 5px;
 
   &:hover {
     transform: none;

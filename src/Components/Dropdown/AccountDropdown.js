@@ -24,7 +24,7 @@ const classesName = {
  *  @param {String} name - (Required) It's the name to be displayed next to avatar.
  *  @param {String} description - (Required) It's the description to be displayed below of name.
  *  @param {String} avatarSrc - (Required) The relative or absolute path of an image to be rendered in header. 
- *  @param {Array} children - (Optional) They're the options to be display.
+ *  @param {Node} children - (Optional) They're the options to be display.
  *  @param {String} email - (Optional) It's the email to be displayed above of sign-out button.
  *  @return {React Component} A view for account dropdown with avatar and a selectable list inside.
  */
@@ -86,14 +86,7 @@ AccountDropdown.propTypes = {
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   avatarSrc: PropTypes.string.isRequired,
-  children: PropTypes.arrayOf(PropTypes.shape({
-    props: PropTypes.shape({
-      id: PropTypes.string,
-      label: PropTypes.string,
-      color: PropTypes.string,
-      children: PropTypes.array,
-    }),
-  })),
+  children: PropTypes.node,
   email: PropTypes.string,
 };
 

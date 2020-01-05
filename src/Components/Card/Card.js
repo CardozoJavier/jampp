@@ -8,13 +8,14 @@ import { CardContainer, CardTitle, CardDescription, CardHeader } from './styles'
  * @param {String} description - (Optional) It's description to be displayed in card below of title.
  * @return {React Component} A view for card with title and description.
  */
-const Card = ({ title, description }) => (
-  <CardContainer>
+const Card = ({ children, title, description }) => (
+  <>
     <CardHeader>
       <CardTitle>{ title }</CardTitle>
       {description && <CardDescription>{ description }</CardDescription>}
     </CardHeader>
-  </CardContainer>
+    {children}
+  </>
 );
 
 Card.propTypes = {

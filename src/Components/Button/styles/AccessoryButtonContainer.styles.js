@@ -109,7 +109,7 @@ export default styled.div`
       border-radius: 4px;
 
       ${ButtonInput} {
-        padding: .75em 1em;
+        padding: 8px;
       }
 
       ${AddIconContainer} {

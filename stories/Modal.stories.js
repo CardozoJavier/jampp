@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Button } from '../src/Components';
 import { CenteredModal } from '../src/Components/Modal';
-import { HeaderTitle, } from '../src/Components/Modal/styles';
+import { HeaderTitle, ModalFooter, ModalContainer, } from '../src/Components/Modal/styles';
 import { TrashIcon } from '../src/Components/UI/Icons';
 
 export default {
@@ -11,29 +11,39 @@ export default {
 /**
  * Modal component can be called with
  * @prop {String} title - (Optional)  It's the modal title displayed with an X icon on your right.
- * @prop {Boolean} footer - (Optional) It's define modal with or with not footer.
  * @prop {Function} icon - (Optional) Function that returns an svg icon.
  */
 export const PlainModal = () => (
-  <Modal />
+  <ModalContainer width="600px">
+    <Modal />
+  </ModalContainer>
 );
 
 export const WithTitle = () => (
-  <Modal title="Title" footer />
+  <ModalContainer width="600px">
+    <Modal title="Title">
+      <ModalFooter />
+    </Modal>
+  </ModalContainer>
+
 );
 
 export const WithTitleIcon = () => (
-  <Modal title="Title" icon={TrashIcon} />
+  <ModalContainer width="600px">
+    <Modal title="Title" icon={TrashIcon} />
+  </ModalContainer>
 );
 
 /**
  * CenteredModal component should be called with
- * @prop {Function} children - (Required)  It's the modal title to be displayed.
+ * @prop {Node} children - (Required)  It's the modal title to be displayed.
  */
 export const Centered = () => (
-  <CenteredModal>
-    <HeaderTitle>{"Are you sure you want to do this?"}</HeaderTitle>
-    <Button label="Yes, action" type="primary-action-medium" />
-    <Button label="No, cancel" type="secondary-action-medium" />
-  </CenteredModal>
+  <ModalContainer width="600px" minHeight="0">
+    <CenteredModal>
+      <HeaderTitle>{"Are you sure you want to do this?"}</HeaderTitle>
+      <Button label="Yes, action" type="primary-action-medium" />
+      <Button label="No, cancel" type="secondary-action-medium" />
+    </CenteredModal>
+  </ModalContainer>
 );

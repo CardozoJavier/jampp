@@ -13,7 +13,7 @@ import { UniqueOption } from '../UniqueOption';
  * ExpandableDropdown component should be called with
  * @param {String} type - (Required) It's defines the classes for displaying or not the option list, and button styles.
  * @param {String} text - (Required) Text to be displayed inside button.
- * @param {Array} children - (Required) The options to be display.
+ * @param {Node} children - (Required) The options to be display.
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @return {React Component} A view for button and expandable dropdown of unique option selectable.
  */
@@ -52,14 +52,7 @@ const ExpandableDropdown = ({ type, text, children, disabled }) => {
 ExpandableDropdown.propTypes = {
   type: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-  children: PropTypes.arrayOf(PropTypes.shape({
-    props: PropTypes.shape({
-      id: PropTypes.string,
-      label: PropTypes.string,
-      color: PropTypes.string,
-      children: PropTypes.array,
-    }),
-  })).isRequired,
+  children: PropTypes.node.isRequired,
   disabled: PropTypes.bool,
 };
 

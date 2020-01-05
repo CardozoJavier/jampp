@@ -128,7 +128,7 @@ export const BusinessLevel = () => (
  *    OptionDropdown component should be called with
  *    @prop {String} text - (Required) It's the dropdown title.
  *    @prop {String} type - (Required) Define dropdown classes for styling.
- *    @prop {Array} children - (Required) The options to be display.
+ *    @prop {Node} children - (Required) The options to be display.
  */
 export const AdAccountsLevel = () => (
   <>
