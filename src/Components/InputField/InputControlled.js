@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   ControlledInputFieldContainer,
   CustomPlaceholderContainer,
@@ -80,6 +81,23 @@ const InputControlled = ({
       </ControlledInputFieldContainer>
     </InputControlledContainer>
   );
+};
+
+InputControlled.propTypes = {
+  id: PropTypes.string,
+  type: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  disabled: PropTypes.bool,
+  placeholder: PropTypes.string,
+  boldPlaceholder: PropTypes.string,
+};
+
+InputControlled.defaultProps = {
+  id: '',
+  label: '',
+  disabled: false,
+  placeholder: '',
+  boldPlaceholder: '',
 };
 
 export default InputControlled;
