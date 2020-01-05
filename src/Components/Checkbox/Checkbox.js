@@ -47,7 +47,7 @@ const Checkbox = ({ type, id, label, right, left, onChange, checked, disabled })
   const toggleToLabelClassName = getClassName(labelClassName, defaultLabel, selectedLabel);
 
   const handleClick = () => {
-    onChange && onChange(id, !status);
+    onChange(id, !status);
     setStatus(!status);
     setClassName(toggleToClassName);
     setLabelClassName(toggleToLabelClassName);

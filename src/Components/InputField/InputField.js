@@ -48,7 +48,7 @@ const InputField = ({ type, placeholder, errorMessage, label, id, icon, onError,
       setClassName(errorClassName);
     } else {
       setError(false);
-      onChange && onChange(value);
+      onChange(value);
       setClassName(onFocusClassName);
     }
   }

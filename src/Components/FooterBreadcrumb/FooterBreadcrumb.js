@@ -17,13 +17,13 @@ const FooterBreadcrumb = ({ children, currentStep, onChange, }) => {
   const handleBack = () => {
     const previousStep = stepIndex === 0 ? 0 : stepIndex - 1;
     setStepIndex(previousStep);
-    onChange && onChange(previousStep, children[previousStep].props.text);
+    onChange(previousStep, children[previousStep].props.text);
   }
 
   const handleNext = () => {
     const nextStep = stepIndex < (children.length - 1) ? stepIndex + 1 : stepIndex;
     setStepIndex(nextStep);
-    onChange && onChange(nextStep, children[nextStep].props.text);
+    onChange(nextStep, children[nextStep].props.text);
   }
 
   return (
