@@ -24,7 +24,7 @@ const setBorderColor = (index, currentStep) => {
  * @param {Number} currentStep - (Required) Index that define the active step. From 0 to length-1 of array steps.
  * @return {React Component} A view for breadcrumb.
  */
-const Breadcrumb = ({ children, currentStep }) => (
+const Breadcrumb = ({ children = [], currentStep }) => (
   <BreadcrumbContainer>
     {children.map((step, index) => (
       <Step
@@ -46,7 +46,6 @@ Breadcrumb.propTypes = {
 };
 
 Breadcrumb.defaultProps = {
-  children: [],
   currentStep: 0,
 };
 

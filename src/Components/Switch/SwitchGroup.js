@@ -12,7 +12,7 @@ import { bemDestruct, settingClassName } from '../../utils';
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @return {React Component} A view for group of switch buttons.
  */
-const SwitchGroup = ({ children, type, onChange, disabled }) => {
+const SwitchGroup = ({ children = [], type, onChange, disabled }) => {
   const { defaultClassName, ButtonContainer } = buttonProps[type];
   if (!Array.isArray(children)) {
     children = [children];
@@ -52,7 +52,6 @@ SwitchGroup.propTypes = {
 };
 
 SwitchGroup.defaultProps = {
-  children: [],
   type: 'options',
   onChange: () => null,
   disabled: false,

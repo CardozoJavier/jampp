@@ -14,7 +14,7 @@ import optionListProps from './optionListProps';
  * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
  * @return {React Component} A view in which one option can be selected.
  */
-const OptionList = ({ children, type, className, OptionItem, menuTitle, onChange, }) => {
+const OptionList = ({ children = [], type, className, OptionItem, menuTitle, onChange, }) => {
   const { defaultClassName } = optionListProps[type];
   const childrenParsed = settingClassName(children, -1, defaultClassName);
   const [array, setArray] = useState(childrenParsed);
@@ -62,7 +62,6 @@ OptionList.propTypes = {
   };
   
 OptionList.defaultProps = {
-  children: [],
   menuTitle: null,
   onChange: () => null,
 };

@@ -9,7 +9,7 @@ import { bemDestruct, isLastItem } from '../../utils';
  * @param {String} className - (Required) The className determines if list is opened or closed.
  * @return {React Component} A view with multiple options can be selected (checkboxes).
  */
-const MultipleOptionList = ({ children, className }) => (
+const MultipleOptionList = ({ children = [], className }) => (
   <MultipleOptionListContainer className={bemDestruct(className)}>
     {children.map((option, index) => (
       <OptionContainer key={index} className={`last-item__${isLastItem(children.length, index)}`}>
@@ -23,10 +23,5 @@ MultipleOptionList.propTypes = {
   children: PropTypes.arrayOf(PropTypes.node).isRequired,
   className: PropTypes.string.isRequired,
 };
-
-MultipleOptionList.defaultProps = {
-  children: [],
-};
-
 
 export default MultipleOptionList;

@@ -21,7 +21,7 @@ import { ExpandableDropdown } from '../Dropdown';
  *  @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  *  @return {React Component} A view for panel account with input field, a selectable list and sign out button.
  */
-const AdAccountsList = ({ children, email, className, disabled, }) => (
+const AdAccountsList = ({ children = [], email, className, disabled, }) => (
   <OptionListContainer className={bemDestruct(className, disabled)}>
     <InputField placeholder="Filter organization" type="icon-small-left" icon={SearchIcon} />
 
@@ -59,7 +59,6 @@ AdAccountsList.propTypes = {
 };
 
 AdAccountsList.defaultProps = {
-  children: [],
   disabled: false,
 };
 
