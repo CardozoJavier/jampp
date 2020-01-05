@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { ButtonInput } from '../Button/styles';
 import { ButtonDropdownContainer } from './styles';
 import { getClassName, bemDestruct } from '../../utils';
@@ -53,6 +54,29 @@ const StatusLabelDropdown = ({ text, children, type = 'basic', leftIcon, onChang
       <OptionList type="status-option" OptionItem={StatusLabelOption} children={children} className={className} onChange={onChange} />
     </>
   );
+};
+
+StatusLabelDropdown.propTypes = {
+  text: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  leftIcon: PropTypes.func,
+  onChange: PropTypes.func,
+  disabled: PropTypes.bool,
+  children: PropTypes.arrayOf(PropTypes.shape({
+    props: PropTypes.shape({
+      id: PropTypes.string,
+      label: PropTypes.string,
+      color: PropTypes.string,
+      children: PropTypes.array,
+    }),
+  })).isRequired,
+};
+
+StatusLabelDropdown.defaultProps = {
+  disabled: false,
+  type: 'basic',
+  leftIcon: () => null,
+  onChange: () => null,
 };
 
 export default StatusLabelDropdown;
