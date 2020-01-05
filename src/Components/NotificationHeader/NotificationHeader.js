@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { palette } from '../styles';
 import { NotificationHeaderContainer, NotificationText, TextContainer } from './styles';
 import { IconGenerator, XIcon, InfoIcon } from '../UI/Icons';
@@ -26,6 +27,7 @@ const types = {
  * NotificationHeader component should be called with
  * @param {String} text - (Optional) Message to be desplayed into header.
  * @param {String} type - (Required) It's define the header styles.
+ * @param {Function} onClose - (Optional) Callback to trigger on onClick event on X icon.
  * @return {React Component} A view for notifications header with X icon on right.
  */
 const NotificationHeader = ({ text, type, onClose }) => (
@@ -58,5 +60,16 @@ const NotificationHeader = ({ text, type, onClose }) => (
     />
   </NotificationHeaderContainer>
 );
+
+NotificationHeader.propTypes = {
+  text: PropTypes.string,
+  type: PropTypes.string.isRequired,
+  onClose: PropTypes.func,
+};
+
+NotificationHeader.defaultProps = {
+  text: '',
+  onClose: () => null,
+};
 
 export default NotificationHeader;
