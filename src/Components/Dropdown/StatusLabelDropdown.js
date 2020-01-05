@@ -59,9 +59,6 @@ const StatusLabelDropdown = ({ text, children, type = 'basic', leftIcon, onChang
 StatusLabelDropdown.propTypes = {
   text: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  leftIcon: PropTypes.func,
-  onChange: PropTypes.func,
-  disabled: PropTypes.bool,
   children: PropTypes.arrayOf(PropTypes.shape({
     props: PropTypes.shape({
       id: PropTypes.string,
@@ -70,13 +67,16 @@ StatusLabelDropdown.propTypes = {
       children: PropTypes.array,
     }),
   })).isRequired,
+  leftIcon: PropTypes.func,
+  onChange: PropTypes.func,
+  disabled: PropTypes.bool,
 };
 
 StatusLabelDropdown.defaultProps = {
-  disabled: false,
   type: 'basic',
   leftIcon: () => null,
   onChange: () => null,
+  disabled: false,
 };
 
 export default StatusLabelDropdown;

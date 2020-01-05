@@ -14,7 +14,7 @@ const CenteredModal = ({ children }) => (
 );
 
 CenteredModal.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.object),
+  children: PropTypes.arrayOf(PropTypes.node),
 };
 
 export default CenteredModal;

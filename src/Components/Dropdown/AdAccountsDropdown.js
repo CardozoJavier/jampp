@@ -21,14 +21,14 @@ const classesName = {
 
 /**
  *  AdAccountsDropdown component should be called with
- *  @param {String} avatarSrc - (Required) The relative or absolute path of an image to be rendered in header. 
  *  @param {String} name - (Required) It's the name to be displayed next to avatarSrc.
  *  @param {String} description - (Required) It's the description to be displayed below of name.
- *  @param {String} email - (Required) It's the email to be displayed above of sign-out button.
+ *  @param {String} avatarSrc - (Required) The relative or absolute path of an image to be rendered in header. 
  *  @param {Array} children - (Required) The options to be display.
+ *  @param {String} email - (Optional) It's the email to be displayed above of sign-out button.
  *  @return {React Component} A view for account dropdown with avatarSrc and multiple expandable dropdowns inside.
  */
-const AdAccountsDropdown = ({ name, description, email, avatarSrc, children }) => {
+const AdAccountsDropdown = ({ name, description, avatarSrc, children, email, }) => {
   const { defaultClassName, optionalClassName } = classesName['normal'];
 
   const [className, setClassName] = useState(defaultClassName);
@@ -84,9 +84,8 @@ const AdAccountsDropdown = ({ name, description, email, avatarSrc, children }) =
 
 AdAccountsDropdown.propTypes = {
   name: PropTypes.string.isRequired,
-  avatarSrc: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  email: PropTypes.string,
+  avatarSrc: PropTypes.string.isRequired,
   children: PropTypes.arrayOf(PropTypes.shape({
     props: PropTypes.shape({
       id: PropTypes.string,
@@ -95,6 +94,7 @@ AdAccountsDropdown.propTypes = {
       children: PropTypes.array,
     }),
   })).isRequired,
+  email: PropTypes.string,
 };
 
 AdAccountsDropdown.defaultProps = {

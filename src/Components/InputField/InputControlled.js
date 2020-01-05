@@ -18,19 +18,12 @@ import inputProps from './inputProps';
  * @param {String} type - (Required) It's to define styles of input field.
  * @param {String} placeholder - (Optional) It's to display text into input field. It'll be in second place.
  * @param {String} boldPlaceholder - (Optional) It's to display bold text into input field. It'll be in first place.
- * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @param {String} label - (Optional) Text to be display in label.
  * @param {String} id - (Optional) ID to be use for label refering to input field.
+ * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @return {React Component} A view for input field with custom bold placeholder.
  */
-const InputControlled = ({
-  id,
-  type,
-  label,
-  disabled,
-  placeholder,
-  boldPlaceholder,
-}) => {
+const InputControlled = ({ type, placeholder, boldPlaceholder, id, label, disabled, }) => {
   const { defaultClassName, optionalClassName, onFocusClassName, onBlurClassName } = inputProps[type];
   const [className, setClassName] = useState(defaultClassName);
   const [input, setInput] = useState(false);
@@ -84,20 +77,20 @@ const InputControlled = ({
 };
 
 InputControlled.propTypes = {
-  id: PropTypes.string,
   type: PropTypes.string.isRequired,
-  label: PropTypes.string,
-  disabled: PropTypes.bool,
   placeholder: PropTypes.string,
   boldPlaceholder: PropTypes.string,
+  id: PropTypes.string,
+  label: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 InputControlled.defaultProps = {
+  placeholder: '',
+  boldPlaceholder: '',
   id: '',
   label: '',
   disabled: false,
-  placeholder: '',
-  boldPlaceholder: '',
 };
 
 export default InputControlled;

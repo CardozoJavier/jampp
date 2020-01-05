@@ -7,17 +7,17 @@ import { bemDestruct, getClassName } from '../../utils';
 
 /**
  * Button component should be called with
+ * @param {String} type - (Required) Define button classes for styling.
  * @param {String} label - (Optional) Text to be display inside button.
  * @param {Object} children - (Optional) HTML element to be rendered, e.g.: strong tag inside button.
  * @param {Function} icon - (Optional) Function that returns an svg icon.
- * @param {String} type - (Required) Define button classes for styling.
  * @param {Boolean} disabled - (Optional) Disable component if is true.
  * @param {Function} onClick - (Optional) Callback to trigger on onClick event.
  * @param {Function} onClickIcon - (Optional) Callback to trigger on icon onClick event.
  * @param {Boolean} fixed - (Optional) Disabled move up transform on hover.
  * @return {React Component} A view for button.
  */
-const Button = ({ label, children, icon, type, disabled, onClick, onClickIcon, fixed }) => {
+const Button = ({ type, label, children, icon, disabled, onClick, onClickIcon, fixed }) => {
   const { defaultClassName, optionalClassName, ButtonContainer, iconProps, iconClassName } = buttonProps[type];
 
   const [className, setClassName] = useState(defaultClassName);
@@ -51,10 +51,10 @@ const Button = ({ label, children, icon, type, disabled, onClick, onClickIcon, f
 };
 
 Button.propTypes = {
+  type: PropTypes.string.isRequired,
   label: PropTypes.string,
   children: PropTypes.node,
   icon: PropTypes.func,
-  type: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
   onClickIcon: PropTypes.func,

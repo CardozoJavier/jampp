@@ -25,12 +25,12 @@ const types = {
 
 /**
  * NotificationHeader component should be called with
- * @param {String} text - (Optional) Message to be desplayed into header.
  * @param {String} type - (Required) It's define the header styles.
+ * @param {String} text - (Optional) Message to be desplayed into header.
  * @param {Function} onClose - (Optional) Callback to trigger on onClick event on X icon.
  * @return {React Component} A view for notifications header with X icon on right.
  */
-const NotificationHeader = ({ text, type, onClose }) => (
+const NotificationHeader = ({ type, text, onClose, }) => (
   <NotificationHeaderContainer className={bemDestruct(types[type].className)}>
     <TextContainer>
       <IconGenerator
@@ -62,8 +62,8 @@ const NotificationHeader = ({ text, type, onClose }) => (
 );
 
 NotificationHeader.propTypes = {
-  text: PropTypes.string,
   type: PropTypes.string.isRequired,
+  text: PropTypes.string,
   onClose: PropTypes.func,
 };
 

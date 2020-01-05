@@ -17,7 +17,7 @@ import { ButtonInput } from '../Button/styles';
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @return {React Component} A view for button and dropdown of unique option selectable.
  */
-const HeaderOptionDropdown = ({ children, text, type, menuTitle, disabled, }) => {
+const HeaderOptionDropdown = ({ text, type, menuTitle, children, disabled, }) => {
   const { defaultClassName, optionalClassName } = dropdownProps[type];
   const chevronDefaultClassName = dropdownProps.chevron.defaultClassName;
   const chevronOptionalClassName = dropdownProps.chevron.optionalClassName;
@@ -50,10 +50,9 @@ const HeaderOptionDropdown = ({ children, text, type, menuTitle, disabled, }) =>
 };
 
 HeaderOptionDropdown.propTypes = {
-  type: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
   menuTitle: PropTypes.string.isRequired,
-  disabled: PropTypes.bool,
   children: PropTypes.arrayOf(PropTypes.shape({
     props: PropTypes.shape({
       id: PropTypes.string,
@@ -62,6 +61,7 @@ HeaderOptionDropdown.propTypes = {
       children: PropTypes.array,
     }),
   })).isRequired,
+  disabled: PropTypes.bool,
 };
 
 HeaderOptionDropdown.defaultProps = {

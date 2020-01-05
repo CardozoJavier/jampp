@@ -6,11 +6,12 @@ import { Button } from '../Button';
 
 /**
  * FooterBreadcrumb component should be called with
- * @param {Number} currentStep - (Required) Index that define the active step. From 0 to length-1 of array steps.
  * @param {Array} children - (Required) They're the steps to be displayed.
+ * @param {Number} currentStep - (Required) Index that define the active step. From 0 to length-1 of array steps.
+ * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive two arguments: index and text of current step.
  * @return {React Component} A view for breadcrumb into footer with next and back action buttons.
  */
-const FooterBreadcrumb = ({ children, onChange, currentStep }) => {
+const FooterBreadcrumb = ({ children, currentStep, onChange, }) => {
   const [stepIndex, setStepIndex] = useState(currentStep);
 
   const handleBack = () => {
@@ -45,10 +46,12 @@ FooterBreadcrumb.propTypes = {
     },
   })).isRequired,
   currentStep: PropTypes.number,
+  onChange: PropTypes.func,
 };
 
 FooterBreadcrumb.defaultProps = {
   currentStep: 0,
+  onChange: () => null,
 };
 
 export default FooterBreadcrumb;

@@ -20,7 +20,7 @@ const MultipleOptionList = ({ children, className }) => (
 );
 
 MultipleOptionList.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.shape(PropTypes.string)).isRequired,
+  children: PropTypes.arrayOf(PropTypes.node).isRequired,
   className: PropTypes.string.isRequired,
 };
 

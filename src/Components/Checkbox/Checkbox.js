@@ -24,9 +24,9 @@ const classesName = {
 
 /**
  *  Checkbox component should be called with
+ *  @param {String} type - (Required) Define dropdown classes for styling.
  *  @param {String} id - (Optional) It's an unique ID to identifier each checkbox.
  *  @param {String} label - (Optional) It's a text to be display next to checkbox.
- *  @param {String} type - (Required) Define dropdown classes for styling.
  *  @param {Boolean} right - (Optional) It's required if left prop is not set. It's define the position of checkbox regarding text.
  *  @param {Boolean} left - (Optional) It's required if right prop is not set. It's define the position of checkbox regarding text.
  *  @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive two arguments: checkbox id and true/false value.
@@ -34,7 +34,7 @@ const classesName = {
  *  @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  *  @return {React Component} A view for checkbox.
  */
-const Checkbox = ({ id, label, type, right, left, onChange, checked, disabled }) => {
+const Checkbox = ({ type, id, label, right, left, onChange, checked, disabled }) => {
   const { defaultClassName, optionalClassName } = classesName[type];
   const { defaultLabel, selectedLabel } = classesName['label'];
   const initialState = checked ? optionalClassName : defaultClassName;
@@ -75,9 +75,9 @@ const Checkbox = ({ id, label, type, right, left, onChange, checked, disabled })
 };
 
 Checkbox.propTypes = {
+  type: PropTypes.string.isRequired,
   id: PropTypes.string,
   label: PropTypes.string,
-  type: PropTypes.string,
   right: PropTypes.bool,
   left: PropTypes.bool,
   onChange: PropTypes.func,

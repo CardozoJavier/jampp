@@ -52,7 +52,7 @@ Modal.propTypes = {
 
 Modal.defaultProps = {
   title: '',
-  icon: () => null,
+  icon: null,
 };
 
 export default Modal;

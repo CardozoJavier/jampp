@@ -20,8 +20,8 @@ const setBorderColor = (index, currentStep) => {
 
 /**
  * Breadcrumb component should be called with
- * @param {Number} currentStep - (Required) Index that define the active step. From 0 to length-1 of array steps.
  * @param {Array} children - (Required) They're the steps to be display.
+ * @param {Number} currentStep - (Required) Index that define the active step. From 0 to length-1 of array steps.
  * @return {React Component} A view for breadcrumb.
  */
 const Breadcrumb = ({ children, currentStep }) => (
