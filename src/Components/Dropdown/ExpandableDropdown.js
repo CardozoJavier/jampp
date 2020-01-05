@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { ButtonInput } from '../Button/styles';
 import { ButtonDropdownContainer } from './styles';
 import { getClassName, bemDestruct } from '../../utils';
@@ -16,7 +17,7 @@ import { UniqueOption } from '../UniqueOption';
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @return {React Component} A view for button and expandable dropdown of unique option selectable.
  */
-const ExpandableDropdown = ({ text, children, type = 'basic', disabled }) => {
+const ExpandableDropdown = ({ text, children, type, disabled }) => {
   const { defaultClassName, optionalClassName, buttonClassName } = dropdownProps[type];
 
   const [className, setClassName] = useState(defaultClassName);
@@ -46,6 +47,25 @@ const ExpandableDropdown = ({ text, children, type = 'basic', disabled }) => {
       <OptionList type="unique-option" OptionItem={UniqueOption} children={children} className={className} />
     </>
   );
+};
+
+ExpandableDropdown.propTypes = {
+  type: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
+  children: PropTypes.arrayOf(PropTypes.shape({
+    props: PropTypes.shape({
+      id: PropTypes.string,
+      label: PropTypes.string,
+      color: PropTypes.string,
+      children: PropTypes.array,
+    }),
+  })).isRequired,
+};
+
+ExpandableDropdown.defaultProps = {
+  disabled: false,
+  type: 'basic',
 };
 
 export default ExpandableDropdown;
