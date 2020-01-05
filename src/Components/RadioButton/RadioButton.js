@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Radio,
   TextContainer,
@@ -21,7 +22,7 @@ import { bemDestruct } from '../../utils';
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @return {React Component} A view for radio button with or not label and suffix.
  */
-const RadioButton = ({ id, name, text = '', onChange, checked, suffix, disabled }) => (
+const RadioButton = ({ id, checked, name, text, onChange, suffix, disabled }) => (
   <RadioButtonContainer>
     <InputTypeRadioContainer disabled={disabled}>
       <InputTypeRadio
@@ -46,5 +47,24 @@ const RadioButton = ({ id, name, text = '', onChange, checked, suffix, disabled 
     </TextContainer>
   </RadioButtonContainer>
 );
+
+RadioButton.propTypes = {
+  id: PropTypes.string.isRequired,
+  checked: PropTypes.bool,
+  name: PropTypes.string,
+  text: PropTypes.string,
+  onChange: PropTypes.func,
+  suffix: PropTypes.string,
+  disabled: PropTypes.bool,
+};
+
+RadioButton.defaultProps = {
+  checked: false,
+  name: '',
+  text: '',
+  onChange: () => null,
+  suffix: '',
+  disabled: false,
+};
 
 export default RadioButton;
