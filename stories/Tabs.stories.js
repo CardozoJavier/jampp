@@ -1,6 +1,7 @@
 import React from 'react';
 import '../src/main.css';
-import { TabGroup, Tab } from '../src/Components/Tab';
+import { TabGroup } from '../src/Components/Tab';
+import { Tab } from '../src/Components/Tab/styles';
 import { BillingIcon } from '../src/Components/UI/Icons';
 import AddAccountIcon from '../src/Components/UI/Icons/AddAccountIcon';
 

@@ -1,4 +1,5 @@
 export {
+  Tab,
   TabText,
   TabButton,
   InputRadio,
