@@ -6,7 +6,7 @@ import optionListProps from './optionListProps';
 
 /**
  * OptionList component should be called with
- * @param {Array} children - (Required) The options to be displayed.
+ * @param {Node} children - (Required) The options to be displayed.
  * @param {String} type - (Required) It's defines the classes for button styles.
  * @param {String} className - (Required) The className determines if list is opened or closed.
  * @param {Function} OptionItem - (Required) It's each option component styled to be displayed into list.
@@ -62,6 +62,7 @@ OptionList.propTypes = {
   };
   
 OptionList.defaultProps = {
+  children: [],
   menuTitle: null,
   onChange: () => null,
 };

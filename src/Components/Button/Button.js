@@ -9,7 +9,7 @@ import { bemDestruct, getClassName } from '../../utils';
  * Button component should be called with
  * @param {String} type - (Required) Define button classes for styling.
  * @param {String} label - (Optional) Text to be display inside button.
- * @param {Object} children - (Optional) HTML element to be rendered, e.g.: strong tag inside button.
+ * @param {Node} children - (Optional) HTML element to be rendered, e.g.: strong tag inside button.
  * @param {Function} icon - (Optional) Function that returns an svg icon.
  * @param {Boolean} disabled - (Optional) Disable component if is true.
  * @param {Function} onClick - (Optional) Callback to trigger on onClick event.

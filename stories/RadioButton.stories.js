@@ -9,7 +9,7 @@ export default {
 
 /**
  * RadioButtonGroup component should be called with
- * @prop {Array} children - (Required) Array of radio buttons to be displayed.
+ * @prop {Node} children - (Required) Array of radio buttons to be displayed.
  * @prop {String} name - (Required) String to handle radiobuttons into a group.
  * @prop {String} defaultValue - (Optional)  It's to check a default radio button. It should match with RadioButton id.
  * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive the radio button id in first argument.

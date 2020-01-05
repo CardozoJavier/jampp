@@ -15,7 +15,7 @@ export default {
  * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @prop {Function} icon - (Optional) Function that returns an svg icon.
  * @prop {Function} onClick - (Optional) Callback to trigger on onClick event.
- * @prop {Object} children - (Optional) HTML element to be rendered, e.g.: strong tag inside button.
+ * @prop {Node} children - (Optional) HTML element to be rendered, e.g.: strong tag inside button.
  */
 export const Link = () => (
   <>

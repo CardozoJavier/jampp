@@ -5,7 +5,7 @@ import RadioButton from './RadioButton';
 
 /**
  * RadioButtonGroup component should be called with
- * @param {Array} children - (Required) Array of radio buttons to be displayed.
+ * @param {Node} children - (Required) Array of radio buttons to be displayed.
  * @param {String} name - (Required) String to handle radiobuttons into a group.
  * @param {String} defaultValue - (Optional)  It's to check a default radio button. It should match with RadioButton id.
  * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive the radio button id in first argument.
@@ -45,6 +45,7 @@ RadioButtonGroup.propTypes = {
 };
 
 RadioButtonGroup.defaultProps = {
+  children: [],
   defaultValue: '',
   onChange: () => null,
 };

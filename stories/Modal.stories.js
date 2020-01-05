@@ -36,7 +36,7 @@ export const WithTitleIcon = () => (
 
 /**
  * CenteredModal component should be called with
- * @prop {Function} children - (Required)  It's the modal title to be displayed.
+ * @prop {Node} children - (Required)  It's the modal title to be displayed.
  */
 export const Centered = () => (
   <ModalContainer width="600px" minHeight="0">

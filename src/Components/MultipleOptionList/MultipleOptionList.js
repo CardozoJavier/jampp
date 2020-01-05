@@ -5,7 +5,7 @@ import { bemDestruct, isLastItem } from '../../utils';
 
 /**
  * MultipleOptionList component should be called with
- * @param {Array} children - (Required) The options to be displayed.
+ * @param {Node} children - (Required) The options to be displayed.
  * @param {String} className - (Required) The className determines if list is opened or closed.
  * @return {React Component} A view with multiple options can be selected (checkboxes).
  */
@@ -22,6 +22,10 @@ const MultipleOptionList = ({ children, className }) => (
 MultipleOptionList.propTypes = {
   children: PropTypes.arrayOf(PropTypes.node).isRequired,
   className: PropTypes.string.isRequired,
+};
+
+MultipleOptionList.defaultProps = {
+  children: [],
 };
 
 

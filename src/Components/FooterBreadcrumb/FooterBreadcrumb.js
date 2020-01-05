@@ -6,7 +6,7 @@ import { Button } from '../Button';
 
 /**
  * FooterBreadcrumb component should be called with
- * @param {Array} children - (Required) They're the steps to be displayed.
+ * @param {Node} children - (Required) They're the steps to be displayed.
  * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive two arguments: index and text of current step.
  * @param {String} prevButtonText - (Optional) It's the text to be displayed into button for previous step. Default value is "Back".
  * @param {String} nextButtonText - (Optional) It's the text to be displayed into button for next step. Default value is "Next".
@@ -43,9 +43,9 @@ const FooterBreadcrumb = ({ children, onChange, prevButtonText, nextButtonText, 
 
 FooterBreadcrumb.propTypes = {
   children: PropTypes.arrayOf(PropTypes.shape({
-    props: {
+    props: PropTypes.shape({
       text: PropTypes.string.isRequired,
-    },
+    }),
   })).isRequired,
   onChange: PropTypes.func,
   prevButtonText: PropTypes.string,
@@ -54,6 +54,7 @@ FooterBreadcrumb.propTypes = {
 };
 
 FooterBreadcrumb.defaultProps = {
+  children: [],
   onChange: () => null,
   prevButtonText: 'Back',
   nextButtonText: 'Next',

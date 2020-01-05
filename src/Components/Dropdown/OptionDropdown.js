@@ -15,7 +15,7 @@ const { gray } = palette;
  * OptionDropdown component should be called with
  * @param {String} type - (Required) It's defines the classes for displaying or not the option list, and button styles.
  * @param {String} text - (Required) Text to be displayed inside button.
- * @param {Array} children - (Required) The options to be display.
+ * @param {Node} children - (Required) The options to be display.
  * @param {Function} leftIcon - (Optional) Function that returns an svg icon to be displayed inside button.
  * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
@@ -62,14 +62,7 @@ const OptionDropdown = ({ type, text, children, leftIcon, onChange, disabled }) 
 OptionDropdown.propTypes = {
   text: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  children: PropTypes.arrayOf(PropTypes.shape({
-    props: PropTypes.shape({
-      id: PropTypes.string,
-      label: PropTypes.string,
-      color: PropTypes.string,
-      children: PropTypes.array,
-    }),
-  })).isRequired,
+  children: PropTypes.node.isRequired,
   leftIcon: PropTypes.func,
   onChange: PropTypes.func,
   disabled: PropTypes.bool,

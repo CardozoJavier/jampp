@@ -15,7 +15,7 @@ import { ExpandableDropdown } from '../Dropdown';
 
 /**
  *  AdAccountsList component should be called with
- *  @param {Array} children - (Required) The options to be display in expandable dropdown.
+ *  @param {Node} children - (Required) The options to be display in expandable dropdown.
  *  @param {String} email - (Required) It's the email to be displayed above of sign-out button.
  *  @param {String} className - (Required) It's the className that switching between closed and opened dropdown.
  *  @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
@@ -59,6 +59,7 @@ AdAccountsList.propTypes = {
 };
 
 AdAccountsList.defaultProps = {
+  children: [],
   disabled: false,
 };
 

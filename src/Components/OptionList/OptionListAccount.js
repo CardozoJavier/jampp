@@ -18,7 +18,7 @@ import { Button } from '../Button';
  * OptionListAccount component should be called with
  * @param {String} type - (Required) It's defines the classes for button styles.
  * @param {String} email - (Required) It's the email to be displayed above of sign-out button.
- * @param {Array} children - (Required) The options to be displayed.
+ * @param {Node} children - (Required) The options to be displayed.
  * @param {String} className - (Required) The className determines if list is opened or closed.
  * @param {Function} OptionItem - (Required) It's each option component styled to be displayed into list.
  * @return {React Component} A view for panel account with input field, a selectable list and sign out button.
@@ -79,6 +79,10 @@ OptionListAccount.propTypes = {
   email: PropTypes.string.isRequired,
   className: PropTypes.string.isRequired,
   OptionItem: PropTypes.func.isRequired,
+};
+
+OptionListAccount.defaultProps = {
+  children: [],
 };
 
 export default OptionListAccount;
