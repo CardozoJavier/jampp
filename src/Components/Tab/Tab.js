@@ -60,7 +60,7 @@ Tab.propTypes = {
 
 Tab.defaultProps = {
   onChange: () => null,
-  icon: () => null,
+  icon: null,
   disabled: false,
 };
 
