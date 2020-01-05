@@ -27,12 +27,13 @@ const StatusLabelOption = ({ label, color, className, id, handleCheck }) => (
 StatusLabelOption.propTypes = {
   label: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
   id: PropTypes.string,
   handleCheck: PropTypes.func,
 };
 
 StatusLabelOption.defaultProps = {
+  className: '',
   id: '',
   handleCheck: () => null,
 };

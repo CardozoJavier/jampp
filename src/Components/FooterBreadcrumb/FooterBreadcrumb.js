@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Container } from './styles';
-import { Breadcrumb, Step } from '../Breadcrumb';
+import { Breadcrumb} from '../Breadcrumb';
+import { Step } from '../Breadcrumb/styles';
 import { Button } from '../Button';
 
 /**
@@ -13,7 +14,7 @@ import { Button } from '../Button';
  * @param {Number} currentStep - (Optional) Index that define the active step. From 0 to length-1 of array steps. Default value is 0.
  * @return {React Component} A view for breadcrumb into footer with next and back action buttons.
  */
-const FooterBreadcrumb = ({ children, onChange, prevButtonText, nextButtonText, currentStep}) => {
+const FooterBreadcrumb = ({ children = [], onChange, prevButtonText, nextButtonText, currentStep}) => {
   const [stepIndex, setStepIndex] = useState(currentStep);
 
   const handleBack = () => {
@@ -54,7 +55,6 @@ FooterBreadcrumb.propTypes = {
 };
 
 FooterBreadcrumb.defaultProps = {
-  children: [],
   onChange: () => null,
   prevButtonText: 'Back',
   nextButtonText: 'Next',

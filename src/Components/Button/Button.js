@@ -64,6 +64,7 @@ Button.propTypes = {
 Button.defaultProps = {
   label: '',
   children: null,
+  icon: null,
   disabled: false,
   onClick: () => null,
   onClickIcon: () => null,

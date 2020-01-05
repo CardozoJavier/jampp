@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Step,
   Modal,
   Button,
   Card,
@@ -25,6 +24,7 @@ import {
   CreationHeaderTitle,
   CreationHeaderDescription,
 } from '../src/Components/Modal/styles';
+import { Step } from '../src/Components/Breadcrumb/styles';
 import { CardContainer } from '../src/Components/Card/styles';
 import { Option } from '../src/Components/OptionList/styles';
 import { FilterIcon } from '../src/Components/UI/Icons';

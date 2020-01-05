@@ -11,7 +11,7 @@ import { TabGroupContainer } from './styles';
  * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive the id option in first argument.
  * @return {React Component} A view for group of tabs.
  */
-const TabGroup = ({ children, name, defaultActive, onChange }) => {
+const TabGroup = ({ children = [], name, defaultActive, onChange }) => {
   const [selectedOption, setSelectedOption] = useState(defaultActive);
 
   const handleChange = (id) => {
@@ -45,7 +45,6 @@ TabGroup.propTypes = {
 };
 
 TabGroup.defaultProps = {
-  children: [],
   defaultActive: '',
   onChange: () => null,
 };

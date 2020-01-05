@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
-const { gray, action } = palette;
+const { gray, action, black } = palette;
 
 export const CheckboxLabel = styled.p`
   font-size: 12px;
@@ -20,6 +20,8 @@ export const CheckboxLabel = styled.p`
   &.checkbox {
     &.label {
       &--default{
+        color: ${black};
+
         &__selected {
           color: ${action};
         }

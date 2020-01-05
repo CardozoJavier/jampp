@@ -19,7 +19,7 @@ StatusLabel.propTypes = {
 };
 
 StatusLabel.defaultProps = {
-  icon: () => null,
+  icon: null,
 };
 
 export default StatusLabel;

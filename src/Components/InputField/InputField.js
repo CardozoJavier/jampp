@@ -103,7 +103,7 @@ InputField.defaultProps = {
   errorMessage: '',
   label: '',
   id: '',
-  icon: () => null,
+  icon: null,
   onError: () => null,
   onChange: () => null,
   disabled: false,

@@ -7,6 +7,7 @@ import { IconGenerator, XIcon } from '../UI/Icons';
  * Modal component can be called with
  * @param {String} title - (Optional)  It's the modal title displayed with an X icon on your right.
  * @param {Function} icon - (Optional) Function that returns an svg icon.
+ * @param {Node} children - (Optional)  It's the content to be displayed into modal.
  * @return {React Component} A view for plain modal with title with or not icon and footer.
  */
 const Modal = ({ title, icon, children }) => (
@@ -45,11 +46,13 @@ const Modal = ({ title, icon, children }) => (
 Modal.propTypes = {
   title: PropTypes.string,
   icon: PropTypes.func,
+  children: PropTypes.node,
 };
 
 Modal.defaultProps = {
   title: '',
   icon: null,
+  children: null,
 };
 
 export default Modal;

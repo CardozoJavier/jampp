@@ -66,7 +66,6 @@ MultipleOptionDropdown.defaultProps = {
   type: 'basic',
   leftIcon: () => null,
   disabled: false,
-  children: [],
 };
 
 export default MultipleOptionDropdown;

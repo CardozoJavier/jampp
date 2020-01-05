@@ -23,7 +23,7 @@ import { Button } from '../Button';
  * @param {Function} OptionItem - (Required) It's each option component styled to be displayed into list.
  * @return {React Component} A view for panel account with input field, a selectable list and sign out button.
  */
-const OptionListAccount = ({ children, type, email, className, OptionItem }) => {
+const OptionListAccount = ({ children = [], type, email, className, OptionItem }) => {
   const { defaultClassName } = optionListProps[type];
   const isThereChildren = !!children;
   const childrenParsed = isThereChildren ? settingClassName(children, -1, defaultClassName) : [];
@@ -74,15 +74,11 @@ OptionListAccount.propTypes = {
       color: PropTypes.string,
       children: PropTypes.array,
     }),
-  })),
+  })).isRequired,
   type: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   className: PropTypes.string.isRequired,
   OptionItem: PropTypes.func.isRequired,
-};
-
-OptionListAccount.defaultProps = {
-  children: [],
 };
 
 export default OptionListAccount;

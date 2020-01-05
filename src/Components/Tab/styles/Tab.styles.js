@@ -47,3 +47,4 @@ export const InputRadio = styled(InputTypeRadio)`
   }
 `;
 
+export const Tab = styled.div``;
