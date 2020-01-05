@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { AccountStatement, AccountTitle, AccountDescription, AccountDropdownContainer } from './styles';
 import { IconGenerator, AvatarIcon, DownChevronIcon } from '../UI/Icons';
 import { bemDestruct, getClassName } from '../../utils';
@@ -20,14 +21,14 @@ const classesName = {
 
 /**
  *  AdAccountsDropdown component should be called with
- *  @param {String} avatar - (Required) The relative or absolute path of an image to be rendered in header. 
- *  @param {String} name - (Required) It's the name to be displayed next to avatar.
+ *  @param {String} avatarSrc - (Required) The relative or absolute path of an image to be rendered in header. 
+ *  @param {String} name - (Required) It's the name to be displayed next to avatarSrc.
  *  @param {String} description - (Required) It's the description to be displayed below of name.
  *  @param {String} email - (Required) It's the email to be displayed above of sign-out button.
  *  @param {Array} children - (Required) The options to be display.
- *  @return {React Component} A view for account dropdown with avatar and multiple expandable dropdowns inside.
+ *  @return {React Component} A view for account dropdown with avatarSrc and multiple expandable dropdowns inside.
  */
-const AdAccountsDropdown = ({ name, description, email, avatar, children }) => {
+const AdAccountsDropdown = ({ name, description, email, avatarSrc, children }) => {
   const { defaultClassName, optionalClassName } = classesName['normal'];
 
   const [className, setClassName] = useState(defaultClassName);
@@ -51,7 +52,7 @@ const AdAccountsDropdown = ({ name, description, email, avatar, children }) => {
         <IconGenerator
           renderIcon={AvatarIcon}
           props={{
-            src: avatar,
+            src: avatarSrc,
             width: '40px',
             height: '40px',
             borderRadius: '100%',
@@ -79,6 +80,25 @@ const AdAccountsDropdown = ({ name, description, email, avatar, children }) => {
       />
     </>
   );
+};
+
+AdAccountsDropdown.propTypes = {
+  name: PropTypes.string.isRequired,
+  avatarSrc: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  email: PropTypes.string,
+  children: PropTypes.arrayOf(PropTypes.shape({
+    props: PropTypes.shape({
+      id: PropTypes.string,
+      label: PropTypes.string,
+      color: PropTypes.string,
+      children: PropTypes.array,
+    }),
+  })).isRequired,
+};
+
+AdAccountsDropdown.defaultProps = {
+  email: '',
 };
 
 export default AdAccountsDropdown;
