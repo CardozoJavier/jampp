@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { LabelContainer, Input, Label, ErrorMessage } from './styles';
 import { IconGenerator, ExclamationIcon } from '../UI/Icons';
 import { getClassName, bemDestruct } from '../../utils';
@@ -78,11 +79,32 @@ const InputField = ({ placeholder, errorMessage, label, id, type, icon, onError,
           />
         }
       </InputContainer>
-      {errorMessage !== undefined && 
+      {errorMessage && 
         <ErrorMessage className={bemDestruct(className)}>{errorMessage}</ErrorMessage>
       }
     </LabelContainer>
   );
+};
+
+InputField.propTypes = {
+  placeholder: PropTypes.string,
+  errorMessage: PropTypes.string,
+  label: PropTypes.string,
+  id: PropTypes.string,
+  type: PropTypes.string.isRequired,
+  icon: PropTypes.func,
+  onError: PropTypes.func,
+  onChange: PropTypes.func,
+  disabled: PropTypes.bool,
+};
+
+InputField.defaultProps = {
+  placeholder: '',
+  errorMessage: '',
+  label: '',
+  icon: () => null,
+  onChange: () => null,
+  disabled: false,
 };
 
 export default InputField;
