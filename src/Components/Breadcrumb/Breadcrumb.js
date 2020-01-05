@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Step from './Step';
 import { BreadcrumbContainer } from './styles';
 import { palette } from '../styles';
@@ -23,7 +24,7 @@ const setBorderColor = (index, currentStep) => {
  * @param {Array} children - (Required) They're the steps to be display.
  * @return {React Component} A view for breadcrumb.
  */
-const Breadcrumb = ({ children, currentStep = 0 }) => (
+const Breadcrumb = ({ children, currentStep }) => (
   <BreadcrumbContainer>
     {children.map((step, index) => (
       <Step
@@ -38,5 +39,18 @@ const Breadcrumb = ({ children, currentStep = 0 }) => (
     ))}
   </BreadcrumbContainer>
 );
+
+Breadcrumb.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.shape({
+    props: PropTypes.shape({
+      text: PropTypes.string.isRequired,
+    }),
+  })).isRequired,
+  currentStep: PropTypes.number,
+};
+
+Breadcrumb.defaultProps = {
+  currentStep: 0,
+};
 
 export default Breadcrumb;
