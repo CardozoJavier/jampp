@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { HeaderOptionDropdownContainer } from './styles';
 import { getClassName, bemDestruct } from '../../utils';
 import dropdownProps from './dropdownProps';
@@ -16,7 +17,7 @@ import { ButtonInput } from '../Button/styles';
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @return {React Component} A view for button and dropdown of unique option selectable.
  */
-const HeaderOptionDropdown = ({ children, text, type, menuTitle, disabled, }) => {
+const HeaderOptionDropdown = ({ text, type, menuTitle, children, disabled, }) => {
   const { defaultClassName, optionalClassName } = dropdownProps[type];
   const chevronDefaultClassName = dropdownProps.chevron.defaultClassName;
   const chevronOptionalClassName = dropdownProps.chevron.optionalClassName;
@@ -46,6 +47,25 @@ const HeaderOptionDropdown = ({ children, text, type, menuTitle, disabled, }) =>
       <OptionList menuTitle={menuTitle} type="header-unique-option" OptionItem={UniqueOption} children={children} className={className} />
     </>
   );
+};
+
+HeaderOptionDropdown.propTypes = {
+  text: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  menuTitle: PropTypes.string.isRequired,
+  children: PropTypes.arrayOf(PropTypes.shape({
+    props: PropTypes.shape({
+      id: PropTypes.string,
+      label: PropTypes.string,
+      color: PropTypes.string,
+      children: PropTypes.array,
+    }),
+  })).isRequired,
+  disabled: PropTypes.bool,
+};
+
+HeaderOptionDropdown.defaultProps = {
+  disabled: false,
 };
 
 export default HeaderOptionDropdown;

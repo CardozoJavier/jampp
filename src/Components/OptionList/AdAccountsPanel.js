@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   EmailFieldContainer,
   OptionListContainer,
@@ -14,13 +15,13 @@ import { ExpandableDropdown } from '../Dropdown';
 
 /**
  *  AdAccountsList component should be called with
- *  @param {String} email - (Required) It's the email to be displayed above of sign-out button.
  *  @param {Array} children - (Required) The options to be display in expandable dropdown.
- *  @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ *  @param {String} email - (Required) It's the email to be displayed above of sign-out button.
  *  @param {String} className - (Required) It's the className that switching between closed and opened dropdown.
+ *  @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  *  @return {React Component} A view for panel account with input field, a selectable list and sign out button.
  */
-const AdAccountsList = ({ children, email, disabled, className }) => (
+const AdAccountsList = ({ children, email, className, disabled, }) => (
   <OptionListContainer className={bemDestruct(className, disabled)}>
     <InputField placeholder="Filter organization" type="icon-small-left" icon={SearchIcon} />
 
@@ -44,5 +45,21 @@ const AdAccountsList = ({ children, email, disabled, className }) => (
     </ButtonContainer>
   </OptionListContainer>
 );
+
+AdAccountsList.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.shape({
+    props: PropTypes.shape({
+      text: PropTypes.string,
+      type: PropTypes.string,
+    }),
+  })).isRequired,
+  email: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
+};
+
+AdAccountsList.defaultProps = {
+  disabled: false,
+};
 
 export default AdAccountsList;

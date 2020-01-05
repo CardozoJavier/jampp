@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { CenteredModalContainer } from './styles';
 
 /**
@@ -11,5 +12,9 @@ const CenteredModal = ({ children }) => (
     {children}
   </CenteredModalContainer>
 );
+
+CenteredModal.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.node),
+};
 
 export default CenteredModal;

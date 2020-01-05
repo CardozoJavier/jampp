@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import MultipleOptionList from '../MultipleOptionList';
 import { ButtonInput } from '../Button/styles';
 import { ButtonDropdownContainer } from './styles';
@@ -15,7 +16,7 @@ import dropdownProps from './dropdownProps';
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @return {React Component} A view for button and dropdown of multiple options.
  */
-const MultipleOptionDropdown = ({ text, children = [], type = 'basic', leftIcon, disabled }) => {
+const MultipleOptionDropdown = ({ type, text, children, leftIcon, disabled }) => {
   const { defaultClassName, optionalClassName, buttonClassName } = dropdownProps[type];
 
   const [className, setClassName] = useState(defaultClassName);
@@ -51,6 +52,27 @@ const MultipleOptionDropdown = ({ text, children = [], type = 'basic', leftIcon,
       <MultipleOptionList children={children} className={className} />
     </>
   );
+};
+
+MultipleOptionDropdown.propTypes = {
+  type: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  children: PropTypes.arrayOf(PropTypes.shape({
+    props: PropTypes.shape({
+      id: PropTypes.string,
+      label: PropTypes.string,
+      color: PropTypes.string,
+      children: PropTypes.array,
+    }),
+  })).isRequired,
+  leftIcon: PropTypes.func,
+  disabled: PropTypes.bool,
+};
+
+MultipleOptionDropdown.defaultProps = {
+  type: 'basic',
+  leftIcon: () => null,
+  disabled: false,
 };
 
 export default MultipleOptionDropdown;

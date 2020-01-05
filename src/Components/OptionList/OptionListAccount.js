@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   EmailFieldContainer,
   OptionListContainer,
@@ -63,6 +64,21 @@ const OptionListAccount = ({ children, type, email, className, OptionItem }) => 
       </ButtonContainer>
     </OptionListContainer>
   );
+};
+
+OptionListAccount.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.shape({
+    props: PropTypes.shape({
+      id: PropTypes.string,
+      label: PropTypes.string,
+      color: PropTypes.string,
+      children: PropTypes.array,
+    }),
+  })),
+  type: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired,
+  OptionItem: PropTypes.func.isRequired,
 };
 
 export default OptionListAccount;

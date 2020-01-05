@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { ModalContainer, ModalTitle, ModalHeader, ModalFooter, IconTitleContainer } from './styles';
 import { IconGenerator, XIcon } from '../UI/Icons';
 
@@ -40,5 +41,15 @@ const Modal = ({ title, icon, children }) => (
     {children}
   </ModalContainer>
 );
+
+Modal.propTypes = {
+  title: PropTypes.string,
+  icon: PropTypes.func,
+};
+
+Modal.defaultProps = {
+  title: '',
+  icon: null,
+};
 
 export default Modal;
