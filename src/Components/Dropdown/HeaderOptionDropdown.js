@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { HeaderOptionDropdownContainer } from './styles';
 import { getClassName, bemDestruct } from '../../utils';
 import dropdownProps from './dropdownProps';
@@ -46,6 +47,25 @@ const HeaderOptionDropdown = ({ children, text, type, menuTitle, disabled, }) =>
       <OptionList menuTitle={menuTitle} type="header-unique-option" OptionItem={UniqueOption} children={children} className={className} />
     </>
   );
+};
+
+HeaderOptionDropdown.propTypes = {
+  type: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  menuTitle: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
+  children: PropTypes.arrayOf(PropTypes.shape({
+    props: PropTypes.shape({
+      id: PropTypes.string,
+      label: PropTypes.string,
+      color: PropTypes.string,
+      children: PropTypes.array,
+    }),
+  })).isRequired,
+};
+
+HeaderOptionDropdown.defaultProps = {
+  disabled: false,
 };
 
 export default HeaderOptionDropdown;
