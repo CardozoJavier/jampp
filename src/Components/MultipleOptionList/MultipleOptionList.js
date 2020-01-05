@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { MultipleOptionListContainer, OptionContainer } from './styles';
 import { bemDestruct, isLastItem } from '../../utils';
 
@@ -17,5 +18,11 @@ const MultipleOptionList = ({ children, className }) => (
     ))}
   </MultipleOptionListContainer>
 );
+
+MultipleOptionList.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.shape(PropTypes.string)).isRequired,
+  className: PropTypes.string.isRequired,
+};
+
 
 export default MultipleOptionList;
