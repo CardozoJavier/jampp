@@ -11,7 +11,7 @@ import { StepContainer, IconContainer, IconCircle, StepText } from './styles';
  * @param {Boolean} isLast - (Optional) Define if is the last step and not display ArrowIcon.
  * @param {String} borderColor - (Optional) Define the border color of check icon regarding step is done/current/next.
  */
-const Step = ({ text, isDone, isCurrent, isLast, borderColor }) => (
+const Step = ({ text, isDone = false, isCurrent = false, isLast = false, borderColor = '' }) => (
   <StepContainer>
     <IconContainer>
       <CheckIcon />
@@ -26,17 +26,10 @@ const Step = ({ text, isDone, isCurrent, isLast, borderColor }) => (
 
 Step.propTypes = {
   text: PropTypes.string.isRequired,
-  isDone: PropTypes.bool,
-  isCurrent: PropTypes.bool,
-  isLast: PropTypes.bool,
-  borderColor: PropTypes.string,
-};
-
-Step.defaultProps = {
-  isDone: false,
-  isCurrent: false,
-  isLast: false,
-  borderColor: '',
+  isDone: PropTypes.bool.isRequired,
+  isCurrent: PropTypes.bool.isRequired,
+  isLast: PropTypes.bool.isRequired,
+  borderColor: PropTypes.string.isRequired,
 };
 
 export default Step;

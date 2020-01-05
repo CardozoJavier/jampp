@@ -49,3 +49,5 @@ export const StepText = styled.p`
   color: ${({ isCurrent }) => isCurrent ? action : gray.g3};
   margin: 0;
 `;
+
+export const Step = styled.div``;

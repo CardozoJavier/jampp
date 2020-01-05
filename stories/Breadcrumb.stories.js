@@ -1,6 +1,7 @@
 import React from 'react';
 import '../src/main.css';
-import { Breadcrumb, Step } from '../src/Components/Breadcrumb';
+import { Breadcrumb } from '../src/Components/Breadcrumb';
+import { Step } from '../src/Components/Breadcrumb/styles';
 import { FooterBreadcrumb } from '../src/Components';
 
 export default {

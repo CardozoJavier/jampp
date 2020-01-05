@@ -4,4 +4,5 @@ export {
   IconContainer,
   IconCircle,
   StepText,
+  Step,
 } from './Breadcrumb.styles';

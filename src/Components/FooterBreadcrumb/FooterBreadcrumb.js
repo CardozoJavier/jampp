@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Container } from './styles';
-import { Breadcrumb, Step } from '../Breadcrumb';
+import { Breadcrumb} from '../Breadcrumb';
+import { Step } from '../Breadcrumb/styles';
 import { Button } from '../Button';
 
 /**
