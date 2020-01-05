@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { ButtonInput } from '../Button/styles';
 import { ButtonDropdownContainer } from './styles';
 import { getClassName, bemDestruct } from '../../utils';
@@ -19,7 +20,7 @@ const { gray } = palette;
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @return {React Component} A view for button and dropdown of unique option selectable.
  */
-const OptionDropdown = ({ text, children, type = 'basic', leftIcon, onChange, disabled }) => {
+const OptionDropdown = ({ text, children, type, leftIcon, onChange, disabled }) => {
   const { defaultClassName, optionalClassName, buttonClassName } = dropdownProps[type];
 
   const [className, setClassName] = useState(defaultClassName);
@@ -55,6 +56,29 @@ const OptionDropdown = ({ text, children, type = 'basic', leftIcon, onChange, di
       <OptionList type="unique-option" OptionItem={UniqueOption} children={children} className={className} onChange={onChange} />
     </>
   );
+};
+
+OptionDropdown.propTypes = {
+  text: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  leftIcon: PropTypes.func,
+  onChange: PropTypes.func,
+  disabled: PropTypes.bool,
+  children: PropTypes.arrayOf(PropTypes.shape({
+    props: PropTypes.shape({
+      id: PropTypes.string,
+      label: PropTypes.string,
+      color: PropTypes.string,
+      children: PropTypes.array,
+    }),
+  })).isRequired,
+};
+
+OptionDropdown.defaultProps = {
+  disabled: false,
+  type: 'basic',
+  leftIcon: () => null,
+  onChange: () => null,
 };
 
 export default OptionDropdown;
