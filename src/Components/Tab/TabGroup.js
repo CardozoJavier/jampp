@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Tab from './Tab';
 import { TabGroupContainer } from './styles';
 
 /**
  * TabGroup component should be called with
- * @param {String} name - (Required) Name of tabs group necesary to implement several groups in the same component.
  * @param {Array} children - (Required) Array of tabs to be displayed.
+ * @param {String} name - (Required) Name of tabs group necesary to implement several groups in the same component.
  * @param {String} defaultActive - (Optional) It select the default active tab. It should match with tab id.
  * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive the id option in first argument.
  * @return {React Component} A view for group of tabs.
@@ -15,7 +16,7 @@ const TabGroup = ({ children, name, defaultActive, onChange }) => {
 
   const handleChange = (id) => {
     setSelectedOption(id);
-    onChange && onChange(id);
+    onChange(id);
   };
 
   return (
@@ -34,6 +35,18 @@ const TabGroup = ({ children, name, defaultActive, onChange }) => {
       ))}
     </TabGroupContainer>
   );
+};
+
+TabGroup.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.node).isRequired,
+  name: PropTypes.string.isRequired,
+  defaultActive: PropTypes.string,
+  onChange: PropTypes.func,
+};
+
+TabGroup.defaultProps = {
+  defaultActive: '',
+  onChange: () => null,
 };
 
 export default TabGroup;

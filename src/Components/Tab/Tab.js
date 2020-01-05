@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TabContainer, TabText, InputContainer, InputRadio, TabButton } from './styles';
 import { bemDestruct } from '../../utils';
 import { IconGenerator } from '../UI/Icons';
@@ -8,13 +9,13 @@ import { IconGenerator } from '../UI/Icons';
  * @param {String} id - (Required) It's an unique ID to identifier each tab in TabGroup.
  * @param {String} name - (Required) String to handle radiobuttons into a group.
  * @param {String} text - (Required) It's the name of tab.
+ * @param {Boolean} checked - (Required) Indicate if tab is selected or not.
  * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive the id option in first argument.
  * @param {Function} icon - (Optional) Function that returns an svg icon.
- * @param {Boolean} checked - (Required) Indicate if tab is selected or not.
  * @param {Boolean} disabled - (Optional) Disable component if is true.
  * @return {React Component} A view for an individual tab.
  */
-const Tab = ({ id, name, text, onChange, icon, checked, disabled }) => (
+const Tab = ({ id, name, text, checked, onChange, icon, disabled }) => (
   <TabContainer>
     <InputContainer disabled={disabled}>
       <InputRadio
@@ -46,5 +47,21 @@ const Tab = ({ id, name, text, onChange, icon, checked, disabled }) => (
     </InputContainer>
   </TabContainer>
 );
+
+Tab.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  checked: PropTypes.bool.isRequired,
+  onChange: PropTypes.func,
+  icon: PropTypes.func,
+  disabled: PropTypes.bool,
+};
+
+Tab.defaultProps = {
+  onChange: () => null,
+  icon: () => null,
+  disabled: false,
+};
 
 export default Tab;

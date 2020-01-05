@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { RadioButtonGroupContainer } from './styles';
 import RadioButton from './RadioButton';
 
@@ -15,7 +16,7 @@ const RadioButtonGroup = ({ children, name, defaultValue, onChange }) => {
 
   const handleChange = (id) => {
     setSelectedOption(id);
-    onChange && onChange(id);
+    onChange(id);
   };
 
   return (
@@ -34,6 +35,18 @@ const RadioButtonGroup = ({ children, name, defaultValue, onChange }) => {
       ))}
     </RadioButtonGroupContainer>
   );
+};
+
+RadioButtonGroup.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.node).isRequired,
+  name: PropTypes.string.isRequired,
+  defaultValue: PropTypes.string,
+  onChange: PropTypes.func,
+};
+
+RadioButtonGroup.defaultProps = {
+  defaultValue: '',
+  onChange: () => null,
 };
 
 export default RadioButtonGroup;

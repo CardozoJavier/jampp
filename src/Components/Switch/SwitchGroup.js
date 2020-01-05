@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import buttonProps from './buttonProps';
 import { SwitchGroupContainer, SwitchButtonInput } from './styles';
 import { bemDestruct, settingClassName } from '../../utils';
@@ -11,7 +12,7 @@ import { bemDestruct, settingClassName } from '../../utils';
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @return {React Component} A view for group of switch buttons.
  */
-const SwitchGroup = ({ children, type = 'options', onChange, disabled }) => {
+const SwitchGroup = ({ children, type, onChange, disabled }) => {
   const { defaultClassName, ButtonContainer } = buttonProps[type];
   if (!Array.isArray(children)) {
     children = [children];
@@ -25,7 +26,7 @@ const SwitchGroup = ({ children, type = 'options', onChange, disabled }) => {
   const handleCheck = (e, id) => {
     const inputsArray = settingClassName(children, id, defaultClassName);
     setArray(inputsArray);
-    onChange && onChange(id);
+    onChange(id);
   }
 
   return (
@@ -41,6 +42,19 @@ const SwitchGroup = ({ children, type = 'options', onChange, disabled }) => {
       )}
     </SwitchGroupContainer>
   );
+};
+
+SwitchGroup.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.node).isRequired,
+  type: PropTypes.string,
+  onChange: PropTypes.func,
+  disabled: PropTypes.bool,
+};
+
+SwitchGroup.defaultProps = {
+  type: 'options',
+  onChange: () => null,
+  disabled: false,
 };
 
 export default SwitchGroup;

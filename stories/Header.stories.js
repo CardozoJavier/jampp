@@ -37,7 +37,7 @@ export default {
  *  @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
  *
  *  AccountDropdown component should be called with
- *  @prop {String} avatar - (Required) The relative or absolute path of an image to be rendered in header. 
+ *  @prop {String} avatarSrc - (Required) The relative or absolute path of an image to be rendered in header. 
  *  @prop {String} name - (Required) It's the name to be displayed next to avatar.
  *  @prop {String} description - (Required) It's the description to be displayed below of name.
  */
@@ -58,7 +58,7 @@ export const Header = () => (
         <NotificationsIcon />
       </NotificationContainer>
       <AccountDropdown
-        avatar={AvatarSrc}
+        avatarSrc={AvatarSrc}
         name="Guido Crego"
         description="Jampp - Head of product"
       />
@@ -77,7 +77,7 @@ export const Header = () => (
  *  @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
  * 
  *  AccountDropdown component should be called with
- *  @prop {String} avatar - (Required) The relative or absolute path of an image to be rendered in header. 
+ *  @prop {String} avatarSrc - (Required) The relative or absolute path of an image to be rendered in header. 
  *  @prop {String} name - (Required) It's the name to be displayed next to avatar.
  *  @prop {String} description - (Required) It's the description to be displayed below of name.
  *  @prop {String} email - (Required) It's the email to be displayed above of sign-out button.
@@ -99,7 +99,7 @@ export const BusinessLevel = () => (
           <HelpIcon />
           <NotificationsIcon />
         </NotificationContainer>
-        <AccountDropdown avatar={AvatarSrc} name="Guido Crego" description="Jampp - Head of product" email="guido.crego@jampp.com">
+        <AccountDropdown avatarSrc={AvatarSrc} name="Guido Crego" description="Jampp - Head of product" email="guido.crego@jampp.com">
           <Option label="Organization name A" id="id1" />
           <Option label="Organization name B" id="id2" />
           <Option label="Organization name C" id="id3" />
@@ -121,7 +121,7 @@ export const BusinessLevel = () => (
  *  @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
  * 
  *  AdAccountsDropdown component should be called with
- *  @prop {String} avatar - (Required) The relative or absolute path of an image to be rendered in header. 
+ *  @prop {String} avatarSrc - (Required) The relative or absolute path of an image to be rendered in header. 
  *  @prop {String} name - (Required) It's the name to be displayed next to avatar.
  *  @prop {String} description - (Required) It's the description to be displayed below of name.
  * 
@@ -148,7 +148,7 @@ export const AdAccountsLevel = () => (
           <NotificationsIcon />
         </NotificationContainer>
 
-        <AdAccountsDropdown avatar={AvatarSrc} name="Guido Crego" description="Jampp - Head of product" email="guido.crego@jampp.com">
+        <AdAccountsDropdown avatarSrc={AvatarSrc} name="Guido Crego" description="Jampp - Head of product" email="guido.crego@jampp.com">
           <OptionDropdown text="Organization name A" type="expandable-no-border-purple">
             <Option label="Ad Account Name A" id="id1" />
             <Option label="Ad Account Name B" id="id2" />

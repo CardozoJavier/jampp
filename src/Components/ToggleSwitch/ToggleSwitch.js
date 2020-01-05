@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { ToggleSwitchContainer } from './styles';
 import { getClassName, bemDestruct } from '../../utils';
 import ToggleCircleIcon from '../UI/Icons/ToggleCircleIcon';
@@ -30,14 +31,14 @@ const classesName = {
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @return {React Component} A view for toggle switch.
  */ 
-const ToggleSwitch = ({ color = 'green', disabled, onChange }) => {
+const ToggleSwitch = ({ color, disabled, onChange }) => {
   const { defaultClassName, optionalClassName } = classesName[color];
   const [className, setClassName] = useState(defaultClassName);
   const [status, setStatus] = useState(false);
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
 
   const handleClick = () => {
-    onChange && onChange(!status);
+    onChange(!status);
     setStatus(!status);
     setClassName(toggleToClassName);
   };
@@ -57,6 +58,18 @@ const ToggleSwitch = ({ color = 'green', disabled, onChange }) => {
       />
     </ToggleSwitchContainer>
   );
+};
+
+ToggleSwitch.propTypes = {
+  color: PropTypes.string,
+  disabled: PropTypes.bool,
+  onChange: PropTypes.func,
+};
+
+ToggleSwitch.defaultProps = {
+  color: 'green',
+  disabled: false,
+  onChange: () => null,
 };
 
 export default ToggleSwitch;

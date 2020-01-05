@@ -7,8 +7,8 @@ export default {
 
 /**
  * Card component can be called with
- * @prop {String} title - It's title to be displayed in card.
- * @prop {String} description - It's description to be displayed in card below of title.
+ * @prop {String} title - (Optional) It's title to be displayed in card.
+ * @prop {String} description - (Optional) It's description to be displayed in card below of title.
  */
 export const WithTitle = () => (
   <Card title="Title" />
