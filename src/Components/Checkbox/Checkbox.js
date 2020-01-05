@@ -38,9 +38,10 @@ const Checkbox = ({ type, id, label, right, left, onChange, checked, disabled })
   const { defaultClassName, optionalClassName } = classesName[type];
   const { defaultLabel, selectedLabel } = classesName['label'];
   const initialState = checked ? optionalClassName : defaultClassName;
+  const labelInitialClassName = checked ? selectedLabel : defaultLabel;
 
   const [className, setClassName] = useState(initialState);
-  const [labelClassName, setLabelClassName] = useState(defaultLabel);
+  const [labelClassName, setLabelClassName] = useState(labelInitialClassName);
   const [status, setStatus] = useState(checked);
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
