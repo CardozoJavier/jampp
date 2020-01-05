@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Container } from './styles';
 import { Breadcrumb, Step } from '../Breadcrumb';
 import { Button } from '../Button';
@@ -9,7 +10,7 @@ import { Button } from '../Button';
  * @param {Array} children - (Required) They're the steps to be displayed.
  * @return {React Component} A view for breadcrumb into footer with next and back action buttons.
  */
-const FooterBreadcrumb = ({ children, onChange, currentStep = 0 }) => {
+const FooterBreadcrumb = ({ children, onChange, currentStep }) => {
   const [stepIndex, setStepIndex] = useState(currentStep);
 
   const handleBack = () => {
@@ -35,6 +36,19 @@ const FooterBreadcrumb = ({ children, onChange, currentStep = 0 }) => {
       <Button label="Next" type="secondary-default-medium" onClick={handleNext} />
     </Container>
   );
+};
+
+FooterBreadcrumb.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.shape({
+    props: {
+      text: PropTypes.string.isRequired,
+    },
+  })).isRequired,
+  currentStep: PropTypes.number,
+};
+
+FooterBreadcrumb.defaultProps = {
+  currentStep: 0,
 };
 
 export default FooterBreadcrumb;
