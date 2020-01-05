@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button } from '../Button';
 
 /**
@@ -10,5 +11,15 @@ import { Button } from '../Button';
 const StatusLabel = ({ text, color, icon }) => (
   <Button label={text} type={`status-small-${color}`} icon={icon} />
 );
+
+StatusLabel.propTypes = {
+  text: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
+  icon: PropTypes.func,
+};
+
+StatusLabel.defaultProps = {
+  icon: () => null,
+};
 
 export default StatusLabel;
