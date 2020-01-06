@@ -7,7 +7,7 @@ export default styled.div`
   border-radius: 4px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, .1);
   background-color: white;
-  // z-index: 1;
+  z-index: 1;
 
   &.dropdown, &.expandable {
     &-right {}
