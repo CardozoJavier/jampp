@@ -27,8 +27,8 @@ job "stg-storybooks-components" {
         port = "entry_port"
         name = "stg-storybooks-components"
         tags = [
-          "stg",
-          "traefik.frontend.rule=Host:storybooks-preview.jampp.com"
+          "traefik-stg.frontend.rule=Host:storybooks-preview.jampp.com",
+          "traefik-stg.frontend.entrypoints=http-public"
         ]
 
         check {
