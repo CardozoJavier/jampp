@@ -9,6 +9,7 @@ export const OptionListContainer = styled(OptionCheckboxGroup)`
   top: -12px;
   right: -5px;
   background-color: #fff;
+  z-index: 0;
 `;
 export const EmailField = styled.p`
   font-size: 12px;
