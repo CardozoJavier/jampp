@@ -1,0 +1,8 @@
+import styled from 'styled-components';
+import { palette } from '../../styles';
+const { gray } = palette;
+
+export const CardHeader = styled.div`
+  border-bottom: 1px solid ${gray.g2};
+  padding-bottom: 15px;
+`;

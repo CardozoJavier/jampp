@@ -1,0 +1,55 @@
+*{
+	/* Deleted default values */
+	list-style : none;
+	text-decoration : none;
+  box-sizing : border-box;
+}
+
+@font-face {
+  font-family: 'Work sans';
+  font-weight: 100;
+  src: local('Balboa thin'),
+    local('Balboa-thin')
+  ;
+}
+
+@font-face {
+  font-family: 'work sans', sans-serif;
+  font-weight: 300;
+  src: local('Balboa light'),
+    local('Balboa-light')
+  ;
+}
+
+@font-face {
+  font-family: 'work sans', sans-serif;
+  font-weight: normal;
+  src: local('Balboa'),
+    local('Balboa')
+  ;
+}
+
+@font-face {
+  font-family: 'work sans', sans-serif;
+  font-weight: bold;
+  src: local('Balboa bold'),
+    local('Balboa-bold')
+  ;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family: 'Balboa', sans-serif;
+  letter-spacing: 0.05em;
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
