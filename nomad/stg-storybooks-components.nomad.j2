@@ -17,7 +17,7 @@ job "stg-storybooks-components" {
     task "webserver" {
       driver = "docker"
       config {
-        image = "docker.jampp.com/stg-storybooks-components:0.1"
+        image = "docker.jampp.com/stg-storybooks-components:{{image_version}}"
         port_map = {
           entry_port = 6006
         }
