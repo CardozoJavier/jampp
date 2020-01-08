@@ -38,6 +38,7 @@ export default styled.div`
         left: 0;
         padding: 0 20px 20px 20px;
         min-width: 220px;
+        z-index: 0;
       }
     }
   }
