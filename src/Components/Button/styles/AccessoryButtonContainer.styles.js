@@ -148,7 +148,6 @@ export default styled.div`
       &--gray {
         background-color: ${gray.g1};
         color: ${gray.g4};
-        // padding: 5px 0 5px 8px;
 
         ${AddIconContainer} {
           fill: ${gray.g4};

@@ -3,12 +3,6 @@ import { palette } from '../../../styles';
 const { gray } = palette;
 
 export default styled.div`
-  // position: ${({ position }) => position || 'absolute'};
-  // top: ${({ top }) => top};
-  // right: ${({ right }) => right};
-  // bottom: ${({ bottom }) => bottom};
-  // left: ${({ left }) => left};
-
   svg {
     width: ${({ width }) => width};
     height: ${({ height }) => height};

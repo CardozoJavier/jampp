@@ -15,22 +15,14 @@ const buttonProps = {
     optionalClassName: '',
     iconClassName: 'icon accessory--default-left',
     ButtonContainer: AccessoryButtonContainer,
-    iconProps: {
-      // left: '10px',
-      // width: '11px',
-      // height: '11px',
-    },
+    iconProps: {},
   },
   "accessory-gray-left": {
     defaultClassName: 'button accessory--gray-left',
     optionalClassName: '',
     iconClassName: 'icon accessory--gray-left',
     ButtonContainer: AccessoryButtonContainer,
-    iconProps: {
-      // left: '10px',
-      // width: '11px',
-      // height: '11px',
-    },
+    iconProps: {},
   },
   "accessory-default-both": {
     defaultClassName: 'button accessory--default-both',
@@ -96,22 +88,14 @@ const buttonProps = {
     optionalClassName: '',
     ButtonContainer: StatusButtonContainer,
     iconClassName: 'icon label--default-small__right',
-    iconProps: {
-      // right: '8px',
-      // width: '4px',
-      // height: '4px',
-    },
+    iconProps: {},
   },
   "label-default-medium": {
     defaultClassName: 'button label--default-medium right-icon',
     optionalClassName: '',
     ButtonContainer: StatusButtonContainer,
     iconClassName: 'icon label--default-medium__right',
-    iconProps: {
-      // right: '8px',
-      // width: '6px',
-      // height: '6px',
-    },
+    iconProps: {},
   },
   "link-default-left": {
     defaultClassName: 'button link--default-left',
