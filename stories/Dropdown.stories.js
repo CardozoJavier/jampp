@@ -171,10 +171,10 @@ export const SolidWithIcon = () => (
           * @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
           * @prop {String} label - (Optional) It's a text to be display inside button.
           */}
-        <Option label="status" id="id1" color="red" />
-        <Option label="status" id="id2" color="yellow" />
-        <Option label="status" id="id3" color="green" />
-        <Option label="status" id="id4" color="blue" />
+        <Option label="status" id="red" color="red" />
+        <Option label="status" id="yellow" color="yellow" />
+        <Option label="status" id="green" color="green" />
+        <Option label="status" id="blue" color="blue" />
       </StatusLabelDropdown>
     </DropdownContainer>
 
@@ -247,10 +247,10 @@ export const NoBorder = () => (
           * @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
           * @prop {String} label - (Optional) It's a text to be display inside button.
           */}
-        <Option label="status" id="id1" color="red" />
-        <Option label="status" id="id2" color="yellow" />
-        <Option label="status" id="id3" color="green" />
-        <Option label="status" id="id4" color="blue" />
+        <Option label="status" id="red" color="red" />
+        <Option label="status" id="yellow" color="yellow" />
+        <Option label="status" id="green" color="green" />
+        <Option label="status" id="blue" color="blue" />
       </StatusLabelDropdown>
     </DropdownContainer>
 
@@ -323,10 +323,10 @@ export const NoBorderLink = () => (
           * @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
           * @prop {String} label - (Optional) It's a text to be display inside button.
           */}
-        <Option label="status" id="id1" color="red" />
-        <Option label="status" id="id2" color="yellow" />
-        <Option label="status" id="id3" color="green" />
-        <Option label="status" id="id4" color="blue" />
+        <Option label="status" id="red" color="red" />
+        <Option label="status" id="yellow" color="yellow" />
+        <Option label="status" id="green" color="green" />
+        <Option label="status" id="blue" color="blue" />
       </StatusLabelDropdown>
     </DropdownContainer>
 
@@ -399,10 +399,10 @@ export const NoBorderPurple = () => (
           * @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
           * @prop {String} label - (Optional) It's a text to be display inside button.
           */}
-        <Option label="status" id="id1" color="red" />
-        <Option label="status" id="id2" color="yellow" />
-        <Option label="status" id="id3" color="green" />
-        <Option label="status" id="id4" color="blue" />
+        <Option label="status" id="red" color="red" />
+        <Option label="status" id="yellow" color="yellow" />
+        <Option label="status" id="green" color="green" />
+        <Option label="status" id="blue" color="blue" />
       </StatusLabelDropdown>
     </DropdownContainer>
   </>
