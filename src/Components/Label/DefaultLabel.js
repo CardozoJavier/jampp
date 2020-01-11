@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from '../Button';
-import { XIcon } from '../UI/Icons';
+import { DefaultLabelContainer, DefaultLabelText } from './styles';
+import { XIcon, IconGenerator } from '../UI/Icons';
+import { bemDestruct } from '../../utils';
 
 /**
  * DefaultLabel component should be called with
@@ -10,7 +11,16 @@ import { XIcon } from '../UI/Icons';
  * @param {Function} onClose - (Optional) Callback to trigger on onClick event on X icon.
  */
 const DefaultLabel = ({ text, size, onClose }) => (
-  <Button label={text} type={`label-default-${size}`} icon={XIcon} onClickIcon={onClose} />
+  <DefaultLabelContainer className={bemDestruct(`label label--default-${size}`)}>
+    <DefaultLabelText>{ text }</DefaultLabelText>
+    <IconGenerator
+      renderIcon={XIcon}
+      props={{
+        className: `icon label--default-${size}__right`,
+        onClick: onClose,
+      }}
+    />
+  </DefaultLabelContainer>
 );
 
 DefaultLabel.propTypes = {

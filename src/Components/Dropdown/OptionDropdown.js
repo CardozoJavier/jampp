@@ -18,14 +18,17 @@ const { gray } = palette;
  * @param {Node} children - (Required) The options to be display.
  * @param {Function} leftIcon - (Optional) Function that returns an svg icon to be displayed inside button.
  * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
+ * @param {String} notIcon - (Optional) It's a modifier to not display the check icon next to text.
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @return {React Component} A view for button and dropdown of unique option selectable.
  */
-const OptionDropdown = ({ type, text, children, leftIcon, onChange, disabled }) => {
+const OptionDropdown = ({ type, text, children, leftIcon, onChange, notIcon, disabled }) => {
   const { defaultClassName, optionalClassName, buttonClassName } = dropdownProps[type];
 
   const [className, setClassName] = useState(defaultClassName);
   const [chevron, setChevron] = useState(dropdownProps.chevron.defaultClassName);
+
+  const [textButton, setTextButton] = useState(text);
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const toggleChevronDirection = getClassName(chevron, dropdownProps.chevron.defaultClassName, dropdownProps.chevron.optionalClassName);
@@ -34,6 +37,11 @@ const OptionDropdown = ({ type, text, children, leftIcon, onChange, disabled }) 
     setClassName(toggleToClassName);
     setChevron(toggleChevronDirection);
   };
+
+  const onSelect = (id, label) => {
+    setTextButton(label);
+    handleClick();
+  }; 
 
   return (
     <>
@@ -45,7 +53,7 @@ const OptionDropdown = ({ type, text, children, leftIcon, onChange, disabled }) 
             disabled={disabled}
           />
         }
-        <ButtonInput children={text} />
+        <ButtonInput children={textButton} />
         <IconGenerator
           renderIcon={DownChevronIcon}
           props={{
@@ -54,7 +62,15 @@ const OptionDropdown = ({ type, text, children, leftIcon, onChange, disabled }) 
           disabled={disabled}
         />
       </ButtonDropdownContainer>
-      <OptionList type="unique-option" OptionItem={UniqueOption} children={children} className={className} onChange={onChange} />
+      <OptionList
+        type="unique-option"
+        OptionItem={UniqueOption}
+        children={children}
+        className={className}
+        onSelect={onSelect}
+        onChange={onChange}
+        notIcon={notIcon}
+      />
     </>
   );
 };
@@ -65,6 +81,7 @@ OptionDropdown.propTypes = {
   children: PropTypes.node.isRequired,
   leftIcon: PropTypes.func,
   onChange: PropTypes.func,
+  notIcon: PropTypes.bool,
   disabled: PropTypes.bool,
 };
 
@@ -72,6 +89,7 @@ OptionDropdown.defaultProps = {
   type: 'basic',
   leftIcon: () => null,
   onChange: () => null,
+  notIcon: false,
   disabled: false,
 };
 

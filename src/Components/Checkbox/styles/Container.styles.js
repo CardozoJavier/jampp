@@ -48,7 +48,6 @@ export const Container = styled.div`
         border-radius: 0 0 4px 4px;
         transition: all .3s;
       }
-
     &.modal, &.basic {
       &--filled, &--default {
 
@@ -65,7 +64,42 @@ export const Container = styled.div`
   }
 
   &.dropdown {
-    &-multipleoptions {}
+    /***********************
+     * Dropdown TOP styles *
+     * *********************
+     */
+      &-first {
+        display: flex;
+        position: relative;
+        border-radius: 4px 4px 0 0;
+        border-bottom: 1px solid ${gray.g1};
+        transition: all .3s;
+      }
+
+    /**************************
+     * Dropdown MIDDLE styles *
+     * ************************
+     */
+      &-middle {
+        display: flex;
+        align-items: center;
+        position: relative;
+        border-radius: 0;
+        border-bottom: 1px solid ${gray.g1};
+        transition: all .3s;
+      }
+
+    /**************************
+     * Dropdown BOTTOM styles *
+     * ************************
+     */
+      &-last {
+        display: flex;
+        align-items: center;
+        position: relative;
+        border-radius: 0 0 4px 4px;
+        transition: all .3s;
+      }
     &.basic {
       &--default {
         padding: 10px;

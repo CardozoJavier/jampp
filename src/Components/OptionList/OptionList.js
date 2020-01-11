@@ -11,10 +11,12 @@ import optionListProps from './optionListProps';
  * @param {String} className - (Required) The className determines if list is opened or closed.
  * @param {Function} OptionItem - (Required) It's each option component styled to be displayed into list.
  * @param {String} menuTitle - (Optional) It's the title in dropdown opened.
+ * @param {Function} onSelect - (Optional) Callback to change text displayed in button dropdown. It receive option ID in first argument, and label option in second argument.
  * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
+ * @param {String} notIcon - (Optional) It's a modifier to not display the check icon next to text.
  * @return {React Component} A view in which one option can be selected.
  */
-const OptionList = ({ children = [], type, className, OptionItem, menuTitle, onChange, }) => {
+const OptionList = ({ children = [], type, className, OptionItem, menuTitle, onSelect, onChange, notIcon, }) => {
   const { defaultClassName } = optionListProps[type];
   const childrenParsed = settingClassName(children, -1, defaultClassName);
   const [array, setArray] = useState(childrenParsed);
@@ -22,10 +24,11 @@ const OptionList = ({ children = [], type, className, OptionItem, menuTitle, onC
   /**
    * When an option is clicked, his className is toggle to selected and everyone else are being uncheck.
    */
-  const handleCheck = (e, id) => {
+  const handleCheck = (id, label) => {
     const inputsArray = settingClassName(children, id, defaultClassName);
     setArray(inputsArray);
     onChange(id);
+    onSelect(id, label);
   }
 
   return (
@@ -37,6 +40,7 @@ const OptionList = ({ children = [], type, className, OptionItem, menuTitle, onC
           handleCheck={handleCheck}
           label={input.label}
           color={input.color}
+          notIcon={notIcon}
           key={input.id}
           id={input.id}
         />
@@ -59,11 +63,13 @@ OptionList.propTypes = {
     OptionItem: PropTypes.func.isRequired,
     menuTitle: PropTypes.string,
     onChange: PropTypes.func,
+    notIcon: PropTypes.bool,
   };
   
 OptionList.defaultProps = {
   menuTitle: null,
   onChange: () => null,
+  notIcon: false,
 };
   
 export default OptionList;

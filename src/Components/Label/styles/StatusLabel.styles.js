@@ -3,15 +3,12 @@ import { palette } from '../../styles';
 import { XIconContainer, EllipseIconContainer } from '../../UI/Icons/styles';
 const { black, violet, green, gray, red, blue, yellow, link } = palette;
 
-/**
- * Label status | medium - small | green | red | yellow | blue
- */
-export default styled.div`
+export const StatusLabelContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin: ${({ margin }) => margin};
 
-  &.button {
+  &.label {
     transition: background-color .3s;
     text-align: center;
     padding: 0;
@@ -19,7 +16,7 @@ export default styled.div`
     /****************************
      * Status label color green *
      ****************************
-     */
+    */
     &-green {
       background-color: ${green.g0};
       color: ${green.g1};
@@ -32,7 +29,7 @@ export default styled.div`
     /**************************
      * Status label color red *
      **************************
-     */
+    */
     &-red {
       background-color: ${red.r1};
       color: ${red.r3};
@@ -45,7 +42,7 @@ export default styled.div`
     /*****************************
      * Status label color yellow *
      *****************************
-     */    
+    */    
     &-yellow {
       background-color: ${yellow.y0};
       color: ${yellow.y2};
@@ -58,7 +55,7 @@ export default styled.div`
     /***************************
      * Status label color blue *
      ***************************
-     */
+    */
     &-blue {
       background-color: ${blue.b05};
       color: ${link};
@@ -71,7 +68,7 @@ export default styled.div`
     /*****************************
      * Default label medium size *
      *****************************
-     */
+    */
     &-medium {
       min-width: 80px;
       font-size: 10px;
@@ -90,7 +87,7 @@ export default styled.div`
     /****************************
      * Default label small size *
      ****************************
-     */
+    */
     &-small {
       font-size: 10px;
       font-weight: normal;
@@ -131,21 +128,9 @@ export default styled.div`
         }
       }
     }
-    
-    /************************
-     * Label button default *
-     * **********************
-     */
-    &.label {
-      align-items: center;
-      border-radius: 4px;
-      ${XIconContainer} {
-        fill: ${gray.g07};
-      }
+`;
 
-      &--default {
-        background-color: ${violet.v05};
-      }
-    }
-  }
+export const StatusLabelText = styled.p`
+  font-size: 10px;
+  margin: 0;
 `;

@@ -8,6 +8,8 @@ export default styled.div`
   box-shadow: 0 4px 16px rgba(0, 0, 0, .1);
   background-color: white;
   z-index: 1;
+  min-width: 130px;
+  width: 100%;
 
   &.dropdown, &.expandable {
     &-right {}
@@ -38,6 +40,7 @@ export default styled.div`
         left: 0;
         padding: 0 20px 20px 20px;
         min-width: 220px;
+        z-index: 0;
       }
     }
   }

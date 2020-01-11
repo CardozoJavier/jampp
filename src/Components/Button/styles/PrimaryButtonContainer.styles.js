@@ -141,14 +141,4 @@ export default styled.div`
       }
     }
   }
-
-  // .right-icon {
-  //   padding: .9em 3em .9em 1.8em;
-  // }
-
-  // .icon--info-disabled {
-  //   svg {
-  //     fill: ${gray.g2};
-  //   }
-  // }
 `;

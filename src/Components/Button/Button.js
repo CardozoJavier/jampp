@@ -13,11 +13,10 @@ import { bemDestruct, getClassName } from '../../utils';
  * @param {Function} icon - (Optional) Function that returns an svg icon.
  * @param {Boolean} disabled - (Optional) Disable component if is true.
  * @param {Function} onClick - (Optional) Callback to trigger on onClick event.
- * @param {Function} onClickIcon - (Optional) Callback to trigger on icon onClick event.
  * @param {Boolean} fixed - (Optional) Disabled move up transform on hover.
  * @return {React Component} A view for button.
  */
-const Button = ({ type, label, children, icon, disabled, onClick, onClickIcon, fixed }) => {
+const Button = ({ type, label, children, icon, disabled, onClick, fixed }) => {
   const { defaultClassName, optionalClassName, ButtonContainer, iconProps, iconClassName } = buttonProps[type];
 
   const [className, setClassName] = useState(defaultClassName);
@@ -42,7 +41,6 @@ const Button = ({ type, label, children, icon, disabled, onClick, onClickIcon, f
           props={{
             ...iconProps,
             className: bemDestruct(iconClassName, disabled),
-            onClick: onClickIcon
           }}
         />
       }
@@ -57,7 +55,6 @@ Button.propTypes = {
   icon: PropTypes.func,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
-  onClickIcon: PropTypes.func,
   fixed: PropTypes.bool,
 };
 
@@ -67,7 +64,6 @@ Button.defaultProps = {
   icon: null,
   disabled: false,
   onClick: () => null,
-  onClickIcon: () => null,
   fixed: false,
 };
 

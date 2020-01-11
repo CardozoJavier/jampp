@@ -72,7 +72,6 @@ export const InputTypeRadio = styled.input`
 `;
 
 export const InputTypeRadioContainer = styled.div`
-  // margin: 5px 0;
   position: relative;
   width: 20px;
   height: 20px;
