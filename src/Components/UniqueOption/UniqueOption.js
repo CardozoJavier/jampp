@@ -19,7 +19,7 @@ const UniqueOption = ({ id, className, handleCheck, label, }) => (
   <OptionContainer
     key={id}
     className={bemDestruct(className)}
-    onClick={(e) => handleCheck(e, id)}
+    onClick={() => handleCheck(id, label)}
   >
     <OptionLabel>{ label }</OptionLabel>
     <IconGenerator

@@ -22,11 +22,11 @@ const OptionList = ({ children = [], type, className, OptionItem, menuTitle, onS
   /**
    * When an option is clicked, his className is toggle to selected and everyone else are being uncheck.
    */
-  const handleCheck = (e, id) => {
+  const handleCheck = (id, label) => {
     const inputsArray = settingClassName(children, id, defaultClassName);
     setArray(inputsArray);
     onChange(id);
-    onSelect(id);
+    onSelect(label);
   }
 
   return (

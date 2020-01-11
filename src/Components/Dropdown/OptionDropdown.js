@@ -37,8 +37,8 @@ const OptionDropdown = ({ type, text, children, leftIcon, onChange, disabled }) 
     setChevron(toggleChevronDirection);
   };
 
-  const onSelect = (id) => {
-    setTextButton(id);
+  const onSelect = (label) => {
+    setTextButton(label);
     handleClick();
   }; 
 
