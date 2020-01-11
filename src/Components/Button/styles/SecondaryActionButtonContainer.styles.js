@@ -4,6 +4,7 @@ const { gray, white } = palette;
 
 export default styled.div`
   display: flex;
+  height: fit-content;
     
   &:hover {
     cursor: ${({ disabled}) => disabled ? 'default' : 'pointer'};

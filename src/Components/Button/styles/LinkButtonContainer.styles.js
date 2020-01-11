@@ -9,6 +9,7 @@ const { link, gray } = palette;
 export default styled.div`
   display: flex;
   align-items: center;
+  height: fit-content;
 
   &:hover {
     cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};

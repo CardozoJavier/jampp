@@ -9,6 +9,7 @@ const { white, violet, gray, black } = palette;
 export default styled.div`
   display: flex;
   justify-content: center;
+  height: fit-content;
   
   &:hover {
     cursor: ${({ disabled}) => disabled ? 'default' : 'pointer'};
