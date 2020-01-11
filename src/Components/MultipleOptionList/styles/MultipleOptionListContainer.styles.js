@@ -8,6 +8,7 @@ export const MultipleOptionListContainer = styled.div`
   top: 45px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, .1);
   border-radius: 4px;
+  overflow: hidden;
   min-width: 130px;
   width: 100%;
   background-color: white;
