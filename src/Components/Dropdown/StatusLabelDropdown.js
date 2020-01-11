@@ -35,9 +35,9 @@ const StatusLabelDropdown = ({ text, children, type = 'basic', leftIcon, onChang
     setChevron(toggleChevronDirection);
   };
 
-  const onSelect = (id) => {
+  const onSelect = (id, label) => {
     const props = {
-      text: 'status',
+      text: label,
       color: id,
     };
     setOptionButton(<StatusLabel {...props} key={id} icon={EllipseIcon} />);
@@ -54,7 +54,7 @@ const StatusLabelDropdown = ({ text, children, type = 'basic', leftIcon, onChang
             disabled={disabled}
           />
         }
-        <ButtonInput style={{ fontSize: '10px', padding: 0, }}>{optionButton}</ButtonInput>
+        <ButtonInput>{optionButton}</ButtonInput>
         <IconGenerator
           renderIcon={DownChevronIcon}
           props={{

@@ -26,7 +26,7 @@ const OptionList = ({ children = [], type, className, OptionItem, menuTitle, onS
     const inputsArray = settingClassName(children, id, defaultClassName);
     setArray(inputsArray);
     onChange(id);
-    onSelect(label);
+    onSelect(id, label);
   }
 
   return (
