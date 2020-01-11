@@ -26,6 +26,8 @@ const OptionDropdown = ({ type, text, children, leftIcon, onChange, disabled }) 
 
   const [className, setClassName] = useState(defaultClassName);
   const [chevron, setChevron] = useState(dropdownProps.chevron.defaultClassName);
+
+  const [textButton, setTextButton] = useState(text);
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const toggleChevronDirection = getClassName(chevron, dropdownProps.chevron.defaultClassName, dropdownProps.chevron.optionalClassName);
@@ -34,6 +36,11 @@ const OptionDropdown = ({ type, text, children, leftIcon, onChange, disabled }) 
     setClassName(toggleToClassName);
     setChevron(toggleChevronDirection);
   };
+
+  const onSelect = (id) => {
+    setTextButton(id);
+    handleClick();
+  }; 
 
   return (
     <>
@@ -45,7 +52,7 @@ const OptionDropdown = ({ type, text, children, leftIcon, onChange, disabled }) 
             disabled={disabled}
           />
         }
-        <ButtonInput children={text} />
+        <ButtonInput children={textButton} />
         <IconGenerator
           renderIcon={DownChevronIcon}
           props={{
@@ -54,7 +61,7 @@ const OptionDropdown = ({ type, text, children, leftIcon, onChange, disabled }) 
           disabled={disabled}
         />
       </ButtonDropdownContainer>
-      <OptionList type="unique-option" OptionItem={UniqueOption} children={children} className={className} onChange={onChange} />
+      <OptionList type="unique-option" OptionItem={UniqueOption} children={children} className={className} onSelect={onSelect} onChange={onChange} />
     </>
   );
 };
