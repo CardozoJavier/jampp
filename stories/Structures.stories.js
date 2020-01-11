@@ -3,7 +3,6 @@ import {
   Modal,
   Button,
   Card,
-  Checkbox,
   InputField,
   OptionDropdown,
   FooterBreadcrumb,
@@ -47,18 +46,33 @@ export const ModalA = () => (
         </LabelContainer>
         <DropdownContainer width='100%' direction='column' alignItems='start' margin="0 0 0 15px">
           <DropdownLabel>Vertical</DropdownLabel>
-          <MultipleOptionDropdown text="Select Vertical" type='basic' />
+          <OptionDropdown notIcon text="Select Vertical" type='basic'>
+            <Option label="Option 1" id="id1" right />
+            <Option label="Option 2" id="id2" right />
+            <Option label="Option 3" id="id3" right />
+            <Option label="Option 4" id="id4" right />
+          </OptionDropdown>
         </DropdownContainer>
       </ModalRowContainer>
 
       <ModalRowContainer padding="20px" justifyContent="space-between">
         <DropdownContainer width='100%' direction='column' alignItems='start' margin="0 15px 0 0">
           <DropdownLabel>Country</DropdownLabel>
-          <OptionDropdown text="Argentina" type='basic' />
+          <OptionDropdown notIcon text="Argentina" type='basic'>
+            <Option label="Option 1" id="id1" right />
+            <Option label="Option 2" id="id2" right />
+            <Option label="Option 3" id="id3" right />
+            <Option label="Option 4" id="id4" right />
+          </OptionDropdown>
         </DropdownContainer>
         <DropdownContainer width='100%' direction='column' alignItems='start' margin="0 0 0 15px">
           <DropdownLabel>Region</DropdownLabel>
-          <MultipleOptionDropdown text="Select Region" type='basic' />
+          <OptionDropdown notIcon text="Select Region" type='basic'>
+            <Option label="Option 1" id="id1" right />
+            <Option label="Option 2" id="id2" right />
+            <Option label="Option 3" id="id3" right />
+            <Option label="Option 4" id="id4" right />
+          </OptionDropdown>
         </DropdownContainer>
       </ModalRowContainer>
 
@@ -66,12 +80,12 @@ export const ModalA = () => (
       <ModalRowContainer padding="20px" justifyContent="space-between">
         <DropdownContainer width='47.5%' direction='column' alignItems='start' margin="0 15px 0 0">
           <DropdownLabel>Domain</DropdownLabel>
-          <MultipleOptionDropdown text="http://www.yourdomain.com/" type='basic'>
-            <Checkbox label="Option 1" type="dropdown" right />
-            <Checkbox label="Option 2" type="dropdown" right />
-            <Checkbox label="Option 3" type="dropdown" right />
-            <Checkbox label="Option 4" type="dropdown" right />
-          </MultipleOptionDropdown>
+          <OptionDropdown notIcon text="http://www.yourdomain.com/" type='basic'>
+            <Option label="Option 1" id="id1" right />
+            <Option label="Option 2" id="id2" right />
+            <Option label="Option 3" id="id3" right />
+            <Option label="Option 4" id="id4" right />
+          </OptionDropdown>
         </DropdownContainer>
       </ModalRowContainer>
 
@@ -106,7 +120,12 @@ export const ModalC = () => (
       <ModalRowContainer padding='0 20px' justifyContent="space-between">
         <DropdownContainer width='50%' direction='column' alignItems='start'>
           <DropdownLabel>Vertical</DropdownLabel>
-          <MultipleOptionDropdown text="Select Vertical" type='basic' />
+          <OptionDropdown notIcon text="Select Vertical" type='basic'>
+            <Option label="Option 1" id="id1" right />
+            <Option label="Option 2" id="id2" right />
+            <Option label="Option 3" id="id3" right />
+            <Option label="Option 4" id="id4" right />
+          </OptionDropdown>
         </DropdownContainer>
       </ModalRowContainer>
 
@@ -123,11 +142,21 @@ export const ModalC = () => (
       <ModalRowContainer padding='0 20px 20px 20px' justifyContent="flex-start">
         <DropdownContainer width='50%' direction='column' alignItems='start'>
           <DropdownLabel>Domain</DropdownLabel>
-          <MultipleOptionDropdown text="http://www.yourdomain.com/" type='basic' />
+          <OptionDropdown notIcon text="http://www.yourdomain.com/" type='basic'>
+            <Option label="Option 1" id="id1" right />
+            <Option label="Option 2" id="id2" right />
+            <Option label="Option 3" id="id3" right />
+            <Option label="Option 4" id="id4" right />
+          </OptionDropdown>
         </DropdownContainer>
         <DropdownContainer width='25%' direction='column' alignItems="start" margin="0 0 0 40px">
           <DropdownLabel>Domain</DropdownLabel>
-          <MultipleOptionDropdown text="Text" type='basic' />
+          <OptionDropdown notIcon text="Text" type='basic'>
+            <Option label="Option 1" id="id1" right />
+            <Option label="Option 2" id="id2" right />
+            <Option label="Option 3" id="id3" right />
+            <Option label="Option 4" id="id4" right />
+          </OptionDropdown>
         </DropdownContainer>
       </ModalRowContainer>
 
@@ -174,10 +203,10 @@ export const ModalD = () => (
             <DropdownContainer width='50%' direction='column' alignItems='start' margin="0">
               <DropdownLabel>Domain</DropdownLabel>
               <MultipleOptionDropdown text="http://www.yourdomain.com/" type='basic'>
-                <Checkbox label="Option 1" type="dropdown" right />
-                <Checkbox label="Option 2" type="dropdown" right />
-                <Checkbox label="Option 3" type="dropdown" right />
-                <Checkbox label="Option 4" type="dropdown" right />
+                <Option label="Option 1" type="dropdown" right />
+                <Option label="Option 2" type="dropdown" right />
+                <Option label="Option 3" type="dropdown" right />
+                <Option label="Option 4" type="dropdown" right />
               </MultipleOptionDropdown>
             </DropdownContainer>
           </ModalRowContainer>
