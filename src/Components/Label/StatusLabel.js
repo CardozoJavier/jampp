@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from '../Button';
+import { StatusLabelContainer, StatusLabelText } from './styles';
+import { IconGenerator } from '../UI/Icons';
+import { bemDestruct } from '../../utils';
 
 /**
  * StatusLabel component should be called with
@@ -9,7 +12,18 @@ import { Button } from '../Button';
  * @param {Function} icon - (Optional) Function that returns an svg icon.
  */
 const StatusLabel = ({ text, color, icon }) => (
-  <Button label={text} type={`status-small-${color}`} icon={icon} />
+  // <Button label={text} type={`status-small-${color}`} icon={icon} />
+  <StatusLabelContainer className={bemDestruct(`label status--small-${color}`)}>
+    <StatusLabelText>{ text }</StatusLabelText>
+    {icon &&
+      <IconGenerator
+        renderIcon={icon}
+        props={{
+          className: bemDestruct(`label status--small-${color}`),
+        }}
+      />
+    }
+  </StatusLabelContainer>
 );
 
 StatusLabel.propTypes = {

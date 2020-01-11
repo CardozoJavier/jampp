@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StatusLabelContainer } from './styles';
-import { Button } from '../Button';
 import { bemDestruct } from '../../utils';
 import { EllipseIcon } from '../UI/Icons';
+import { StatusLabel } from '../Label';
 
 /**
  * StatusLabelOption component should be called with
@@ -18,9 +18,9 @@ const StatusLabelOption = ({ label, color, className, id, handleCheck }) => (
   <StatusLabelContainer 
     key={id}
     className={bemDestruct(className)}
-    onClick={(e) => handleCheck(e, id)}
+    onClick={() => handleCheck(id, label)}
   >
-    <Button label={label} type={`status-small-${color}`} icon={EllipseIcon} />
+    <StatusLabel text={label} color={color} icon={EllipseIcon} />
   </StatusLabelContainer>
 );
 
