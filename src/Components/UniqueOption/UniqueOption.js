@@ -13,25 +13,28 @@ const { white } = palette;
  * @param {String} className - (Required) The className determines option styles.
  * @param {Function} handleCheck - (Required) It's a callback to be called in onClick event.
  * @param {String} label - (Optional) It's a text to be displayed in option.
+ * @param {String} notIcon - (Optional) It's a modifier to not display the check icon next to text.
  * @return {React Component} A view for label and selectable option.
  */
-const UniqueOption = ({ id, className, handleCheck, label, }) => (
+const UniqueOption = ({ id, className, handleCheck, label, notIcon }) => (
   <OptionContainer
     key={id}
     className={bemDestruct(className)}
     onClick={() => handleCheck(id, label)}
   >
     <OptionLabel>{ label }</OptionLabel>
-    <IconGenerator
-      renderIcon={CheckIcon}
-      props={{
-        right: '10px',
-        fill: 'transparent',
-        width: '14px',
-        height: '10px',
-        className: bemDestruct(className),
-      }}
-    />
+    {!notIcon &&
+      <IconGenerator
+        renderIcon={CheckIcon}
+        props={{
+          right: '10px',
+          fill: 'transparent',
+          width: '14px',
+          height: '10px',
+          className: bemDestruct(className),
+        }}
+      />
+    }
   </OptionContainer>
 )
 
@@ -40,10 +43,12 @@ UniqueOption.propTypes = {
   className: PropTypes.string.isRequired,
   handleCheck: PropTypes.func.isRequired,
   label: PropTypes.string,
+  notIcon: PropTypes.bool,
 };
 
 UniqueOption.defaultProps = {
   label: '',
+  notIcon: false,
 };
 
 export default UniqueOption;
