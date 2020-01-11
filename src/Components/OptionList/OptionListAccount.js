@@ -32,7 +32,7 @@ const OptionListAccount = ({ children = [], type, email, className, OptionItem }
   /**
    * When an option is clicked, his className is toggle to selected and everyone else are being uncheck.
    */
-  const handleCheck = (e, id) => {
+  const handleCheck = (id) => {
     const inputsArray = settingClassName(children, id, defaultClassName);
     setArray(inputsArray);
   }

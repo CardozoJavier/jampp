@@ -17,13 +17,15 @@ import { ButtonInput } from '../Button/styles';
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @return {React Component} A view for button and dropdown of unique option selectable.
  */
-const HeaderOptionDropdown = ({ text, type, menuTitle, children, disabled, }) => {
+const HeaderOptionDropdown = ({ text, type, menuTitle, children, onChange, disabled }) => {
   const { defaultClassName, optionalClassName } = dropdownProps[type];
   const chevronDefaultClassName = dropdownProps.chevron.defaultClassName;
   const chevronOptionalClassName = dropdownProps.chevron.optionalClassName;
 
   const [className, setClassName] = useState(defaultClassName);
   const [chevron, setChevron] = useState(chevronDefaultClassName);
+
+  const [textButton, setTextButton] = useState(text);
 
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const toggleChevronDirection = getClassName(chevron, chevronDefaultClassName, chevronOptionalClassName);
@@ -33,10 +35,15 @@ const HeaderOptionDropdown = ({ text, type, menuTitle, children, disabled, }) =>
     setChevron(toggleChevronDirection);
   };
 
+  const onSelect = (id, label) => {
+    setTextButton(label);
+    handleClick();
+  };
+
   return (
     <>
       <HeaderOptionDropdownContainer className={bemDestruct(className, disabled)} onClick={disabled ? null : handleClick}>
-        <ButtonInput children={text} />
+        <ButtonInput children={textButton} />
         <IconGenerator
           renderIcon={DownChevronIcon}
           props={{
@@ -44,7 +51,7 @@ const HeaderOptionDropdown = ({ text, type, menuTitle, children, disabled, }) =>
           }}
         />
       </HeaderOptionDropdownContainer>
-      <OptionList menuTitle={menuTitle} type="header-unique-option" OptionItem={UniqueOption} children={children} className={className} />
+      <OptionList menuTitle={menuTitle} type="header-unique-option" OptionItem={UniqueOption} children={children} onSelect={onSelect} onChange={onChange} className={className} />
     </>
   );
 };
