@@ -167,7 +167,7 @@ export const ModalC = () => (
   </ModalContainer>
 );
 
-export const ModalD = () => (
+export const DragoCreation = () => (
   <CreationContainer>
     <div>
       <CreationHeader>
