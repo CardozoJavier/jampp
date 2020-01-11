@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CardContainer, CardTitle, CardDescription, CardHeader } from './styles';
+import { CardTitle, CardDescription, CardHeader } from './styles';
 
 /**
  * Card component can be called with
@@ -11,10 +11,12 @@ import { CardContainer, CardTitle, CardDescription, CardHeader } from './styles'
  */
 const Card = ({ children, title, description }) => (
   <>
-    <CardHeader>
-      <CardTitle>{ title }</CardTitle>
-      {description && <CardDescription>{ description }</CardDescription>}
-    </CardHeader>
+    {title &&
+      <CardHeader>
+        <CardTitle>{ title }</CardTitle>
+        {description && <CardDescription>{ description }</CardDescription>}
+      </CardHeader>
+    }
     {children}
   </>
 );
