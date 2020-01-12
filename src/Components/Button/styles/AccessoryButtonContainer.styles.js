@@ -11,6 +11,8 @@ export default styled.div`
   display: flex;
   align-items: center;
   transition: all .3s;
+  height: fit-content;
+  width: fit-content;
 
   &:hover {
     cursor: ${({ disabled}) => disabled ? 'default' : 'pointer'};
@@ -72,7 +74,7 @@ export default styled.div`
       }
 
       ${ButtonInput} {
-        padding: 10px 20px 10px 10px;
+        padding: 9px 20px 9px 10px;
       }
     }
     
@@ -84,7 +86,7 @@ export default styled.div`
       }
 
       ${ButtonInput} {
-        padding: 10px 10px 10px 20px;
+        padding: 9px 10px 9px 20px;
       }
     }
     
@@ -97,7 +99,7 @@ export default styled.div`
       }
 
       ${ButtonInput} {
-        padding: 10px 20px;
+        padding: 9px 20px;
       }
     }
     
@@ -109,7 +111,7 @@ export default styled.div`
       border-radius: 4px;
 
       ${ButtonInput} {
-        padding: 8px;
+        padding: 9px;
       }
 
       ${AddIconContainer} {

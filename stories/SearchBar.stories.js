@@ -7,6 +7,7 @@ import {
 import {
   InputField,
 } from '../src/Components/InputField';
+import { SearchBarContainer } from '../src/Components/InputField/styles';
 export default {
   title: 'Searchbar'
 };
@@ -23,7 +24,7 @@ export default {
  * @prop {String} id - (Optional) ID to be use for label refering to input field.
  */
 export const WithIcon = () => (
-  <div style={{ width: '600px' }}>
+  <SearchBarContainer width= '600px'>
     <InputField placeholder="Text" type="searchbar" icon={SearchIcon} />
-  </div>
+  </SearchBarContainer>
 );

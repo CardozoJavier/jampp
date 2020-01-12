@@ -1,4 +1,7 @@
 export {
+  Table,
+} from './Table';
+export {
   Tab,
   TabGroup,
 } from './Tab';

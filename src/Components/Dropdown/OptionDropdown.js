@@ -20,9 +20,10 @@ const { gray } = palette;
  * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
  * @param {String} notIcon - (Optional) It's a modifier to not display the check icon next to text.
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ * @param {Boolean} wide - (Optional) If true, dropdown's width will be 100%;
  * @return {React Component} A view for button and dropdown of unique option selectable.
  */
-const OptionDropdown = ({ type, text, children, leftIcon, onChange, notIcon, disabled }) => {
+const OptionDropdown = ({ type, text, children, leftIcon, onChange, notIcon, wide, disabled }) => {
   const { defaultClassName, optionalClassName, buttonClassName } = dropdownProps[type];
 
   const [className, setClassName] = useState(defaultClassName);
@@ -45,7 +46,7 @@ const OptionDropdown = ({ type, text, children, leftIcon, onChange, notIcon, dis
 
   return (
     <>
-      <ButtonDropdownContainer className={bemDestruct(buttonClassName, disabled)} onClick={disabled ? null : handleClick}>
+      <ButtonDropdownContainer wide={wide} className={bemDestruct(buttonClassName, disabled)} onClick={disabled ? null : handleClick}>
         {leftIcon &&
           <IconGenerator
             renderIcon={leftIcon}
@@ -82,6 +83,7 @@ OptionDropdown.propTypes = {
   leftIcon: PropTypes.func,
   onChange: PropTypes.func,
   notIcon: PropTypes.bool,
+  wide: PropTypes.bool,
   disabled: PropTypes.bool,
 };
 
@@ -90,6 +92,7 @@ OptionDropdown.defaultProps = {
   leftIcon: () => null,
   onChange: () => null,
   notIcon: false,
+  wide: false,
   disabled: false,
 };
 

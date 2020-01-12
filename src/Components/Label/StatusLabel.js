@@ -12,7 +12,6 @@ import { bemDestruct } from '../../utils';
  * @param {Function} icon - (Optional) Function that returns an svg icon.
  */
 const StatusLabel = ({ text, color, icon }) => (
-  // <Button label={text} type={`status-small-${color}`} icon={icon} />
   <StatusLabelContainer className={bemDestruct(`label status--small-${color}`)}>
     <StatusLabelText>{ text }</StatusLabelText>
     {icon &&

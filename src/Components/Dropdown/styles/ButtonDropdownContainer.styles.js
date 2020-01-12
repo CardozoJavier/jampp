@@ -8,7 +8,7 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
   justify-content: space-between;
   min-width: 70px;
   background-color: transparent;
-  width: 100%;
+  width: ${({ wide }) => wide ? '100%' : 'fit-content'};
   margin-top: 5px;
 
   &:hover {
@@ -86,7 +86,7 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
         color: ${gray.g4};
         ${ButtonInput} {
           font-size: 12px;
-          padding: 10px 0;
+          padding: 9px 0;
         }
 
 

@@ -6,7 +6,6 @@ import {
   InputField,
   OptionDropdown,
   FooterBreadcrumb,
-  MultipleOptionDropdown,
 } from '../src/Components';
 import {
   DropdownLabel,
@@ -24,7 +23,6 @@ import {
   CreationHeaderDescription,
 } from '../src/Components/Modal/styles';
 import { Step } from '../src/Components/Breadcrumb/styles';
-import { CardContainer } from '../src/Components/Card/styles';
 import { Option } from '../src/Components/OptionList/styles';
 import { FilterIcon } from '../src/Components/UI/Icons';
 import { palette } from '../src/Components/styles';
@@ -40,13 +38,13 @@ export default {
 export const ModalA = () => (
   <ModalContainer width="600px">
     <Modal title="Modal Title">
-      <ModalRowContainer padding="0 10px 0 0" padding="20px" justifyContent="space-between">
+      <ModalRowContainer padding="20px" justifyContent="space-between">
         <LabelContainer padding="0 10px 0 0" margin="0 5px 0 0">
           <InputField label="Advertiser Name" id='input1' placeholder="Name" type="basic" onChange={value => console.log(value)} />
         </LabelContainer>
         <DropdownContainer width='100%' direction='column' alignItems='start' margin="0 0 0 15px">
           <DropdownLabel>Vertical</DropdownLabel>
-          <OptionDropdown notIcon text="Select Vertical" type='basic'>
+          <OptionDropdown wide notIcon text="Select Vertical" type='basic'>
             <Option label="Option 1" id="id1" right />
             <Option label="Option 2" id="id2" right />
             <Option label="Option 3" id="id3" right />
@@ -58,7 +56,7 @@ export const ModalA = () => (
       <ModalRowContainer padding="20px" justifyContent="space-between">
         <DropdownContainer width='100%' direction='column' alignItems='start' margin="0 15px 0 0">
           <DropdownLabel>Country</DropdownLabel>
-          <OptionDropdown notIcon text="Argentina" type='basic'>
+          <OptionDropdown wide notIcon text="Argentina" type='basic'>
             <Option label="Option 1" id="id1" right />
             <Option label="Option 2" id="id2" right />
             <Option label="Option 3" id="id3" right />
@@ -67,7 +65,7 @@ export const ModalA = () => (
         </DropdownContainer>
         <DropdownContainer width='100%' direction='column' alignItems='start' margin="0 0 0 15px">
           <DropdownLabel>Region</DropdownLabel>
-          <OptionDropdown notIcon text="Select Region" type='basic'>
+          <OptionDropdown wide notIcon text="Select Region" type='basic'>
             <Option label="Option 1" id="id1" right />
             <Option label="Option 2" id="id2" right />
             <Option label="Option 3" id="id3" right />
@@ -76,17 +74,10 @@ export const ModalA = () => (
         </DropdownContainer>
       </ModalRowContainer>
 
-
-      <ModalRowContainer padding="20px" justifyContent="space-between">
-        <DropdownContainer width='47.5%' direction='column' alignItems='start' margin="0 15px 0 0">
-          <DropdownLabel>Domain</DropdownLabel>
-          <OptionDropdown notIcon text="http://www.yourdomain.com/" type='basic'>
-            <Option label="Option 1" id="id1" right />
-            <Option label="Option 2" id="id2" right />
-            <Option label="Option 3" id="id3" right />
-            <Option label="Option 4" id="id4" right />
-          </OptionDropdown>
-        </DropdownContainer>
+      <ModalRowContainer padding="20px">
+        <LabelContainer width="47.5%">
+          <InputField label="Advertiser Name" id='input2' placeholder="Name" type="basic" onChange={value => console.log(value)} />
+        </LabelContainer>
       </ModalRowContainer>
 
       <ModalFooter>
@@ -120,7 +111,7 @@ export const ModalC = () => (
       <ModalRowContainer padding='0 20px' justifyContent="space-between">
         <DropdownContainer width='50%' direction='column' alignItems='start'>
           <DropdownLabel>Vertical</DropdownLabel>
-          <OptionDropdown notIcon text="Select Vertical" type='basic'>
+          <OptionDropdown wide notIcon text="Select Vertical" type='basic'>
             <Option label="Option 1" id="id1" right />
             <Option label="Option 2" id="id2" right />
             <Option label="Option 3" id="id3" right />
@@ -142,7 +133,7 @@ export const ModalC = () => (
       <ModalRowContainer padding='0 20px 20px 20px' justifyContent="flex-start">
         <DropdownContainer width='50%' direction='column' alignItems='start'>
           <DropdownLabel>Domain</DropdownLabel>
-          <OptionDropdown notIcon text="http://www.yourdomain.com/" type='basic'>
+          <OptionDropdown wide notIcon text="http://www.yourdomain.com/" type='basic'>
             <Option label="Option 1" id="id1" right />
             <Option label="Option 2" id="id2" right />
             <Option label="Option 3" id="id3" right />
@@ -151,7 +142,7 @@ export const ModalC = () => (
         </DropdownContainer>
         <DropdownContainer width='25%' direction='column' alignItems="start" margin="0 0 0 40px">
           <DropdownLabel>Domain</DropdownLabel>
-          <OptionDropdown notIcon text="Text" type='basic'>
+          <OptionDropdown wide notIcon text="Text" type='basic'>
             <Option label="Option 1" id="id1" right />
             <Option label="Option 2" id="id2" right />
             <Option label="Option 3" id="id3" right />
@@ -167,7 +158,7 @@ export const ModalC = () => (
   </ModalContainer>
 );
 
-export const ModalD = () => (
+export const DragoCreation = () => (
   <CreationContainer>
     <div>
       <CreationHeader>
@@ -178,8 +169,7 @@ export const ModalD = () => (
           Description text to go here
         </CreationHeaderDescription>
       </CreationHeader>
-      <CardContainer width="920px">
-        <Card title="Title">
+        <Card title="Title" width="920px">
           <ModalRowContainer padding="20px" justifyContent="">
             <LabelContainer width="50%" margin="0 40px 0 0">
               <InputField label="Advertiser Name" id='input1' placeholder="Name" type="basic" onChange={value => console.log(value)} />
@@ -191,27 +181,36 @@ export const ModalD = () => (
           </ModalRowContainer>
           <ModalRowContainer padding='0 20px 20px 20px' justifyContent="flex-start">
             <DropdownContainer width='50%' direction='column' alignItems='start'>
-              <DropdownLabel>Domain</DropdownLabel>
-              <MultipleOptionDropdown text="http://www.yourdomain.com/" type='basic' />
+              <DropdownLabel>Title</DropdownLabel>
+              <OptionDropdown wide notIcon text="Option" type='basic'>
+                <Option label="Option 1" id="id1" right />
+                <Option label="Option 2" id="id2" right />
+                <Option label="Option 3" id="id3" right />
+                <Option label="Option 4" id="id4" right />
+              </OptionDropdown>
             </DropdownContainer>
-            <DropdownContainer width='17%' direction='column' alignItems='start' margin="0 0 0 40px">
-              <DropdownLabel>Domain</DropdownLabel>
-              <MultipleOptionDropdown text="Text" type='basic' />
+            <DropdownContainer width='17.5%' direction='column' alignItems='start' margin="0 0 0 40px">
+              <DropdownLabel>Title</DropdownLabel>
+              <OptionDropdown wide notIcon text="Option" type='basic'>
+                <Option label="Option 1" id="id1" right />
+                <Option label="Option 2" id="id2" right />
+                <Option label="Option 3" id="id3" right />
+                <Option label="Option 4" id="id4" right />
+              </OptionDropdown>
             </DropdownContainer>
           </ModalRowContainer>
           <ModalRowContainer padding="20px 20px 40px 20px" justifyContent="space-between">
             <DropdownContainer width='50%' direction='column' alignItems='start' margin="0">
-              <DropdownLabel>Domain</DropdownLabel>
-              <MultipleOptionDropdown text="http://www.yourdomain.com/" type='basic'>
-                <Option label="Option 1" type="dropdown" right />
-                <Option label="Option 2" type="dropdown" right />
-                <Option label="Option 3" type="dropdown" right />
-                <Option label="Option 4" type="dropdown" right />
-              </MultipleOptionDropdown>
+              <DropdownLabel>Title</DropdownLabel>
+              <OptionDropdown wide notIcon text="Option" type='basic'>
+                <Option label="Option 1" id="id1" right />
+                <Option label="Option 2" id="id2" right />
+                <Option label="Option 3" id="id3" right />
+                <Option label="Option 4" id="id4" right />
+              </OptionDropdown>
             </DropdownContainer>
           </ModalRowContainer>
         </Card>
-      </CardContainer>
     </div>
 
     <FooterBreadcrumb prevButtonText="Back" nextButtonText="Create Ad Account">
