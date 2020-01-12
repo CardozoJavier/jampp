@@ -10,15 +10,16 @@ export default {
  * Card component can be called with
  * @prop {String} title - (Optional) It's title to be displayed in card.
  * @prop {String} description - (Optional) It's description to be displayed in card below of title.
+ * @prop {String} width - (Optional) It's the width of the card container.
  */
 export const WithTitle = () => (
-  <CardContainer width="600px">
-    <Card title="Title" />
-  </CardContainer>
+  <Card title="Title" width="600px"/>
 );
 
 export const WithTitleAndDescription = () => (
-  <CardContainer width="600px">
-    <Card title="Title" description="This information will be used to create your account. You will not be able to change this setting later, so choose the options carefully" />
-  </CardContainer>
+  <Card
+    width="600px"
+    title="Title"
+    description="This information will be used to create your account. You will not be able to change this setting later, so choose the options carefully"
+  />
 );
