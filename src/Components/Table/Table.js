@@ -1,9 +1,9 @@
 import React from 'react';
 import { TableContainer, ColumnTitle } from './styles';
 
-const Table = () => (
+const Table = ({ children }) => (
   <TableContainer>
-    <ColumnTitle></ColumnTitle>
+    {children}
   </TableContainer>
 );
 
