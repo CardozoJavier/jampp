@@ -2,10 +2,8 @@ import React from 'react';
 import {
   Modal,
   Button,
-  Card,
   InputField,
   OptionDropdown,
-  FooterBreadcrumb,
 } from '../src/Components';
 import {
   DropdownLabel,
@@ -15,18 +13,12 @@ import {
   ModalText,
   ModalFooter,
   ModalContainer,
-  CreationHeader,
   ModalContainerA,
-  CreationContainer,
   ModalRowContainer,
-  CreationHeaderTitle,
-  CreationHeaderDescription,
 } from '../src/Components/Modal/styles';
-import { Step } from '../src/Components/Breadcrumb/styles';
 import { Option } from '../src/Components/OptionList/styles';
 import { FilterIcon } from '../src/Components/UI/Icons';
 import { palette } from '../src/Components/styles';
-import { SwitchGroup } from '../src/Components/Switch';
 import { LabelContainer } from '../src/Components/InputField/styles';
 const { gray } = palette;
 
@@ -156,66 +148,4 @@ export const ModalC = () => (
       </ModalFooter>
     </Modal>
   </ModalContainer>
-);
-
-export const DragoCreation = () => (
-  <CreationContainer>
-    <div>
-      <CreationHeader>
-        <CreationHeaderTitle>
-          Title
-        </CreationHeaderTitle>
-        <CreationHeaderDescription>
-          Description text to go here
-        </CreationHeaderDescription>
-      </CreationHeader>
-        <Card title="Title" width="920px">
-          <ModalRowContainer padding="20px" justifyContent="">
-            <LabelContainer width="50%" margin="0 40px 0 0">
-              <InputField label="Advertiser Name" id='input1' placeholder="Name" type="basic" onChange={value => console.log(value)} />
-            </LabelContainer>
-            <SwitchGroup>
-              <Option label="Choice" id="id1" />
-              <Option label="Choice" id="id2" />
-            </SwitchGroup>
-          </ModalRowContainer>
-          <ModalRowContainer padding='0 20px 20px 20px' justifyContent="flex-start">
-            <DropdownContainer width='50%' direction='column' alignItems='start'>
-              <DropdownLabel>Title</DropdownLabel>
-              <OptionDropdown wide notIcon text="Option" type='basic'>
-                <Option label="Option 1" id="id1" right />
-                <Option label="Option 2" id="id2" right />
-                <Option label="Option 3" id="id3" right />
-                <Option label="Option 4" id="id4" right />
-              </OptionDropdown>
-            </DropdownContainer>
-            <DropdownContainer width='17.5%' direction='column' alignItems='start' margin="0 0 0 40px">
-              <DropdownLabel>Title</DropdownLabel>
-              <OptionDropdown wide notIcon text="Option" type='basic'>
-                <Option label="Option 1" id="id1" right />
-                <Option label="Option 2" id="id2" right />
-                <Option label="Option 3" id="id3" right />
-                <Option label="Option 4" id="id4" right />
-              </OptionDropdown>
-            </DropdownContainer>
-          </ModalRowContainer>
-          <ModalRowContainer padding="20px 20px 40px 20px" justifyContent="space-between">
-            <DropdownContainer width='50%' direction='column' alignItems='start' margin="0">
-              <DropdownLabel>Title</DropdownLabel>
-              <OptionDropdown wide notIcon text="Option" type='basic'>
-                <Option label="Option 1" id="id1" right />
-                <Option label="Option 2" id="id2" right />
-                <Option label="Option 3" id="id3" right />
-                <Option label="Option 4" id="id4" right />
-              </OptionDropdown>
-            </DropdownContainer>
-          </ModalRowContainer>
-        </Card>
-    </div>
-
-    <FooterBreadcrumb prevButtonText="Back" nextButtonText="Create Ad Account">
-      <Step text="1. Step 1" />
-      <Step text="2. Step 2" />
-    </FooterBreadcrumb>
-  </CreationContainer>
 );
