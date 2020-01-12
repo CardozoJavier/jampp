@@ -10,6 +10,8 @@ export default styled.div`
   display: flex;
   justify-content: center;
   height: fit-content;
+  width: fit-content;
+  margin: 5px;
   
   &:hover {
     cursor: ${({ disabled}) => disabled ? 'default' : 'pointer'};

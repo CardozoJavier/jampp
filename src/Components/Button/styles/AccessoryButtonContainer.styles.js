@@ -12,6 +12,7 @@ export default styled.div`
   align-items: center;
   transition: all .3s;
   height: fit-content;
+  width: fit-content;
 
   &:hover {
     cursor: ${({ disabled}) => disabled ? 'default' : 'pointer'};
