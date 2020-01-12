@@ -50,8 +50,9 @@ export const Basic = () => (
         * OptionDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
+        * @prop {Boolean} notIcon - (Optional) It's a modifier to not display the check icon next to text.
+        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%;
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive optoin ID in first argument.
-        * @prop {String} notIcon - (Optional) It's a modifier to not display the check icon next to text.
         */}
       <OptionDropdown text="Text" type="basic" onChange={optionId => console.log('Option ' + optionId + ' is selected')}>
         {/**
@@ -141,8 +142,10 @@ export const SolidWithIcon = () => (
         * OptionDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
-        * @prop {String} notIcon - (Optional) It's a modifier to not display the check icon next to text.
+        * @prop {Boolean} notIcon - (Optional) It's a modifier to not display the check icon next to text.
+        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%;
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive optoin ID in first argument.
+        * 
         */}
       <OptionDropdown text="Dropdown solid w/icon" type="solid" leftIcon={DownloadFileIcon}>
         {/**
@@ -217,8 +220,10 @@ export const NoBorder = () => (
         * OptionDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
-        * @prop {String} notIcon - (Optional) It's a modifier to not display the check icon next to text.
+        * @prop {Boolean} notIcon - (Optional) It's a modifier to not display the check icon next to text.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive optoin ID in first argument.
+        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%;
+        * 
         */}
       <OptionDropdown text="Text" type="no-border">
         {/**
@@ -293,8 +298,10 @@ export const NoBorderLink = () => (
         * OptionDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
-        * @prop {String} notIcon - (Optional) It's a modifier to not display the check icon next to text.
+        * @prop {Boolean} notIcon - (Optional) It's a modifier to not display the check icon next to text.
+        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%;
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive optoin ID in first argument.
+        * 
         */}
       <OptionDropdown text="Advanced Options" type="no-border-link">
         {/**
@@ -369,8 +376,10 @@ export const NoBorderPurple = () => (
         * OptionDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
-        * @prop {String} notIcon - (Optional) It's a modifier to not display the check icon next to text.
+        * @prop {Boolean} notIcon - (Optional) It's a modifier to not display the check icon next to text.
+        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%;
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive optoin ID in first argument.
+        * 
         */}
       <OptionDropdown text="Advertiser" type="no-border-purple">
         {/**
