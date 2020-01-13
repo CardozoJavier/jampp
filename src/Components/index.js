@@ -20,6 +20,7 @@ export {
   StatusLabelDropdown,
   HeaderOptionDropdown,
   MultipleOptionDropdown,
+  AdditionalDetailsDropdown,
 } from './Dropdown';
 export { Card } from './Card';
 export { Modal } from './Modal';
