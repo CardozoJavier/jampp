@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006 -s ./src/assets",
     "build-storybook": "build-storybook -c .storybook"
   },
   "keywords": [],
