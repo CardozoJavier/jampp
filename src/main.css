@@ -24,8 +24,8 @@
 @font-face {
   font-family: 'work sans', sans-serif;
   font-weight: normal;
-  src: local('Balboa'),
-    local('Balboa')
+  src: local('Work Sans'),
+    local('Work Sans')
   ;
 }
 
@@ -42,8 +42,7 @@ html {
 }
 
 body {
-  font-family: 'Balboa', sans-serif;
-  letter-spacing: 0.05em;
+  font-family: 'Work Sans', sans-serif;
   height: 100%;
 }
 
