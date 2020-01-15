@@ -34,5 +34,5 @@ export const ButtonContainer = styled.div`
 
 export const MenuTitle = styled.p`
   margin: 15px 0;
-  font-size: 14px;
+  font-size: 12px;
 `;
