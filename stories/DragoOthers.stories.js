@@ -16,7 +16,7 @@ export default {
 };
 
 export const AdditionalDetails = () => (
-  <Card width="922px">
+  <Card width="922px" padding="15px 15px 40px 15px">
     <DropdownContainer width='18%' direction='column' alignItems="start" margin="0 0 48px 0">
       <DropdownLabel>Domain</DropdownLabel>
       <OptionDropdown wide notIcon text="Text" type='basic'>

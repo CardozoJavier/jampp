@@ -8,6 +8,7 @@ export const ChildrenContainer = styled.div`
   &.dropdown {
     &.button {
       &--noBorderLink {
+        position: relative;
         &__opened {
           opacity: 1;
           visibility: visible;
