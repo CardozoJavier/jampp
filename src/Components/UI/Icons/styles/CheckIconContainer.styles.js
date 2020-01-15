@@ -11,7 +11,6 @@ export default styled.div`
     fill: none;
     width: ${({ width }) => width};
     height: ${({ height }) => height};
-    vertical-align: middle;
   }
 
   path {

@@ -13,12 +13,11 @@ export default {
  * @prop {String} width - (Optional) It's the width of the card container.
  */
 export const WithTitle = () => (
-  <Card title="Title" width="600px"/>
+  <Card title="Title" />
 );
 
 export const WithTitleAndDescription = () => (
   <Card
-    width="600px"
     title="Title"
     description="This information will be used to create your account. You will not be able to change this setting later, so choose the options carefully"
   />
