@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export default styled.div`
   position: absolute;
   right: 0;
-  top: 45px;
+  top: 48px;
   border-radius: 4px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, .1);
   background-color: white;
@@ -41,6 +41,9 @@ export default styled.div`
         padding: 0 20px 20px 20px;
         min-width: 220px;
         z-index: 0;
+        .unique.option--header {
+          border: none;
+        }
       }
     }
   }
@@ -56,7 +59,9 @@ export default styled.div`
         &__opened {
           margin: 0 0 20px 20px;
           transform: none;
-          height: auto
+          height: auto;
+          max-height: 110px;
+          overflow-y: scroll;
           transition: none;
         }
 
