@@ -14,7 +14,7 @@ import { StepContainer, IconContainer, IconCircle, StepText } from './styles';
 const Step = ({ text, isDone = false, isCurrent = false, isLast = false, borderColor = '' }) => (
   <StepContainer>
     <IconContainer>
-      <CheckIcon />
+      <CheckIcon props={{ disabled: true }} />
       <IconCircle borderColor={borderColor} isDone={isDone} />
     </IconContainer>
     <StepText isCurrent={isCurrent}>{text}</StepText>

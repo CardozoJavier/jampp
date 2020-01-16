@@ -40,6 +40,13 @@ const buttonProps = {
     iconClassName: '',
     iconProps: {},
   },
+  "secondary-red-medium": {
+    defaultClassName: 'button secondary--red-medium',
+    optionalClassName: '',
+    ButtonContainer: SecondaryButtonContainer,
+    iconClassName: '',
+    iconProps: {},
+  },
   "primary-action-medium": {
     defaultClassName: 'button secondary--action-medium',
     optionalClassName: '',

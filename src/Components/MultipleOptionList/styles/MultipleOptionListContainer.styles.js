@@ -5,7 +5,7 @@ const { violet, action } = palette;
 export const MultipleOptionListContainer = styled.div`
   position: absolute;
   right: 0;
-  top: 45px;
+  top: 48px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, .1);
   border-radius: 4px;
   overflow: hidden;
