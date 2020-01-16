@@ -1,6 +1,6 @@
 export {
   ModalRowContainer,
-  ModalContainerA,
+  ModalContainerB,
   ModalContainer,
   ModalFooter,
   ModalHeader,
