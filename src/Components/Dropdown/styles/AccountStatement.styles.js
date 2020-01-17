@@ -5,4 +5,5 @@ export const AccountStatement = styled.div`
   flex-direction: column;
   align-items: flex-end;
   margin: 0 10px;
+  pointer-events: none;
 `;

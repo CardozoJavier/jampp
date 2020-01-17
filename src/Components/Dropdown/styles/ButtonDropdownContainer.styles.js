@@ -75,6 +75,7 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
       border-radius: 4px;
 
       &--default {
+        align-items: center;
         background-color: ${white};
       }
 
