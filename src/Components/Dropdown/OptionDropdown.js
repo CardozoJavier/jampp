@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { ButtonInput } from '../Button/styles';
 import { ButtonDropdownContainer } from './styles';
-import { getClassName, bemDestruct } from '../../utils';
+import { getClassName, bemDestruct, useEventListener, getUniqueId } from '../../utils';
 import { IconGenerator, DownChevronIcon } from '../UI/Icons';
-import { palette } from '../styles';
 import { OptionList } from '../OptionList';
 import dropdownProps from './dropdownProps';
 import { UniqueOption } from '../UniqueOption';
-
-const { gray } = palette;
 
 /**
  * OptionDropdown component should be called with
@@ -42,11 +39,32 @@ const OptionDropdown = ({ type, text, children, leftIcon, onChange, notIcon, wid
   const onSelect = (id, label) => {
     setTextButton(label);
     handleClick();
-  }; 
+  };
+
+  /**
+   * Hook to handle click events on window
+   */
+  const dropdownId = getUniqueId();
+  const [, setClick] = useState();
+  const dropdownButton = document.getElementById(dropdownId) || {};
+
+  const eventHandler = useCallback(
+    (e) => {
+      setClick(e);
+      
+      if (e.target.id !== dropdownButton.id) {
+        setChevron(dropdownProps.chevron.defaultClassName);
+        setClassName(defaultClassName);
+      }
+    },
+    [dropdownButton, setClick]
+  );
+  
+  useEventListener('click', eventHandler);
 
   return (
     <>
-      <ButtonDropdownContainer wide={wide} className={bemDestruct(buttonClassName, disabled)} onClick={disabled ? null : handleClick}>
+      <ButtonDropdownContainer wide={wide} className={bemDestruct(buttonClassName, disabled)} onClick={disabled ? null : handleClick} id={dropdownId}>
         {leftIcon &&
           <IconGenerator
             renderIcon={leftIcon}

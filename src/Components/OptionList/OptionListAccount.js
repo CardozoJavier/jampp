@@ -21,9 +21,10 @@ import { Button } from '../Button';
  * @param {Node} children - (Required) The options to be displayed.
  * @param {String} className - (Required) The className determines if list is opened or closed.
  * @param {Function} OptionItem - (Required) It's each option component styled to be displayed into list.
+ * @param {String} listId - (Required) It's an unique id to identifier each list on click events.
  * @return {React Component} A view for panel account with input field, a selectable list and sign out button.
  */
-const OptionListAccount = ({ children = [], type, email, className, OptionItem }) => {
+const OptionListAccount = ({ children = [], type, email, className, OptionItem, listId }) => {
   const { defaultClassName } = optionListProps[type];
   const isThereChildren = !!children;
   const childrenParsed = isThereChildren ? settingClassName(children, -1, defaultClassName) : [];
@@ -38,7 +39,7 @@ const OptionListAccount = ({ children = [], type, email, className, OptionItem }
   }
 
   return (
-    <OptionListContainer className={bemDestruct(className)}>
+    <OptionListContainer className={bemDestruct(className)} id={listId}>
       {isThereChildren &&
         <>
           <InputField placeholder="Filter organization" type="icon-small-left" icon={SearchIcon} />
