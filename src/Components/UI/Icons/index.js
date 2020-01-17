@@ -17,7 +17,7 @@ export { default as SuccessIcon } from './SuccessIcon';
 export { default as EllipseIcon } from './EllipseIcon';
 export { default as CalendarIcon } from './CalendarIcon';
 export { default as IconGenerator } from './IconGenerator';
-export { default as AddAcountIcon } from './AddAccountIcon';
+export { default as AddAccountIcon } from './AddAccountIcon';
 export { default as CreditCardIcon } from './CreditCardIcon';
 export { default as ExclamationIcon } from './ExclamationIcon';
 export { default as DownChevronIcon } from './DownChevronIcon';

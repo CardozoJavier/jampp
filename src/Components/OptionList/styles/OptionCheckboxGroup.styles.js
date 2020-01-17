@@ -17,6 +17,7 @@ export default styled.div`
     &.option, &.label, &.button, &.list {
       &--default, &--basic, &--solid, &--noBorder, &--noBorderLink, &--noBorderPurple, &--header {
         &__opened {
+          z-index: 2;
           opacity: 1;
           visibility: visible;
           transform: translate(0, 10px);
