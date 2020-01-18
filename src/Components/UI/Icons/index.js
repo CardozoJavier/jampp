@@ -19,6 +19,7 @@ export { default as CalendarIcon } from './CalendarIcon';
 export { default as IconGenerator } from './IconGenerator';
 export { default as AddAccountIcon } from './AddAccountIcon';
 export { default as CreditCardIcon } from './CreditCardIcon';
+export { default as TableImageIcon } from './TableImageIcon';
 export { default as ExclamationIcon } from './ExclamationIcon';
 export { default as DownChevronIcon } from './DownChevronIcon';
 export { default as DownloadFileIcon } from './DownloadFileIcon';
