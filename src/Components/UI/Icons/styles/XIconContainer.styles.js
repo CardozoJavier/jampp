@@ -3,7 +3,7 @@ import { palette } from '../../../styles';
 const { action, gray } = palette;
 
 export default styled.div`
-  display: flex;
+  display: ${({ display }) => display || 'flex'};
   margin: ${({ margin }) => margin};
 
   svg {
