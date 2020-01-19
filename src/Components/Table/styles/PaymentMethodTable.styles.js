@@ -12,7 +12,8 @@ import {
   TableContainer,
   ColumnFieldButton,
 } from './Table.styles';
-const { gray } = palette;
+import { ButtonInput } from '../../Button/styles';
+const { violet, action } = palette;
 
 export const PaymentTableHeader = styled(TableHeader)`
 `;
@@ -30,7 +31,11 @@ export const PaymentRowContainer = styled(Row)`
   grid-template-columns: 8% 17% 25% 25% 25%;
 
   &.selected {
-    background-color: ${gray.g0};
+    background-color: ${violet.v05};
+    ${ButtonInput} {
+      color: ${action};
+      font-weight: 900;
+    }
   }
 `;
   

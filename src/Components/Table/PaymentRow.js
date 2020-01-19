@@ -10,7 +10,8 @@ import { RowContext } from './PaymentMethodTable';
 const PaymentRow = ({ children, id }) => {
   const context = useContext(RowContext);
   const { row, handleClick } = context;
-  const className = id === row ? 'selected' : 'not-selected';
+  const isSelected = id === row;
+  const className = isSelected ? 'selected' : '';
 
   return (
       <PaymentRowContainer className={className}>
@@ -18,7 +19,7 @@ const PaymentRow = ({ children, id }) => {
           if (row.props.button) {
             return (
               <PaymentColumnFieldButton borderLeft="none" key={index}>
-                <Button label={row.props.children} type="link-default-left" onClick={() => handleClick(id)} />
+                <Button label={isSelected ? row.props.textWhenSelect : row.props.children} type="link-default-left" onClick={() => handleClick(id, row.props.onClick)} />
               </PaymentColumnFieldButton>
             );
           } else {
