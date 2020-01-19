@@ -62,12 +62,14 @@ OptionList.propTypes = {
     className: PropTypes.string.isRequired,
     OptionItem: PropTypes.func.isRequired,
     menuTitle: PropTypes.string,
+    onSelect: PropTypes.func,
     onChange: PropTypes.func,
     notIcon: PropTypes.bool,
   };
   
 OptionList.defaultProps = {
   menuTitle: null,
+  onSelect: () => null,
   onChange: () => null,
   notIcon: false,
 };

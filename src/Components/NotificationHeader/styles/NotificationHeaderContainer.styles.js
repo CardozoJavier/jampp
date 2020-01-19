@@ -23,7 +23,9 @@ export const NotificationHeaderContainer = styled.div`
       }
 
       ${XIconContainer}:hover {
-        fill: ${black};
+        path {
+          fill: ${black};          
+        }
         cursor: pointer; 
       }
 

@@ -40,7 +40,6 @@ export const Icons = () => (
     <BillingIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
     <CheckIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
     <DownloadFileIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
-    <ExclamationIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
     <HelpIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
     <InfoIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
     <NotificationsIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
