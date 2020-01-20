@@ -1,11 +1,11 @@
 export {
-  Row,
   RowName,
   RowTitle,
   TableTitle,
   ColumnField,
   TableHeader,
   ColumnTitle,
+  RowContainer,
   TableButtons,
   TableContainer,
   ColumnFieldButton,

@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
 import {
-  Row,
   RowName,
   RowTitle,
   TableTitle,
   TableHeader,
   ColumnTitle,
   ColumnField,
+  RowContainer,
   TableButtons,
   TableContainer,
   ColumnFieldButton,
@@ -27,7 +27,7 @@ export const PaymentTableButtons = styled(TableButtons)`
 export const PaymentTableContainer = styled(TableContainer)`
 `;
   
-export const PaymentRowContainer = styled(Row)`
+export const PaymentRowContainer = styled(RowContainer)`
   grid-template-columns: 8% 17% 25% 25% 25%;
 
   &.selected {
