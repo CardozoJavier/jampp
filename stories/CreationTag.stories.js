@@ -15,7 +15,6 @@ export default {
  * @prop {Function} onTagCreated - (Optional) Callback to trigger on tag created. It receive tag value in first argument.
  * @prop {Function} onTagDeleted - (Optional) Callback to trigger when tag is deleted. It receive tag value in first argument.
  */
-
 export const Default = () => (
   <CreationTag
     placeholder="Input value"
