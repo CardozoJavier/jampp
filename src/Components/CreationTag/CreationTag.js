@@ -66,9 +66,17 @@ const CreationTag = ({ type, placeholder, width, label, id, onTagCreated, onTagD
         width={width}
       >
         {defaultLabelArray &&
-          defaultLabelArray.map(text => {
-            return <DefaultLabel key={text} text={text} size="small" margin="5px" maxWidth={maxWidth} onClose={onTagDeleted} />
-          })
+          defaultLabelArray.map((text, index) => (
+            <DefaultLabel
+              key={index}
+              id={index}
+              text={text}
+              size="small"
+              margin="5px"
+              maxWidth={maxWidth}
+              onClose={onTagDeleted}
+            />
+          ))
         }
         <Input
           id={id}

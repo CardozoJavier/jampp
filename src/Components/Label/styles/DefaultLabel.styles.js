@@ -75,10 +75,6 @@ export const DefaultLabelContainer = styled.div`
 
       &--default {
         background-color: ${violet.v05};
-
-        &__closed {
-          display: none;
-        }
       }
     }
   }
