@@ -76,5 +76,5 @@ export const ColumnFieldButton = styled(ColumnField)`
 
 export const RowName = styled(ColumnField)`
   font-weight: 600;
-  border: none;
+  border-left: none;
 `;

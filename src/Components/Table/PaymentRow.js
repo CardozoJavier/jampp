@@ -23,7 +23,7 @@ const PaymentRow = ({ children, id }) => {
               </PaymentColumnFieldButton>
             );
           } else {
-            return <PaymentColumnField key={index}>{row.props.children}</PaymentColumnField>;
+            return <PaymentColumnField borderLeft={index === 0 ? 'none' : ''} key={index}>{row.props.children}</PaymentColumnField>;
           }
         })}
       </PaymentRowContainer>
