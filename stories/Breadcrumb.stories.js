@@ -16,10 +16,10 @@ export default {
  *  @prop {String} text - (Required) It's the name step.
  */
 export const Default = () => (
-  <Breadcrumb>
-    <Step text="1. Setup Campaing" />
-    <Step text="2. Create AdGroup" />
-    <Step text="3. Creatives" />
+  <Breadcrumb currentStep={1}>
+    <Step text="1. Step 1" />
+    <Step text="2. Step 2" />
+    <Step text="3. Step 3" />
   </Breadcrumb>
 );
 
@@ -34,9 +34,9 @@ export const Default = () => (
  *  @prop {String} text - (Required) It's the name step.
  */
 export const Footer = () => (
-  <FooterBreadcrumb currentStep={1} onChange={(index, text) => console.log('Now we are in ' + text)}>
-    <Step text="1. Setup Campaing" />
-    <Step text="2. Create AdGroup" />
-    <Step text="3. Creatives" />
+  <FooterBreadcrumb onChange={(index, text) => console.log('Now we are in ' + text)}>
+    <Step text="1. Step 1" />
+    <Step text="2. Step 2" />
+    <Step text="3. Step 3" />
   </FooterBreadcrumb>
 );

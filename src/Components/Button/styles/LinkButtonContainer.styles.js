@@ -32,8 +32,8 @@ export default styled.div`
     &.link {
       ${AddIconContainer} {
         svg {
-          width: 8px;
-          height: 8px;
+          width: 11px;
+          height: 11px;
         }
       }
 

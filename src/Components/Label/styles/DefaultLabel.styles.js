@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
-import { XIconContainer, EllipseIconContainer } from '../../UI/Icons/styles';
-const { black, violet, green, gray, red, blue, yellow, link } = palette;
+import { XIconContainer } from '../../UI/Icons/styles';
+const { black, violet, gray } = palette;
 
 /**
  * Label status | medium - small
@@ -9,10 +9,12 @@ const { black, violet, green, gray, red, blue, yellow, link } = palette;
 
 export const DefaultLabelText = styled.p`
   margin: 0;
+  max-width: ${({ maxWidth }) => `${maxWidth}px` || 'unset'};
+  overflow: hidden;
 `;
 
 export const DefaultLabelContainer = styled.div`
-  display: flex;
+  display: ${({ display }) => display || 'flex'};
   justify-content: space-between;
   margin: ${({ margin }) => margin};
   height: fit-content;

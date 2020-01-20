@@ -19,6 +19,6 @@ export const WithTitle = () => (
 export const WithTitleAndDescription = () => (
   <Card
     title="Title"
-    description="This information will be used to create your account. You will not be able to change this setting later, so choose the options carefully"
+    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
   />
 );

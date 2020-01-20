@@ -56,11 +56,12 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
   }
   
   &.button, &.dropdown {
+    align-items: baseline;
     ${DownloadFileIconContainer} {
       width: 20px;
       height: 20px;
       fill: ${gray.g4};
-      margin-left: 10px;
+      margin: 0 5px;
     }
     ${DownChevronIconContainer} {
       position: unset;
@@ -74,6 +75,7 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
       border-radius: 4px;
 
       &--default {
+        align-items: center;
         background-color: ${white};
       }
 
@@ -128,7 +130,6 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
        * *********************************
        */
       &--noBorder, &--noBorderLink {
-        align-items: baseline;
         background-color: transparent;
         color: ${gray.g4};
         min-width: 0;

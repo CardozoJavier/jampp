@@ -13,11 +13,11 @@ import {
   ModalText,
   ModalFooter,
   ModalContainer,
-  ModalContainerA,
+  ModalContainerB,
   ModalRowContainer,
 } from '../src/Components/Modal/styles';
 import { Option } from '../src/Components/OptionList/styles';
-import { FilterIcon } from '../src/Components/UI/Icons';
+import { FilterIcon, TrashIcon } from '../src/Components/UI/Icons';
 import { palette } from '../src/Components/styles';
 import { LabelContainer } from '../src/Components/InputField/styles';
 const { gray } = palette;
@@ -32,11 +32,11 @@ export const ModalA = () => (
     <Modal title="Modal Title">
       <ModalRowContainer padding="20px" justifyContent="space-between">
         <LabelContainer padding="0 10px 0 0" margin="0 5px 0 0">
-          <InputField label="Advertiser Name" id='input1' placeholder="Name" type="basic" onChange={value => console.log(value)} />
+          <InputField label="Title" id='input1' placeholder="Text" type="basic" onChange={value => console.log(value)} />
         </LabelContainer>
         <DropdownContainer width='100%' direction='column' alignItems='start' margin="0 0 0 15px">
-          <DropdownLabel>Vertical</DropdownLabel>
-          <OptionDropdown wide notIcon text="Select Vertical" type='basic'>
+          <DropdownLabel>Title</DropdownLabel>
+          <OptionDropdown wide notIcon text="Option" type='basic'>
             <Option label="Option 1" id="id1" right />
             <Option label="Option 2" id="id2" right />
             <Option label="Option 3" id="id3" right />
@@ -47,8 +47,8 @@ export const ModalA = () => (
 
       <ModalRowContainer padding="20px" justifyContent="space-between">
         <DropdownContainer width='100%' direction='column' alignItems='start' margin="0 15px 0 0">
-          <DropdownLabel>Country</DropdownLabel>
-          <OptionDropdown wide notIcon text="Argentina" type='basic'>
+          <DropdownLabel>Title</DropdownLabel>
+          <OptionDropdown wide notIcon text="Option" type='basic'>
             <Option label="Option 1" id="id1" right />
             <Option label="Option 2" id="id2" right />
             <Option label="Option 3" id="id3" right />
@@ -56,8 +56,8 @@ export const ModalA = () => (
           </OptionDropdown>
         </DropdownContainer>
         <DropdownContainer width='100%' direction='column' alignItems='start' margin="0 0 0 15px">
-          <DropdownLabel>Region</DropdownLabel>
-          <OptionDropdown wide notIcon text="Select Region" type='basic'>
+          <DropdownLabel>Title</DropdownLabel>
+          <OptionDropdown wide notIcon text="Option" type='basic'>
             <Option label="Option 1" id="id1" right />
             <Option label="Option 2" id="id2" right />
             <Option label="Option 3" id="id3" right />
@@ -68,7 +68,7 @@ export const ModalA = () => (
 
       <ModalRowContainer padding="20px">
         <LabelContainer width="47.5%">
-          <InputField label="Advertiser Name" id='input2' placeholder="Name" type="basic" onChange={value => console.log(value)} />
+          <InputField label="Title" id='input2' placeholder="Text" type="basic" onChange={value => console.log(value)} />
         </LabelContainer>
       </ModalRowContainer>
 
@@ -80,21 +80,16 @@ export const ModalA = () => (
 );
 
 export const ModalB = () => (
-  <ModalContainer width="600px" minHeight="0">
-    <ModalContainerA>
-      <Modal title="Modal Title" icon={FilterIcon}>
+    <ModalContainerB width="480px">
+      <Modal title="Lorem ipsum dolor sit amet, consectetur adipiscing ?" icon={TrashIcon}>
         <>
-        <ModalText>
-          Question that needs to be answered with bottons below?
-        </ModalText>
         <ModalRowContainer>
           <Button label="No, cancel" type="secondary-gray-medium"/>
-          <Button label="Yes, delete" type="secondary-default-medium"/>
+          <Button label="Yes, delete" type="secondary-red-medium"/>
         </ModalRowContainer>
         </>
       </Modal>
-    </ModalContainerA>
-  </ModalContainer>
+    </ModalContainerB>
 );
 
 export const ModalC = () => (
@@ -102,8 +97,8 @@ export const ModalC = () => (
     <Modal title="Modal Title">
       <ModalRowContainer padding='0 20px' justifyContent="space-between">
         <DropdownContainer width='50%' direction='column' alignItems='start'>
-          <DropdownLabel>Vertical</DropdownLabel>
-          <OptionDropdown wide notIcon text="Select Vertical" type='basic'>
+          <DropdownLabel>Title</DropdownLabel>
+          <OptionDropdown wide notIcon text="Option" type='basic'>
             <Option label="Option 1" id="id1" right />
             <Option label="Option 2" id="id2" right />
             <Option label="Option 3" id="id3" right />
@@ -114,18 +109,18 @@ export const ModalC = () => (
 
       <ModalRowContainer padding='0 20px' justifyContent="space-between">
         <ModalText fontSize='10px' color={gray.g3} margin='16px 0 32px 0'>
-          With monthly invoicing, you get an invoice for each ad account on the 1st of each month, 
-          and then you’d have to pay the invoices by their due date. 
-          A line of credits is best for our largest advertisers adn can take several days to approve. 
-          If you want to spend now, a credit card is best option.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </ModalText>
       </ModalRowContainer>
 
 
       <ModalRowContainer padding='0 20px 20px 20px' justifyContent="flex-start">
         <DropdownContainer width='50%' direction='column' alignItems='start'>
-          <DropdownLabel>Domain</DropdownLabel>
-          <OptionDropdown wide notIcon text="http://www.yourdomain.com/" type='basic'>
+          <DropdownLabel>Title</DropdownLabel>
+          <OptionDropdown wide notIcon text="Option" type='basic'>
             <Option label="Option 1" id="id1" right />
             <Option label="Option 2" id="id2" right />
             <Option label="Option 3" id="id3" right />
@@ -133,8 +128,8 @@ export const ModalC = () => (
           </OptionDropdown>
         </DropdownContainer>
         <DropdownContainer width='25%' direction='column' alignItems="start" margin="0 0 0 40px">
-          <DropdownLabel>Domain</DropdownLabel>
-          <OptionDropdown wide notIcon text="Text" type='basic'>
+          <DropdownLabel>Title</DropdownLabel>
+          <OptionDropdown wide notIcon text="Option" type='basic'>
             <Option label="Option 1" id="id1" right />
             <Option label="Option 2" id="id2" right />
             <Option label="Option 3" id="id3" right />

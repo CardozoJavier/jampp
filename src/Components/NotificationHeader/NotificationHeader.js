@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { palette } from '../styles';
 import { NotificationHeaderContainer, NotificationText, TextContainer } from './styles';
-import { IconGenerator, XIcon, InfoIcon } from '../UI/Icons';
-import { SuccessIcon, ExclamationIcon } from '../UI/Icons';
+import { IconGenerator, XIcon, InfoIcon, SuccessIcon, AlertIcon } from '../UI/Icons';
 import { bemDestruct } from '../../utils';
 
 const { gray } = palette;
@@ -14,7 +13,7 @@ const types = {
     className: 'notification header--success-default',
   },
   error: {
-    icon: ExclamationIcon,
+    icon: AlertIcon,
     className: 'notification header--error-default',
   },
   info: {
@@ -37,9 +36,9 @@ const NotificationHeader = ({ type, text, onClose, }) => (
         renderIcon={types[type].icon}
         props={{
           position: 'unset',
-          width: '18px',
-          height: '18px',
-          margin: '0 5px',
+          width: '16px',
+          height: '16px',
+          margin: '0 10px',
         }}
         />
       <NotificationText>

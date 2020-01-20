@@ -7,12 +7,15 @@ export default styled.div`
   bottom: ${({ bottom }) => bottom};
   left: ${({ left }) => left};
   margin: ${({ margin }) => margin};
+  pointer-events: none;
 
   svg {
     width: ${({ width }) => width};
     height: ${({ height }) => height};
     vertical-align: middle;
+    pointer-events: none;
     path {
+      pointer-events: none;
       fill: ${({ fill }) => fill};
     }
   }
@@ -21,7 +24,7 @@ export default styled.div`
     &.account, &.button, &.chevron, &.label {
       &--full, &--default {
         &__opened {
-          transform: rotateX(-180deg);
+          transform: rotateX(-180deg) translateY(-5px);
           transition: all .3s;
         }
 

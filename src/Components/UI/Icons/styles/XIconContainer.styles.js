@@ -1,10 +1,18 @@
 import styled from 'styled-components';
 import { palette } from '../../../styles';
-const { black, action, gray, violet } = palette;
+const { action, gray } = palette;
 
 export default styled.div`
-  display: flex;
+  display: ${({ display }) => display || 'flex'};
+  margin: ${({ margin }) => margin};
 
+  svg {
+    width: ${({ width }) => width};
+    height: ${({ height }) => height};
+    path {
+      fill: ${({ fill }) => fill};
+    }
+  }
   &:hover {
     &.icon.label--default {
       &-medium__right {

@@ -1,8 +1,10 @@
 export { default as Img } from './Img.styles.js';
+export { default as JamppImage } from './JamppImage.styles';
 export { default as XIconContainer } from './XIconContainer.styles';
 export { default as AddIconContainer } from './AddIconContainer.styles';
 export { default as InfoIconContainer } from './InfoIconContainer.styles';
 export { default as HelpIconContainer } from './HelpIconContainer.styles';
+export { default as AlertIconContainer } from './AlertIconContainer.styles';
 export { default as TrashIconContainer } from './TrashIconContainer.styles';
 export { default as CheckIconContainer } from './CheckIconContainer.styles';
 export { default as ArrowIconContainer } from './ArrowIconContainer.styles';

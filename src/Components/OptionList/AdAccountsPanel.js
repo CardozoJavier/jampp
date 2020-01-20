@@ -19,10 +19,11 @@ import { ExpandableDropdown } from '../Dropdown';
  *  @param {String} email - (Required) It's the email to be displayed above of sign-out button.
  *  @param {String} className - (Required) It's the className that switching between closed and opened dropdown.
  *  @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ *  @param {String} listId - (Required) It's an unique id to identifier each list on click events.
  *  @return {React Component} A view for panel account with input field, a selectable list and sign out button.
  */
-const AdAccountsList = ({ children = [], email, className, disabled, }) => (
-  <OptionListContainer className={bemDestruct(className, disabled)}>
+const AdAccountsList = ({ children = [], email, className, disabled, listId }) => (
+  <OptionListContainer className={bemDestruct(className, disabled)} id={listId}>
     <InputField placeholder="Filter organization" type="icon-small-left" icon={SearchIcon} />
 
     <OptionItemContainer>

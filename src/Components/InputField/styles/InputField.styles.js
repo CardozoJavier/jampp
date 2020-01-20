@@ -3,7 +3,7 @@ import { palette } from '../../styles';
 import { ExclamationIconContainer, SearchIconContainer } from '../../UI/Icons/styles';
 const { gray, red, white, } = palette;
 
-export const InputFieldContainer = styled.div`
+export const InputFieldContainer = styled.label`
   display: flex;
   align-items: center;
   margin-top: 5px;
@@ -60,6 +60,7 @@ export const InputFieldContainer = styled.div`
       transition: all .2s;
 
       ${ExclamationIconContainer} {
+        display: none;
         path {
           fill: ${white};
         }
@@ -84,6 +85,7 @@ export const InputFieldContainer = styled.div`
 
           ${ExclamationIconContainer} {
             visibility: visible;
+            display: block;
             path {
               fill: ${red.r3};
             }
@@ -108,6 +110,8 @@ export const InputFieldContainer = styled.div`
         }
 
         &__disabled {
+          background-color: ${gray.g0};
+          cursor: default;
           input {
             background-color: ${gray.g0};
           }

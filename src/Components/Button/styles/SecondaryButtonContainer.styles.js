@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
 import ButtonInput from './ButtonInput.styles';
-const { white, violet, gray, black } = palette;
+const { white, violet, gray, black, red } = palette;
 
 /*
  * Secondary button - Large | Medium | Small
@@ -109,6 +109,23 @@ export default styled.div`
       &--gray {
         background-color: ${gray.g1};
         color: ${gray.g4};
+
+        &__selected {}
+
+        &__disabled {
+          color: ${gray.g07};
+          background-color: ${gray.g1};
+        }
+
+      }
+
+      /************************
+       * Secondary button red *
+       * **********************
+       */
+      &--red {
+        background-color: ${red.r3};
+        color: ${white};
 
         &__selected {}
 

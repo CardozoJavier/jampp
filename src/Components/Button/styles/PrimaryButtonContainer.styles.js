@@ -123,7 +123,6 @@ export default styled.div`
           background-color: ${white};
           color: ${black};
           border: 1px solid ${gray.g07};
-          transform: translateY(-4px);
           
           &.right-icon {
             padding: .9em 3em .9em 1.8em;
