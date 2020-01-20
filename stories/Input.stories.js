@@ -51,7 +51,7 @@ export const WithErrorMessage = () => (
         label="Label"
         id="input1" 
         type="error-message"
-        onError={value => /\d/.test(value)}
+        onError={() => true}
       />
     </div>
 

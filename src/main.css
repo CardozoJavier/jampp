@@ -1,3 +1,8 @@
+@import "~normalize.css";
+@import "~@blueprintjs/core/lib/css/blueprint.css";
+@import "~@blueprintjs/icons/lib/css/blueprint-icons.css";
+@import "~@blueprintjs/datetime/lib/css/blueprint-datetime.css";
+
 *{
 	/* Deleted default values */
 	list-style : none;
@@ -24,8 +29,8 @@
 @font-face {
   font-family: 'work sans', sans-serif;
   font-weight: normal;
-  src: local('Balboa'),
-    local('Balboa')
+  src: local('Work Sans'),
+    local('Work Sans')
   ;
 }
 
@@ -42,9 +47,12 @@ html {
 }
 
 body {
-  font-family: 'Balboa', sans-serif;
-  letter-spacing: 0.05em;
+  font-family: 'Work Sans', sans-serif;
   height: 100%;
+}
+a, a:hover {
+  color: unset;
+  text-decoration: none;
 }
 
 #root {

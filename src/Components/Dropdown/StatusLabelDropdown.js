@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { ButtonInput } from '../Button/styles';
 import { ButtonDropdownContainer } from './styles';
-import { getClassName, bemDestruct } from '../../utils';
-import { IconGenerator, DownChevronIcon } from '../UI/Icons';
+import { getClassName, bemDestruct, useEventListener, getUniqueId } from '../../utils';
+import { IconGenerator, DownChevronIcon, EllipseIcon } from '../UI/Icons';
 import { OptionList } from '../OptionList';
 import dropdownProps from './dropdownProps';
 import { StatusLabelOption } from '../StatusLabelOption';
+import { StatusLabel } from '../Label';
 
 /**
  * StatusLabelDropdown component should be called with
@@ -23,6 +24,8 @@ const StatusLabelDropdown = ({ text, children, type = 'basic', leftIcon, onChang
 
   const [className, setClassName] = useState(defaultClassName);
   const [chevron, setChevron] = useState(dropdownProps.chevron.defaultClassName);
+
+  const [optionButton, setOptionButton] = useState(text);
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const toggleChevronDirection = getClassName(chevron, dropdownProps.chevron.defaultClassName, dropdownProps.chevron.optionalClassName);
@@ -32,9 +35,39 @@ const StatusLabelDropdown = ({ text, children, type = 'basic', leftIcon, onChang
     setChevron(toggleChevronDirection);
   };
 
+  const onSelect = (id, label) => {
+    const props = {
+      text: label,
+      color: id,
+    };
+    setOptionButton(<StatusLabel {...props} key={id} icon={EllipseIcon} />);
+    handleClick();
+  };
+
+  /**
+   * Hook to handle click events on window
+   */
+  const dropdownId = getUniqueId();
+  const [, setClick] = useState();
+  const dropdownButton = document.getElementById(dropdownId) || {};
+    
+  const eventHandler = useCallback(
+    (e) => {
+      setClick(e);
+
+      if(e.target.id !== dropdownButton.id) {
+        setChevron(dropdownProps.chevron.defaultClassName);
+        setClassName(defaultClassName);
+      }
+    },
+    [dropdownButton, setClick]
+  );
+  
+  useEventListener('click', eventHandler);
+
   return (
     <>
-      <ButtonDropdownContainer className={bemDestruct(buttonClassName, disabled)} onClick={disabled ? null : handleClick}>
+      <ButtonDropdownContainer className={bemDestruct(buttonClassName, disabled)} onClick={disabled ? null : handleClick} id={dropdownId}>
         {leftIcon &&
           <IconGenerator
             renderIcon={leftIcon}
@@ -42,7 +75,7 @@ const StatusLabelDropdown = ({ text, children, type = 'basic', leftIcon, onChang
             disabled={disabled}
           />
         }
-        <ButtonInput children={text} />
+        <ButtonInput>{optionButton}</ButtonInput>
         <IconGenerator
           renderIcon={DownChevronIcon}
           props={{
@@ -51,7 +84,7 @@ const StatusLabelDropdown = ({ text, children, type = 'basic', leftIcon, onChang
           disabled={disabled}
         />
       </ButtonDropdownContainer>
-      <OptionList type="status-option" OptionItem={StatusLabelOption} children={children} className={className} onChange={onChange} />
+      <OptionList type="status-option" OptionItem={StatusLabelOption} children={children} className={className} onSelect={onSelect} onChange={onChange} />
     </>
   );
 };

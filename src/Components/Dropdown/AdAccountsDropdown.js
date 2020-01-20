@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { AccountStatement, AccountTitle, AccountDescription, AccountDropdownContainer } from './styles';
 import { IconGenerator, AvatarIcon, DownChevronIcon } from '../UI/Icons';
-import { bemDestruct, getClassName } from '../../utils';
+import { bemDestruct, getClassName, useEventListener, getUniqueId } from '../../utils';
 import { palette } from '../styles';
 import AdAccountsPanel from '../OptionList/AdAccountsPanel';
 import { UniqueOption } from '../UniqueOption';
@@ -42,9 +42,32 @@ const AdAccountsDropdown = ({ name, description, avatarSrc, children, email, }) 
     setChevron(toggleChevronDirection);
   };
 
+  /**
+   * Hook to handle click events on window
+   */
+  const dropdownId = getUniqueId();
+  const listId = getUniqueId();
+  const [, setClick] = useState();
+  const dropdownButton = document.getElementById(dropdownId) || {};
+  const dropdownList = document.getElementById(listId) || { contains: () => null };
+    
+  const eventHandler = useCallback(
+    (e) => {
+      setClick(e);
+
+      if(e.target.id !== dropdownButton.id && !dropdownList.contains(e.target)) {
+        setChevron(classesName.chevron.defaultClassName);
+        setClassName(defaultClassName);
+      }
+    },
+    [dropdownButton, dropdownList, setClick]
+  );
+  
+  useEventListener('click', eventHandler);
+
   return (
     <>
-      <AccountDropdownContainer className={bemDestruct(className)} onClick={handleClick}>
+      <AccountDropdownContainer className={bemDestruct(className)} onClick={handleClick} id={dropdownId}>
         <AccountStatement>
           <AccountTitle>{name}</AccountTitle>
           <AccountDescription>{description}</AccountDescription>
@@ -77,6 +100,7 @@ const AdAccountsDropdown = ({ name, description, avatarSrc, children, email, }) 
         children={children}
         className={className}
         email={email}
+        listId={listId}
       />
     </>
   );

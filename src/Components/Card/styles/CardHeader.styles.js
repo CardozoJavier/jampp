@@ -3,6 +3,10 @@ import { palette } from '../../styles';
 const { gray } = palette;
 
 export const CardHeader = styled.div`
-  border-bottom: 1px solid ${gray.g2};
+  border-bottom: ${({ borderBottom }) => borderBottom || `1px solid ${gray.g2}`};
   padding-bottom: 15px;
+  display: flex;
+  flex-direction: ${({ flexDirection }) => flexDirection || 'row'};
+  align-items: baseline;
+  justify-content: flex-start;
 `;

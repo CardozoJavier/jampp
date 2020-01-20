@@ -9,7 +9,9 @@ export const OptionListContainer = styled(OptionCheckboxGroup)`
   top: -12px;
   right: -5px;
   background-color: #fff;
-  z-index: 0;
+  &.dropdown.button--default-right__opened {
+    z-index: 0;
+  }
 `;
 export const EmailField = styled.p`
   font-size: 12px;
@@ -34,5 +36,5 @@ export const ButtonContainer = styled.div`
 
 export const MenuTitle = styled.p`
   margin: 15px 0;
-  font-size: 14px;
+  font-size: 12px;
 `;

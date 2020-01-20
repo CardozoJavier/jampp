@@ -8,7 +8,7 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
   justify-content: space-between;
   min-width: 70px;
   background-color: transparent;
-  width: 100%;
+  width: ${({ wide }) => wide ? '100%' : 'fit-content'};
   margin-top: 5px;
 
   &:hover {
@@ -56,11 +56,12 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
   }
   
   &.button, &.dropdown {
+    align-items: baseline;
     ${DownloadFileIconContainer} {
       width: 20px;
       height: 20px;
       fill: ${gray.g4};
-      margin-left: 10px;
+      margin: 0 5px;
     }
     ${DownChevronIconContainer} {
       position: unset;
@@ -74,6 +75,7 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
       border-radius: 4px;
 
       &--default {
+        align-items: center;
         background-color: ${white};
       }
 
@@ -86,7 +88,7 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
         color: ${gray.g4};
         ${ButtonInput} {
           font-size: 12px;
-          padding: 10px 0;
+          padding: 9px 0;
         }
 
 
@@ -128,7 +130,6 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
        * *********************************
        */
       &--noBorder, &--noBorderLink {
-        align-items: baseline;
         background-color: transparent;
         color: ${gray.g4};
         min-width: 0;

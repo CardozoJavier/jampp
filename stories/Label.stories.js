@@ -1,9 +1,6 @@
 import React from 'react';
 import '../src/main.css';
-import {
-  EllipseIcon,
-  XIcon,
-} from '../src/Components/UI/Icons';
+import { EllipseIcon } from '../src/Components/UI/Icons';
 
 import { StatusLabelContainer } from './styles/StoriesContainer.styles';
 

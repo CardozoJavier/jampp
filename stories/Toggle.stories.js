@@ -13,8 +13,7 @@ export default {
  */ 
 export const Toggle = () => (
   <>
-    <ToggleSwitch />
-    <ToggleSwitch color="blue" onChange={(status) => console.log('Toggle status is ' + status)} />
+    <ToggleSwitch onChange={(status) => console.log('Toggle status is ' + status)} />
     <ToggleSwitch disabled={true} />
   </>
 );

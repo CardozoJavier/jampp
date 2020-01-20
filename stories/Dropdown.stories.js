@@ -50,6 +50,8 @@ export const Basic = () => (
         * OptionDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
+        * @prop {Boolean} notIcon - (Optional) It's a modifier to not display the check icon next to text.
+        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%;
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive optoin ID in first argument.
         */}
       <OptionDropdown text="Text" type="basic" onChange={optionId => console.log('Option ' + optionId + ' is selected')}>
@@ -97,17 +99,17 @@ export const BasicWithLabel = () => (
       * @prop {String} text - (Required) Text to be displayed inside button.
       * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
       */}
-    <StatusLabelDropdown text="Text" type="basic" disabled={true}>
+    <StatusLabelDropdown text="Text" type="basic">
       {/**
         * Option component should be used with
         * @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
         * @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
         * @prop {String} label - (Optional) It's a text to be display inside button.
         */}
-      <Option label="status" id="id1" color="red" />
-      <Option label="status" id="id2" color="yellow" />
-      <Option label="status" id="id3" color="green" />
-      <Option label="status" id="id4" color="blue" />
+      <Option label="status" id="red" color="red" />
+      <Option label="status" id="yellow" color="yellow" />
+      <Option label="status" id="green" color="green" />
+      <Option label="status" id="blue" color="blue" />
     </StatusLabelDropdown>
   </DropdownContainer>
 );
@@ -140,7 +142,10 @@ export const SolidWithIcon = () => (
         * OptionDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
+        * @prop {Boolean} notIcon - (Optional) It's a modifier to not display the check icon next to text.
+        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%;
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive optoin ID in first argument.
+        * 
         */}
       <OptionDropdown text="Dropdown solid w/icon" type="solid" leftIcon={DownloadFileIcon}>
         {/**
@@ -169,10 +174,10 @@ export const SolidWithIcon = () => (
           * @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
           * @prop {String} label - (Optional) It's a text to be display inside button.
           */}
-        <Option label="status" id="id1" color="red" />
-        <Option label="status" id="id2" color="yellow" />
-        <Option label="status" id="id3" color="green" />
-        <Option label="status" id="id4" color="blue" />
+        <Option label="status" id="red" color="red" />
+        <Option label="status" id="yellow" color="yellow" />
+        <Option label="status" id="green" color="green" />
+        <Option label="status" id="blue" color="blue" />
       </StatusLabelDropdown>
     </DropdownContainer>
 
@@ -215,7 +220,10 @@ export const NoBorder = () => (
         * OptionDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
+        * @prop {Boolean} notIcon - (Optional) It's a modifier to not display the check icon next to text.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive optoin ID in first argument.
+        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%;
+        * 
         */}
       <OptionDropdown text="Text" type="no-border">
         {/**
@@ -244,10 +252,10 @@ export const NoBorder = () => (
           * @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
           * @prop {String} label - (Optional) It's a text to be display inside button.
           */}
-        <Option label="status" id="id1" color="red" />
-        <Option label="status" id="id2" color="yellow" />
-        <Option label="status" id="id3" color="green" />
-        <Option label="status" id="id4" color="blue" />
+        <Option label="status" id="red" color="red" />
+        <Option label="status" id="yellow" color="yellow" />
+        <Option label="status" id="green" color="green" />
+        <Option label="status" id="blue" color="blue" />
       </StatusLabelDropdown>
     </DropdownContainer>
 
@@ -290,7 +298,10 @@ export const NoBorderLink = () => (
         * OptionDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
+        * @prop {Boolean} notIcon - (Optional) It's a modifier to not display the check icon next to text.
+        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%;
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive optoin ID in first argument.
+        * 
         */}
       <OptionDropdown text="Advanced Options" type="no-border-link">
         {/**
@@ -319,10 +330,10 @@ export const NoBorderLink = () => (
           * @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
           * @prop {String} label - (Optional) It's a text to be display inside button.
           */}
-        <Option label="status" id="id1" color="red" />
-        <Option label="status" id="id2" color="yellow" />
-        <Option label="status" id="id3" color="green" />
-        <Option label="status" id="id4" color="blue" />
+        <Option label="status" id="red" color="red" />
+        <Option label="status" id="yellow" color="yellow" />
+        <Option label="status" id="green" color="green" />
+        <Option label="status" id="blue" color="blue" />
       </StatusLabelDropdown>
     </DropdownContainer>
 
@@ -365,7 +376,10 @@ export const NoBorderPurple = () => (
         * OptionDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
+        * @prop {Boolean} notIcon - (Optional) It's a modifier to not display the check icon next to text.
+        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%;
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive optoin ID in first argument.
+        * 
         */}
       <OptionDropdown text="Advertiser" type="no-border-purple">
         {/**
@@ -394,10 +408,10 @@ export const NoBorderPurple = () => (
           * @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
           * @prop {String} label - (Optional) It's a text to be display inside button.
           */}
-        <Option label="status" id="id1" color="red" />
-        <Option label="status" id="id2" color="yellow" />
-        <Option label="status" id="id3" color="green" />
-        <Option label="status" id="id4" color="blue" />
+        <Option label="status" id="red" color="red" />
+        <Option label="status" id="yellow" color="yellow" />
+        <Option label="status" id="green" color="green" />
+        <Option label="status" id="blue" color="blue" />
       </StatusLabelDropdown>
     </DropdownContainer>
   </>

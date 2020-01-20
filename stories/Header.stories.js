@@ -27,6 +27,10 @@ export default {
 };
 
 /**
+ * JamppImage, HelpIcon and NotificationsIcon components could be called with
+ * @prop {Function} onClick - (Optional) Callback to trigger on onClick event.
+ * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ * 
  * HeaderOptionDropdown component should be called with
  * @prop {String} text - (Required) Text to be displayed inside button.
  * @prop {String} type - (Required) Define dropdown classes for styling.
@@ -43,7 +47,7 @@ export default {
  */
 export const Header = () => (
   <HeaderContainer>
-    <JamppImage />
+    <JamppImage onClick={() => console.log('Logo clicked!')} />
     <DropdownContainer margin="0 auto 0 30px">
       <HeaderOptionDropdown text="Option" type="header-no-border-purple" menuTitle="Menu title">
         <Option label="Option 1" id="id1" />
@@ -54,8 +58,8 @@ export const Header = () => (
     </DropdownContainer>
     <DropdownContainer>
       <NotificationContainer>
-        <HelpIcon />
-        <NotificationsIcon />
+        <HelpIcon onClick={() => console.log('Help icon clicked!')} />
+        <NotificationsIcon onClick={() => console.log('Notifications icon clicked!')} />
       </NotificationContainer>
       <AccountDropdown
         avatarSrc={AvatarSrc}
@@ -154,6 +158,10 @@ export const AdAccountsLevel = () => (
             <Option label="Ad Account Name B" id="id2" />
             <Option label="Ad Account Name C" id="id3" />
             <Option label="Ad Account Name D" id="id4" />
+            <Option label="Ad Account Name E" id="id5" />
+            <Option label="Ad Account Name F" id="id6" />
+            <Option label="Ad Account Name G" id="id7" />
+            <Option label="Ad Account Name H" id="id8" />
           </OptionDropdown>
           <OptionDropdown text="Organization name B" type="expandable-no-border-purple">
             <Option label="Ad Account Name A" id="id11" />

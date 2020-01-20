@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export default styled.div`
+  display: flex;
   top: ${({ top }) => top};
   right: ${({ right }) => right};
   bottom: ${({ bottom }) => bottom};

@@ -9,6 +9,8 @@ const { link, gray } = palette;
 export default styled.div`
   display: flex;
   align-items: center;
+  height: fit-content;
+  width: fit-content;
 
   &:hover {
     cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
@@ -30,8 +32,8 @@ export default styled.div`
     &.link {
       ${AddIconContainer} {
         svg {
-          width: 8px;
-          height: 8px;
+          width: 11px;
+          height: 11px;
         }
       }
 

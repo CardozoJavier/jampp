@@ -21,6 +21,7 @@ export const ModalContainer = styled(CardContainer)`
 
 export const ModalTitle = styled(CardTitle)`
   margin: ${({ margin }) => margin};
+  font-weight: 900;
 `;
 
 export const ModalHeader = styled(CardHeader)`
@@ -66,10 +67,10 @@ export const ModalText = styled.p`
   font-size: ${({ fontSize }) => fontSize};
 `;
 
-export const ModalContainerA = styled.div`
+export const ModalContainerB = styled.div`
   ${ModalContainer} {
-    // padding: 20px;
     min-height: 0;
+    width: ${({ width }) => width};
   }
 
   ${ModalText} {

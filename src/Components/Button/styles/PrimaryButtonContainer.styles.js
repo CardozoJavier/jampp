@@ -10,6 +10,8 @@ export default styled.div`
   display: flex;
   align-items: center;
   position: relative;
+  height: fit-content;
+  width: fit-content;
 
   &:hover {
     cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
@@ -121,7 +123,6 @@ export default styled.div`
           background-color: ${white};
           color: ${black};
           border: 1px solid ${gray.g07};
-          transform: translateY(-4px);
           
           &.right-icon {
             padding: .9em 3em .9em 1.8em;
@@ -141,14 +142,4 @@ export default styled.div`
       }
     }
   }
-
-  // .right-icon {
-  //   padding: .9em 3em .9em 1.8em;
-  // }
-
-  // .icon--info-disabled {
-  //   svg {
-  //     fill: ${gray.g2};
-  //   }
-  // }
 `;

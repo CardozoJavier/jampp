@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import MultipleOptionList from '../MultipleOptionList';
 import { ButtonInput } from '../Button/styles';
 import { ButtonDropdownContainer } from './styles';
-import { bemDestruct, getClassName } from '../../utils';
+import { bemDestruct, getClassName, useEventListener, getUniqueId } from '../../utils';
 import { IconGenerator, DownChevronIcon } from '../UI/Icons';
 import dropdownProps from './dropdownProps';
 
@@ -30,13 +30,38 @@ const MultipleOptionDropdown = ({ type, text, children, leftIcon, disabled }) =>
     setChevron(toggleChevronDirection);
   };
 
+  /**
+   * Hook to handle click events on window
+   */
+  const dropdownId = getUniqueId();
+  const listId = getUniqueId();
+  const [, setClick] = useState();
+  const dropdownButton = document.getElementById(dropdownId) || {};
+  const dropdownList = document.getElementById(listId) || { contains: () => null };
+    
+  const eventHandler = useCallback(
+    (e) => {
+      setClick(e);
+
+      if(e.target.id !== dropdownButton.id && !dropdownList.contains(e.target)) {
+        setChevron(dropdownProps.chevron.defaultClassName);
+        setClassName(defaultClassName);
+      }
+    },
+    [dropdownButton, dropdownList, setClick]
+  );
+  
+  useEventListener('click', eventHandler);
+
   return (
     <>
-      <ButtonDropdownContainer className={bemDestruct(buttonClassName, disabled)} onClick={disabled ? null : handleClick}>
+      <ButtonDropdownContainer className={bemDestruct(buttonClassName, disabled)} onClick={disabled ? null : handleClick} id={dropdownId}>
         {leftIcon &&
           <IconGenerator
             renderIcon={leftIcon}
-            props={{}}
+            props={{
+              pointerEvents: 'none',
+            }}
             disabled={disabled}
           />
         }
@@ -47,9 +72,9 @@ const MultipleOptionDropdown = ({ type, text, children, leftIcon, disabled }) =>
             className: bemDestruct(chevron),
           }}
           disabled={disabled}
-        />
+          />
       </ButtonDropdownContainer>
-      <MultipleOptionList children={children} className={className} />
+      <MultipleOptionList children={children} className={className} listId={listId} />
     </>
   );
 };

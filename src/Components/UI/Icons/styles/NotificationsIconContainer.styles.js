@@ -13,4 +13,8 @@ export default styled.div`
     height: ${({ height }) => height};
     vertical-align: middle;
   }
+
+  &:hover {
+    cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
+  }
 `;

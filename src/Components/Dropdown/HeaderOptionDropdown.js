@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { HeaderOptionDropdownContainer } from './styles';
-import { getClassName, bemDestruct } from '../../utils';
+import { getClassName, bemDestruct, useEventListener, getUniqueId } from '../../utils';
 import dropdownProps from './dropdownProps';
 import { IconGenerator, DownChevronIcon } from '../UI/Icons';
 import { OptionList } from '../OptionList';
@@ -17,13 +17,15 @@ import { ButtonInput } from '../Button/styles';
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @return {React Component} A view for button and dropdown of unique option selectable.
  */
-const HeaderOptionDropdown = ({ text, type, menuTitle, children, disabled, }) => {
+const HeaderOptionDropdown = ({ text, type, menuTitle, children, onChange, disabled }) => {
   const { defaultClassName, optionalClassName } = dropdownProps[type];
   const chevronDefaultClassName = dropdownProps.chevron.defaultClassName;
   const chevronOptionalClassName = dropdownProps.chevron.optionalClassName;
 
   const [className, setClassName] = useState(defaultClassName);
   const [chevron, setChevron] = useState(chevronDefaultClassName);
+
+  const [textButton, setTextButton] = useState(text);
 
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const toggleChevronDirection = getClassName(chevron, chevronDefaultClassName, chevronOptionalClassName);
@@ -33,10 +35,36 @@ const HeaderOptionDropdown = ({ text, type, menuTitle, children, disabled, }) =>
     setChevron(toggleChevronDirection);
   };
 
+  const onSelect = (id, label) => {
+    setTextButton(label);
+    handleClick();
+  };
+
+  /**
+   * Hook to handle click events on window
+   */
+  const dropdownId = getUniqueId();
+  const [, setClick] = useState();
+  const dropdownButton = document.getElementById(dropdownId) || {};
+
+  const eventHandler = useCallback(
+    (e) => {
+      setClick(e);
+      
+      if (e.target.id !== dropdownButton.id) {
+        setChevron(dropdownProps.chevron.defaultClassName);
+        setClassName(defaultClassName);
+      }
+    },
+    [dropdownButton, setClick]
+  );
+  
+  useEventListener('click', eventHandler);
+
   return (
     <>
-      <HeaderOptionDropdownContainer className={bemDestruct(className, disabled)} onClick={disabled ? null : handleClick}>
-        <ButtonInput children={text} />
+      <HeaderOptionDropdownContainer className={bemDestruct(className, disabled)} onClick={disabled ? null : handleClick} id={dropdownId}>
+        <ButtonInput children={textButton} />
         <IconGenerator
           renderIcon={DownChevronIcon}
           props={{
@@ -44,7 +72,7 @@ const HeaderOptionDropdown = ({ text, type, menuTitle, children, disabled, }) =>
           }}
         />
       </HeaderOptionDropdownContainer>
-      <OptionList menuTitle={menuTitle} type="header-unique-option" OptionItem={UniqueOption} children={children} className={className} />
+      <OptionList menuTitle={menuTitle} type="header-unique-option" OptionItem={UniqueOption} children={children} onSelect={onSelect} onChange={onChange} className={className} />
     </>
   );
 };

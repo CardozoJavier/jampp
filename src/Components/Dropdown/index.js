@@ -5,3 +5,4 @@ export { default as ExpandableDropdown } from './ExpandableDropdown';
 export { default as StatusLabelDropdown } from './StatusLabelDropdown';
 export { default as HeaderOptionDropdown } from './HeaderOptionDropdown';
 export { default as MultipleOptionDropdown } from './MultipleOptionDropdown';
+export { default as AdditionalDetailsDropdown } from './AdditionalDetailsDropdown'; 

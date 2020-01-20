@@ -1,4 +1,7 @@
 export {
+  Table,
+} from './Table';
+export {
   Tab,
   TabGroup,
 } from './Tab';
@@ -17,6 +20,7 @@ export {
   StatusLabelDropdown,
   HeaderOptionDropdown,
   MultipleOptionDropdown,
+  AdditionalDetailsDropdown,
 } from './Dropdown';
 export { Card } from './Card';
 export { Modal } from './Modal';
