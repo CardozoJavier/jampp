@@ -53,6 +53,7 @@ body {
 a, a:hover {
   color: unset;
   text-decoration: none;
+  cursor: unset;
 }
 
 #root {
