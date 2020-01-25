@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { ButtonInput } from '../Button/styles';
 import { ButtonDropdownContainer } from './styles';
@@ -46,12 +46,16 @@ const OptionDropdown = ({ type, text, children, leftIcon, onChange, notIcon, wid
    */
   const dropdownId = getUniqueId();
   const [, setClick] = useState();
-  const dropdownButton = document.getElementById(dropdownId) || {};
+  let dropdownButton;
+
+  useEffect(() => {
+    dropdownButton = document.getElementById(dropdownId);
+  });
 
   const eventHandler = useCallback(
     (e) => {
       setClick(e);
-      
+
       if (e.target.id !== dropdownButton.id) {
         setChevron(dropdownProps.chevron.defaultClassName);
         setClassName(defaultClassName);
