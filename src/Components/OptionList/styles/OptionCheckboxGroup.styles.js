@@ -21,14 +21,14 @@ export default styled.div`
           opacity: 1;
           visibility: visible;
           transform: translate(0, 10px);
-          transition: all .3s;
+          transition: all .3s, z-index 0s, visibility 0s;
         }
 
         &__closed {
           opacity: 0;
           visibility: hidden;
           transform: translate(0, 0);
-          transition: all .3s;
+          transition: all .3s, z-index 0s, visibility 0s;
         }
       }
 
