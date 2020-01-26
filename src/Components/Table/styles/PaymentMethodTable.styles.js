@@ -32,6 +32,8 @@ export const PaymentRowContainer = styled(RowContainer)`
 
   &.selected {
     background-color: ${violet.v05};
+    transition: background-color .3s;
+
     ${ButtonInput} {
       color: ${action};
       font-weight: 900;

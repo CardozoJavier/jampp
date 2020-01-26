@@ -5,7 +5,7 @@ const { gray } = palette;
 export const Container = styled.div`
   background-color: ${gray.g2};
   border-radius: 4px;
-  margin: 0 20px;
+  margin: 0 15px;
   height: 16px;
   width: 82px;
   overflow: hidden;
