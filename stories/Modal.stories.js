@@ -11,27 +11,21 @@ export default {
 /**
  * Modal component can be called with
  * @prop {String} title - (Optional)  It's the modal title displayed with an X icon on your right.
+ * @prop {String} width - (Optional) It's the width of the modal container. Default value is 600px.
  * @prop {Function} icon - (Optional) Function that returns an svg icon.
  */
 export const PlainModal = () => (
-  <ModalContainer width="600px">
-    <Modal />
-  </ModalContainer>
+  <Modal />
 );
 
 export const WithTitle = () => (
-  <ModalContainer width="600px">
-    <Modal title="Title">
-      <ModalFooter />
-    </Modal>
-  </ModalContainer>
-
+  <Modal title="Title">
+    <ModalFooter />
+  </Modal>
 );
 
 export const WithTitleIcon = () => (
-  <ModalContainer width="600px">
-    <Modal title="Title" icon={TrashIcon} />
-  </ModalContainer>
+  <Modal title="Title" icon={TrashIcon} />
 );
 
 /**
