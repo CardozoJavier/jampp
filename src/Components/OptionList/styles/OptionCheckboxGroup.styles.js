@@ -56,6 +56,7 @@ export default styled.div`
         border-radius: 0;
         position: unset;
         box-shadow: none;
+        width: auto;
         
         &__opened {
           margin: 0 0 20px 20px;
