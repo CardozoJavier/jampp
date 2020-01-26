@@ -41,7 +41,7 @@ export const WithTitle = () => (
     </CardHeader>
     <Table>
       <RowTitle>
-        <ColumnTitle>{ 'First column title' }</ColumnTitle>
+        <ColumnTitle borderLeft="none">{ 'First column title' }</ColumnTitle>
         <ColumnTitle>{ 'Column title' }</ColumnTitle>
         <ColumnTitle>{ 'Column title' }</ColumnTitle>
         <ColumnTitle>{ 'Column title' }</ColumnTitle>
@@ -129,7 +129,7 @@ export const WithLoadingState = () => (
     </CardHeader>
     <Table>
       <RowTitle>
-        <ColumnTitle>{ 'First column title' }</ColumnTitle>
+        <ColumnTitle borderLeft="none">{ 'First column title' }</ColumnTitle>
         <ColumnTitle>{ 'Column title' }</ColumnTitle>
         <ColumnTitle>{ 'Column title' }</ColumnTitle>
         <ColumnTitle>{ 'Column title' }</ColumnTitle>
