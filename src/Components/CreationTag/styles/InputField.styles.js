@@ -6,4 +6,5 @@ export const CreationTagContainer = styled(InputFieldContainer)`
   padding: 0 5px;
   flex-wrap: wrap;
   cursor: text;
+  overflow: hidden;
 `;
