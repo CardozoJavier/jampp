@@ -16,11 +16,11 @@ import { UniqueOption } from '../UniqueOption';
  * @param {Function} leftIcon - (Optional) Function that returns an svg icon to be displayed inside button.
  * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
  * @param {String} notIcon - (Optional) It's a modifier to not display the check icon next to text.
- * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @param {Boolean} wide - (Optional) If true, dropdown's width will be 100%;
+ * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @return {React Component} A view for button and dropdown of unique option selectable.
  */
-const OptionDropdown = ({ type, text, children, leftIcon, onChange, notIcon, wide, disabled }) => {
+const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, notIcon, wide, disabled }) => {
   const { defaultClassName, optionalClassName, buttonClassName } = dropdownProps[type];
 
   const [className, setClassName] = useState(defaultClassName);
@@ -49,7 +49,7 @@ const OptionDropdown = ({ type, text, children, leftIcon, onChange, notIcon, wid
   let dropdownButton;
 
   useEffect(() => {
-    dropdownButton = document.getElementById(dropdownId);
+    dropdownButton = document.getElementById(dropdownId) || {};
   });
 
   const eventHandler = useCallback(
@@ -110,7 +110,6 @@ OptionDropdown.propTypes = {
 };
 
 OptionDropdown.defaultProps = {
-  type: 'basic',
   leftIcon: () => null,
   onChange: () => null,
   notIcon: false,
