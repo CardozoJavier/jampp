@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { ButtonInput } from '../Button/styles';
 import { ButtonDropdownContainer } from './styles';
@@ -49,8 +49,12 @@ const StatusLabelDropdown = ({ text, children, type = 'basic', leftIcon, onChang
    */
   const dropdownId = getUniqueId();
   const [, setClick] = useState();
-  const dropdownButton = document.getElementById(dropdownId) || {};
-    
+  let dropdownButton;
+
+  useEffect(() => {
+    dropdownButton = document.getElementById(dropdownId) || {};
+  });
+
   const eventHandler = useCallback(
     (e) => {
       setClick(e);
@@ -99,7 +103,6 @@ StatusLabelDropdown.propTypes = {
 };
 
 StatusLabelDropdown.defaultProps = {
-  type: 'basic',
   leftIcon: () => null,
   onChange: () => null,
   disabled: false,

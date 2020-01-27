@@ -30,7 +30,7 @@ export const TableContainer = styled.div`
   width: 100%;
 `;
   
-export const Row = styled.div`
+export const RowContainer = styled.div`
   padding: 0 8px;
   border-bottom: 1px solid ${gray.g1};
   align-items: center;
@@ -39,7 +39,7 @@ export const Row = styled.div`
   height: 64px;
 `;
   
-export const RowTitle = styled(Row)`
+export const RowTitle = styled(RowContainer)`
   background-color: ${gray.g0};
   border-bottom: none;
   height: 40px;
@@ -71,7 +71,7 @@ export const ColumnField = styled.div`
 export const ColumnFieldButton = styled(ColumnField)`
   justify-self: end;
   padding-left: 0;
-  border-left: ${({ borderLeft }) => borderLeft};
+  border-left: ${({ borderLeft }) => borderLeft || 'none'};
 `;
 
 export const RowName = styled(ColumnField)`

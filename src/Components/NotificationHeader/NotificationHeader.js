@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { palette } from '../styles';
 import { NotificationHeaderContainer, NotificationText, TextContainer } from './styles';
 import { IconGenerator, XIcon, InfoIcon, SuccessIcon, AlertIcon } from '../UI/Icons';
-import { bemDestruct } from '../../utils';
+import { bemDestruct, getUniqueId } from '../../utils';
 
 const { gray } = palette;
 
@@ -29,36 +29,50 @@ const types = {
  * @param {Function} onClose - (Optional) Callback to trigger on onClick event on X icon.
  * @return {React Component} A view for notifications header with X icon on right.
  */
-const NotificationHeader = ({ type, text, onClose, }) => (
-  <NotificationHeaderContainer className={bemDestruct(types[type].className)}>
-    <TextContainer>
+const NotificationHeader = ({ type, text, onClose, }) => {  
+  let notificationHeader;
+  const id = getUniqueId();
+  
+  useEffect(() => {
+    notificationHeader = document.getElementById(id);
+  });
+  
+  const handleClick = () => {
+    notificationHeader.remove();
+    onClose && onClose();
+  };
+
+  return (
+    <NotificationHeaderContainer className={bemDestruct(types[type].className)} id={id}>
+      <TextContainer>
+        <IconGenerator
+          renderIcon={types[type].icon}
+          props={{
+            position: 'unset',
+            width: '16px',
+            height: '16px',
+            margin: '0 10px',
+          }}
+          />
+        <NotificationText>
+          {text}
+        </NotificationText>
+      </TextContainer>
       <IconGenerator
-        renderIcon={types[type].icon}
+        renderIcon={XIcon}
         props={{
           position: 'unset',
-          width: '16px',
-          height: '16px',
-          margin: '0 10px',
+          fill: gray.g3,
+          right: '8px',
+          width: '8px',
+          height: '8px',
+          margin: '0 20px 0 0',
+          onClick: handleClick,
         }}
-        />
-      <NotificationText>
-        {text}
-      </NotificationText>
-    </TextContainer>
-    <IconGenerator
-      renderIcon={XIcon}
-      props={{
-        position: 'unset',
-        fill: gray.g3,
-        right: '8px',
-        width: '8px',
-        height: '8px',
-        margin: '0 20px 0 0',
-        onClick: onClose,
-      }}
-    />
-  </NotificationHeaderContainer>
-);
+      />
+    </NotificationHeaderContainer>
+  );
+};
 
 NotificationHeader.propTypes = {
   type: PropTypes.string.isRequired,

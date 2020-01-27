@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { AccountStatement, AccountTitle, AccountDescription, AccountDropdownContainer } from './styles';
 import { IconGenerator, AvatarIcon, DownChevronIcon } from '../UI/Icons';
@@ -48,8 +48,13 @@ const AdAccountsDropdown = ({ name, description, avatarSrc, children, email, }) 
   const dropdownId = getUniqueId();
   const listId = getUniqueId();
   const [, setClick] = useState();
-  const dropdownButton = document.getElementById(dropdownId) || {};
-  const dropdownList = document.getElementById(listId) || { contains: () => null };
+  let dropdownButton;
+  let dropdownList;
+
+  useEffect(() => {
+    dropdownButton = document.getElementById(dropdownId) || {};
+    dropdownList = document.getElementById(listId) || { contains: () => null };
+  });
     
   const eventHandler = useCallback(
     (e) => {

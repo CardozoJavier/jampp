@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import MultipleOptionList from '../MultipleOptionList';
 import { ButtonInput } from '../Button/styles';
@@ -16,7 +16,7 @@ import dropdownProps from './dropdownProps';
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @return {React Component} A view for button and dropdown of multiple options.
  */
-const MultipleOptionDropdown = ({ type, text, children, leftIcon, disabled }) => {
+const MultipleOptionDropdown = ({ type = 'basic', text, children, leftIcon, disabled }) => {
   const { defaultClassName, optionalClassName, buttonClassName } = dropdownProps[type];
 
   const [className, setClassName] = useState(defaultClassName);
@@ -36,9 +36,14 @@ const MultipleOptionDropdown = ({ type, text, children, leftIcon, disabled }) =>
   const dropdownId = getUniqueId();
   const listId = getUniqueId();
   const [, setClick] = useState();
-  const dropdownButton = document.getElementById(dropdownId) || {};
-  const dropdownList = document.getElementById(listId) || { contains: () => null };
+  let dropdownButton;
+  let dropdownList; 
     
+  useEffect(() => {
+    dropdownButton = document.getElementById(dropdownId) || {};
+    dropdownList = document.getElementById(listId) || { contains: () => null };
+  });
+
   const eventHandler = useCallback(
     (e) => {
       setClick(e);
@@ -88,7 +93,6 @@ MultipleOptionDropdown.propTypes = {
 };
 
 MultipleOptionDropdown.defaultProps = {
-  type: 'basic',
   leftIcon: () => null,
   disabled: false,
 };

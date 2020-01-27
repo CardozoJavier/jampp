@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { HeaderOptionDropdownContainer } from './styles';
 import { getClassName, bemDestruct, useEventListener, getUniqueId } from '../../utils';
@@ -17,7 +17,7 @@ import { ButtonInput } from '../Button/styles';
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @return {React Component} A view for button and dropdown of unique option selectable.
  */
-const HeaderOptionDropdown = ({ text, type, menuTitle, children, onChange, disabled }) => {
+const HeaderOptionDropdown = ({ text, type = 'basic', menuTitle, children, onChange, disabled }) => {
   const { defaultClassName, optionalClassName } = dropdownProps[type];
   const chevronDefaultClassName = dropdownProps.chevron.defaultClassName;
   const chevronOptionalClassName = dropdownProps.chevron.optionalClassName;
@@ -45,7 +45,11 @@ const HeaderOptionDropdown = ({ text, type, menuTitle, children, onChange, disab
    */
   const dropdownId = getUniqueId();
   const [, setClick] = useState();
-  const dropdownButton = document.getElementById(dropdownId) || {};
+  let dropdownButton;
+
+  useEffect(() => {
+    dropdownButton = document.getElementById(dropdownId) || {};
+  });
 
   const eventHandler = useCallback(
     (e) => {

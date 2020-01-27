@@ -17,7 +17,7 @@ import { UniqueOption } from '../UniqueOption';
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @return {React Component} A view for button and expandable dropdown of unique option selectable.
  */
-const ExpandableDropdown = ({ type, text, children, disabled }) => {
+const ExpandableDropdown = ({ type = 'basic', text, children, disabled }) => {
   const { defaultClassName, optionalClassName, buttonClassName } = dropdownProps[type];
 
   const [className, setClassName] = useState(defaultClassName);
@@ -57,7 +57,6 @@ ExpandableDropdown.propTypes = {
 };
 
 ExpandableDropdown.defaultProps = {
-  type: 'basic',
   disabled: false,
 };
 
