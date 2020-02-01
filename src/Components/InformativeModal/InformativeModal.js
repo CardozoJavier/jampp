@@ -8,7 +8,7 @@ const InformativeModal = ({ children }) => {
   const [value, setValue] = useState('');
 
   const handleChange = (value) => {
-    value.length <= 11 && setValue(value);
+    setValue(value);
   };
 
   return (
@@ -19,7 +19,7 @@ const InformativeModal = ({ children }) => {
       {children.map(child => (
         <GridContainer key={child.props.children} gridTemplateColumns="50% 50%">
           <Text color={child.props.color} margin="4px 0" fontSize={child.props.fontSize}>{ child.props.children }</Text>
-          <Text color="#000" margin="4px 0" fontSize="12px">{ value }</Text>
+          <Text color="#000" margin="4px 0" fontSize="12px" overflow={'hidden'}>{ value }</Text>
         </GridContainer>
       ))}
     </InformativeModalContainer>
