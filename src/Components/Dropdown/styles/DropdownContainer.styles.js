@@ -7,5 +7,5 @@ export const DropdownContainer = styled.div`
   align-items: ${({ alignItems }) => alignItems || 'center'};
   margin: ${({ margin }) => margin};
   padding: ${({ padding }) => padding};
-  width: ${({ width }) => width};
+  width: ${({ width }) => width || 'fit-content'};
 `;

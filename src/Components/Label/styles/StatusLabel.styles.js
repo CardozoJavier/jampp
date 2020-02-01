@@ -3,6 +3,10 @@ import { palette } from '../../styles';
 import { XIconContainer, EllipseIconContainer } from '../../UI/Icons/styles';
 const { black, violet, green, gray, red, blue, yellow, link } = palette;
 
+export const StatusLabelText = styled.p`
+  margin: 0;
+`;
+
 export const StatusLabelContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -12,12 +16,19 @@ export const StatusLabelContainer = styled.div`
     transition: background-color .3s;
     text-align: center;
     padding: 0;
+    ${StatusLabelText} {
+      font-size: 12px;
+    }
 
     /****************************
      * Status label color green *
      ****************************
     */
     &-green {
+      ${StatusLabelText} {
+        font-size: 10px;
+      }
+      padding: .3em 1em;
       background-color: ${green.g0};
       color: ${green.g1};
       
@@ -31,6 +42,10 @@ export const StatusLabelContainer = styled.div`
      **************************
     */
     &-red {
+      ${StatusLabelText} {
+        font-size: 10px;
+      }
+      padding: .3em 1em;
       background-color: ${red.r1};
       color: ${red.r3};
       
@@ -44,6 +59,10 @@ export const StatusLabelContainer = styled.div`
      *****************************
     */    
     &-yellow {
+      ${StatusLabelText} {
+        font-size: 10px;
+      }
+      padding: .3em 1em;
       background-color: ${yellow.y0};
       color: ${yellow.y2};
       
@@ -57,6 +76,10 @@ export const StatusLabelContainer = styled.div`
      ***************************
     */
     &-blue {
+      ${StatusLabelText} {
+        font-size: 10px;
+      }
+      padding: .3em 1em;
       background-color: ${blue.b05};
       color: ${link};
       
@@ -117,8 +140,6 @@ export const StatusLabelContainer = styled.div`
       }
 
       &--small {
-        font-size: 10px;
-        padding: .3em 1em;
 
         ${EllipseIconContainer} {
           svg {
@@ -128,9 +149,4 @@ export const StatusLabelContainer = styled.div`
         }
       }
     }
-`;
-
-export const StatusLabelText = styled.p`
-  font-size: 10px;
-  margin: 0;
 `;
