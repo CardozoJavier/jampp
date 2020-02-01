@@ -14,9 +14,10 @@ import optionListProps from './optionListProps';
  * @param {Function} onSelect - (Optional) Callback to change text displayed in button dropdown. It receive option ID in first argument, and label option in second argument.
  * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
  * @param {String} notIcon - (Optional) It's a modifier to not display the check icon next to text.
+ * @param {String} minWidth - (Optiona) Specified the min width for options list.
  * @return {React Component} A view in which one option can be selected.
  */
-const OptionList = ({ children = [], type, className, OptionItem, menuTitle, onSelect, onChange, notIcon, }) => {
+const OptionList = ({ children = [], type, className, OptionItem, menuTitle, onSelect, onChange, notIcon, minWidth, }) => {
   const { defaultClassName } = optionListProps[type];
   const childrenParsed = settingClassName(children, -1, defaultClassName);
   const [array, setArray] = useState(childrenParsed);
@@ -24,15 +25,15 @@ const OptionList = ({ children = [], type, className, OptionItem, menuTitle, onS
   /**
    * When an option is clicked, his className is toggle to selected and everyone else are being uncheck.
    */
-  const handleCheck = (id, label) => {
+  const handleCheck = (id, label, color, flat) => {
     const inputsArray = settingClassName(children, id, defaultClassName);
     setArray(inputsArray);
     onChange(id);
-    onSelect(id, label);
+    onSelect(id, label, color, flat);
   }
 
   return (
-    <OptionCheckboxGroup className={bemDestruct(className)}>
+    <OptionCheckboxGroup className={bemDestruct(className)} minWidth={minWidth}>
       {menuTitle && <MenuTitle>{menuTitle}</MenuTitle>}
       {array.map((input) => (
         <OptionItem
@@ -41,6 +42,7 @@ const OptionList = ({ children = [], type, className, OptionItem, menuTitle, onS
           label={input.label}
           color={input.color}
           notIcon={notIcon}
+          flat={input.flat}
           key={input.id}
           id={input.id}
         />
@@ -65,6 +67,7 @@ OptionList.propTypes = {
     onSelect: PropTypes.func,
     onChange: PropTypes.func,
     notIcon: PropTypes.bool,
+    minWidth: PropTypes.string,
   };
   
 OptionList.defaultProps = {
@@ -72,6 +75,7 @@ OptionList.defaultProps = {
   onSelect: () => null,
   onChange: () => null,
   notIcon: false,
+  minWidth: null,
 };
   
 export default OptionList;

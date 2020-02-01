@@ -14,13 +14,13 @@ import { StatusLabel } from '../Label';
  * @prop {Function} handleCheck - (Optional) Function that returns an svg icon.
  * @return {React Component} A view for an StatusLabel into selectable option.
  */
-const StatusLabelOption = ({ label, color, className, id, handleCheck }) => (
+const StatusLabelOption = ({ label, color, className, id, handleCheck, flat }) => (
   <StatusLabelContainer 
     key={id}
     className={bemDestruct(className)}
-    onClick={() => handleCheck(id, label)}
+    onClick={() => handleCheck(id, label, color, flat)}
   >
-    <StatusLabel text={label} color={color} icon={EllipseIcon} />
+    <StatusLabel text={label} color={color} icon={flat ? null : EllipseIcon} />
   </StatusLabelContainer>
 );
 

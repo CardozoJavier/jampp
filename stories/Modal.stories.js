@@ -1,8 +1,10 @@
 import React from 'react';
-import { Modal, Button } from '../src/Components';
+import { Modal, Button, OptionDropdown, StatusLabelDropdown } from '../src/Components';
 import { CenteredModal } from '../src/Components/Modal';
-import { HeaderTitle, ModalFooter, ModalContainer, } from '../src/Components/Modal/styles';
-import { TrashIcon } from '../src/Components/UI/Icons';
+import { HeaderTitle, ModalFooter, ModalContainer, ModalRowContainer, } from '../src/Components/Modal/styles';
+import { TrashIcon, FilterIcon } from '../src/Components/UI/Icons';
+import { DropdownContainer, DropdownLabel } from '../src/Components/Dropdown/styles';
+import { Option } from '../src/Components/OptionList/styles';
 
 export default {
   title: 'Modal',
@@ -53,4 +55,38 @@ export const Centered = () => (
     <Button label="Yes, action" type="primary-action-medium" />
     <Button label="No, cancel" type="secondary-action-medium" />
   </CenteredModal>
+);
+
+export const OneColumn = () => (
+  <Modal title="Filter Modal Example" icon={FilterIcon} width="222px">
+    <ModalRowContainer padding="10px 20px 10px 20px">
+      <DropdownContainer width="100%" direction="column" align="start" alignItems="flex-start">
+        <DropdownLabel>Title</DropdownLabel>
+        <OptionDropdown text="All" type="basic" wide>
+          <Option label="All" id="id1" />
+          <Option label="Option 1" id="id2" />
+          <Option label="Option 2" id="id3" />
+        </OptionDropdown>
+      </DropdownContainer>
+    </ModalRowContainer>
+
+    <ModalRowContainer padding="10px 20px">
+      <DropdownContainer width="100%" direction="column" align="start" alignItems="flex-start">
+        <DropdownLabel>Title</DropdownLabel>
+        <StatusLabelDropdown text="All" type="basic" minWidth="150px" wide>
+          <Option label="All" id="id1" flat />
+          <Option label="Due" id="id2" color="blue" flat />
+          <Option label="Paid" id="id3" color="green" flat />
+          <Option label="Paid - Credit Note" id="id4" color="green" flat />
+          <Option label="Partially Paid" id="id5" color="yellow" flat />
+          <Option label="Overdue" id="id6" color="red" flat />
+        </StatusLabelDropdown>
+      </DropdownContainer>
+    </ModalRowContainer>
+
+    <ModalRowContainer padding="27px 20px" justifyContent="flex-end">
+      <Button label="Cancel" type="secondary-action-medium" />
+      <Button label="Apply" type="primary-action-medium" />
+    </ModalRowContainer>
+  </Modal>
 );
