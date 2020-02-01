@@ -11,12 +11,13 @@ const settingClassName = (children, currentId, defaultClassName, disabled) => {
       className = currentId === props.id ? `${getPosition(children, index, defaultClassName)}__selected` : `${getPosition(children, index, defaultClassName)}`;
     }
     return {
-      label: props.label,
-      id: props.id,
-      color: props.color,
       className,
-      children: props.children,
+      id: props.id,
+      flat: props.flat,
+      label: props.label,
+      color: props.color,
       onClick: props.onClick,
+      children: props.children,
       disabled: props.disabled,
     };
   });
