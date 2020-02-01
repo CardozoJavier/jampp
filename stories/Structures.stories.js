@@ -4,6 +4,7 @@ import {
   Button,
   InputField,
   OptionDropdown,
+  InformativeModal,
 } from '../src/Components';
 import {
   DropdownLabel,
@@ -20,7 +21,8 @@ import { Option } from '../src/Components/OptionList/styles';
 import { FilterIcon, TrashIcon } from '../src/Components/UI/Icons';
 import { palette } from '../src/Components/styles';
 import { LabelContainer } from '../src/Components/InputField/styles';
-const { gray } = palette;
+import { Text } from '../src/Components/UI/GenericElements/GenericElements.styles';
+const { gray, link } = palette;
 
 export default {
   title: 'Structures',
@@ -138,5 +140,16 @@ export const ModalC = () => (
     <ModalFooter>
       <Button label="Action button" type="secondary-default-medium" />
     </ModalFooter>
+  </Modal>
+);
+
+export const Informative = () => (
+  <Modal width="239px" minHeight="0">
+    <InformativeModal>
+      <Text color={link} fontSize="12px">Spend</Text>
+      <Text color={link} fontSize="12px">Taxes</Text>
+      <Text color={link} fontSize="12px">Discounts</Text>
+      <Text color={link} fontSize="12px">Credit Notes</Text>
+    </InformativeModal>
   </Modal>
 );
