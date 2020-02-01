@@ -35,7 +35,6 @@ const OptionList = ({ children = [], type, className, OptionItem, menuTitle, onS
   return (
     <OptionCheckboxGroup className={bemDestruct(className)} minWidth={minWidth}>
       {menuTitle && <MenuTitle>{menuTitle}</MenuTitle>}
-      {console.log(array)}
       {array.map((input) => (
         <OptionItem
           className={input.className}

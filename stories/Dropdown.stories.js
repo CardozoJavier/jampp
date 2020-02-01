@@ -51,7 +51,7 @@ export const Basic = () => (
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
         * @prop {Boolean} notIcon - (Optional) It's a modifier to not display the check icon next to text.
-        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%;
+        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive optoin ID in first argument.
         */}
       <OptionDropdown text="Text" type="basic" onChange={optionId => console.log('Option ' + optionId + ' is selected')}>
@@ -72,6 +72,8 @@ export const Basic = () => (
         * StatusLabelDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
+        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
+        * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive optoin ID in first argument.
         */}
       <StatusLabelDropdown text="Text" type="basic" onChange={optionId => console.log('Option ' + optionId + ' is selected')}>
@@ -80,6 +82,7 @@ export const Basic = () => (
           * @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
           * @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
           * @prop {String} label - (Optional) It's a text to be display inside button.
+          * @prop {String} flat - (Optional) Flag to not show small circle next to the text.
           */}
         <Option label="status" id="red" color="red" />
         <Option label="status" id="yellow" color="yellow" />
@@ -97,6 +100,7 @@ export const BasicWithLabel = () => (
       * StatusLabelDropdown component should be called with
       * @prop {String} type - (Required) Define dropdown classes for styling.
       * @prop {String} text - (Required) Text to be displayed inside button.
+      * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
       * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
       */}
     <StatusLabelDropdown text="Text" type="basic">
@@ -105,6 +109,7 @@ export const BasicWithLabel = () => (
         * @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
         * @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
         * @prop {String} label - (Optional) It's a text to be display inside button.
+        * @prop {String} flat - (Optional) Flag to not show small circle next to the text.
         */}
       <Option label="status" id="red" color="red" />
       <Option label="status" id="yellow" color="yellow" />
@@ -143,7 +148,7 @@ export const SolidWithIcon = () => (
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
         * @prop {Boolean} notIcon - (Optional) It's a modifier to not display the check icon next to text.
-        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%;
+        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive optoin ID in first argument.
         * 
         */}
@@ -165,6 +170,8 @@ export const SolidWithIcon = () => (
         * StatusLabelDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
+        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
+        * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive optoin ID in first argument.
         */}
       <StatusLabelDropdown text="Dropdown solid w/icon" type="solid" leftIcon={DownloadFileIcon}>
@@ -173,16 +180,32 @@ export const SolidWithIcon = () => (
           * @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
           * @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
           * @prop {String} label - (Optional) It's a text to be display inside button.
+          * @prop {String} flat - (Optional) Flag to not show small circle next to the text.
           */}
-        <Option label="status" id="red" color="red" />
-        <Option label="status" id="yellow" color="yellow" />
-        <Option label="status" id="green" color="green" />
-        <Option label="status" id="blue" color="blue" />
+        <Option label="status" id="red" color="red" flat />
+        <Option label="status" id="yellow" color="yellow" flat />
+        <Option label="status" id="green" color="green" flat />
+        <Option label="status" id="blue" color="blue" flat />
       </StatusLabelDropdown>
     </DropdownContainer>
 
     <DropdownContainer>
+      {/**
+        * StatusLabelDropdown component should be called with
+        * @prop {String} type - (Required) Define dropdown classes for styling.
+        * @prop {String} text - (Required) Text to be displayed inside button.
+        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
+        * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+        * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive optoin ID in first argument.
+        */}
       <StatusLabelDropdown text="Dropdown solid w/icon" type="solid" leftIcon={DownloadFileIcon} disabled={true}>
+        {/**
+          * Option component should be used with
+          * @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
+          * @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
+          * @prop {String} label - (Optional) It's a text to be display inside button.
+          * @prop {String} flat - (Optional) Flag to not show small circle next to the text.
+          */}
         <Option label="status" id="id1" color="red" />
         <Option label="status" id="id2" color="yellow" />
         <Option label="status" id="id3" color="green" />
@@ -222,7 +245,7 @@ export const NoBorder = () => (
         * @prop {String} text - (Required) Text to be displayed inside button.
         * @prop {Boolean} notIcon - (Optional) It's a modifier to not display the check icon next to text.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive optoin ID in first argument.
-        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%;
+        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
         * 
         */}
       <OptionDropdown text="Text" type="no-border">
@@ -243,14 +266,17 @@ export const NoBorder = () => (
         * StatusLabelDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
+        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
+        * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive optoin ID in first argument.
-        */}
+      */}
       <StatusLabelDropdown text="Text" type="no-border">
         {/**
           * Option component should be used with
           * @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
           * @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
           * @prop {String} label - (Optional) It's a text to be display inside button.
+          * @prop {String} flat - (Optional) Flag to not show small circle next to the text.
           */}
         <Option label="status" id="red" color="red" />
         <Option label="status" id="yellow" color="yellow" />
@@ -260,7 +286,22 @@ export const NoBorder = () => (
     </DropdownContainer>
 
     <DropdownContainer>
+      {/**
+        * StatusLabelDropdown component should be called with
+        * @prop {String} type - (Required) Define dropdown classes for styling.
+        * @prop {String} text - (Required) Text to be displayed inside button.
+        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
+        * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+        * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive optoin ID in first argument.
+      */}
       <StatusLabelDropdown text="Text" type="no-border" disabled={true}>
+        {/**
+          * Option component should be used with
+          * @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
+          * @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
+          * @prop {String} label - (Optional) It's a text to be display inside button.
+          * @prop {String} flat - (Optional) Flag to not show small circle next to the text.
+          */}
         <Option label="status" id="id1" color="red" />
         <Option label="status" id="id2" color="yellow" />
         <Option label="status" id="id3" color="green" />
@@ -299,7 +340,7 @@ export const NoBorderLink = () => (
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
         * @prop {Boolean} notIcon - (Optional) It's a modifier to not display the check icon next to text.
-        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%;
+        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive optoin ID in first argument.
         * 
         */}
@@ -321,6 +362,8 @@ export const NoBorderLink = () => (
         * StatusLabelDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
+        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
+        * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive optoin ID in first argument.
         */}
       <StatusLabelDropdown text="Advanced Options" type="no-border-link">
@@ -329,6 +372,7 @@ export const NoBorderLink = () => (
           * @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
           * @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
           * @prop {String} label - (Optional) It's a text to be display inside button.
+          * @prop {String} flat - (Optional) Flag to not show small circle next to the text.
           */}
         <Option label="status" id="red" color="red" />
         <Option label="status" id="yellow" color="yellow" />
@@ -338,7 +382,22 @@ export const NoBorderLink = () => (
     </DropdownContainer>
 
     <DropdownContainer>
+      {/**
+        * StatusLabelDropdown component should be called with
+        * @prop {String} type - (Required) Define dropdown classes for styling.
+        * @prop {String} text - (Required) Text to be displayed inside button.
+        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
+        * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+        * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive optoin ID in first argument.
+        */}
       <StatusLabelDropdown text="Advanced Options" type="no-border-link" disabled={true}>
+        {/**
+          * Option component should be used with
+          * @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
+          * @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
+          * @prop {String} label - (Optional) It's a text to be display inside button.
+          * @prop {String} flat - (Optional) Flag to not show small circle next to the text.
+          */}
         <Option label="status" id="id1" color="red" />
         <Option label="status" id="id2" color="yellow" />
         <Option label="status" id="id3" color="green" />
@@ -377,7 +436,7 @@ export const NoBorderPurple = () => (
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
         * @prop {Boolean} notIcon - (Optional) It's a modifier to not display the check icon next to text.
-        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%;
+        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive optoin ID in first argument.
         * 
         */}
@@ -399,6 +458,7 @@ export const NoBorderPurple = () => (
         * StatusLabelDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
+        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive optoin ID in first argument.
         */}
       <StatusLabelDropdown text="Advertiser" type="no-border-purple">
@@ -407,6 +467,7 @@ export const NoBorderPurple = () => (
           * @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
           * @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
           * @prop {String} label - (Optional) It's a text to be display inside button.
+          * @prop {String} flat - (Optional) Flag to not show small circle next to the text.
           */}
         <Option label="status" id="red" color="red" />
         <Option label="status" id="yellow" color="yellow" />
