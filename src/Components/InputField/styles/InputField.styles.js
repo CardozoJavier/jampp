@@ -8,6 +8,8 @@ export const InputFieldContainer = styled.label`
   align-items: center;
   margin-top: 5px;
   background-color: white;
+  width: ${({ width }) => width};
+  margin: ${({ margin }) => margin};
 
   &:hover {
     &.input {
