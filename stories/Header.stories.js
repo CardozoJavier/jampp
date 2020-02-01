@@ -44,6 +44,7 @@ export default {
  *  @prop {String} avatarSrc - (Required) The relative or absolute path of an image to be rendered in header. 
  *  @prop {String} name - (Required) It's the name to be displayed next to avatar.
  *  @prop {String} description - (Required) It's the description to be displayed below of name.
+ *  @prop {Function} signOutCallback - (Optional) Callback to trigger on click button event. It receive the email in first argument.
  */
 export const Header = () => (
   <HeaderContainer>
@@ -65,6 +66,7 @@ export const Header = () => (
         avatarSrc={AvatarSrc}
         name="Guido Crego"
         description="Jampp - Head of product"
+        signOutCallback={() => console.log('Sign out button has clicked!')}
       />
     </DropdownContainer>
   </HeaderContainer>
@@ -128,6 +130,7 @@ export const BusinessLevel = () => (
  *  @prop {String} avatarSrc - (Required) The relative or absolute path of an image to be rendered in header. 
  *  @prop {String} name - (Required) It's the name to be displayed next to avatar.
  *  @prop {String} description - (Required) It's the description to be displayed below of name.
+ *  @prop {Function} signOutCallback - (Optional) Callback to trigger on click button event. It receive the email in first argument.
  * 
  *    OptionDropdown component should be called with
  *    @prop {String} text - (Required) It's the dropdown title.
@@ -152,7 +155,13 @@ export const AdAccountsLevel = () => (
           <NotificationsIcon />
         </NotificationContainer>
 
-        <AdAccountsDropdown avatarSrc={AvatarSrc} name="Guido Crego" description="Jampp - Head of product" email="guido.crego@jampp.com">
+        <AdAccountsDropdown
+          avatarSrc={AvatarSrc}
+          name="Guido Crego"
+          description="Jampp - Head of product"
+          email="guido.crego@jampp.com"
+          signOutCallback={email => console.log(email + ' has signed out')}
+        >
           <OptionDropdown text="Organization name A" type="expandable-no-border-purple">
             <Option label="Ad Account Name A" id="id1" />
             <Option label="Ad Account Name B" id="id2" />

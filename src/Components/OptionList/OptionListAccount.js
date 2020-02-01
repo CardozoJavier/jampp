@@ -22,9 +22,10 @@ import { Button } from '../Button';
  * @param {String} className - (Required) The className determines if list is opened or closed.
  * @param {Function} OptionItem - (Required) It's each option component styled to be displayed into list.
  * @param {String} listId - (Required) It's an unique id to identifier each list on click events.
+ * @param {Function} signOutCallback - (Optional) Callback to trigger on click button event. It receive the email in first argument.
  * @return {React Component} A view for panel account with input field, a selectable list and sign out button.
  */
-const OptionListAccount = ({ children = [], type, email, className, OptionItem, listId }) => {
+const OptionListAccount = ({ children = [], type, email, className, OptionItem, listId, signOutCallback }) => {
   const { defaultClassName } = optionListProps[type];
   const isThereChildren = !!children;
   const childrenParsed = isThereChildren ? settingClassName(children, -1, defaultClassName) : [];
@@ -61,7 +62,7 @@ const OptionListAccount = ({ children = [], type, email, className, OptionItem, 
         </>
       }
       <ButtonContainer>
-        <Button label="Sign out" type="secondary-gray-medium" />
+        <Button label="Sign out" type="secondary-gray-medium" onClick={signOutCallback} />
       </ButtonContainer>
     </OptionListContainer>
   );
@@ -80,6 +81,11 @@ OptionListAccount.propTypes = {
   email: PropTypes.string.isRequired,
   className: PropTypes.string.isRequired,
   OptionItem: PropTypes.func.isRequired,
+  signOutCallback: PropTypes.func,
+};
+
+OptionListAccount.defaultProps = {
+  signOutCallback: () => null,
 };
 
 export default OptionListAccount;
