@@ -69,6 +69,14 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
       height: 16px;
       fill: ${gray.g4};
       margin: 0 5px;
+      &.chevron {
+        &.chevron {
+          &--header {
+            width: 24px;
+            height: 24px;
+          }
+        }
+      }
     }
 
     &.accessory, &.button, &.option, &.label {

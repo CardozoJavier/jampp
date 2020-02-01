@@ -14,8 +14,8 @@ const classesName = {
     optionalClassName: "dropdown button--default-right__opened",
   },
   chevron: {
-    defaultClassName: 'chevron chevron--default__closed',
-    optionalClassName: 'chevron chevron--default__opened',
+    defaultClassName: 'chevron chevron--header__closed',
+    optionalClassName: 'chevron chevron--header__opened',
   },
 };
 
