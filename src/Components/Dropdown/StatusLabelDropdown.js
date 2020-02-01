@@ -16,10 +16,12 @@ import { StatusLabel } from '../Label';
  * @param {Node} children - (Required) The options to be display.
  * @param {Function} leftIcon - (Optional) Function that returns an svg icon to be displayed inside button.
  * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
+ * @param {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
+ * @param {String} minWidth - (Optiona) Specified the min width for options list.
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @return {React Component} A view for button and dropdown of unique status label selectable.
  */
-const StatusLabelDropdown = ({ text, children, type = 'basic', leftIcon, onChange, disabled }) => {
+const StatusLabelDropdown = ({ text, children, type = 'basic', leftIcon, onChange, minWidth, wide, disabled }) => {
   const { defaultClassName, optionalClassName, buttonClassName } = dropdownProps[type];
 
   const [className, setClassName] = useState(defaultClassName);
@@ -35,12 +37,12 @@ const StatusLabelDropdown = ({ text, children, type = 'basic', leftIcon, onChang
     setChevron(toggleChevronDirection);
   };
 
-  const onSelect = (id, label) => {
+  const onSelect = (id, label, color, flat) => {
     const props = {
       text: label,
-      color: id,
+      color,
     };
-    setOptionButton(<StatusLabel {...props} key={id} icon={EllipseIcon} />);
+    setOptionButton(<StatusLabel {...props} key={id} icon={flat ? null : EllipseIcon} />);
     handleClick();
   };
 
@@ -71,7 +73,7 @@ const StatusLabelDropdown = ({ text, children, type = 'basic', leftIcon, onChang
 
   return (
     <>
-      <ButtonDropdownContainer className={bemDestruct(buttonClassName, disabled)} onClick={disabled ? null : handleClick} id={dropdownId}>
+      <ButtonDropdownContainer className={bemDestruct(buttonClassName, disabled)} onClick={disabled ? null : handleClick} id={dropdownId} wide={wide}>
         {leftIcon &&
           <IconGenerator
             renderIcon={leftIcon}
@@ -88,7 +90,7 @@ const StatusLabelDropdown = ({ text, children, type = 'basic', leftIcon, onChang
           disabled={disabled}
         />
       </ButtonDropdownContainer>
-      <OptionList type="status-option" OptionItem={StatusLabelOption} children={children} className={className} onSelect={onSelect} onChange={onChange} />
+      <OptionList type="status-option" OptionItem={StatusLabelOption} children={children} className={className} onSelect={onSelect} onChange={onChange} minWidth={minWidth}/>
     </>
   );
 };
@@ -99,12 +101,16 @@ StatusLabelDropdown.propTypes = {
   children: PropTypes.node.isRequired,
   leftIcon: PropTypes.func,
   onChange: PropTypes.func,
+  minWidth: PropTypes.string,
+  wide: PropTypes.bool,
   disabled: PropTypes.bool,
 };
 
 StatusLabelDropdown.defaultProps = {
   leftIcon: () => null,
   onChange: () => null,
+  minWidth: null,
+  wide: false,
   disabled: false,
 };
 
