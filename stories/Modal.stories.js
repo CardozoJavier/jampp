@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Button, OptionDropdown, StatusLabelDropdown } from '../src/Components';
+import { Modal, Button, OptionDropdown } from '../src/Components';
 import { CenteredModal } from '../src/Components/Modal';
 import { HeaderTitle, ModalFooter, ModalContainer, ModalRowContainer, } from '../src/Components/Modal/styles';
 import { TrashIcon, FilterIcon } from '../src/Components/UI/Icons';
@@ -59,28 +59,28 @@ export const Centered = () => (
 
 export const OneColumn = () => (
   <Modal title="Filter Modal Example" icon={FilterIcon} width="222px">
-    <ModalRowContainer padding="10px 20px 10px 20px">
-      <DropdownContainer width="100%" direction="column" align="start" alignItems="flex-start">
-        <DropdownLabel>Title</DropdownLabel>
-        <OptionDropdown text="All" type="basic" wide>
-          <Option label="All" id="id1" />
-          <Option label="Option 1" id="id2" />
-          <Option label="Option 2" id="id3" />
-        </OptionDropdown>
-      </DropdownContainer>
-    </ModalRowContainer>
-
     <ModalRowContainer padding="10px 20px">
       <DropdownContainer width="100%" direction="column" align="start" alignItems="flex-start">
         <DropdownLabel>Title</DropdownLabel>
-        <StatusLabelDropdown text="All" type="basic" minWidth="150px" wide>
+        <OptionDropdown text="All" type="basic-status-label" minWidth="150px" wide>
           <Option label="All" id="id1" flat />
           <Option label="Due" id="id2" color="blue" flat />
           <Option label="Paid" id="id3" color="green" flat />
           <Option label="Paid - Credit Note" id="id4" color="green" flat />
           <Option label="Partially Paid" id="id5" color="yellow" flat />
           <Option label="Overdue" id="id6" color="red" flat />
-        </StatusLabelDropdown>
+        </OptionDropdown>
+      </DropdownContainer>
+    </ModalRowContainer>
+
+    <ModalRowContainer padding="10px 20px 10px 20px">
+      <DropdownContainer width="100%" direction="column" align="start" alignItems="flex-start">
+        <DropdownLabel>Title</DropdownLabel>
+        <OptionDropdown text="All" type="basic-clean" wide>
+          <Option label="All" id="id1" />
+          <Option label="Option 1" id="id2" />
+          <Option label="Option 2" id="id3" />
+        </OptionDropdown>
       </DropdownContainer>
     </ModalRowContainer>
 
