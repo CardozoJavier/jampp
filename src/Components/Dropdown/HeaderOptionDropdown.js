@@ -18,7 +18,7 @@ import { ButtonInput } from '../Button/styles';
  * @return {React Component} A view for button and dropdown of unique option selectable.
  */
 const HeaderOptionDropdown = ({ text, type = 'basic', menuTitle, children, onChange, disabled }) => {
-  const { defaultClassName, optionalClassName } = dropdownProps[type];
+  const { defaultClassName, optionalClassName, typeList } = dropdownProps[type];
   const chevronDefaultClassName = dropdownProps.chevron.defaultClassName;
   const chevronOptionalClassName = dropdownProps.chevron.optionalClassName;
 
@@ -76,7 +76,14 @@ const HeaderOptionDropdown = ({ text, type = 'basic', menuTitle, children, onCha
           }}
         />
       </HeaderOptionDropdownContainer>
-      <OptionList menuTitle={menuTitle} type="header-unique-option" OptionItem={UniqueOption} children={children} onSelect={onSelect} onChange={onChange} className={className} />
+      <OptionList
+        menuTitle={menuTitle}
+        type={typeList}
+        children={children}
+        onSelect={onSelect}
+        onChange={onChange}
+        className={className}
+      />
     </>
   );
 };
