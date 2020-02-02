@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 export default styled.div`
-  position: ${({ position }) => position || 'absolute'};
+  position: ${({ position }) => position};
   top: ${({ top }) => top};
   right: ${({ right }) => right};
   bottom: ${({ bottom }) => bottom};
-  left: ${({ left }) => left};  
+  left: ${({ left }) => left};
+  margin: ${({ margin }) => margin};
 
   svg {
     fill: none;

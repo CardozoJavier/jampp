@@ -62,6 +62,7 @@ const Checkbox = ({ type, id, label, right, left, onChange, checked, disabled })
         <IconGenerator
           renderIcon={CheckIcon}
           props={{
+            position: 'absolute',
             right: '1px',
             fill: white,
             width: '12px',

@@ -2,14 +2,14 @@ import styled from 'styled-components';
 
 export default styled.div`
   position: absolute;
-  right: 0;
+  left: 0;
   top: 48px;
   border-radius: 4px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, .1);
   background-color: white;
   z-index: 1;
   min-width: ${({ minWidth }) => minWidth || '130px'};
-  width: 100%;
+  width: inherit;
 
   &.dropdown, &.expandable {
     &-right {}

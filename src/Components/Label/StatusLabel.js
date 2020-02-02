@@ -19,6 +19,7 @@ const StatusLabel = ({ text, color, icon }) => (
         renderIcon={icon}
         props={{
           className: bemDestruct(`label status--small-${color}`),
+          hasNotification: true,
         }}
       />
     }

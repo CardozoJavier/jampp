@@ -28,7 +28,7 @@ export const StatusLabelContainer = styled.div`
       ${StatusLabelText} {
         font-size: 10px;
       }
-      padding: .3em 1em;
+      padding: 2px 11px;
       background-color: ${green.g0};
       color: ${green.g1};
       
@@ -45,7 +45,7 @@ export const StatusLabelContainer = styled.div`
       ${StatusLabelText} {
         font-size: 10px;
       }
-      padding: .3em 1em;
+      padding: 2px 11px;
       background-color: ${red.r1};
       color: ${red.r3};
       
@@ -62,7 +62,7 @@ export const StatusLabelContainer = styled.div`
       ${StatusLabelText} {
         font-size: 10px;
       }
-      padding: .3em 1em;
+      padding: 2px 11px;
       background-color: ${yellow.y0};
       color: ${yellow.y2};
       
@@ -79,7 +79,7 @@ export const StatusLabelContainer = styled.div`
       ${StatusLabelText} {
         font-size: 10px;
       }
-      padding: .3em 1em;
+      padding: 2px 11px;
       background-color: ${blue.b05};
       color: ${link};
       
@@ -114,7 +114,7 @@ export const StatusLabelContainer = styled.div`
     &-small {
       font-size: 10px;
       font-weight: normal;
-      padding: .3em 1em;
+      padding: 2px 11px;
       color: ${gray.g4};
 
       ${XIconContainer} {
