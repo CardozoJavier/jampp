@@ -13,16 +13,16 @@ import {
 import {
   ModalText,
   ModalFooter,
-  ModalContainer,
   ModalContainerB,
   ModalRowContainer,
 } from '../src/Components/Modal/styles';
 import { Option } from '../src/Components/OptionList/styles';
-import { FilterIcon, TrashIcon } from '../src/Components/UI/Icons';
-import { palette } from '../src/Components/styles';
+import { TrashIcon } from '../src/Components/UI/Icons';
+import { palette, fonts } from '../src/Components/styles';
 import { LabelContainer } from '../src/Components/InputField/styles';
 import { Text } from '../src/Components/UI/GenericElements/GenericElements.styles';
 const { gray, link } = palette;
+const { size12 } = fonts;
 
 export default {
   title: 'Structures',
@@ -146,10 +146,10 @@ export const ModalC = () => (
 export const Informative = () => (
   <Modal width="239px" minHeight="0">
     <InformativeModal>
-      <Text color={link} fontSize="12px">Spend</Text>
-      <Text color={link} fontSize="12px">Taxes</Text>
-      <Text color={link} fontSize="12px">Discounts</Text>
-      <Text color={link} fontSize="12px">Credit Notes</Text>
+      <Text color={link} fontSize={size12}>Spend</Text>
+      <Text color={link} fontSize={size12}>Taxes</Text>
+      <Text color={link} fontSize={size12}>Discounts</Text>
+      <Text color={link} fontSize={size12}>Credit Notes</Text>
     </InformativeModal>
   </Modal>
 );
