@@ -20,9 +20,10 @@ import { ExpandableDropdown } from '../Dropdown';
  *  @param {String} className - (Required) It's the className that switching between closed and opened dropdown.
  *  @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  *  @param {String} listId - (Required) It's an unique id to identifier each list on click events.
+ *  @param {Function} signOutCallback - (Optional) Callback to trigger on click button event. It receive the email in first argument.
  *  @return {React Component} A view for panel account with input field, a selectable list and sign out button.
  */
-const AdAccountsList = ({ children = [], email, className, disabled, listId }) => (
+const AdAccountsList = ({ children = [], email, className, disabled, listId, signOutCallback }) => (
   <OptionListContainer className={bemDestruct(className, disabled)} id={listId}>
     <InputField placeholder="Filter organization" type="icon-small-left" icon={SearchIcon} />
 
@@ -42,7 +43,7 @@ const AdAccountsList = ({ children = [], email, className, disabled, listId }) =
     </EmailFieldContainer>
 
     <ButtonContainer>
-      <Button label="Sign out" type="secondary-gray-medium" />
+      <Button label="Sign out" type="secondary-gray-medium" onClick={() => signOutCallback(email)} />
     </ButtonContainer>
   </OptionListContainer>
 );
@@ -57,10 +58,13 @@ AdAccountsList.propTypes = {
   email: PropTypes.string.isRequired,
   className: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
+  listId: PropTypes.string.isRequired,
+  signOutCallback: PropTypes.func,
 };
 
 AdAccountsList.defaultProps = {
   disabled: false,
+  signOutCallback: () => null,
 };
 
 export default AdAccountsList;

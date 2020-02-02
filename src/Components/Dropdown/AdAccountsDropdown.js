@@ -26,9 +26,10 @@ const classesName = {
  *  @param {String} avatarSrc - (Required) The relative or absolute path of an image to be rendered in header. 
  *  @param {Node} children - (Required) The options to be display.
  *  @param {String} email - (Optional) It's the email to be displayed above of sign-out button.
+ *  @param {Function} signOutCallback - (Optional) Callback to trigger on click button event. It receive the email in first argument.
  *  @return {React Component} A view for account dropdown with avatarSrc and multiple expandable dropdowns inside.
  */
-const AdAccountsDropdown = ({ name, description, avatarSrc, children, email, }) => {
+const AdAccountsDropdown = ({ name, description, avatarSrc, children, email, signOutCallback }) => {
   const { defaultClassName, optionalClassName } = classesName['normal'];
 
   const [className, setClassName] = useState(defaultClassName);
@@ -106,6 +107,7 @@ const AdAccountsDropdown = ({ name, description, avatarSrc, children, email, }) 
         className={className}
         email={email}
         listId={listId}
+        signOutCallback={signOutCallback}
       />
     </>
   );
@@ -117,10 +119,12 @@ AdAccountsDropdown.propTypes = {
   avatarSrc: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   email: PropTypes.string,
+  signOutCallback: PropTypes.func,
 };
 
 AdAccountsDropdown.defaultProps = {
   email: '',
+  signOutCallback: () => null,
 };
 
 export default AdAccountsDropdown;
