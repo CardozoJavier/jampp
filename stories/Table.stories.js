@@ -30,6 +30,7 @@ export default {
  *  
  *  Row component should be called with
  *  @prop {Node} children - (Required) It's the content to be displayed into each row.
+ *  @prop {String} gridTemplateColumns - (Optional) It's the dimensions of each column in row. Default values are '22.5% 11% 11% 11% 22.5% 22%'.
  */
 export const WithTitle = () => (
   <Card width="1392px" padding="16px 16px 62px 16px">
@@ -118,6 +119,7 @@ export const WithTitle = () => (
  *  Row component can be called with
  *  @prop {Node} children - (Required) It's the content to be displayed into each row.
  *  @prop {Boolean} loading - (Optional) It's the flag to determinate a loading state for view data.
+ *  @prop {String} gridTemplateColumns - (Optional) It's the dimensions of each column in row. Default values are '22.5% 11% 11% 11% 22.5% 22%'.
  */
 export const WithLoadingState = () => (
   <Card width="1392px" padding="16px 16px 62px 16px">
@@ -198,6 +200,31 @@ export const WithLoadingState = () => (
   </Card>
 );
 
+/**
+ * Card component can be called with
+ * @prop {String} title - (Optional) It's title to be displayed in card.
+ * @prop {String} description - (Optional) It's description to be displayed in card below of title.
+ * @prop {String} width - (Optional) It's the width of the card container.
+ * @prop {String} padding - (Optional) It's the padding of the card container.
+ * 
+ *  GridContainer component can be called with
+ *  @prop {String} gridTemplateColumns - (Optional) It's the dimensions of each column in row.
+ *  @prop {String} borderBottom - (Optional) It's the border bottom to be displayed.
+ *  @prop {String} padding - (Optional) It's the padding for grid container.
+ *  @prop {String} alignItems - (Optional) It's the vertical alignment for elements into grid. Default value is 'center'.
+ *  @prop {String} borderTop - (Optional) It's the border top to be displayed.
+ *  @prop {String} position - (Optional) Set grid position.
+ *  @prop {String} zIndex - (Optional) Set z-index property.
+ * 
+ *    Text component can be called with
+ *    @prop {String} color - (Optional) It's the color of text.
+ *    @prop {String} fontSize - (Optional) It's the size of text.
+ *    @prop {String} margin - (Optional) It's the margin for text container.
+ *    @prop {String} overflow - (Optional) Set overflow property.
+ *    @prop {String} justifySelf - (Optional) It's the alignment for text into grid column.
+ *    @prop {String} cursor - (Optional) Set the cursor on hover event.
+ *    @prop {String} width - (Optional) It's the width of the text container.
+ */
 export const EndUserA = () => (
   <Card title="Title" width="548px" padding="24px;">
     <GridContainer gridTemplateColumns="50% 25% 25%" borderBottom={`1px solid ${gray.g1}`} padding="40px 0 24px 0">
@@ -226,6 +253,31 @@ export const EndUserA = () => (
   </Card>
 );
 
+/**
+ * Card component can be called with
+ * @prop {String} title - (Optional) It's title to be displayed in card.
+ * @prop {String} description - (Optional) It's description to be displayed in card below of title.
+ * @prop {String} width - (Optional) It's the width of the card container.
+ * @prop {String} padding - (Optional) It's the padding of the card container.
+ * 
+ *  GridContainer component can be called with
+ *  @prop {String} gridTemplateColumns - (Optional) It's the dimensions of each column in row.
+ *  @prop {String} borderBottom - (Optional) It's the border bottom to be displayed.
+ *  @prop {String} padding - (Optional) It's the padding for grid container.
+ *  @prop {String} alignItems - (Optional) It's the vertical alignment for elements into grid. Default value is 'center'.
+ *  @prop {String} borderTop - (Optional) It's the border top to be displayed.
+ *  @prop {String} position - (Optional) Set grid position.
+ *  @prop {String} zIndex - (Optional) Set z-index property.
+ * 
+ *    Text component can be called with
+ *    @prop {String} color - (Optional) It's the color of text.
+ *    @prop {String} fontSize - (Optional) It's the size of text.
+ *    @prop {String} margin - (Optional) It's the margin for text container.
+ *    @prop {String} overflow - (Optional) Set overflow property.
+ *    @prop {String} justifySelf - (Optional) It's the alignment for text into grid column.
+ *    @prop {String} cursor - (Optional) Set the cursor on hover event.
+ *    @prop {String} width - (Optional) It's the width of the text container.
+ */
 export const EndUserB = () => (
   <Card title="Title" width="365px" padding="12px" borderBottom="none">
     <GridContainer borderBottom={`1px solid ${gray.g1}`} padding="12px 0 24px 0" gridTemplateColumns="15% 35% 25% 25%">
