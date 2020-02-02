@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, InputField, Button, OptionDropdown } from '../src/Components';
+import { Card, InputField, Button, OptionDropdown, StatusLabel } from '../src/Components';
 import { Table, Row } from '../src/Components/Table';
 import {
   RowName,
@@ -13,8 +13,12 @@ import {
 import {
   CardHeader,
 } from '../src/Components/Card/styles';
-import { SearchIcon, DownloadFileIcon, AddIcon } from '../src/Components/UI/Icons';
+import { SearchIcon, DownloadFileIcon, AddIcon, TableImageIcon } from '../src/Components/UI/Icons';
 import { SearchBarContainer } from '../src/Components/InputField/styles';
+import { GridContainer, Gradient, GradientContainer, Text } from '../src/Components/UI/GenericElements/GenericElements.styles';
+import { palette, fonts } from '../src/Components/styles';
+const { link, black, gray } = palette;
+const { size12, size14 } = fonts;
 
 export default {
   title: 'Table',
@@ -194,3 +198,66 @@ export const WithLoadingState = () => (
   </Card>
 );
 
+export const EndUserA = () => (
+  <Card title="Title" width="548px" padding="24px;">
+    <GridContainer gridTemplateColumns="50% 25% 25%" borderBottom={`1px solid ${gray.g1}`} padding="40px 0 24px 0">
+      <Text color={link} fontSize={size14} justifySelf="start">Apr 1, 2019</Text>
+      <Text justifySelf="start"><StatusLabel text="Paid" color="green" flat /></Text>
+      <Text color={black} fontSize={size14} justifySelf="end">$999999</Text>
+    </GridContainer>
+    <GridContainer gridTemplateColumns="50% 25% 25%" borderBottom={`1px solid ${gray.g1}`} padding="24px 0">
+      <Text color={link} fontSize={size14} justifySelf="start">Mar 1, 2019</Text>
+      <Text justifySelf="start"><StatusLabel text="Due" color="blue" flat /></Text>
+      <Text color={black} fontSize={size14} justifySelf="end">$999999</Text>
+    </GridContainer>
+    <GridContainer gridTemplateColumns="50% 25% 25%" borderBottom={`1px solid ${gray.g1}`} padding="24px 0">
+      <Text color={link} fontSize={size14} justifySelf="start">Feb 1, 2019</Text>
+      <Text justifySelf="start"><StatusLabel text="Overdue" color="red" flat /></Text>
+      <Text color={black} fontSize={size14} justifySelf="end">$999999</Text>
+    </GridContainer>
+    <GridContainer gridTemplateColumns="50% 25% 25%" borderBottom={`1px solid ${gray.g1}`} padding="24px 0">
+      <Text color={link} fontSize={size14} justifySelf="start">Jan 1, 2019</Text>
+      <Text justifySelf="start"><StatusLabel text="Paid" color="green" flat /></Text>
+      <Text color={black} fontSize={size14} justifySelf="end">$999999</Text>
+    </GridContainer>
+    <GridContainer gridTemplateColumns="100%" padding="24px 0 0 0">
+      <Text onClick={() => console.log('Link clicked!')} cursor="pointer" width="fit-content" color={link} fontSize={size14}>Link to see more</Text>
+    </GridContainer>
+  </Card>
+);
+
+export const EndUserB = () => (
+  <Card title="Title" width="365px" padding="12px" borderBottom="none">
+    <GridContainer borderBottom={`1px solid ${gray.g1}`} padding="12px 0 24px 0" gridTemplateColumns="15% 35% 25% 25%">
+      <TableImageIcon />
+      <Text color={black} fontSize={size12} justifySelf="center" >Line Of Credit</Text>
+      <Text color={black} fontSize={size12} justifySelf="center">AR</Text>
+      <Text justifySelf="end"><StatusLabel text="Active" color="green" flat /></Text>
+    </GridContainer>
+    <GridContainer borderBottom={`1px solid ${gray.g1}`} padding="24px 0" gridTemplateColumns="15% 35% 25% 25%">
+      <TableImageIcon />
+      <Text color={black} fontSize={size12} justifySelf="center" >Line Of Credit</Text>
+      <Text color={black} fontSize={size12} justifySelf="center">AR</Text>
+      <Text justifySelf="end"><StatusLabel text="Inactive" color="red" flat /></Text>
+    </GridContainer>
+    <Gradient>
+      <GradientContainer>
+        <GridContainer position="relative" zIndex="-1" borderBottom={`1px solid ${gray.g1}`} padding="24px 0" gridTemplateColumns="15% 35% 25% 25%">
+          <TableImageIcon />
+          <Text color={black} fontSize={size12} justifySelf="center" >Line Of Credit</Text>
+          <Text color={black} fontSize={size12} justifySelf="center">AR</Text>
+          <Text justifySelf="end"><StatusLabel text="Active" color="green" flat /></Text>
+        </GridContainer>
+        <GridContainer position="relative" zIndex="-1" padding="24px 0" gridTemplateColumns="15% 35% 25% 25%">
+          <TableImageIcon />
+          <Text color={black} fontSize={size12} justifySelf="center" >Line Of Credit</Text>
+          <Text color={black} fontSize={size12} justifySelf="center">AR</Text>
+          <Text justifySelf="end"><StatusLabel text="Inactive" color="red" flat /></Text>
+        </GridContainer>
+      </GradientContainer>
+    </Gradient>
+    <GridContainer gridTemplateColumns="100%" padding="24px 0 12px 0" borderTop={`1px solid ${gray.g1}`}>
+      <Text onClick={() => console.log('Link clicked!')} cursor="pointer" width="fit-content" color={link} fontSize={size14}>Link to see more</Text>
+    </GridContainer>
+  </Card>
+);
