@@ -1,16 +1,10 @@
 import styled from 'styled-components';
 import { palette } from '../../../styles';
+import { SVGContainer } from '.';
 const { gray, white } = palette;
 
-export default styled.div`
-  display: flex;
-
-  svg {
-    width: ${({ width }) => width};
-    height: ${({ height }) => height};
-
-    path {
-      fill: ${({ fill }) => fill};
-    }
+export default styled(SVGContainer)`
+  &:hover {
+    cursor: inherit;
   }
 `;

@@ -34,7 +34,7 @@ export const Icons = () => (
     <FilterIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
     <ViewIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
     <CreditCardIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
-    <EditIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
+    <EditIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
     <AddAccountIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
     <AddIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
     <BillingIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
@@ -45,7 +45,7 @@ export const Icons = () => (
     <NotificationsIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
     <SuccessIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
     <TrashIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
-    <XIcon props={{ position: 'unset', height: '14px', width: '14px', fill: '#000' }} />
+    <XIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
     <AlertIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
     <ExclamationIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
   </>

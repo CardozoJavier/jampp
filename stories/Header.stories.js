@@ -47,7 +47,7 @@ export default {
  */
 export const Header = () => (
   <HeaderContainer>
-    <JamppImage onClick={() => console.log('Logo clicked!')} />
+    <JamppImage props={{ width: '57px', height: '19px' }} onClick={() => console.log('Logo clicked!')} />
     <DropdownContainer margin="0 auto 0 30px">
       <HeaderOptionDropdown text="Option" type="header-no-border-purple" menuTitle="Menu title">
         <Option label="Option 1" id="id1" />
@@ -89,7 +89,7 @@ export const Header = () => (
 export const BusinessLevel = () => (
   <>
     <HeaderContainer>
-      <JamppImage />
+      <JamppImage props={{ width: '57px', height: '19px' }} />
       <DropdownContainer margin="0 auto 0 30px">
         <HeaderOptionDropdown text="Option" type="header-no-border-purple" menuTitle="Menu title">
           <Option label="Option 1" id="id1" />
@@ -137,7 +137,7 @@ export const BusinessLevel = () => (
 export const AdAccountsLevel = () => (
   <>
     <HeaderContainer>
-      <JamppImage />
+      <JamppImage props={{ width: '57px', height: '19px' }} />
       <DropdownContainer margin="0 auto 0 30px">
         <HeaderOptionDropdown text="Option" type="header-no-border-purple" menuTitle="Menu title">
           <Option label="Option 1" id="id1" />

@@ -3,6 +3,7 @@ import { palette } from '../../../styles';
 const { gray } = palette;
 
 export default styled.div`
+  pointer-events: none;
   svg {
     width: ${({ width }) => width};
     height: ${({ height }) => height};
