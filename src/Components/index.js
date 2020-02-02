@@ -17,7 +17,6 @@ export {
   OptionDropdown,
   AccountDropdown,
   AdAccountsDropdown,
-  StatusLabelDropdown,
   HeaderOptionDropdown,
   MultipleOptionDropdown,
   AdditionalDetailsDropdown,
