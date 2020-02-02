@@ -12,6 +12,6 @@ export default ({ props, onClick, disabled, hasNotification }) => (
         <path d="M7.50003 16C8.24003 16 8.88003 15.6 9.22003 15H5.78003C6.12003 15.6 6.76003 16 7.50003 16Z" />
       </g>
     </svg>
-    <EllipseIcon props={{ hasNotification, position: 'absolute', bottom: '23px', left: '45px', fill: green.g1, radio: '3px', width: '8px', height: '8px' }}/>
+    <EllipseIcon props={{ hasNotification, viewBox: '0 0 6 6', position: 'absolute', bottom: '23px', left: '45px', fill: green.g1, radio: '3px', width: '8px', height: '8px' }}/>
   </NotificationsIconContainer>
 );
