@@ -40,7 +40,7 @@ export const WithTitle = () => (
         <InputField placeholder="Text" type="searchbar" icon={SearchIcon} />
       </SearchBarContainer>
       <TableButtons>
-        <OptionDropdown text="Export" type="solid" leftIcon={DownloadFileIcon} />
+        <OptionDropdown text="Export" type="solid-clean" leftIcon={DownloadFileIcon} />
         <Button label="CTA text" type="accessory-default-left" icon={AddIcon} />
       </TableButtons>
     </CardHeader>
@@ -129,7 +129,7 @@ export const WithLoadingState = () => (
         <InputField placeholder="Text" type="searchbar" icon={SearchIcon} />
       </SearchBarContainer>
       <TableButtons>
-        <OptionDropdown text="Export" type="solid" leftIcon={DownloadFileIcon} />
+        <OptionDropdown text="Export" type="solid-clean" leftIcon={DownloadFileIcon} />
         <Button label="CTA text" type="accessory-default-left" icon={AddIcon} />
       </TableButtons>
     </CardHeader>
