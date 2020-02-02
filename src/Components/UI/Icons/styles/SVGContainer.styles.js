@@ -6,10 +6,10 @@ export default styled.div`
   align-items: center;
   justify-content: center;
   position: ${({ position}) => position || 'unset'};
-  top: ${({ top }) => top || '0'};
-  right: ${({ right }) => right || '0'};
-  bottom: ${({ bottom }) => bottom || '0'};
-  left: ${({ left }) => left || '0'};
+  top: ${({ top }) => top || 'unset'};
+  right: ${({ right }) => right || 'unset'};
+  bottom: ${({ bottom }) => bottom || 'unset'};
+  left: ${({ left }) => left || 'unset'};
   margin: ${({ margin }) => margin || '0'};
 
   svg {
