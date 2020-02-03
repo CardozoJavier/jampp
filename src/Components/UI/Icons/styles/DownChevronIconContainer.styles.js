@@ -22,7 +22,7 @@ export default styled.div`
 
   &.dropdown, &.chevron {
     &.account, &.button, &.chevron, &.label {
-      &--full, &--default {
+      &--full, &--default, &--header {
         &__opened {
           transform: rotateX(-180deg) translateY(-5px);
           transition: all .3s;
@@ -33,8 +33,12 @@ export default styled.div`
           transition: all .3s;
         }
       }
+      &--header {
+        &__opened {
+          transform: rotateX(-180deg);
+        }
+      }
     }
-  }
 
   &:hover {
     cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};

@@ -8,6 +8,7 @@ export const ControlledInputFieldContainer = styled.div`
   align-items: center;
   border: 1px solid ${gray.g1};
   border-radius: 4px;
+  margin-top: 5px;
   
   &:hover {
     transition: all .3s;

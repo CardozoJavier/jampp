@@ -39,15 +39,23 @@ export default {
  *  Option component should be used with
  *  @prop {String} label - (Optional) It's a text to be display inside button.
  *  @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
- *
+ *  
+ *  HelpIcon can be called with
+ *  @prop {Function} onClick - (Optional) Callback to trigger on onClick event.
+ * 
+ *  NotificationsIcon can be called with
+ *  @prop {Boolean} hasNotification - (Optional) It's to be display the green circle over bell icon.
+ *  @prop {Function} onClick - (Optional) Callback to trigger on onClick event.
+ * 
  *  AccountDropdown component should be called with
  *  @prop {String} avatarSrc - (Required) The relative or absolute path of an image to be rendered in header. 
  *  @prop {String} name - (Required) It's the name to be displayed next to avatar.
  *  @prop {String} description - (Required) It's the description to be displayed below of name.
+ *  @prop {Function} signOutCallback - (Optional) Callback to trigger on click button event. It receive the email in first argument.
  */
 export const Header = () => (
   <HeaderContainer>
-    <JamppImage onClick={() => console.log('Logo clicked!')} />
+    <JamppImage props={{ width: '57px', height: '19px' }} onClick={() => console.log('Logo clicked!')} />
     <DropdownContainer margin="0 auto 0 30px">
       <HeaderOptionDropdown text="Option" type="header-no-border-purple" menuTitle="Menu title">
         <Option label="Option 1" id="id1" />
@@ -59,12 +67,13 @@ export const Header = () => (
     <DropdownContainer>
       <NotificationContainer>
         <HelpIcon onClick={() => console.log('Help icon clicked!')} />
-        <NotificationsIcon onClick={() => console.log('Notifications icon clicked!')} />
+        <NotificationsIcon hasNotification={true} onClick={() => console.log('Notifications icon clicked!')} />
       </NotificationContainer>
       <AccountDropdown
         avatarSrc={AvatarSrc}
         name="Guido Crego"
         description="Jampp - Head of product"
+        signOutCallback={() => console.log('Sign out button has clicked!')}
       />
     </DropdownContainer>
   </HeaderContainer>
@@ -80,6 +89,13 @@ export const Header = () => (
  *  @prop {String} label - (Optional) It's a text to be display inside button.
  *  @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
  * 
+ *  HelpIcon can be called with
+ *  @prop {Function} onClick - (Optional) Callback to trigger on onClick event.
+ * 
+ *  NotificationsIcon can be called with
+ *  @prop {Boolean} hasNotification - (Optional) It's to be display the green circle over bell icon.
+ *  @prop {Function} onClick - (Optional) Callback to trigger on onClick event.
+ *
  *  AccountDropdown component should be called with
  *  @prop {String} avatarSrc - (Required) The relative or absolute path of an image to be rendered in header. 
  *  @prop {String} name - (Required) It's the name to be displayed next to avatar.
@@ -89,7 +105,7 @@ export const Header = () => (
 export const BusinessLevel = () => (
   <>
     <HeaderContainer>
-      <JamppImage />
+      <JamppImage props={{ width: '57px', height: '19px' }} />
       <DropdownContainer margin="0 auto 0 30px">
         <HeaderOptionDropdown text="Option" type="header-no-border-purple" menuTitle="Menu title">
           <Option label="Option 1" id="id1" />
@@ -124,10 +140,18 @@ export const BusinessLevel = () => (
  *  @prop {String} label - (Optional) It's a text to be display inside button.
  *  @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
  * 
+ *  HelpIcon can be called with
+ *  @prop {Function} onClick - (Optional) Callback to trigger on onClick event.
+ * 
+ *  NotificationsIcon can be called with
+ *  @prop {Boolean} hasNotification - (Optional) It's to be display the green circle over bell icon.
+ *  @prop {Function} onClick - (Optional) Callback to trigger on onClick event.
+ *
  *  AdAccountsDropdown component should be called with
  *  @prop {String} avatarSrc - (Required) The relative or absolute path of an image to be rendered in header. 
  *  @prop {String} name - (Required) It's the name to be displayed next to avatar.
  *  @prop {String} description - (Required) It's the description to be displayed below of name.
+ *  @prop {Function} signOutCallback - (Optional) Callback to trigger on click button event. It receive the email in first argument.
  * 
  *    OptionDropdown component should be called with
  *    @prop {String} text - (Required) It's the dropdown title.
@@ -137,7 +161,7 @@ export const BusinessLevel = () => (
 export const AdAccountsLevel = () => (
   <>
     <HeaderContainer>
-      <JamppImage />
+      <JamppImage props={{ width: '57px', height: '19px' }} />
       <DropdownContainer margin="0 auto 0 30px">
         <HeaderOptionDropdown text="Option" type="header-no-border-purple" menuTitle="Menu title">
           <Option label="Option 1" id="id1" />
@@ -152,7 +176,13 @@ export const AdAccountsLevel = () => (
           <NotificationsIcon />
         </NotificationContainer>
 
-        <AdAccountsDropdown avatarSrc={AvatarSrc} name="Guido Crego" description="Jampp - Head of product" email="guido.crego@jampp.com">
+        <AdAccountsDropdown
+          avatarSrc={AvatarSrc}
+          name="Guido Crego"
+          description="Jampp - Head of product"
+          email="guido.crego@jampp.com"
+          signOutCallback={email => console.log(email + ' has signed out')}
+        >
           <OptionDropdown text="Organization name A" type="expandable-no-border-purple">
             <Option label="Ad Account Name A" id="id1" />
             <Option label="Ad Account Name B" id="id2" />

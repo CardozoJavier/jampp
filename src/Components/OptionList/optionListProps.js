@@ -1,4 +1,6 @@
 import { OptionContainer } from "./styles";
+import { UniqueOption } from "../UniqueOption";
+import { StatusLabelOption } from "../StatusLabelOption";
 
 /**
  * Properties for option list by type
@@ -8,6 +10,15 @@ const optionListProps = {
     defaultClassName: "unique option--default",
     optionalClassName: "",
     OptionContainer: OptionContainer,
+    OptionItem: UniqueOption,
+    iconClassName: '',
+    iconProps: {},
+  },
+  "status-label": {
+    defaultClassName: "unique option--default",
+    optionalClassName: "",
+    OptionContainer: OptionContainer,
+    OptionItem: StatusLabelOption,
     iconClassName: '',
     iconProps: {},
   },
@@ -15,6 +26,7 @@ const optionListProps = {
     defaultClassName: "expandable unique--default",
     optionalClassName: "",
     OptionContainer: OptionContainer,
+    OptionItem: UniqueOption,
     iconClassName: '',
     iconProps: {},
   },
@@ -22,6 +34,7 @@ const optionListProps = {
     defaultClassName: "unique option--header",
     optionalClassName: "",
     OptionContainer: OptionContainer,
+    OptionItem: UniqueOption,
     iconClassName: '',
     iconProps: {},
   },
@@ -29,6 +42,7 @@ const optionListProps = {
     defaultClassName: "status option--default",
     optionalClassName: "",
     OptionContainer: OptionContainer,
+    OptionItem: UniqueOption,
     iconClassName: '',
     iconProps: {},
   },

@@ -7,6 +7,7 @@ export { DropdownContainer } from './DropdownContainer.styles';
 export { AccountDescription } from './AccountDescription.styles';
 export { NotificationContainer } from './NotificationContainer.styles';
 export { ChildrenContainer } from './AdditionalDetailsDropdown.styles';
+export { DropdownListContainer } from './DropdownListContainer.styles';
 export { ButtonDropdownContainer } from './ButtonDropdownContainer.styles';
 export { AccountDropdownContainer } from './AccountDropdownContainer.styles';
 export { HeaderOptionDropdownContainer } from './HeaderOptionDropdownContainer.styles';

@@ -10,9 +10,10 @@ import { getUniqueId } from '../../utils';
  * @param {Function} icon - (Optional) Function that returns an svg icon.
  * @param {String} width - (Optional) It's the width of the modal container. Default value is 600px.
  * @param {Node} children - (Optional)  It's the content to be displayed into modal.
+ * @param {String} minHeight - (Optional) It's the min-height of the modal container. Default value is 240px.
  * @return {React Component} A view for plain modal with title with or not icon and footer.
  */
-const Modal = ({ title, icon, width, children }) => {
+const Modal = ({ title, icon, width, children, minHeight }) => {
   let ModalElement;
   const id = getUniqueId();
   
@@ -25,7 +26,7 @@ const Modal = ({ title, icon, width, children }) => {
   };
 
   return (
-    <ModalContainer width={width} id={id}>
+    <ModalContainer width={width} id={id} minHeight={minHeight}>
       {icon &&
         <IconTitleContainer>
           <IconGenerator
@@ -64,6 +65,7 @@ Modal.propTypes = {
   icon: PropTypes.func,
   width: PropTypes.string,
   children: PropTypes.node,
+  minHeight: PropTypes.string,
 };
 
 Modal.defaultProps = {
@@ -71,6 +73,7 @@ Modal.defaultProps = {
   icon: null,
   width: '600px',
   children: null,
+  minHeight: '240px',
 };
 
 export default Modal;

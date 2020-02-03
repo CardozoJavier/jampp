@@ -54,6 +54,9 @@ export default styled.div`
         &__selected {
           background-color: ${violet.v05};
           transition: background-color .3s;
+          font-weight: 900;
+          color: ${action};
+
           label {
             font-weight: 900;
             color: ${action};

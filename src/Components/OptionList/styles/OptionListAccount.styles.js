@@ -8,6 +8,7 @@ export const OptionListContainer = styled(OptionCheckboxGroup)`
   padding: 48px 20px 20px 20px;
   top: -12px;
   right: -5px;
+  left: unset;
   background-color: #fff;
   &.dropdown.button--default-right__opened {
     z-index: 0;

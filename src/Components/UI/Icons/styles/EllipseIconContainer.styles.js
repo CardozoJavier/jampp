@@ -1,12 +1,15 @@
 import styled from 'styled-components';
+import { SVGContainer } from '.';
 
-export default styled.div`
-  display: flex;
-
+export default styled(SVGContainer)`
+  display: ${({ hasNotification }) => hasNotification ? 'flex' : 'none'};
   svg {
+    viewBox: ${({ viewBox }) => viewBox};
     fill: ${({ fill }) => fill};
-    width: ${({ width }) => width};
-    height: ${({ height }) => height};
-    vertical-align: middle;
+    circle {
+      r: ${({ radio }) => radio};
+      cx: ${({ radio }) => radio};
+      cy: ${({ radio }) => radio};
+    }
   }
 `;

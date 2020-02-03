@@ -14,8 +14,8 @@ const classesName = {
     optionalClassName: "dropdown button--default-right__opened",
   },
   chevron: {
-    defaultClassName: 'chevron chevron--default__closed',
-    optionalClassName: 'chevron chevron--default__opened',
+    defaultClassName: 'chevron chevron--header__closed',
+    optionalClassName: 'chevron chevron--header__opened',
   },
 };
 
@@ -26,9 +26,10 @@ const classesName = {
  *  @param {String} avatarSrc - (Required) The relative or absolute path of an image to be rendered in header. 
  *  @param {Node} children - (Optional) They're the options to be display.
  *  @param {String} email - (Optional) It's the email to be displayed above of sign-out button.
+ *  @param {Function} signOutCallback - (Optional) Callback to trigger on click button event. It receive the email in first argument.
  *  @return {React Component} A view for account dropdown with avatar and a selectable list inside.
  */
-const AccountDropdown = ({ name, description, avatarSrc, children, email, }) => {
+const AccountDropdown = ({ name, description, avatarSrc, children, email, signOutCallback }) => {
   const { defaultClassName, optionalClassName } = classesName['normal'];
 
   const [className, setClassName] = useState(defaultClassName);
@@ -101,6 +102,7 @@ const AccountDropdown = ({ name, description, avatarSrc, children, email, }) => 
         className={className}
         email={email}
         listId={listId}
+        signOutCallback={signOutCallback}
       />
     </>
   );
@@ -112,11 +114,13 @@ AccountDropdown.propTypes = {
   avatarSrc: PropTypes.string.isRequired,
   children: PropTypes.node,
   email: PropTypes.string,
+  signOutCallback: PropTypes.func,
 };
 
 AccountDropdown.defaultProps = {
   children: null,
   email: '',
+  signOutCallback: () => null,
 };
 
 

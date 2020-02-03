@@ -8,6 +8,7 @@ import {
 import {
   DropdownLabel,
   DropdownContainer,
+  DropdownListContainer,
 } from '../src/Components/Dropdown/styles';
 import {
   CreationHeader,
@@ -48,33 +49,39 @@ export const Default = () => (
           </ModalRowContainer>
           <ModalRowContainer padding='0 20px 20px 20px' justifyContent="flex-start">
             <DropdownContainer width='50%' direction='column' alignItems='start'>
-              <DropdownLabel>Title</DropdownLabel>
-              <OptionDropdown wide notIcon text="Option" type='basic'>
-                <Option label="Option 1" id="id1" right />
-                <Option label="Option 2" id="id2" right />
-                <Option label="Option 3" id="id3" right />
-                <Option label="Option 4" id="id4" right />
-              </OptionDropdown>
+              <DropdownListContainer>
+                <DropdownLabel>Title</DropdownLabel>
+                <OptionDropdown wide notIcon text="Option" type='basic-clean'>
+                  <Option label="Option 1" id="id1" right />
+                  <Option label="Option 2" id="id2" right />
+                  <Option label="Option 3" id="id3" right />
+                  <Option label="Option 4" id="id4" right />
+                </OptionDropdown>
+              </DropdownListContainer>
             </DropdownContainer>
             <DropdownContainer width='17.5%' direction='column' alignItems='start' margin="0 0 0 40px">
-              <DropdownLabel>Title</DropdownLabel>
-              <OptionDropdown wide notIcon text="Option" type='basic'>
-                <Option label="Option 1" id="id1" right />
-                <Option label="Option 2" id="id2" right />
-                <Option label="Option 3" id="id3" right />
-                <Option label="Option 4" id="id4" right />
-              </OptionDropdown>
+              <DropdownListContainer>
+                <DropdownLabel>Title</DropdownLabel>
+                <OptionDropdown wide notIcon text="Option" type='basic-clean'>
+                  <Option label="Option 1" id="id1" right />
+                  <Option label="Option 2" id="id2" right />
+                  <Option label="Option 3" id="id3" right />
+                  <Option label="Option 4" id="id4" right />
+                </OptionDropdown>
+              </DropdownListContainer>
             </DropdownContainer>
           </ModalRowContainer>
           <ModalRowContainer padding="20px 20px 40px 20px" justifyContent="space-between">
             <DropdownContainer width='50%' direction='column' alignItems='start' margin="0">
-              <DropdownLabel>Title</DropdownLabel>
-              <OptionDropdown wide notIcon text="Option" type='basic'>
-                <Option label="Option 1" id="id1" right />
-                <Option label="Option 2" id="id2" right />
-                <Option label="Option 3" id="id3" right />
-                <Option label="Option 4" id="id4" right />
-              </OptionDropdown>
+              <DropdownListContainer>
+                <DropdownLabel>Title</DropdownLabel>
+                <OptionDropdown wide notIcon text="Option" type='basic-clean'>
+                  <Option label="Option 1" id="id1" right />
+                  <Option label="Option 2" id="id2" right />
+                  <Option label="Option 3" id="id3" right />
+                  <Option label="Option 4" id="id4" right />
+                </OptionDropdown>
+              </DropdownListContainer>
             </DropdownContainer>
           </ModalRowContainer>
         </Card>

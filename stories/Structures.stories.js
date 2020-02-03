@@ -4,23 +4,26 @@ import {
   Button,
   InputField,
   OptionDropdown,
+  InformativeModal,
 } from '../src/Components';
 import {
   DropdownLabel,
   DropdownContainer,
+  DropdownListContainer,
 } from '../src/Components/Dropdown/styles';
 import {
   ModalText,
   ModalFooter,
-  ModalContainer,
   ModalContainerB,
   ModalRowContainer,
 } from '../src/Components/Modal/styles';
 import { Option } from '../src/Components/OptionList/styles';
-import { FilterIcon, TrashIcon } from '../src/Components/UI/Icons';
-import { palette } from '../src/Components/styles';
+import { TrashIcon } from '../src/Components/UI/Icons';
+import { palette, fonts } from '../src/Components/styles';
 import { LabelContainer } from '../src/Components/InputField/styles';
-const { gray } = palette;
+import { Text } from '../src/Components/UI/GenericElements/GenericElements.styles';
+const { gray, link } = palette;
+const { size12 } = fonts;
 
 export default {
   title: 'Structures',
@@ -35,7 +38,7 @@ export const ModalA = () => (
       </LabelContainer>
       <DropdownContainer width='100%' direction='column' alignItems='start' margin="0 0 0 15px">
         <DropdownLabel>Title</DropdownLabel>
-        <OptionDropdown wide notIcon text="Option" type='basic'>
+        <OptionDropdown wide notIcon text="Option" type='basic-clean'>
           <Option label="Option 1" id="id1" right />
           <Option label="Option 2" id="id2" right />
           <Option label="Option 3" id="id3" right />
@@ -47,7 +50,7 @@ export const ModalA = () => (
     <ModalRowContainer padding="20px" justifyContent="space-between">
       <DropdownContainer width='100%' direction='column' alignItems='start' margin="0 15px 0 0">
         <DropdownLabel>Title</DropdownLabel>
-        <OptionDropdown wide notIcon text="Option" type='basic'>
+        <OptionDropdown wide notIcon text="Option" type='basic-clean'>
           <Option label="Option 1" id="id1" right />
           <Option label="Option 2" id="id2" right />
           <Option label="Option 3" id="id3" right />
@@ -56,7 +59,7 @@ export const ModalA = () => (
       </DropdownContainer>
       <DropdownContainer width='100%' direction='column' alignItems='start' margin="0 0 0 15px">
         <DropdownLabel>Title</DropdownLabel>
-        <OptionDropdown wide notIcon text="Option" type='basic'>
+        <OptionDropdown wide notIcon text="Option" type='basic-clean'>
           <Option label="Option 1" id="id1" right />
           <Option label="Option 2" id="id2" right />
           <Option label="Option 3" id="id3" right />
@@ -78,29 +81,29 @@ export const ModalA = () => (
 );
 
 export const ModalB = () => (
-    <ModalContainerB width="480px">
-      <Modal title="Lorem ipsum dolor sit amet, consectetur adipiscing ?" icon={TrashIcon}>
-        <>
-        <ModalRowContainer>
-          <Button label="No, cancel" type="secondary-gray-medium"/>
-          <Button label="Yes, delete" type="secondary-red-medium"/>
-        </ModalRowContainer>
-        </>
-      </Modal>
-    </ModalContainerB>
+  <ModalContainerB width="480px">
+    <Modal title="Lorem ipsum dolor sit amet, consectetur adipiscing ?" icon={TrashIcon}>
+      <ModalRowContainer>
+        <Button label="No, cancel" type="secondary-gray-medium"/>
+        <Button label="Yes, delete" type="secondary-red-medium"/>
+      </ModalRowContainer>
+    </Modal>
+  </ModalContainerB>
 );
 
 export const ModalC = () => (
   <Modal title="Modal Title">
     <ModalRowContainer padding='0 20px' justifyContent="space-between">
       <DropdownContainer width='50%' direction='column' alignItems='start'>
-        <DropdownLabel>Title</DropdownLabel>
-        <OptionDropdown wide notIcon text="Option" type='basic'>
-          <Option label="Option 1" id="id1" right />
-          <Option label="Option 2" id="id2" right />
-          <Option label="Option 3" id="id3" right />
-          <Option label="Option 4" id="id4" right />
-        </OptionDropdown>
+        <DropdownListContainer>
+          <DropdownLabel>Title</DropdownLabel>
+          <OptionDropdown wide notIcon text="Option" type='basic-clean'>
+            <Option label="Option 1" id="id1" right />
+            <Option label="Option 2" id="id2" right />
+            <Option label="Option 3" id="id3" right />
+            <Option label="Option 4" id="id4" right />
+          </OptionDropdown>
+        </DropdownListContainer>
       </DropdownContainer>
     </ModalRowContainer>
 
@@ -113,30 +116,44 @@ export const ModalC = () => (
       </ModalText>
     </ModalRowContainer>
 
-
     <ModalRowContainer padding='0 20px 20px 20px' justifyContent="flex-start">
       <DropdownContainer width='50%' direction='column' alignItems='start'>
-        <DropdownLabel>Title</DropdownLabel>
-        <OptionDropdown wide notIcon text="Option" type='basic'>
-          <Option label="Option 1" id="id1" right />
-          <Option label="Option 2" id="id2" right />
-          <Option label="Option 3" id="id3" right />
-          <Option label="Option 4" id="id4" right />
-        </OptionDropdown>
+        <DropdownListContainer>
+          <DropdownLabel>Title</DropdownLabel>
+          <OptionDropdown wide notIcon text="Option" type='basic-clean'>
+            <Option label="Option 1" id="id1" right />
+            <Option label="Option 2" id="id2" right />
+            <Option label="Option 3" id="id3" right />
+            <Option label="Option 4" id="id4" right />
+          </OptionDropdown>
+        </DropdownListContainer>
       </DropdownContainer>
       <DropdownContainer width='25%' direction='column' alignItems="start" margin="0 0 0 40px">
-        <DropdownLabel>Title</DropdownLabel>
-        <OptionDropdown wide notIcon text="Option" type='basic'>
-          <Option label="Option 1" id="id1" right />
-          <Option label="Option 2" id="id2" right />
-          <Option label="Option 3" id="id3" right />
-          <Option label="Option 4" id="id4" right />
-        </OptionDropdown>
+        <DropdownListContainer>
+          <DropdownLabel>Title</DropdownLabel>
+          <OptionDropdown wide notIcon text="Option" type='basic-clean'>
+            <Option label="Option 1" id="id1" right />
+            <Option label="Option 2" id="id2" right />
+            <Option label="Option 3" id="id3" right />
+            <Option label="Option 4" id="id4" right />
+          </OptionDropdown>
+        </DropdownListContainer>
       </DropdownContainer>
     </ModalRowContainer>
 
     <ModalFooter>
       <Button label="Action button" type="secondary-default-medium" />
     </ModalFooter>
+  </Modal>
+);
+
+export const Informative = () => (
+  <Modal width="239px" minHeight="0">
+    <InformativeModal>
+      <Text color={link} fontSize={size12}>Spend</Text>
+      <Text color={link} fontSize={size12}>Taxes</Text>
+      <Text color={link} fontSize={size12}>Discounts</Text>
+      <Text color={link} fontSize={size12}>Credit Notes</Text>
+    </InformativeModal>
   </Modal>
 );

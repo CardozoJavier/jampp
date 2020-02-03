@@ -35,7 +35,7 @@ export const RowContainer = styled.div`
   border-bottom: 1px solid ${gray.g1};
   align-items: center;
   display: grid;
-  grid-template-columns: 22.5% 11% 11% 11% 22.5% 22%;
+  grid-template-columns: ${({ gridTemplateColumns }) => gridTemplateColumns || '22.5% 11% 11% 11% 22.5% 22%'};
   height: 64px;
 `;
   

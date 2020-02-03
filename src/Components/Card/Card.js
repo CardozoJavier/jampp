@@ -11,10 +11,10 @@ import { CardContainer, CardTitle, CardDescription, CardHeader } from './styles'
  * @param {String} padding - (Optional) It's the padding of the card container.
  * @return {React Component} A view for card with title and description.
  */
-const Card = ({ children, title, description, width, padding }) => (
+const Card = ({ children, title, description, width, padding, borderBottom, }) => (
   <CardContainer width={width} padding={padding}>
     {title &&
-      <CardHeader flexDirection={description ? 'column' : 'row'}>
+      <CardHeader flexDirection={description ? 'column' : 'row'} borderBottom={borderBottom}>
         <CardTitle>{ title }</CardTitle>
         {description && <CardDescription>{ description }</CardDescription>}
       </CardHeader>
@@ -27,12 +27,18 @@ Card.propTypes = {
   children: PropTypes.node,
   title: PropTypes.string,
   description: PropTypes.string,
+  width: PropTypes.string,
+  padding: PropTypes.string,
+  borderBottom: PropTypes.string,
 };
 
 Card.defaultProps = {
   children: null,
   title: '',
   description: '',
+  width: '',
+  padding: '',
+  borderBottom: '',
 };
 
 export default Card;
