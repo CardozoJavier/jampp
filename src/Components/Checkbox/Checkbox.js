@@ -59,15 +59,15 @@ const Checkbox = ({ type, id, label, right, left, onChange, checked, disabled })
       {right && !left && <CheckboxLabel className={bemDestruct(labelClassName)} disabled={disabled}>{ label }</CheckboxLabel>}
       <CheckboxContainer>
         <Box className={bemDestruct(className, disabled)} />
-        <IconGenerator
-          renderIcon={CheckIcon}
-          props={{
-            position: 'absolute',
-            right: '1px',
-            fill: white,
-            width: '12px',
-            height: '8px',
-            disabled,
+        <CheckIcon props={{
+          position: 'absolute',
+          right: '1px',
+          bottom: '4px',
+          stroke: white,
+          fill: 'none',
+          width: '12px',
+          height: '8px',
+          disabled,
           }}
         />
       </CheckboxContainer>
