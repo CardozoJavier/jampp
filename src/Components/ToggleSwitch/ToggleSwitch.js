@@ -29,12 +29,14 @@ const classesName = {
  * @param {String} color - (Optional) Used for setting the active color on switch. Can be 'green' (default), 'blue', 'red', 'yellow'.
  * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive one argument (true or false).
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ * @param {Boolean} defaultState - (Optional) Define true/false status. Default value is false.
  * @return {React Component} A view for toggle switch.
  */ 
-const ToggleSwitch = ({ color, disabled, onChange }) => {
+const ToggleSwitch = ({ color, disabled, onChange, defaultState, }) => {
   const { defaultClassName, optionalClassName } = classesName[color];
-  const [className, setClassName] = useState(defaultClassName);
-  const [status, setStatus] = useState(false);
+  const initialClassName = defaultState ? optionalClassName : defaultClassName;
+  const [className, setClassName] = useState(initialClassName);
+  const [status, setStatus] = useState(defaultState);
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
 
   const handleClick = () => {
@@ -64,12 +66,14 @@ ToggleSwitch.propTypes = {
   color: PropTypes.string,
   disabled: PropTypes.bool,
   onChange: PropTypes.func,
+  defaultState: PropTypes.bool,
 };
 
 ToggleSwitch.defaultProps = {
   color: 'green',
   disabled: false,
   onChange: () => null,
+  defaultState: false,
 };
 
 export default ToggleSwitch;
