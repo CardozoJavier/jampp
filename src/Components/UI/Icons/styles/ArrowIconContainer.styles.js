@@ -1,19 +1,4 @@
 import styled from 'styled-components';
+import { SVGContainer } from '.';
 
-export default styled.div`
-  top: ${({ top }) => top};
-  right: ${({ right }) => right};
-  bottom: ${({ bottom }) => bottom};
-  left: ${({ left }) => left};
-  margin: ${({ margin }) => margin || '0 10px'};
-
-  svg {
-    width: ${({ width }) => width};
-    height: ${({ height }) => height};
-    vertical-align: middle;
-
-    path {
-      fill: ${({ fill }) => fill};
-    }
-  }
-`;
+export default styled(SVGContainer)``;
