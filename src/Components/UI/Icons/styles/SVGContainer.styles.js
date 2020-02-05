@@ -11,14 +11,14 @@ export default styled.div`
   bottom: ${({ bottom }) => bottom || 'unset'};
   left: ${({ left }) => left || 'unset'};
   margin: ${({ margin }) => margin || '0'};
+  cursor: ${({ cursor }) => cursor};
 
   svg {
     fill: ${({ fill }) => fill};
     width: ${({ width }) => width};
     height: ${({ height }) => height};
-  }
-
-  &:hover {
-    cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
+    path {
+      stroke: ${({ stroke }) => stroke};
+    }
   }
 `;
