@@ -24,7 +24,15 @@ const StatusLabelOption = ({ label, color, className, id, handleCheck, flat, not
   >
     <StatusLabel text={label} color={color} icon={flat ? null : EllipseIcon} />
     {!notCheckIcon &&
-        <CheckIcon props={{ margin: '0 0 0 10px', fill: 'transparent', width: '14px', height: '10px', className: bemDestruct(className) }} />
+        <CheckIcon
+          props={{
+            margin: '0 0 0 10px',
+            fill: 'transparent',
+            width: '14px',
+            height: '10px',
+            className: bemDestruct(className)
+        }}
+      />
     }
   </StatusLabelContainer>
 );
