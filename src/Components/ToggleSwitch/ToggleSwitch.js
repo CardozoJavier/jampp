@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { ToggleSwitchContainer } from './styles';
 import { getClassName, bemDestruct } from '../../utils';
-import ToggleCircleIcon from '../UI/Icons/ToggleCircleIcon';
-import { IconGenerator } from '../UI/Icons';
+import { ToggleCircleIcon } from '../UI/Icons';
 
 const classesName = {
   green: {
@@ -47,8 +46,7 @@ const ToggleSwitch = ({ color, disabled, onChange, defaultState, }) => {
 
   return (
     <ToggleSwitchContainer className={bemDestruct(className, disabled)} onClick={disabled ? null : handleClick} disabled={disabled}>
-      <IconGenerator
-        renderIcon={ToggleCircleIcon}
+      <ToggleCircleIcon
         props={{
           position: 'relative',
           right: '2px',
