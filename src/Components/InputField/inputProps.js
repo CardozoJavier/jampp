@@ -74,6 +74,13 @@ const inputProps = {
     errorClassName: "input basic--default-medium__error",
     InputContainer: InputFieldContainer,
   },
+  "warning-message": {
+    defaultClassName: "input basic--default-medium",
+    onFocusClassName: "input basic--default-medium__focus",
+    onBlurClassName: "input basic--default-medium__blur",
+    warningClassName: "input basic--default-medium__warning",
+    InputContainer: InputFieldContainer,
+  },
 };
 
 export default inputProps;
