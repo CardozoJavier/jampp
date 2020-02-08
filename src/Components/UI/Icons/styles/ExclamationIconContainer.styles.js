@@ -1,12 +1,4 @@
 import styled from 'styled-components';
+import { SVGContainer } from '.';
 
-export default styled.div`
-  svg {
-    width: ${({ width }) => width};
-    height: ${({ height }) => height};
-    
-    path {
-      fill: ${({ fill }) => fill};
-    }
-  }
-`;
+export default styled(SVGContainer)``;

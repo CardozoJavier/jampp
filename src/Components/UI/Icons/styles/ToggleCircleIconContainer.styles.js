@@ -1,22 +1,10 @@
 import styled from 'styled-components';
 import { palette } from '../../../styles';
+import { SVGContainer } from '.';
 const { green, blue, red, yellow } = palette;
 
-export default styled.div`
-  position: ${({ position }) => position || 'absolute'};
-  top: ${({ top }) => top};
-  bottom: ${({ bottom }) => bottom};
-  left: ${({ left }) => left};
-  right: ${({ right }) => right};
-  margin: ${({ margin }) => margin};
+export default styled(SVGContainer)`
   transition: all .3s;
-
-  svg {
-    fill: ${({ fill }) => fill};
-    width: ${({ width }) => width};
-    height: ${({ height }) => height};
-    vertical-align: middle;
-  }
 
   &.toggle {
     &-default {

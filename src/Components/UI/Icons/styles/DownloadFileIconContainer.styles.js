@@ -1,18 +1,10 @@
 import styled from 'styled-components';
+import { SVGContainer } from '.';
 import { palette } from '../../../styles';
 const { gray } = palette;
 
-export default styled.div`
+export default styled(SVGContainer)`
   pointer-events: none;
-  svg {
-    width: ${({ width }) => width};
-    height: ${({ height }) => height};
-    vertical-align: middle;
-
-    path {
-      fill: ${({ fill }) => fill};
-    }
-  }
 
   &.dropdown {
     &.button {
@@ -24,9 +16,5 @@ export default styled.div`
         }
       }
     }
-  }
-
-  &:hover {
-    cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
   }
 `;
