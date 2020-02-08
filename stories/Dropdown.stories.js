@@ -29,6 +29,7 @@ export const Basic = () => (
         * MultipleOptionDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
+        * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         */}
       <MultipleOptionDropdown text="Text" type="basic-clean">
         {/**
@@ -136,6 +137,7 @@ export const SolidWithIcon = () => (
         * MultipleOptionDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
+        * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         */}
       <MultipleOptionDropdown text="Dropdown solid w/icon" type="solid-clean" leftIcon={DownloadFileIcon}>
         {/**
@@ -243,6 +245,7 @@ export const NoBorder = () => (
         * MultipleOptionDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
+        * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         */}
       <MultipleOptionDropdown text="Text" type="no-border-clean">
         {/**
@@ -341,6 +344,7 @@ export const NoBorderLink = () => (
         * MultipleOptionDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
+        * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         */}
       <MultipleOptionDropdown text="Advanced Options" type="no-border-link-clean">
         {/**
@@ -439,6 +443,7 @@ export const NoBorderPurple = () => (
         * MultipleOptionDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
+        * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         */}
       <MultipleOptionDropdown text="Advertiser" type="no-border-purple-clean">
         {/**
