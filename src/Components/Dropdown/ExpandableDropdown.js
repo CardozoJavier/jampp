@@ -42,6 +42,7 @@ const ExpandableDropdown = ({ type = 'basic', text, children, disabled }) => {
             width: '16px',
             height: '16px',
             margin: '0 5px',
+            pointerEvents: 'none',
             disabled,
           }}
           disabled={disabled}
