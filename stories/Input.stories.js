@@ -16,7 +16,9 @@ export default {
  * InputField component should be called with
  * @prop {String} type - (Required) It's to define styles of input field.
  * @prop {Function} onError - (Optional) Function to check input values and trigger error message. It receive the input value in first argument.
+ * @prop {Function} onWarning - (Optional) Function to check input values and trigger warning message. It receive the input value in first argument.
  * @prop {String} errorMessage - (Optional) String to be display on error event.
+ * @prop {String} warningMessage - (Optional) String to be display on warning event.
  * @prop {String} placeholder - (Optional) It's to display text into input field.
  * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @prop {Function} icon - (Optional) Function that returns an svg icon.
@@ -30,18 +32,60 @@ export const Basic = () => (
   </div>
 );
 
+/**
+ * InputField component should be called with
+ * @prop {String} type - (Required) It's to define styles of input field.
+ * @prop {Function} onError - (Optional) Function to check input values and trigger error message. It receive the input value in first argument.
+ * @prop {Function} onWarning - (Optional) Function to check input values and trigger warning message. It receive the input value in first argument.
+ * @prop {String} errorMessage - (Optional) String to be display on error event.
+ * @prop {String} warningMessage - (Optional) String to be display on warning event.
+ * @prop {String} placeholder - (Optional) It's to display text into input field.
+ * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ * @prop {Function} icon - (Optional) Function that returns an svg icon.
+ * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument.
+ * @prop {String} label - (Optional) Text to be display in label.
+ * @prop {String} id - (Optional) ID to be use for label refering to input field.
+ */
 export const WithIcon = () => (
   <div style={{ width: '250px' }}>
     <InputField placeholder="Text" type="icon-small-left" icon={SearchIcon} />
   </div>
 );
 
+/**
+ * InputField component should be called with
+ * @prop {String} type - (Required) It's to define styles of input field.
+ * @prop {Function} onError - (Optional) Function to check input values and trigger error message. It receive the input value in first argument.
+ * @prop {Function} onWarning - (Optional) Function to check input values and trigger warning message. It receive the input value in first argument.
+ * @prop {String} errorMessage - (Optional) String to be display on error event.
+ * @prop {String} warningMessage - (Optional) String to be display on warning event.
+ * @prop {String} placeholder - (Optional) It's to display text into input field.
+ * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ * @prop {Function} icon - (Optional) Function that returns an svg icon.
+ * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument.
+ * @prop {String} label - (Optional) Text to be display in label.
+ * @prop {String} id - (Optional) ID to be use for label refering to input field.
+ */
 export const InputWithLabel = () => (
   <div style={{ width: '250px' }}>
     <InputField placeholder="Text" label="Label" id="id1" type="basic" />
   </div>
 );
 
+/**
+ * InputField component should be called with
+ * @prop {String} type - (Required) It's to define styles of input field.
+ * @prop {Function} onError - (Optional) Function to check input values and trigger error message. It receive the input value in first argument.
+ * @prop {Function} onWarning - (Optional) Function to check input values and trigger warning message. It receive the input value in first argument.
+ * @prop {String} errorMessage - (Optional) String to be display on error event.
+ * @prop {String} warningMessage - (Optional) String to be display on warning event.
+ * @prop {String} placeholder - (Optional) It's to display text into input field.
+ * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ * @prop {Function} icon - (Optional) Function that returns an svg icon.
+ * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument.
+ * @prop {String} label - (Optional) Text to be display in label.
+ * @prop {String} id - (Optional) ID to be use for label refering to input field.
+ */
 export const WithErrorMessage = () => (
   <>
     <div style={{ width: '250px' }}>
@@ -80,4 +124,33 @@ export const WithBoldPlaceholder = () => (
   <div style={{ width: '250px' }}>
     <InputControlled label="Text" boldPlaceholder="Text" placeholder="text" type="controlled" id="input1" />
   </div>
+);
+
+/**
+ * InputField component should be called with
+ * @prop {String} type - (Required) It's to define styles of input field.
+ * @prop {Function} onError - (Optional) Function to check input values and trigger error message. It receive the input value in first argument.
+ * @prop {Function} onWarning - (Optional) Function to check input values and trigger warning message. It receive the input value in first argument.
+ * @prop {String} errorMessage - (Optional) String to be display on error event.
+ * @prop {String} warningMessage - (Optional) String to be display on warning event.
+ * @prop {String} placeholder - (Optional) It's to display text into input field.
+ * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ * @prop {Function} icon - (Optional) Function that returns an svg icon.
+ * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument.
+ * @prop {String} label - (Optional) Text to be display in label.
+ * @prop {String} id - (Optional) ID to be use for label refering to input field.
+ */
+export const WithComment = () => (
+  <>
+    <div style={{ width: '250px' }}>
+      <InputField
+        warningMessage="Comment text here"
+        placeholder="Placeholder"
+        label="Label"
+        id="input1" 
+        type="warning-message"
+        onWarning={() => true}
+      />
+    </div>
+  </>
 );
