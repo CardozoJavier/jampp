@@ -57,7 +57,6 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
   }
   
   &.button, &.dropdown {
-    align-items: baseline;
     ${DownloadFileIconContainer} {
       width: 20px;
       height: 20px;
@@ -66,10 +65,9 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
     }
     ${DownChevronIconContainer} {
       position: unset;
-      width: 16px;
-      height: 16px;
+      stroke: ${gray.g4};
       fill: ${gray.g4};
-      margin: 0 5px;
+
       &.chevron {
         &.chevron {
           &--header {
@@ -95,6 +93,7 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
       &--solid {
         background-color: ${gray.g1};
         color: ${gray.g4};
+
         ${ButtonInput} {
           font-size: 12px;
           padding: 9px 0;
@@ -105,8 +104,13 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
           background-color: ${gray.g0};
           color: ${gray.g07};
 
-          ${DownloadFileIconContainer}, ${DownChevronIconContainer} {
+          ${DownloadFileIconContainer} {
             fill: ${gray.g07};
+          }
+
+          ${DownChevronIconContainer} {
+            fill: ${gray.g07};
+            stroke: ${gray.g07};
           }
         }
       }
@@ -130,6 +134,7 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
           color: ${gray.g07};
           ${DownChevronIconContainer} {
             fill: ${gray.g07};
+            stroke: ${gray.g07};
           }
         }
       }
@@ -164,6 +169,7 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
           color: ${gray.g07};
           ${DownChevronIconContainer} {
             fill: ${gray.g2};
+            stroke: ${gray.g2};
           }
         }
       }
