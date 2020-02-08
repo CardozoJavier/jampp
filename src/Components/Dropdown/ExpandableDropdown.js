@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ButtonInput } from '../Button/styles';
 import { ButtonDropdownContainer } from './styles';
 import { getClassName, bemDestruct } from '../../utils';
-import { IconGenerator, DownChevronIcon } from '../UI/Icons';
+import { DownChevronIcon } from '../UI/Icons';
 import { OptionList } from '../OptionList';
 import dropdownProps from './dropdownProps';
 import { UniqueOption } from '../UniqueOption';
@@ -36,10 +36,13 @@ const ExpandableDropdown = ({ type = 'basic', text, children, disabled }) => {
     <>
       <ButtonDropdownContainer className={bemDestruct(buttonClassName, disabled)} onClick={disabled ? null : handleClick}>
         <ButtonInput children={text} />
-        <IconGenerator
-          renderIcon={DownChevronIcon}
+        <DownChevronIcon
           props={{
             className: bemDestruct(chevron),
+            width: '16px',
+            height: '16px',
+            margin: '0 5px',
+            disabled,
           }}
           disabled={disabled}
         />

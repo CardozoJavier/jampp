@@ -6,7 +6,6 @@ import { getClassName, bemDestruct, useEventListener, getUniqueId } from '../../
 import { IconGenerator, DownChevronIcon, EllipseIcon } from '../UI/Icons';
 import { OptionList } from '../OptionList';
 import dropdownProps from './dropdownProps';
-import { UniqueOption } from '../UniqueOption';
 import { StatusLabel } from '../Label';
 
 /**
@@ -85,12 +84,14 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
           />
         }
         <ButtonInput children={textButton} />
-        <IconGenerator
-          renderIcon={DownChevronIcon}
+        <DownChevronIcon
           props={{
-            className: bemDestruct(chevron),
+            width: '16px',
+            height: '16px',
+            margin: '0 5px',
+            className: bemDestruct(chevron, disabled),
+            disabled,
           }}
-          disabled={disabled}
         />
       </ButtonDropdownContainer>
       <OptionList
