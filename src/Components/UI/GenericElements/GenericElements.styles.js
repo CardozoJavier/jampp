@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { TrashIconContainer } from '../Icons/styles';
 
 export const Text = styled.p`
   color: ${({ color }) => color};
@@ -31,4 +32,16 @@ export const GradientContainer = styled.div`
 export const Gradient = styled.div`
   z-index: 10;
   position: relative;
+`;
+
+export const DivContainer = styled.div`
+  display: ${({ display }) => display};
+  padding: ${({ padding }) => padding};
+  margin: ${({ margin }) => margin};
+  border: ${({ border }) => border};
+  border-bottom: ${({ borderBottom }) => borderBottom};
+  border-radius: ${({ borderRadius }) => borderRadius};
+  ${TrashIconContainer} {
+    display: none;
+  }
 `;
