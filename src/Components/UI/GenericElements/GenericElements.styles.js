@@ -10,6 +10,8 @@ export const Text = styled.p`
   border: ${({ border }) => border};
   cursor: ${({ cursor }) => cursor || 'auto'};
   width: ${({ width }) => width};
+  padding: ${({ padding }) => padding};
+  display: ${({ display }) => display};
 `;
 
 export const GridContainer = styled.div`
