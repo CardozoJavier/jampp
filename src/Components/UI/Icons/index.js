@@ -15,6 +15,7 @@ export { default as JamppImage } from './JamppImage';
 export { default as BillingIcon } from './BillingIcon';
 export { default as SuccessIcon } from './SuccessIcon';
 export { default as EllipseIcon } from './EllipseIcon';
+export { default as BoldAddIcon } from './BoldAddIcon';
 export { default as CalendarIcon } from './CalendarIcon';
 export { default as IconGenerator } from './IconGenerator';
 export { default as AddAccountIcon } from './AddAccountIcon';
