@@ -24,7 +24,7 @@ const expandableCardClassesName = {
  * @return {React Component} A view for card with title and description.
  */
 const ExpandableCard = ({ children, title, description, width, padding, borderBottom, addStructure }) => {
-  const childrenCloned = React.cloneElement(children);
+  const childrenCloned = addStructure ? React.cloneElement(children) : null;
   const { opennedClassName, closedClassName } = expandableCardClassesName;
 
   const [className, setClassName] = useState(closedClassName);  
