@@ -1,42 +1,27 @@
 import styled from 'styled-components';
+import { SVGContainer } from '.';
 
-export default styled.div`
-  position: ${({ position }) => position || 'absolute'};
-  top: ${({ top }) => top};
-  right: ${({ right }) => right};
-  bottom: ${({ bottom }) => bottom};
-  left: ${({ left }) => left};
-  margin: ${({ margin }) => margin};
-  pointer-events: none;
+export default styled(SVGContainer)`
+  pointer-events: ${({ pointerEvents }) => pointerEvents};
 
-  svg {
-    width: ${({ width }) => width};
-    height: ${({ height }) => height};
-    vertical-align: middle;
-    pointer-events: none;
-    path {
-      pointer-events: none;
-      fill: ${({ fill }) => fill};
-    }
-  }
-
-  &.dropdown, &.chevron {
-    &.account, &.button, &.chevron, &.label {
-      &--full, &--default {
-        &__opened {
-          transform: rotateX(-180deg) translateY(-5px);
+  &.dropdown, &.chevron, &.expandable {
+    &.account, &.button, &.chevron, &.label, &.card {
+      &--full, &--default, &--header {
+        &__opened, &__expand {
+          transform: rotateX(-180deg) translateY(1px);
           transition: all .3s;
         }
 
-        &__closed {
+        &__closed, &__collapse {
           transform: rotateX(0);
           transition: all .3s;
         }
       }
+      &--header {
+        &__opened {
+          transform: rotateX(-180deg);
+        }
+      }
     }
-  }
-
-  &:hover {
-    cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
   }
 `;

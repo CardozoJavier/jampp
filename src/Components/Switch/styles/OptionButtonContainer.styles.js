@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
 import { SwitchButtonInput } from './SwitchButtonInput.styles';
-const { white, violet, gray, action, indefinido } = palette;
+const { white, violet, gray, action } = palette;
 
 /*
  * Option button - Left | Middle | Right
  */
 export const OptionButtonContainer = styled.div`
+  cursor: pointer;
+
   &:hover {
-    cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
     transition: all .3s;
 
     &.button, &.optionCheckbox {

@@ -23,18 +23,21 @@ const SwitchGroup = ({ children = [], type, onChange, disabled }) => {
   /**
    * When an option is clicked, his className is toggle to selected and everyone else are being uncheck.
    */
-  const handleCheck = (e, id) => {
-    const inputsArray = settingClassName(children, id, defaultClassName);
-    setArray(inputsArray);
-    onChange(id);
+  const handleCheck = (e, id, onClick, disabled) => {
+    const inputsArray = settingClassName(children, id, defaultClassName, disabled);
+    if (!disabled) {
+      setArray(inputsArray);
+      onChange(id);
+      onClick && onClick(id);
+    }
   }
 
   return (
-    <SwitchGroupContainer className={bemDestruct(defaultClassName)}>
+    <SwitchGroupContainer>
       {array.map((input) => (
-          <ButtonContainer className={bemDestruct(input.className, disabled)} disabled={disabled} key={input.id}>
+          <ButtonContainer className={bemDestruct(input.className, disabled)} disabled={input.disabled} key={input.id}>
             <SwitchButtonInput
-              onClick={disabled ? null : (e) => handleCheck(e, input.id, defaultClassName)}
+              onClick={disabled ? null : (e) => handleCheck(e, input.id, input.onClick, input.disabled)}
               children={input.label || input.children}
             />
           </ButtonContainer>

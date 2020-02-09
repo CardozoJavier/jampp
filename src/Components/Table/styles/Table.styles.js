@@ -30,16 +30,16 @@ export const TableContainer = styled.div`
   width: 100%;
 `;
   
-export const Row = styled.div`
+export const RowContainer = styled.div`
   padding: 0 8px;
   border-bottom: 1px solid ${gray.g1};
   align-items: center;
   display: grid;
-  grid-template-columns: 22.5% 11% 11% 11% 22.5% 22%;
+  grid-template-columns: ${({ gridTemplateColumns }) => gridTemplateColumns || '22.5% 11% 11% 11% 22.5% 22%'};
   height: 64px;
 `;
   
-export const RowTitle = styled(Row)`
+export const RowTitle = styled(RowContainer)`
   background-color: ${gray.g0};
   border-bottom: none;
   height: 40px;
@@ -71,7 +71,7 @@ export const ColumnField = styled.div`
 export const ColumnFieldButton = styled(ColumnField)`
   justify-self: end;
   padding-left: 0;
-  border-left: ${({ borderLeft }) => borderLeft};
+  border-left: ${({ borderLeft }) => borderLeft || 'none'};
 `;
 
 export const RowName = styled(ColumnField)`

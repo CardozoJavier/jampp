@@ -1,5 +1,10 @@
 import styled from 'styled-components';
+import { SVGContainer } from '.';
 
-export default styled.div`
-  display: flex;
+export default styled(SVGContainer)`
+  &:hover {
+    svg {
+      fill: ${({ hover }) => hover};
+    }
+  }
 `;

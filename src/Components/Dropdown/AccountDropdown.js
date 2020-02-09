@@ -1,21 +1,19 @@
 import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { AccountStatement, AccountTitle, AccountDescription, AccountDropdownContainer } from './styles';
-import { IconGenerator, AvatarIcon, DownChevronIcon } from '../UI/Icons';
+import { AvatarIcon, DownChevronIcon } from '../UI/Icons';
 import { bemDestruct, getClassName, useEventListener, getUniqueId } from '../../utils';
-import { palette } from '../styles';
 import OptionListAccount from '../OptionList/OptionListAccount';
 import { UniqueOption } from '../UniqueOption';
 
-const { gray } = palette;
 const classesName = {
   normal: {
     defaultClassName: "dropdown button--default-right__closed",
     optionalClassName: "dropdown button--default-right__opened",
   },
   chevron: {
-    defaultClassName: 'chevron chevron--default__closed',
-    optionalClassName: 'chevron chevron--default__opened',
+    defaultClassName: 'chevron chevron--header__closed',
+    optionalClassName: 'chevron chevron--header__opened',
   },
 };
 
@@ -26,9 +24,10 @@ const classesName = {
  *  @param {String} avatarSrc - (Required) The relative or absolute path of an image to be rendered in header. 
  *  @param {Node} children - (Optional) They're the options to be display.
  *  @param {String} email - (Optional) It's the email to be displayed above of sign-out button.
+ *  @param {Function} signOutCallback - (Optional) Callback to trigger on click button event. It receive the email in first argument.
  *  @return {React Component} A view for account dropdown with avatar and a selectable list inside.
  */
-const AccountDropdown = ({ name, description, avatarSrc, children, email, }) => {
+const AccountDropdown = ({ name, description, avatarSrc, children, email, signOutCallback }) => {
   const { defaultClassName, optionalClassName } = classesName['normal'];
 
   const [className, setClassName] = useState(defaultClassName);
@@ -72,8 +71,7 @@ const AccountDropdown = ({ name, description, avatarSrc, children, email, }) => 
           <AccountTitle>{name}</AccountTitle>
           <AccountDescription>{description}</AccountDescription>
         </AccountStatement>
-        <IconGenerator
-          renderIcon={AvatarIcon}
+        <AvatarIcon
           props={{
             src: avatarSrc,
             width: '40px',
@@ -81,15 +79,14 @@ const AccountDropdown = ({ name, description, avatarSrc, children, email, }) => 
             borderRadius: '100%',
           }}
         />
-        <IconGenerator
-          renderIcon={DownChevronIcon}
+        <DownChevronIcon
           props={{
             position: 'relative',
-            fill: gray.g4,
             width: '24px',
             height: '24px',
             margin: '0 5px',
             className: bemDestruct(chevron),
+            pointerEvents: 'none',
           }}
         />
       </AccountDropdownContainer>
@@ -101,6 +98,7 @@ const AccountDropdown = ({ name, description, avatarSrc, children, email, }) => 
         className={className}
         email={email}
         listId={listId}
+        signOutCallback={signOutCallback}
       />
     </>
   );
@@ -112,11 +110,13 @@ AccountDropdown.propTypes = {
   avatarSrc: PropTypes.string.isRequired,
   children: PropTypes.node,
   email: PropTypes.string,
+  signOutCallback: PropTypes.func,
 };
 
 AccountDropdown.defaultProps = {
   children: null,
   email: '',
+  signOutCallback: () => null,
 };
 
 

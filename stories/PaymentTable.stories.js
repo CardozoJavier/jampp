@@ -29,7 +29,7 @@ export default {
  *    @prop {Function} onClick - (Optional) Callback to trigger on onClick event.
  */
 export const Default = () => (
-  <Card width="1392px" padding="16px 16px 62px 16px">
+  <Card width="922px" padding="16px 16px 62px 16px">
     <TableContainer>
       <PaymentRowTitle>
         <PaymentColumnTitle start={2}>{ 'First column title' }</PaymentColumnTitle>

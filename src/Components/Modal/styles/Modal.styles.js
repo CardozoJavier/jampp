@@ -68,6 +68,10 @@ export const ModalText = styled.p`
 `;
 
 export const ModalContainerB = styled.div`
+  position: ${({ position }) => position};
+  top: ${({ top }) => top};
+  left: ${({ left }) => left};
+
   ${ModalContainer} {
     min-height: 0;
     width: ${({ width }) => width};

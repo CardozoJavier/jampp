@@ -17,7 +17,6 @@ export {
   OptionDropdown,
   AccountDropdown,
   AdAccountsDropdown,
-  StatusLabelDropdown,
   HeaderOptionDropdown,
   MultipleOptionDropdown,
   AdditionalDetailsDropdown,
@@ -31,6 +30,7 @@ export { OptionList } from './OptionList';
 export { RadioButton } from './RadioButton';
 export { ToggleSwitch } from './ToggleSwitch';
 export { UniqueOption } from './UniqueOption';
+export { InformativeModal } from './InformativeModal';
 export { FooterBreadcrumb } from './FooterBreadcrumb';
 export { StatusLabelOption } from './StatusLabelOption';
 export { NotificationHeader } from './NotificationHeader';

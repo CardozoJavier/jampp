@@ -29,23 +29,23 @@ export default {
 
 export const Icons = () => (
   <>
-    <CalendarIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
-    <SearchIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
-    <FilterIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
-    <ViewIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
-    <CreditCardIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
-    <EditIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
-    <AddAccountIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
-    <AddIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
-    <BillingIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
-    <CheckIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
-    <DownloadFileIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
-    <HelpIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
-    <InfoIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
-    <NotificationsIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
-    <SuccessIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
-    <TrashIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
-    <XIcon props={{ position: 'unset', height: '14px', width: '14px', fill: '#000' }} />
+    <CalendarIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
+    <SearchIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
+    <FilterIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
+    <ViewIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
+    <CreditCardIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
+    <EditIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
+    <AddAccountIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
+    <AddIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
+    <BillingIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
+    <CheckIcon props={{ height: '18px', width: '18px', fill: 'none', stroke: '#000' }} />
+    <DownloadFileIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
+    <HelpIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
+    <InfoIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
+    <NotificationsIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
+    <SuccessIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
+    <TrashIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
+    <XIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
     <AlertIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
     <ExclamationIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
   </>
@@ -53,7 +53,7 @@ export const Icons = () => (
 
 export const OtherElements = () => (
   <>
-    <ArrowIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
+    <ArrowIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
     <DownChevronIcon props={{ position: 'unset', height: '18px', width: '18px', fill: '#000' }} />
   </>
 );

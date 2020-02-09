@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
 import { ExclamationIconContainer, SearchIconContainer } from '../../UI/Icons/styles';
-const { gray, red, white, } = palette;
+const { gray, red, white, yellow, } = palette;
 
 export const InputFieldContainer = styled.label`
   display: flex;
   align-items: center;
   margin-top: 5px;
   background-color: white;
+  width: ${({ width }) => width};
+  margin: ${({ margin }) => margin};
 
   &:hover {
     &.input {
@@ -29,6 +31,10 @@ export const InputFieldContainer = styled.label`
 
           &__error {
             border: 1px solid ${red.r3};
+          }
+
+          &__warning {
+            border: 1px solid ${gray.g07};
           }
 
           &__disabled {
@@ -96,7 +102,7 @@ export const InputFieldContainer = styled.label`
           border: 1px solid ${gray.g1};
         }
 
-        &__focus {
+        &__focus, &__warning {
           border: 1px solid ${gray.g07};
           input::placeholder {
             color: ${gray.g3};
@@ -147,4 +153,39 @@ export const ErrorMessage = styled.div`
       }
     }
   }
+`;
+
+export const WarningMessage = styled(ErrorMessage)`
+  color: ${yellow.y2};
+  font-size: 10px;
+  margin-left: 5px;
+`;
+  
+export const WarningMessageContainer = styled.div`
+  display: flex;
+  align-items: end;
+  margin-top: 8px;
+
+  &.input.basic {
+    &-medium {}
+    &--default {
+      transition: all .2s;
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-5px);
+
+      &__warning {
+        transition: all .2s;
+        transform: translateY(5px) translateY(-5px);
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+`;
+
+export const InputFieldIconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  
 `;

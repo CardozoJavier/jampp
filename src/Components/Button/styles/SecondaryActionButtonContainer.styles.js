@@ -37,7 +37,7 @@ export default styled.div`
       display: flex;
       align-items: center;
       border-radius: 4px;
-      margin: 10px 0;
+      margin: 10px;
 
       /****************************
        * Secondary button default *

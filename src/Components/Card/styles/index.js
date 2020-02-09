@@ -1,4 +1,12 @@
-export { CardTitle } from './CardTitle.styles';
-export { CardContainer } from './CardContainer.styles';
-export { CardDescription } from './CardDescription.styles';
-export { CardHeader } from './CardHeader.styles';
+export {
+  CardTitle,
+  CardHeader,
+  CardContainer,
+  CardDescription,
+} from './Card.styles';
+export {
+  ExpandableCardContainer,
+  ExpandableCardHeader,
+  ExpandableCardDescription,
+  ChildrenContainer,
+} from './ExpandableCard.styles';
