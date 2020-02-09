@@ -6,6 +6,7 @@ export {
   CustomPlaceholderBold,
 } from './InputControlled.styles';
 export {
+  InputFieldIconContainer,
   WarningMessageContainer,
   InputFieldContainer,
   WarningMessage,

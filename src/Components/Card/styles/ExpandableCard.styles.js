@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { CardContainer, CardHeader, CardDescription } from './Card.styles';
+import { DivContainer } from '../../UI/GenericElements/GenericElements.styles';
+import { TrashIconContainer } from '../../UI/Icons/styles';
 
 export const ExpandableCardHeader = styled(CardHeader)`
   flex-direction: row;
@@ -41,6 +43,9 @@ export const ChildrenContainer = styled.div`
         transform: scaleY(1);
         visibility: visible;
         transition: visibility .2s, transform .2s;
+        ${DivContainer} {
+          margin: 16px 0;
+        }
       }
       &__collapse {
         transform: scaleY(0);
@@ -48,6 +53,11 @@ export const ChildrenContainer = styled.div`
         visibility: hidden;
         transition: visibility 0s, transform .2s;
       }
+    }
+  }
+  .trash-icon__visible {
+    ${TrashIconContainer} {
+      display: block;
     }
   }
 `;

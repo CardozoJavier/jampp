@@ -183,3 +183,9 @@ export const WarningMessageContainer = styled.div`
     }
   }
 `;
+
+export const InputFieldIconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  
+`;

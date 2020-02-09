@@ -22,7 +22,7 @@ const { yellow } = palette;
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @return {React Component} A view for input field with icon and action on error.
  */
-const InputField = ({ type, placeholder, errorMessage, warningMessage, label, id, icon, onError, onWarning, onChange, disabled }) => {
+const InputField = ({ type, placeholder, errorMessage, warningMessage, label, id, icon, onError, onWarning, onChange, disabled, margin }) => {
   const { defaultClassName, optionalClassName, errorClassName, warningClassName, onBlurClassName, onFocusClassName, InputContainer, iconProps } = inputProps[type];
   const [className, setClassName] = useState(defaultClassName);
   const [error, setError] = useState(false);
@@ -64,7 +64,7 @@ const InputField = ({ type, placeholder, errorMessage, warningMessage, label, id
   }
 
   return (
-    <LabelContainer>
+    <LabelContainer margin={margin}>
       {label && <Label htmlFor={id}>{label}</Label>}
       <InputContainer
         onClick={disabled ? null : handleClick}
