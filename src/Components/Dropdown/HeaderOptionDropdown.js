@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import { HeaderOptionDropdownContainer } from './styles';
 import { getClassName, bemDestruct, useEventListener, getUniqueId } from '../../utils';
 import dropdownProps from './dropdownProps';
-import { IconGenerator, DownChevronIcon } from '../UI/Icons';
+import { DownChevronIcon } from '../UI/Icons';
 import { OptionList } from '../OptionList';
-import { UniqueOption } from '../UniqueOption';
 import { ButtonInput } from '../Button/styles';
 
 /**
@@ -69,10 +68,13 @@ const HeaderOptionDropdown = ({ text, type = 'basic', menuTitle, children, onCha
     <>
       <HeaderOptionDropdownContainer className={bemDestruct(className, disabled)} onClick={disabled ? null : handleClick} id={dropdownId}>
         <ButtonInput children={textButton} />
-        <IconGenerator
-          renderIcon={DownChevronIcon}
+        <DownChevronIcon
           props={{
             className: bemDestruct(chevron),
+            width: '16px',
+            height: '16px',
+            margin: '0 5px',
+            disabled,
           }}
         />
       </HeaderOptionDropdownContainer>

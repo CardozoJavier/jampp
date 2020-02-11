@@ -19,7 +19,7 @@ const Step = ({ text, isDone = false, isCurrent = false, isLast = false, borderC
     </IconContainer>
     <StepText isCurrent={isCurrent}>{text}</StepText>
     {!isLast &&
-      <ArrowIcon />
+      <ArrowIcon props={{ margin: '0 10px' }} />
     }
   </StepContainer>
 );

@@ -1,23 +1,7 @@
 import styled from 'styled-components';
+import { SVGContainer } from '.';
 
-export default styled.div`
-  position: ${({ position }) => position};
-  top: ${({ top }) => top};
-  right: ${({ right }) => right};
-  bottom: ${({ bottom }) => bottom};
-  left: ${({ left }) => left};
-  margin: ${({ margin }) => margin};
-
-  svg {
-    fill: none;
-    width: ${({ width }) => width};
-    height: ${({ height }) => height};
-  }
-
-  path {
-    stroke: ${({ fill }) => fill};
-  }
-
+export default styled(SVGContainer)`
   &.dropdown {
     &-top {}
 

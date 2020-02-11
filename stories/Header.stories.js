@@ -66,8 +66,8 @@ export const Header = () => (
     </DropdownContainer>
     <DropdownContainer>
       <NotificationContainer>
-        <HelpIcon onClick={() => console.log('Help icon clicked!')} />
-        <NotificationsIcon hasNotification={true} onClick={() => console.log('Notifications icon clicked!')} />
+        <HelpIcon onClick={() => console.log('Help icon clicked!')} props={{ margin: '0 10px', cursor: 'pointer' }} />
+        <NotificationsIcon props={{ cursor: 'pointer' }} hasNotification={true} onClick={() => console.log('Notifications icon clicked!')} />
       </NotificationContainer>
       <AccountDropdown
         avatarSrc={AvatarSrc}
@@ -116,8 +116,8 @@ export const BusinessLevel = () => (
       </DropdownContainer>
       <DropdownContainer>
         <NotificationContainer>
-          <HelpIcon />
-          <NotificationsIcon />
+          <HelpIcon props={{ margin: '0 10px', cursor: 'pointer' }} />
+          <NotificationsIcon props={{ cursor: 'pointer' }} />
         </NotificationContainer>
         <AccountDropdown avatarSrc={AvatarSrc} name="Guido Crego" description="Jampp - Head of product" email="guido.crego@jampp.com">
           <Option label="Organization name A" id="id1" />
@@ -172,8 +172,8 @@ export const AdAccountsLevel = () => (
       </DropdownContainer>
       <DropdownContainer>
         <NotificationContainer>
-          <HelpIcon />
-          <NotificationsIcon />
+          <HelpIcon props={{ margin: '0 10px', cursor: 'pointer' }} />
+          <NotificationsIcon props={{ cursor: 'pointer' }} />
         </NotificationContainer>
 
         <AdAccountsDropdown

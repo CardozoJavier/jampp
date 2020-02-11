@@ -1,18 +1,9 @@
 import styled from 'styled-components';
 import { palette } from '../../../styles';
+import { SVGContainer } from '.';
 const { action, gray } = palette;
 
-export default styled.div`
-  display: ${({ display }) => display || 'flex'};
-  margin: ${({ margin }) => margin};
-
-  svg {
-    width: ${({ width }) => width};
-    height: ${({ height }) => height};
-    path {
-      fill: ${({ fill }) => fill};
-    }
-  }
+export default styled(SVGContainer)`
   &:hover {
     &.icon.label--default {
       &-medium__right {

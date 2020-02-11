@@ -5,19 +5,28 @@ import { NotificationHeaderContainer, NotificationText, TextContainer } from './
 import { IconGenerator, XIcon, InfoIcon, SuccessIcon, AlertIcon } from '../UI/Icons';
 import { bemDestruct, getUniqueId } from '../../utils';
 
-const { gray } = palette;
+const { gray, green, red, link } = palette;
 
 const types = {
   success: {
-    icon: SuccessIcon,
+    icon: {
+      src: SuccessIcon,
+      fill: green.g1,
+    },
     className: 'notification header--success-default',
   },
   error: {
-    icon: AlertIcon,
+    icon: {
+      src: AlertIcon,
+      fill: red.r3,
+    },
     className: 'notification header--error-default',
   },
   info: {
-    icon: InfoIcon,
+    icon: {
+      src: InfoIcon,
+      fill: link,
+    },
     className: 'notification header--info-default',
   },
 };
@@ -32,6 +41,7 @@ const types = {
 const NotificationHeader = ({ type, text, onClose, }) => {  
   let notificationHeader;
   const id = getUniqueId();
+  const { src, fill } = types[type].icon;
   
   useEffect(() => {
     notificationHeader = document.getElementById(id);
@@ -46,12 +56,10 @@ const NotificationHeader = ({ type, text, onClose, }) => {
     <NotificationHeaderContainer className={bemDestruct(types[type].className)} id={id}>
       <TextContainer>
         <IconGenerator
-          renderIcon={types[type].icon}
+          renderIcon={src}
           props={{
-            position: 'unset',
-            width: '16px',
-            height: '16px',
             margin: '0 10px',
+            fill,
           }}
           />
         <NotificationText>

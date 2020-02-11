@@ -71,13 +71,15 @@ const MultipleOptionDropdown = ({ type = 'basic', text, children, leftIcon, disa
           />
         }
         <ButtonInput children={text} />
-        <IconGenerator
-          renderIcon={DownChevronIcon}
+        <DownChevronIcon
           props={{
+            width: '16px',
+            height: '16px',
+            margin: '0 5px',
             className: bemDestruct(chevron),
+            disabled,
           }}
-          disabled={disabled}
-          />
+        />
       </ButtonDropdownContainer>
       <MultipleOptionList children={children} className={className} listId={listId} />
     </>

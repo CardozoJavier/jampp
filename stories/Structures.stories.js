@@ -147,13 +147,23 @@ export const ModalC = () => (
   </Modal>
 );
 
+/**
+ * InformativeModal component should be called with
+ * @prop {Node} children - (Required)  It's the text to be displayed and values summation.
+ *  
+ *  Text component should be called with
+ *  @prop {String} color - (Optional) Color text. Default value is #000;
+ *  @prop {String} fontSize - (Optional) Font size text. Default value is 14px.
+ *  @prop {String} text - (Optional) Text to be displayed next tu value.
+ *  @prop {Node} children - (Required) Number to be summed in the result field.  
+ */
 export const Informative = () => (
   <Modal width="239px" minHeight="0">
     <InformativeModal>
-      <Text color={link} fontSize={size12}>Spend</Text>
-      <Text color={link} fontSize={size12}>Taxes</Text>
-      <Text color={link} fontSize={size12}>Discounts</Text>
-      <Text color={link} fontSize={size12}>Credit Notes</Text>
+      <Text color={link} fontSize={size12} text="Spend">{ 123456789 }</Text>
+      <Text color={link} fontSize={size12} text="Discounts">{ 123456789 }</Text>
+      <Text color={link} fontSize={size12} text="Credit Notes">{ 123456789 }</Text>
+      <Text color={link} fontSize={size12} text="Taxes">{ 123456789 }</Text>
     </InformativeModal>
   </Modal>
 );

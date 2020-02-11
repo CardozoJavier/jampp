@@ -43,10 +43,8 @@ const Modal = ({ title, icon, width, children, minHeight }) => {
       {title && !icon &&
         <ModalHeader>
           <ModalTitle>{ title }</ModalTitle>
-          <IconGenerator
-            renderIcon={XIcon}
+          <XIcon
             props={{
-              position: 'unset',
               right: '8px',
               width: '6px',
               height: '6px',

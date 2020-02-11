@@ -1,13 +1,11 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { AccountStatement, AccountTitle, AccountDescription, AccountDropdownContainer } from './styles';
-import { IconGenerator, AvatarIcon, DownChevronIcon } from '../UI/Icons';
+import { AvatarIcon, DownChevronIcon } from '../UI/Icons';
 import { bemDestruct, getClassName, useEventListener, getUniqueId } from '../../utils';
-import { palette } from '../styles';
 import AdAccountsPanel from '../OptionList/AdAccountsPanel';
 import { UniqueOption } from '../UniqueOption';
 
-const { gray } = palette;
 const classesName = {
   normal: {
     defaultClassName: "dropdown button--default-right__closed",
@@ -78,8 +76,7 @@ const AdAccountsDropdown = ({ name, description, avatarSrc, children, email, sig
           <AccountTitle>{name}</AccountTitle>
           <AccountDescription>{description}</AccountDescription>
         </AccountStatement>
-        <IconGenerator
-          renderIcon={AvatarIcon}
+        <AvatarIcon
           props={{
             src: avatarSrc,
             width: '40px',
@@ -87,11 +84,9 @@ const AdAccountsDropdown = ({ name, description, avatarSrc, children, email, sig
             borderRadius: '100%',
           }}
         />
-        <IconGenerator
-          renderIcon={DownChevronIcon}
+        <DownChevronIcon
           props={{
             position: 'relative',
-            fill: gray.g4,
             width: '24px',
             height: '24px',
             margin: '0 5px',

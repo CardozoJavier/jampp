@@ -73,10 +73,7 @@ const InputField = ({ type, placeholder, errorMessage, label, id, icon, onError,
         {icon ? <IconGenerator renderIcon={icon} props={iconProps} /> : null}
 
         {errorMessage && 
-          <IconGenerator
-            renderIcon={ExclamationIcon}
-            props={{}}
-          />
+          <ExclamationIcon />
         }
       </InputContainer>
       {errorMessage && 

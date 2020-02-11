@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { IconGenerator, CheckIcon } from '../UI/Icons';
+import { CheckIcon } from '../UI/Icons';
 import { bemDestruct } from '../../utils';
 import { OptionContainer, OptionLabel } from './styles';
 import { palette } from '../styles';
@@ -24,8 +24,7 @@ const UniqueOption = ({ id, className, handleCheck, label, notIcon }) => (
   >
     <OptionLabel>{ label }</OptionLabel>
     {!notIcon &&
-      <IconGenerator
-        renderIcon={CheckIcon}
+      <CheckIcon
         props={{
           right: '10px',
           fill: 'transparent',

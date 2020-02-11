@@ -1,25 +1,25 @@
-import React, { useState } from 'react';
-import { InformativeModalContainer } from './styles';
-import { InputField } from '../InputField';
+import React, { useState, useEffect } from 'react';
+import { InformativeModalContainer, ResultContainer } from './styles';
 import { Text, GridContainer } from '../UI/GenericElements/GenericElements.styles';
-import { InputFieldContainer, } from '../InputField/styles';
 
 const InformativeModal = ({ children }) => {
-  const [value, setValue] = useState('');
+  const [result, setResult] = useState(0);
+  let partialResult = 0;
 
-  const handleChange = (value) => {
-    setValue(value);
-  };
+  useEffect(() => {
+    children.forEach(child => {
+      partialResult += Number(child.props.children);
+    });
+    setResult(partialResult);
+  });
 
   return (
     <InformativeModalContainer>
-      <InputFieldContainer width="129px" margin="0 0 11px 0">
-        <InputField placeholder="Text" type="basic" onChange={value => handleChange(value)} />
-      </InputFieldContainer>
+      <ResultContainer>${ result }</ResultContainer>
       {children.map(child => (
         <GridContainer key={child.props.children} gridTemplateColumns="50% 50%">
-          <Text color={child.props.color} margin="4px 0" fontSize={child.props.fontSize}>{ child.props.children }</Text>
-          <Text color="#000" margin="4px 0" fontSize="12px" overflow={'hidden'}>{ value }</Text>
+          <Text color={child.props.color} margin="4px 0" fontSize={child.props.fontSize}>{ child.props.text }</Text>
+          <Text color="#000" margin="4px 0" fontSize="12px" overflow={'hidden'} justifySelf="end">${ child.props.children }</Text>
         </GridContainer>
       ))}
     </InformativeModalContainer>

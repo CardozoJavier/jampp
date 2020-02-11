@@ -3,11 +3,8 @@ import PropTypes from 'prop-types';
 import { ButtonInput } from '../Button/styles';
 import { ButtonDropdownContainer, ChildrenContainer } from './styles';
 import { getClassName, bemDestruct } from '../../utils';
-import { IconGenerator, DownChevronIcon } from '../UI/Icons';
-import { palette } from '../styles';
+import { DownChevronIcon } from '../UI/Icons';
 import dropdownProps from './dropdownProps';
-
-const { gray } = palette;
 
 /**
  * AdditionalDetailsDropdown component should be called with
@@ -41,10 +38,13 @@ const AdditionalDetailsDropdown = ({ type = 'basic', text, children, wide, disab
     <>
       <ButtonDropdownContainer wide={wide} className={bemDestruct(buttonClassName, disabled)} onClick={disabled ? null : handleClick}>
         <ButtonInput children={text} />
-        <IconGenerator
-          renderIcon={DownChevronIcon}
+        <DownChevronIcon
           props={{
             className: bemDestruct(chevron),
+            width: '16px',
+            height: '16px',
+            margin: '0 5px',
+            disabled,
           }}
           disabled={disabled}
         />
