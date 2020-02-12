@@ -10,14 +10,16 @@ import { bemDestruct, settingClassName } from '../../utils';
  * @param {String} type - (Optional) It's for use a different option component. 'options' is default value.
  * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive the id option in first argument.
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ * @param {Boolean} defaultValue - (Optional) Define default selected. Default value is any. Must be the button Id.
+ * @param {String} justifyContent - (Optional) It's the justifyContent of the switch group container.
  * @return {React Component} A view for group of switch buttons.
  */
-const SwitchGroup = ({ children = [], type, onChange, disabled }) => {
+const SwitchGroup = ({ children = [], type, onChange, disabled, defaultValue, justifyContent }) => {
   const { defaultClassName, ButtonContainer } = buttonProps[type];
   if (!Array.isArray(children)) {
     children = [children];
   }
-  const childrenParsed = settingClassName(children, -1, defaultClassName);
+  const childrenParsed = settingClassName(children, defaultValue, defaultClassName);
   const [array, setArray] = useState(childrenParsed);
   
   /**
@@ -33,7 +35,7 @@ const SwitchGroup = ({ children = [], type, onChange, disabled }) => {
   }
 
   return (
-    <SwitchGroupContainer>
+    <SwitchGroupContainer justifyContent={justifyContent}>
       {array.map((input) => (
           <ButtonContainer className={bemDestruct(input.className, disabled)} disabled={input.disabled} key={input.id}>
             <SwitchButtonInput
@@ -52,12 +54,16 @@ SwitchGroup.propTypes = {
   type: PropTypes.string,
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
+  defaultValue: PropTypes.string,
+  justifyContent: PropTypes.string,
 };
 
 SwitchGroup.defaultProps = {
   type: 'options',
   onChange: () => null,
   disabled: false,
+  defaultValue: null,
+  justifyContent: '',
 };
 
 export default SwitchGroup;
