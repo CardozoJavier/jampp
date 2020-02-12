@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { LabelContainer, Input, Label, SuggestionsListContainer, SuggestionsList } from './styles';
+import { LabelContainer, Input, Label, SuggestionsListContainer, SuggestionsList, PreviewContainer, } from './styles';
 import { getClassName, bemDestruct, useEventListener } from '../../utils';
 import inputProps from './inputProps';
 import { DefaultLabel } from '../Label';
 import { Text } from '../UI/GenericElements/GenericElements.styles';
 import { Button } from '../Button';
 import { palette, fonts } from '../styles';
+import { XIcon } from '../UI/Icons';
 const { gray, black } = palette;
-const { size10 } = fonts;
+const { size10, size12 } = fonts;
 
 /**
  * CreationTracking component should be called with
@@ -22,9 +23,11 @@ const { size10 } = fonts;
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @param {Array} suggestions - (Required) Array of string to be displayed in suggestions list.
  * @param {Function} callback - (Optional) Callback to be triggered on click event in button into suggestions list.
+ * @param {String} linkText - (Optional) It's the text to be displayed like link.
+ * @param {String} textBelowSuggestions - (Optional) It's the text to be displayed at the bottom of suggestions list.
  * @return {React Component} A view for input field with icon and action on error.
  */
-const CreationTracking = ({ type, placeholder, width, label, id, onTagCreated, onTagDeleted, disabled, suggestions = [], callback }) => {
+const CreationTracking = ({ type, placeholder, width, label, id, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions }) => {
   const { defaultClassName, optionalClassName, onBlurClassName, onFocusClassName, InputContainer } = inputProps[type];
   const [className, setClassName] = useState(defaultClassName);
   
@@ -32,9 +35,8 @@ const CreationTracking = ({ type, placeholder, width, label, id, onTagCreated, o
   const [matchSuggestion, setMatchSuggestion] = useState([]);
   const [defaultLabelArray, setDefaultLabelArray] = useState([]);
   const [suggestionActive, setSuggestionActive] = useState(-1);
-  const [showSuggestions, setShowSuggestions] = useState(false);
-  const [trackingLabel, setTrackingLabel] = useState('');
-  const [flatInputValue, setFlatInputValue] = useState('');
+  const [showSuggestion, setShowSuggestion] = useState(false);
+  const [previewTracking, setPreviewTracking] = useState('');
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const maxWidth = Number(width.split('px')[0]) - 53;
@@ -55,49 +57,55 @@ const CreationTracking = ({ type, placeholder, width, label, id, onTagCreated, o
   const handleChange = ({ target: { value }}) => {
     const [flatValue, trackingValue] = value.split('{');
     const regex = trackingValue ? new RegExp(trackingValue.toLowerCase()) : { test: () => null };
-    const matchSuggestion = trackingLabel === '' ? suggestions : suggestions.filter(suggestion => regex.test(suggestion.toLowerCase()));
-    
-    // console.log({ showSuggestions, value, matchSuggestion });
+    const matchSuggestion = trackingValue === '' ? suggestions : suggestions.filter(suggestion => regex.test(suggestion.toLowerCase()));
 
-    setTrackingLabel(trackingValue);
-    setFlatInputValue(flatValue);
+    setShowSuggestion(!!matchSuggestion.length);
     setInputValue(value);
-    setShowSuggestions(!!matchSuggestion.length);
     setMatchSuggestion(matchSuggestion);
     setClassName(onFocusClassName);
-    
-    console.log({ showSuggestions, flatValue, trackingValue, value });
-
   }
 
   /**
    * Event handler in key down to move through suggestions list and create tag when Enter or Tab key are pressed
    */
   const handleKeyDown = (key) => {
-    const keyCode = key.keyCode;
+    const keyCode = key.keyCode.toString();
     if (keyCode.toString() === '219') {
-      setShowSuggestions(true);
-      // setMatchSuggestion(suggestions);
+      setShowSuggestion(true);
+      handleClickSuggestion(inputValue, 'flat');
+      setPreviewTracking('preview-tracking');
     };
-    if (inputValue.trim() && showSuggestions) {
-      if (keyCode === 40) {
+    if (inputValue.trim() && showSuggestion) {
+      if (keyCode === '40') {
         const setIndex = suggestionActive >= (matchSuggestion.length - 1) ? 0 : (suggestionActive + 1);
         setSuggestionActive(setIndex);
-      } else if (keyCode === 38) {
+      } else if (keyCode === '38') {
         const setIndex = suggestionActive <= 0 ? (matchSuggestion.length - 1) : (suggestionActive - 1);
         setSuggestionActive(setIndex);
       }
 
-      if ((key.keyCode === 13) || (key.keyCode === 9)) {
+      if ((keyCode === '13') || (keyCode === '9')) {
         key.preventDefault();
         if (matchSuggestion[suggestionActive]) {
-          defaultLabelArray.unshift(`{${matchSuggestion[suggestionActive]}}`);
+          const id = Math.random().toString();
+          defaultLabelArray.push(
+            <DefaultLabel
+              key={id}
+              id={id}
+              text={`{${matchSuggestion[suggestionActive]}}`}
+              size="medium"
+              margin="5px"
+              maxWidth={maxWidth}
+              onClose={onTagDeleted}
+            />
+          );
           setDefaultLabelArray(defaultLabelArray);
           onTagCreated && onTagCreated(matchSuggestion[suggestionActive]);
-          setInputValue();
+          setInputValue('');
           setMatchSuggestion([]);
           setSuggestionActive(-1);
-          setShowSuggestions(false);
+          setShowSuggestion(false);
+          setPreviewTracking('');
         }
       }
     }
@@ -106,21 +114,44 @@ const CreationTracking = ({ type, placeholder, width, label, id, onTagCreated, o
   /**
    * Create label tag on click event in suggestions list
    */
-  const handleClickSuggestion = (value) => {
-    // setInputValue(value);
-    setTrackingLabel(value);
+  const handleClickSuggestion = (value, type) => {
     setMatchSuggestion([]);
-    defaultLabelArray.unshift(`{${value}}`);
-    onTagCreated && onTagCreated(value.trim());
-    setInputValue(flatInputValue);
-    setShowSuggestions(false);
-    console.log({ value, flatInputValue, trackingLabel, inputValue, defaultLabelArray })
+    const id = Math.random().toString();
+    if (type === 'flat') {
+      defaultLabelArray.push(
+        <Text fontSize={size12}>{value}</Text>
+      );
+    } else {
+      defaultLabelArray.push(
+        <DefaultLabel
+          key={id}
+          id={id}
+          text={`{${value}}`}
+          size="medium"
+          margin="5px"
+          maxWidth={maxWidth}
+          onClose={onTagDeleted}
+        />
+      );
+      onTagCreated && onTagCreated(value.trim());
+    }
+    setInputValue('');
+    setShowSuggestion(false);
+    setPreviewTracking('');
+  };
+
+  /**
+   * Set empty input value and remove preview styles
+   */
+  const closePreview = () => {
+    setPreviewTracking('');
+    setInputValue('');
   };
 
   /**
    * Hook to handle click events on window
    */
-  const eventHandler = () => setShowSuggestions(false);
+  const eventHandler = () => setShowSuggestion(false);
   useEventListener('click', eventHandler);
 
   return (
@@ -132,36 +163,27 @@ const CreationTracking = ({ type, placeholder, width, label, id, onTagCreated, o
         disabled={disabled}
         width={width}
       >
-        {defaultLabelArray &&
-          defaultLabelArray.map((text, index) => (
-            <DefaultLabel
-              key={index}
-              id={index.toString()}
-              text={text}
-              size="small"
-              margin="5px"
-              maxWidth={maxWidth}
-              onClose={onTagDeleted}
+        {defaultLabelArray && defaultLabelArray.map(item => item)}
+        <PreviewContainer>
+            <Input
+              id={id}
+              value={inputValue}
+              disabled={disabled}
+              maxLength={maxLength}
+              placeholder={placeholder}
+              onKeyDown={handleKeyDown}
+              className={previewTracking}
+              onBlur={disabled ? null : handleBlur}
+              onFocus={disabled ? null : handleFocus}
+              onChange={disabled ? null : handleChange}
+              size={inputValue.length ? inputValue.length + 3 : 5}
             />
-          ))
-        }
-        <Input
-          id={id}
-          width="auto"
-          value={inputValue}
-          disabled={disabled}
-          maxLength={maxLength}
-          placeholder={placeholder}
-          onKeyDown={handleKeyDown}
-          onBlur={disabled ? null : handleBlur}
-          onFocus={disabled ? null : handleFocus}
-          onChange={disabled ? null : handleChange}
-          size={inputValue.length && inputValue.length + 20}
-        />
+          <XIcon props={{ onClick: closePreview, width: '6px', height: '6px', fill: gray.g07, cursor: 'pointer', display: previewTracking ? 'block' : 'none', position: 'relative', right: '20px', }} />
+        </PreviewContainer>
 
       </InputContainer>
       <SuggestionsListContainer>
-        <SuggestionsList className={showSuggestions ? 'list--expand' : 'list--collapse'}>
+        <SuggestionsList className={showSuggestion ? 'list--expand' : 'list--collapse'}>
           {matchSuggestion.map((suggestion, index) => (
             <Text
               color={black}
@@ -174,10 +196,16 @@ const CreationTracking = ({ type, placeholder, width, label, id, onTagCreated, o
               onMouseOver={() => setSuggestionActive(index)}
             >{suggestion}</Text>
           ))}
-          <Text color={gray.g4} fontSize={size10} padding="12px 0 0 23px" display="inline">
-            or select from the 
-          </Text>
-          <Button label="Full list" type="link-default-left" onClick={callback} />
+          {textBelowSuggestions ?
+            <Text color={gray.g4} fontSize={size10} padding="12px 0 0 23px" display="inline">
+              {textBelowSuggestions}
+            </Text>
+            : null
+          }
+          {linkText ?
+            <Button label={linkText} type="link-default-left" onClick={callback} />
+            :null
+          }
         </SuggestionsList>
       </SuggestionsListContainer>
     </LabelContainer>
@@ -195,6 +223,8 @@ CreationTracking.propTypes = {
   disabled: PropTypes.bool,
   suggestions: PropTypes.arrayOf(PropTypes.string).isRequired,
   callback: PropTypes.func,
+  linkText: PropTypes.string,
+  textBelowSuggestions: PropTypes.string,
 };
 
 CreationTracking.defaultProps = {
@@ -206,6 +236,8 @@ CreationTracking.defaultProps = {
   onTagDeleted: () => null,
   disabled: false,
   callback: () => null,
+  linkText: null,
+  textBelowSuggestions: null,
 };
 
 export default CreationTracking;

@@ -1,5 +1,6 @@
 export {
   SuggestionsList,
+  PreviewContainer,
   CreationTagContainer,
   SuggestionsListContainer,
 } from './InputField.styles';
