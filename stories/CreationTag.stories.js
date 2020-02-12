@@ -61,11 +61,15 @@ export const Suggestions = () => (
  * @prop {Function} onTagDeleted - (Optional) Callback to trigger when tag is deleted. It receive tag value in first argument.
  * @prop {Array} suggestions - (Required) Array of string to be displayed in suggestions list.
  * @prop {Function} callback - (Optional) Callback to be triggered on click event in button into suggestions list.
+ * @prop {String} linkText - (Optional) It's the text to be displayed like link.
+ * @prop {String} textBelowSuggestions - (Optional) It's the text to be displayed at the bottom of suggestions list.
  */
 export const TrackingSuggestions = () => (
   <CreationTracking
-    type="suggestions-tracking"
     width="433px"
+    linkText="Full list"
+    type="suggestions-tracking"
+    textBelowSuggestions="or select from the"
     suggestions={["Option 1", "Option 2", "Option 3"]}
     callback={() => console.log('Displaying full list')}
     onTagCreated={event => console.log(event + ' has been created')}

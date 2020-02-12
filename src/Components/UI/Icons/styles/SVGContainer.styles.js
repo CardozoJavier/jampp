@@ -12,6 +12,7 @@ export default styled.div`
   left: ${({ left }) => left || 'unset'};
   margin: ${({ margin }) => margin || '0'};
   cursor: ${({ cursor }) => cursor};
+  display: ${({ display }) => display};
 
   svg {
     fill: ${({ fill }) => fill};
