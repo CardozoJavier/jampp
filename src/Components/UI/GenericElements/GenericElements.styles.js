@@ -43,7 +43,4 @@ export const DivContainer = styled.div`
   border: ${({ border }) => border};
   border-bottom: ${({ borderBottom }) => borderBottom};
   border-radius: ${({ borderRadius }) => borderRadius};
-  ${TrashIconContainer} {
-    display: none;
-  }
 `;
