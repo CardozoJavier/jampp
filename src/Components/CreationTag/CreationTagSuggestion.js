@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { LabelContainer, Input, Label, SuggestionsListContainer, SuggestionsList } from './styles';
 import { getClassName, bemDestruct, useEventListener } from '../../utils';
@@ -15,7 +15,6 @@ const { size10 } = fonts;
  * @param {String} type - (Required) It's to define styles of input field.
  * @param {String} placeholder - (Optional) It's to display text into input field.
  * @param {String} label - (Optional) Text to be display in label.
- * @param {String} id - (Optional) ID to be use for label refering to input field.
  * @param {Function} icon - (Optional) Function that returns an svg icon.
  * @param {Function} onTagCreated - (Optional) Callback to trigger on tag created. It receive tag value in first argument.
  * @param {Function} onTagDeleted - (Optional) Callback to trigger on tag created. It receive tag value in first argument.
@@ -32,6 +31,7 @@ const CreationTagSuggestion = ({ type, placeholder, width, label, id, onTagCreat
   const [inputValue, setInputValue] = useState('');
   const [matchSuggestion, setMatchSuggestion] = useState([]);
   const [suggestionActive, setSuggestionActive] = useState(-1);
+  const [labelId, setLabelId] = useState('');
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const maxWidth = Number(width.split('px')[0]) - 53;
@@ -104,9 +104,14 @@ const CreationTagSuggestion = ({ type, placeholder, width, label, id, onTagCreat
   const eventHandler = () => setMatchSuggestion([]);
   useEventListener('click', eventHandler);
 
+  useEffect(() => {
+    const id = Math.random().toString();
+    setLabelId(id);
+  }, []);
+
   return (
     <LabelContainer>
-      {label && <Label htmlFor={id}>{label}</Label>}
+      {label && <Label htmlFor={labelId}>{label}</Label>}
       <InputContainer
         onClick={disabled ? null : handleClick}
         className={bemDestruct(className, disabled)}
@@ -127,7 +132,7 @@ const CreationTagSuggestion = ({ type, placeholder, width, label, id, onTagCreat
           ))
         }
         <Input
-          id={id}
+          id={labelId}
           width="auto"
           value={inputValue}
           disabled={disabled}
@@ -170,7 +175,6 @@ CreationTagSuggestion.propTypes = {
   placeholder: PropTypes.string,
   width: PropTypes.string,
   label: PropTypes.string,
-  id: PropTypes.string,
   onTagCreated: PropTypes.func,
   onTagDeleted: PropTypes.func,
   disabled: PropTypes.bool,
@@ -182,7 +186,6 @@ CreationTagSuggestion.defaultProps = {
   placeholder: '',
   width: '433px',
   label: '',
-  id: '',
   onTagCreated: () => null,
   onTagDeleted: () => null,
   disabled: false,

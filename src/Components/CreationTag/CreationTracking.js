@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { LabelContainer, Input, Label, SuggestionsListContainer, SuggestionsList, PreviewContainer, } from './styles';
 import { getClassName, bemDestruct, useEventListener } from '../../utils';
@@ -16,7 +16,6 @@ const { size10, size12 } = fonts;
  * @param {String} type - (Required) It's to define styles of input field.
  * @param {String} placeholder - (Optional) It's to display text into input field.
  * @param {String} label - (Optional) Text to be display in label.
- * @param {String} id - (Optional) ID to be use for label refering to input field.
  * @param {Function} icon - (Optional) Function that returns an svg icon.
  * @param {Function} onTagCreated - (Optional) Callback to trigger on tag created. It receive tag value in first argument.
  * @param {Function} onTagDeleted - (Optional) Callback to trigger on tag created. It receive tag value in first argument.
@@ -27,7 +26,7 @@ const { size10, size12 } = fonts;
  * @param {String} textBelowSuggestions - (Optional) It's the text to be displayed at the bottom of suggestions list.
  * @return {React Component} A view for input field with icon and action on error.
  */
-const CreationTracking = ({ type, placeholder, width, label, id, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions }) => {
+const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions }) => {
   const { defaultClassName, optionalClassName, onBlurClassName, onFocusClassName, InputContainer } = inputProps[type];
   const [className, setClassName] = useState(defaultClassName);
   
@@ -37,6 +36,7 @@ const CreationTracking = ({ type, placeholder, width, label, id, onTagCreated, o
   const [suggestionActive, setSuggestionActive] = useState(-1);
   const [showSuggestion, setShowSuggestion] = useState(false);
   const [previewTracking, setPreviewTracking] = useState('');
+  const [labelId, setLabelId] = useState('');
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const maxWidth = Number(width.split('px')[0]) - 53;
@@ -154,9 +154,14 @@ const CreationTracking = ({ type, placeholder, width, label, id, onTagCreated, o
   const eventHandler = () => setShowSuggestion(false);
   useEventListener('click', eventHandler);
 
+  useEffect(() => {
+    const id = Math.random().toString();
+    setLabelId(id);
+  }, []);
+
   return (
     <LabelContainer>
-      {label && <Label htmlFor={id}>{label}</Label>}
+      {label && <Label htmlFor={labelId}>{label}</Label>}
       <InputContainer
         onClick={disabled ? null : handleClick}
         className={bemDestruct(className, disabled)}
@@ -166,7 +171,7 @@ const CreationTracking = ({ type, placeholder, width, label, id, onTagCreated, o
         {defaultLabelArray && defaultLabelArray.map(item => item)}
         <PreviewContainer>
             <Input
-              id={id}
+              id={labelId}
               value={inputValue}
               disabled={disabled}
               maxLength={maxLength}
@@ -217,7 +222,6 @@ CreationTracking.propTypes = {
   placeholder: PropTypes.string,
   width: PropTypes.string,
   label: PropTypes.string,
-  id: PropTypes.string,
   onTagCreated: PropTypes.func,
   onTagDeleted: PropTypes.func,
   disabled: PropTypes.bool,
@@ -231,7 +235,6 @@ CreationTracking.defaultProps = {
   placeholder: '',
   width: '433px',
   label: '',
-  id: '',
   onTagCreated: () => null,
   onTagDeleted: () => null,
   disabled: false,
