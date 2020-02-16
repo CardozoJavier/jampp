@@ -49,11 +49,17 @@ export const Expandable = () => (
  * @prop {String} padding - (Optional) It's the padding of the card container.
  * 
  *  CloneElement component should be called with
- *  @prop {Array} children - (Required) They're the structures to be cloned. Can be one React node or an array of React nodes.
+ *  @prop {Array} children - (Required) They're the structures to be cloned. Should be one React node.
+ *  @prop {String} buttonText - (Optional) The text to be displayed into button add structure. Default value is empty string.
+ *  @prop {String} buttonType - (Optional) The button type corresponding to class styles. Default value is link-default-left.
+ *  @prop {Node} buttonIcon - (Optional) The icon to be displayed into button. Default value is 'null'.
+ *  @prop {Boolean} removableFirst - (Optional) Is the flag to determine if the first structure is removable or not. Default value is true.
+ *  @prop {Object} buttonProps - (Optional) It's the props to be passed to structure container for modifying Add button styles.
+ *  @prop {Function} onDeleteCallback - (Required) It's the callback to be called when remove icon is clicked. It receive the structure ID in first argument.
  */
 export const DuplicateStructure = () => (
   <ExpandableCard width="800px" title="Title">
-    <CloneElement buttonText="Add more" buttonType="link-default-left" buttonIcon={BoldAddIcon} removableFirst={false}>
+    <CloneElement buttonText="Add more" buttonType="link-default-left" buttonIcon={BoldAddIcon} removableFirst={false} onDeleteCallback={structureId => console.log('Structure with id ' + structureId + ' want to be deleted')}>
       <DivContainer padding="10px 20px 20px 20px" borderRadius="4px" border={`1px solid ${gray.g1}`}>
         <TrashIcon
           role='icon-to-remove-structure'
