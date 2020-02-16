@@ -13,6 +13,7 @@ export default styled.div`
   margin: ${({ margin }) => margin || '0'};
   cursor: ${({ cursor }) => cursor};
   display: ${({ display }) => display};
+  justify-self: ${({ justifySelf }) => justifySelf};
 
   svg {
     fill: ${({ fill }) => fill};
