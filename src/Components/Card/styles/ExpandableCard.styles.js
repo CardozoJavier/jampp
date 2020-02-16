@@ -8,6 +8,7 @@ export const ExpandableCardHeader = styled(CardHeader)`
   align-items: center;
   justify-content: space-between;
   padding-bottom: 0;
+  cursor: pointer;
 `;
 
 export const ExpandableCardDescription = styled(CardDescription)`
