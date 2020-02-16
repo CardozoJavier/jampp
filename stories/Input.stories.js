@@ -24,7 +24,6 @@ export default {
  * @prop {Function} icon - (Optional) Function that returns an svg icon.
  * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument.
  * @prop {String} label - (Optional) Text to be display in label.
- * @prop {String} id - (Optional) ID to be use for label refering to input field.
  */
 export const Basic = () => (
   <div style={{ width: '250px' }}>
@@ -44,7 +43,6 @@ export const Basic = () => (
  * @prop {Function} icon - (Optional) Function that returns an svg icon.
  * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument.
  * @prop {String} label - (Optional) Text to be display in label.
- * @prop {String} id - (Optional) ID to be use for label refering to input field.
  */
 export const WithIcon = () => (
   <div style={{ width: '250px' }}>
@@ -64,11 +62,10 @@ export const WithIcon = () => (
  * @prop {Function} icon - (Optional) Function that returns an svg icon.
  * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument.
  * @prop {String} label - (Optional) Text to be display in label.
- * @prop {String} id - (Optional) ID to be use for label refering to input field.
  */
 export const InputWithLabel = () => (
   <div style={{ width: '250px' }}>
-    <InputField placeholder="Text" label="Label" id="id1" type="basic" />
+    <InputField placeholder="Text" label="Label" type="basic" />
   </div>
 );
 
@@ -84,7 +81,6 @@ export const InputWithLabel = () => (
  * @prop {Function} icon - (Optional) Function that returns an svg icon.
  * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument.
  * @prop {String} label - (Optional) Text to be display in label.
- * @prop {String} id - (Optional) ID to be use for label refering to input field.
  */
 export const WithErrorMessage = () => (
   <>
@@ -118,7 +114,6 @@ export const WithErrorMessage = () => (
  * @prop {string} boldPlaceholder - (Optional) It's to display bold text into input field. It'll be in first place.
  * @prop {boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @prop {string} label - (Optional) Text to be display in label.
- * @prop {id} id - (Optional) ID to be use for label refering to input field.
  */
 export const WithBoldPlaceholder = () => (
   <div style={{ width: '250px' }}>
@@ -138,7 +133,6 @@ export const WithBoldPlaceholder = () => (
  * @prop {Function} icon - (Optional) Function that returns an svg icon.
  * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument.
  * @prop {String} label - (Optional) Text to be display in label.
- * @prop {String} id - (Optional) ID to be use for label refering to input field.
  */
 export const WithComment = () => (
   <>

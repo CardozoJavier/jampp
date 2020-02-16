@@ -11,7 +11,6 @@ export default {
  * @prop {String} placeholder - (Optional) It's to display text into input field.
  * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @prop {String} label - (Optional) Text to be display in label.
- * @prop {String} id - (Optional) ID to be use for label refering to input field.
  * @prop {Function} onTagCreated - (Optional) Callback to trigger on tag created. It receive tag value in first argument.
  * @prop {Function} onTagDeleted - (Optional) Callback to trigger when tag is deleted. It receive tag value in first argument.
  */
@@ -19,7 +18,6 @@ export const Default = () => (
   <CreationTag
     placeholder="Input value"
     label="Label"
-    id="input1" 
     type="basic"
     width="433px"
     onTagCreated={event => console.log(event + ' has been created')}
@@ -33,7 +31,6 @@ export const Default = () => (
  * @prop {String} placeholder - (Optional) It's to display text into input field.
  * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @prop {String} label - (Optional) Text to be display in label.
- * @prop {String} id - (Optional) ID to be use for label refering to input field.
  * @prop {Function} onTagCreated - (Optional) Callback to trigger on tag created. It receive tag value in first argument.
  * @prop {Function} onTagDeleted - (Optional) Callback to trigger when tag is deleted. It receive tag value in first argument.
  * @prop {Array} suggestions - (Required) Array of string to be displayed in suggestions list.
@@ -56,7 +53,6 @@ export const Suggestions = () => (
  * @prop {String} placeholder - (Optional) It's to display text into input field.
  * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @prop {String} label - (Optional) Text to be display in label.
- * @prop {String} id - (Optional) ID to be use for label refering to input field.
  * @prop {Function} onTagCreated - (Optional) Callback to trigger on tag created. It receive tag value in first argument.
  * @prop {Function} onTagDeleted - (Optional) Callback to trigger when tag is deleted. It receive tag value in first argument.
  * @prop {Array} suggestions - (Required) Array of string to be displayed in suggestions list.
