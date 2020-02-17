@@ -56,11 +56,15 @@ export const Expandable = () => (
  *  @prop {Boolean} removableFirst - (Optional) Is the flag to determine if the first structure is removable or not. Default value is true.
  *  @prop {Object} buttonProps - (Optional) It's the props to be passed to structure container for modifying Add button styles.
  *  @prop {Function} onDeleteCallback - (Required) It's the callback to be called when remove icon is clicked. It receive the structure ID in first argument.
+ * 
+ *    DivContainer component should be called with
+ *    @prop {Node} children - (Required) It's the content to be displayed.
+ *    @prop {String} id - (Required) It's the unique id for structure necessary when remove button is clicked.
  */
 export const DuplicateStructure = () => (
   <ExpandableCard width="800px" title="Title">
     <CloneElement buttonText="Add more" buttonType="link-default-left" buttonIcon={BoldAddIcon} removableFirst={false} onDeleteCallback={structureId => console.log('Structure with id ' + structureId + ' want to be deleted')}>
-      <DivContainer padding="10px 20px 20px 20px" borderRadius="4px" border={`1px solid ${gray.g1}`}>
+      <DivContainer id="expandable-card-structure-id" padding="10px 20px 20px 20px" borderRadius="4px" border={`1px solid ${gray.g1}`}>
         <TrashIcon
           role='icon-to-remove-structure'
           props={{
