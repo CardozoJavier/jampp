@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { LabelContainer, Input, Label, ErrorMessage, WarningMessageContainer, WarningMessage } from './styles';
 import { IconGenerator, ExclamationIcon, AlertIcon } from '../UI/Icons';
@@ -22,11 +22,12 @@ const { yellow } = palette;
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @return {React Component} A view for input field with icon and action on error.
  */
-const InputField = ({ type, placeholder, errorMessage, warningMessage, label, id, icon, onError, onWarning, onChange, disabled, margin }) => {
+const InputField = ({ type, placeholder, errorMessage, warningMessage, label, icon, onError, onWarning, onChange, disabled, margin }) => {
   const { defaultClassName, optionalClassName, errorClassName, warningClassName, onBlurClassName, onFocusClassName, InputContainer, iconProps } = inputProps[type];
   const [className, setClassName] = useState(defaultClassName);
   const [error, setError] = useState(false);
   const [warning, setWarning] = useState(false);
+  const [labelId, setLabelId] = useState('');
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
 
   const handleClick = () => {
@@ -63,16 +64,21 @@ const InputField = ({ type, placeholder, errorMessage, warningMessage, label, id
     }
   }
 
+  useEffect(() => {
+    const id = Math.random().toString();
+    setLabelId(id);
+  }, []);
+
   return (
     <LabelContainer margin={margin}>
-      {label && <Label htmlFor={id}>{label}</Label>}
+      {label && <Label htmlFor={labelId}>{label}</Label>}
       <InputContainer
         onClick={disabled ? null : handleClick}
         className={bemDestruct(className, disabled)}
         disabled={disabled}
       >
         <Input
-          id={id}
+          id={labelId}
           placeholder={placeholder}
           onBlur={disabled ? null : handleBlur}
           onFocus={disabled ? null : handleFocus}
@@ -104,7 +110,6 @@ InputField.propTypes = {
   placeholder: PropTypes.string,
   errorMessage: PropTypes.string,
   label: PropTypes.string,
-  id: PropTypes.string,
   icon: PropTypes.func,
   onError: PropTypes.func,
   onChange: PropTypes.func,
@@ -115,7 +120,6 @@ InputField.defaultProps = {
   placeholder: '',
   errorMessage: '',
   label: '',
-  id: '',
   icon: null,
   onError: () => null,
   onChange: () => null,

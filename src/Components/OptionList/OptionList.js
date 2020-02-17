@@ -62,7 +62,6 @@ OptionList.propTypes = {
     })).isRequired,
     type: PropTypes.string.isRequired,
     className: PropTypes.string.isRequired,
-    OptionItem: PropTypes.func.isRequired,
     menuTitle: PropTypes.string,
     onSelect: PropTypes.func,
     onChange: PropTypes.func,
