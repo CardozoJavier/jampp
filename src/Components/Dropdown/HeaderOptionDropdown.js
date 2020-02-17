@@ -74,6 +74,7 @@ const HeaderOptionDropdown = ({ text, type = 'basic', menuTitle, children, onCha
             width: '16px',
             height: '16px',
             margin: '0 5px',
+            pointerEvents: 'none',
             disabled,
           }}
         />

@@ -6,7 +6,8 @@ import {
   OptionButtonContainer,
   LinkButtonContainer,
 } from './styles';
-
+import { palette } from '../styles';
+const { link } = palette;
 
 const buttonProps = {
   "accessory-default-left": {
@@ -94,7 +95,22 @@ const buttonProps = {
     optionalClassName: '',
     ButtonContainer: LinkButtonContainer,
     iconClassName: '',
-    iconProps: {},
+    iconProps: {
+      fill: link,
+      width: '11px',
+      height: '11px',
+    },
+  },
+  "duplicate-structure": {
+    defaultClassName: 'button link--duplicate-left',
+    optionalClassName: '',
+    ButtonContainer: LinkButtonContainer,
+    iconClassName: '',
+    iconProps: {
+      fill: link,
+      width: '9px',
+      height: '9px',
+    },
   },
   "option-default-medium": {
     defaultClassName: 'button option--default-medium',

@@ -12,9 +12,13 @@ import { Button } from '../Button';
  * @param {String} prevButtonText - (Optional) It's the text to be displayed into button for previous step. Default value is "Back".
  * @param {String} nextButtonText - (Optional) It's the text to be displayed into button for next step. Default value is "Next".
  * @param {Number} currentStep - (Optional) Index that define the active step. From 0 to length-1 of array steps. Default value is 0.
+ * @param {String} prevButtonType - (Optional) It's the type button to be displayed like "previous button". Default value is "secondary-inverted-medium".
+ * @param {String} nextButtonType - (Optional) It's the type button to be displayed like "next button". Default value is "secondary-default-medium".
+ * @param {String} prevButtonDisabled - (Optional) If true, the "previous" button is disabled.
+ * @param {String} nextButtonDisabled - (Optional) If true, the "next" button is disabled.
  * @return {React Component} A view for breadcrumb into footer with next and back action buttons.
  */
-const FooterBreadcrumb = ({ children = [], onChange, prevButtonText, nextButtonText, currentStep}) => {
+const FooterBreadcrumb = ({ children = [], onChange, prevButtonText, nextButtonText, currentStep, prevButtonType, nextButtonType, prevButtonDisabled, nextButtonDisabled }) => {
   const [stepIndex, setStepIndex] = useState(currentStep);
 
   const handleBack = () => {
@@ -31,13 +35,13 @@ const FooterBreadcrumb = ({ children = [], onChange, prevButtonText, nextButtonT
 
   return (
     <Container>
-      <Button label={prevButtonText} type="secondary-inverted-medium" onClick={handleBack} />
+      <Button label={prevButtonText} type={prevButtonType} onClick={handleBack} disabled={prevButtonDisabled} />
       <Breadcrumb currentStep={stepIndex}>
         {children.map((stepItem, index) => (
           <Step key={index} text={stepItem.props.text} />
         ))}
       </Breadcrumb>
-      <Button label={nextButtonText} type="secondary-default-medium" onClick={handleNext} />
+      <Button label={nextButtonText} type={nextButtonType} onClick={handleNext} disabled={nextButtonDisabled} />
     </Container>
   );
 };
@@ -52,6 +56,10 @@ FooterBreadcrumb.propTypes = {
   prevButtonText: PropTypes.string,
   nextButtonText: PropTypes.string,
   currentStep: PropTypes.number,
+  prevButtonType: PropTypes.string,
+  nextButtonType: PropTypes.string,
+  prevButtonDisabled: PropTypes.bool,
+  nextButtonDisabled: PropTypes.bool,
 };
 
 FooterBreadcrumb.defaultProps = {
@@ -59,6 +67,10 @@ FooterBreadcrumb.defaultProps = {
   prevButtonText: 'Back',
   nextButtonText: 'Next',
   currentStep: 0,
+  prevButtonType: 'secondary-inverted-medium',
+  nextButtonType: 'secondary-default-medium',
+  prevButtonDisabled: false,
+  nextButtonDisabled: false,
 };
 
 export default FooterBreadcrumb;

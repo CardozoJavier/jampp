@@ -90,6 +90,7 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
             height: '16px',
             margin: '0 5px',
             className: bemDestruct(chevron, disabled),
+            pointerEvents: 'none',
             disabled,
           }}
         />

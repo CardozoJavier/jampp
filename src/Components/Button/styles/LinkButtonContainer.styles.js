@@ -30,21 +30,10 @@ export default styled.div`
      * ***********************
      */
     &.link {
-      ${AddIconContainer} {
-        svg {
-          width: 11px;
-          height: 11px;
-        }
-      }
-
-      &--default {
+      &--default, &--duplicate {
         font-size: 12px;
         color: ${link};
 
-        ${AddIconContainer} {
-          fill: ${link};
-        }
-        
         &__disabled {
           color: ${gray.g05};
           

@@ -91,6 +91,7 @@ const AdAccountsDropdown = ({ name, description, avatarSrc, children, email, sig
             height: '24px',
             margin: '0 5px',
             className: bemDestruct(chevron),
+            pointerEvents: 'none',
           }}
         />
       </AccountDropdownContainer>

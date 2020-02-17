@@ -77,6 +77,7 @@ const MultipleOptionDropdown = ({ type = 'basic', text, children, leftIcon, disa
             height: '16px',
             margin: '0 5px',
             className: bemDestruct(chevron),
+            pointerEvents: 'none',
             disabled,
           }}
         />
