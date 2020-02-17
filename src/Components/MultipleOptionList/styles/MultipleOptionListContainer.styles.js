@@ -13,6 +13,9 @@ export const MultipleOptionListContainer = styled.div`
   width: 100%;
   background-color: white;
   z-index: 1;
+  max-height: 50vh;
+  overflow: scroll;
+  margin-bottom: 10px;
   
   &.dropdown {
     &-right {}
@@ -23,15 +26,19 @@ export const MultipleOptionListContainer = styled.div`
         &__opened {
           opacity: 1;
           visibility: visible;
-          transform: translate(0, 10px);
+          transform: translateY(10px);
           transition: all .3s;
+        }
+
+        label ~ &__opened {
+          transform: translateY(20px);
         }
 
         &__closed {
           transition: all .3s;
           opacity: 0;
           visibility: hidden;
-          transform: translate(0, 0);
+          transform: translateY(0);
         }
       }
 
