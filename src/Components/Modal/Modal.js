@@ -19,7 +19,7 @@ const Modal = ({ title, icon, width, children, minHeight }) => {
   
   useEffect(() => {
     ModalElement = document.getElementById(id);
-  });
+  }, []);
   
   const handleClick = () => {
     ModalElement.remove();
