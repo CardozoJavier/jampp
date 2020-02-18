@@ -11,7 +11,7 @@ const InformativeModal = ({ children }) => {
       partialResult += Number(child.props.children);
     });
     setResult(partialResult);
-  });
+  }, []);
 
   return (
     <InformativeModalContainer>

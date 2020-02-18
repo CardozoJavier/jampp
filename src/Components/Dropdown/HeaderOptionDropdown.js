@@ -48,7 +48,7 @@ const HeaderOptionDropdown = ({ text, type = 'basic', menuTitle, children, onCha
 
   useEffect(() => {
     dropdownButton = document.getElementById(dropdownId) || {};
-  });
+  },[]);
 
   const eventHandler = useCallback(
     (e) => {

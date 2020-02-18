@@ -45,7 +45,7 @@ const NotificationHeader = ({ type, text, onClose, }) => {
   
   useEffect(() => {
     notificationHeader = document.getElementById(id);
-  });
+  }, []);
   
   const handleClick = () => {
     notificationHeader.remove();

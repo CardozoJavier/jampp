@@ -57,7 +57,7 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
 
   useEffect(() => {
     dropdownButton = document.getElementById(dropdownId) || {};
-  });
+  }, []);
 
   const eventHandler = useCallback(
     (e) => {

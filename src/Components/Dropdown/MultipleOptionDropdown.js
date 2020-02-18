@@ -42,7 +42,7 @@ const MultipleOptionDropdown = ({ type = 'basic', text, children, leftIcon, disa
   useEffect(() => {
     dropdownButton = document.getElementById(dropdownId) || {};
     dropdownList = document.getElementById(listId) || { contains: () => null };
-  });
+  }, []);
 
   const eventHandler = useCallback(
     (e) => {
