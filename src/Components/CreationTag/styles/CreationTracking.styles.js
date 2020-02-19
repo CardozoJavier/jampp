@@ -4,7 +4,7 @@ const { gray } = palette;
 
 export const ParametersDuplicationContainer = styled.div`
   display: grid;
-  align-items: baseline;
+  align-items: center;
   grid-template-columns 28% 5% auto 8%;
   width: 475px; 
   padding: 15px;

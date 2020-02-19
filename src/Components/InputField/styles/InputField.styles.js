@@ -6,7 +6,6 @@ const { gray, red, white, yellow, } = palette;
 export const InputFieldContainer = styled.label`
   display: flex;
   align-items: center;
-  margin-top: 5px;
   background-color: white;
   width: ${({ width }) => width};
   margin: ${({ margin }) => margin};

@@ -10,7 +10,6 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
   background-color: transparent;
   width: ${({ wide }) => wide ? '100%' : 'fit-content'};
   min-width: ${({ minWidth }) => minWidth};
-  margin-top: 5px;
 
   &:hover {
     transform: none;
