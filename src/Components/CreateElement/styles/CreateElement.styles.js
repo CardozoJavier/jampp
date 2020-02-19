@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const CloneElementContainer = styled.div`
+export const CreateElementContainer = styled.div`
   .button.link--default-left {
     padding: ${({ padding }) => padding};
   }

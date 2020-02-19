@@ -3,7 +3,7 @@ import {
   Modal,
   Button,
   InputField,
-  CloneElement,
+  CreateElement,
   OptionDropdown,
   InformativeModal,
   CreationTracking,
@@ -170,32 +170,49 @@ export const Informative = () => (
   </Modal>
 );
 
-/**
- *  CloneElement component should be called with
- *  @prop {Array} children - (Required) They're the structures to be cloned. Should be one React node.
- *  @prop {String} buttonText - (Optional) The text to be displayed into button add structure. Default value is empty string.
- *  @prop {String} buttonType - (Optional) The button type corresponding to class styles. Default value is link-default-left.
- *  @prop {Node} buttonIcon - (Optional) The icon to be displayed into button. Default value is 'null'.
- *  @prop {Boolean} removableFirst - (Optional) Is the flag to determine if the first structure is removable or not. Default value is true.
- *  @prop {Object} buttonProps - (Optional) It's the props to be passed to structure container for modifying Add button styles.
- *  @prop {Function} onDeleteCallback - (Required) It's the callback to be called when remove icon is clicked. It receive the structure ID in first argument.
- * 
- *    ParametersDuplicationContainer component should be called with
- *    @prop {Node} children - (Required) It's the content to be displayed.
- *    @prop {String} id - (Required) It's the unique id for structure necessary when remove button is clicked. 
- *      
- *      Text component should be called with
- *      @prop {String} role - (Required) Is the identifier to replace text of the original structure with dropdown in additional structures.
- * 
- *      DropdownContainer component should be called with
- *      @prop {String} role - (Required) Is the identifier to replace text of the original structure with dropdown in additional structures.
- */
-export const ParametersDuplication = () => (
+export const AddParameter = () => (
   <DivContainer border={`1px solid ${gray.g1}`} borderRadius="4px">
-    <CloneElement buttonText="Add parameter" buttonType="link-default-left" buttonIcon={BoldAddIcon} buttonProps={{ padding: '24px' }} removableFirst={true}  onDeleteCallback={structureId => console.log('Structure with id ' + structureId + ' want to be deleted')}>
-      <ParametersDuplicationContainer id="structure-id">
-        <Text role='element-to-replace' fontWeight="bold">Parameter</Text>
-        <DropdownContainer role="replacement-element" width="100%" padding="0 10px 0 0">
+    <DivContainer id="original-structure" display="grid" alignItems="center" gridTemplateColumns="28% 5% auto 8%" width="475px" padding="15px" borderBottom={`1px solid ${gray.g1}`}>
+      <Text role='element-to-replace' fontWeight="bold">Parameter</Text>
+      <Text>=</Text>
+      <CreationTracking
+        width="264px"
+        linkText="Full list"
+        id="creation-tracking-A"
+        type="suggestions-tracking"
+        textBelowSuggestions="or select from the"
+        suggestions={["Option 1", "Option 2", "Option 3"]}
+        callback={() => console.log('Displaying full list')}
+        onTagCreated={event => console.log(event + ' has been created')}
+        onTagDeleted={event => console.log(event + ' has been deleted')}
+      />
+      <XIcon
+        role='icon-to-remove-structure'
+        props={{
+          width: '10px',
+          height: '10px',
+          fill: gray.g3,
+          margin: '0 5px',
+          cursor: 'pointer',
+          hover: black,
+          justifySelf: 'end',
+          onClick: () => console.log('Display modal and pass it the structure id: original-structure'),
+        }}
+      />
+    </DivContainer>
+
+    {/**
+      *  CreateElement component should be called with
+      *  @prop {Array} children - (Required) It's the structure to be cloned. Should be one React node.
+      *  @prop {String} buttonText - (Optional) The text to be displayed into button add structure. Default value is empty string.
+      *  @prop {String} buttonType - (Optional) The button type corresponding to class styles. Default value is link-default-left.
+      *  @prop {Node} buttonIcon - (Optional) The icon to be displayed into button. Default value is 'null'.
+      *  @prop {Object} buttonProps - (Optional) It's the props to be passed to structure container for modifying Add button styles.
+      *  @prop {Function} onDeleteCallback - (Required) It's the callback to be called when remove icon is clicked. It receive the structure ID in first argument.
+      */}
+    <CreateElement buttonText="Add parameter" buttonType="link-default-left" buttonIcon={BoldAddIcon} buttonProps={{ padding: '24px' }}  onDeleteCallback={structureId => console.log('Structure with id ' + structureId + ' want to be deleted')}>
+      <ParametersDuplicationContainer>
+        <DropdownContainer width="100%" padding="0 10px 0 0">
           <DropdownListContainer>
             <OptionDropdown wide={true} text="Text" type="basic-clean" onChange={optionId => console.log('Option ' + optionId + ' is selected')} listWidth="fit-content">
               <Option label="Option A" id="a" />
@@ -209,7 +226,6 @@ export const ParametersDuplication = () => (
         <CreationTracking
           width="264px"
           linkText="Full list"
-          id="creation-tracking-A"
           type="suggestions-tracking"
           textBelowSuggestions="or select from the"
           suggestions={["Option 1", "Option 2", "Option 3"]}
@@ -231,6 +247,6 @@ export const ParametersDuplication = () => (
           }}
         />
       </ParametersDuplicationContainer>
-    </CloneElement>
+    </CreateElement>
   </DivContainer>
 );
