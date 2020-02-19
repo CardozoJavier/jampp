@@ -183,12 +183,28 @@ export const Informative = () => (
  *    ParametersDuplicationContainer component should be called with
  *    @prop {Node} children - (Required) It's the content to be displayed.
  *    @prop {String} id - (Required) It's the unique id for structure necessary when remove button is clicked. 
+ *      
+ *      Text component should be called with
+ *      @prop {String} role - (Required) Is the identifier to replace text of the original structure with dropdown in additional structures.
+ * 
+ *      DropdownContainer component should be called with
+ *      @prop {String} role - (Required) Is the identifier to replace text of the original structure with dropdown in additional structures.
  */
 export const ParametersDuplication = () => (
   <DivContainer border={`1px solid ${gray.g1}`} borderRadius="4px">
     <CloneElement buttonText="Add parameter" buttonType="link-default-left" buttonIcon={BoldAddIcon} buttonProps={{ padding: '24px' }} removableFirst={true}  onDeleteCallback={structureId => console.log('Structure with id ' + structureId + ' want to be deleted')}>
-      <ParametersDuplicationContainer id="structure-id" key='asdasd'>
-        <Text id='origin' fontWeight="bold">Parameter</Text>
+      <ParametersDuplicationContainer id="structure-id">
+        <Text role='element-to-replace' fontWeight="bold">Parameter</Text>
+        <DropdownContainer role="replacement-element" width="100%" padding="0 10px 0 0">
+          <DropdownListContainer>
+            <OptionDropdown wide={true} text="Text" type="basic-clean" onChange={optionId => console.log('Option ' + optionId + ' is selected')} listWidth="fit-content">
+              <Option label="Option A" id="a" />
+              <Option label="Option B" id="b" />
+              <Option label="Option C" id="c" />
+              <Option label="Option D" id="d" />
+            </OptionDropdown>
+          </DropdownListContainer>
+        </DropdownContainer>
         <Text>=</Text>
         <CreationTracking
           width="264px"
