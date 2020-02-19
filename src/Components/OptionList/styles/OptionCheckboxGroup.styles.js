@@ -9,7 +9,7 @@ export default styled.div`
   background-color: white;
   z-index: 1;
   min-width: ${({ minWidth }) => minWidth || '130px'};
-  width: inherit;
+  width: ${({ width }) => width || 'inherit'};
 
   &.dropdown, &.expandable {
     &-right {}
