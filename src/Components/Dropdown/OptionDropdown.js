@@ -18,9 +18,10 @@ import { StatusLabel } from '../Label';
  * @param {Boolean} notCheckIcon - (Optional) It's a modifier to not display the check icon next to text.
  * @param {Boolean} wide - (Optional) If true, dropdown's width will be 100%;
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ * @param {String} listWidth - (Optional) It's the width of the list opened.
  * @return {React Component} A view for button and dropdown of unique option selectable.
  */
-const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, notCheckIcon, wide, disabled, minWidth }) => {
+const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, notCheckIcon, wide, disabled, minWidth, listWidth }) => {
   const { defaultClassName, optionalClassName, buttonClassName, typeList } = dropdownProps[type];
 
   const [className, setClassName] = useState(defaultClassName);
@@ -83,7 +84,7 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
             disabled={disabled}
           />
         }
-        <ButtonInput children={textButton} />
+        <ButtonInput maxWidth="100%" overflow="hidden" children={textButton} />
         <DownChevronIcon
           props={{
             width: '16px',
@@ -98,6 +99,7 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
       <OptionList
         wide={wide}
         type={typeList}
+        width={listWidth}
         children={children}
         className={className}
         onSelect={onSelect}
@@ -117,6 +119,7 @@ OptionDropdown.propTypes = {
   notCheckIcon: PropTypes.bool,
   wide: PropTypes.bool,
   disabled: PropTypes.bool,
+  listWidth: PropTypes.string,
 };
 
 OptionDropdown.defaultProps = {
@@ -125,6 +128,7 @@ OptionDropdown.defaultProps = {
   notCheckIcon: false,
   wide: false,
   disabled: false,
+  listWidth: null,
 };
 
 export default OptionDropdown;
