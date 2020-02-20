@@ -14,9 +14,10 @@ import { bemDestruct, getClassName } from '../../utils';
  * @param {Boolean} disabled - (Optional) Disable component if is true.
  * @param {Function} onClick - (Optional) Callback to trigger on onClick event.
  * @param {Boolean} fixed - (Optional) Disabled move up transform on hover.
+ * @param {String} fontSize - (Optional) It's the font size for text button. Default value depend on button type.
  * @return {React Component} A view for button.
  */
-const Button = ({ type, label, children, icon, disabled, onClick, fixed }) => {
+const Button = ({ type, label, children, icon, disabled, onClick, fixed, fontSize }) => {
   const { defaultClassName, optionalClassName, ButtonContainer, iconProps, iconClassName } = buttonProps[type];
 
   const [className, setClassName] = useState(defaultClassName);
@@ -34,7 +35,7 @@ const Button = ({ type, label, children, icon, disabled, onClick, fixed }) => {
       disabled={disabled}
       fixed={fixed}
     >
-      <ButtonInput children={label || children} />
+      <ButtonInput children={label || children} fontSize={fontSize} />
       {icon &&
         <IconGenerator
           renderIcon={icon}

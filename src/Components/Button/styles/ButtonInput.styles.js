@@ -5,4 +5,5 @@ export default styled.a`
   pointer-events: none;
   max-width: ${({ maxWidth }) => maxWidth};
   overflow: ${({ overflow }) => overflow};
+  font-size: ${({ fontSize }) => fontSize};
 `;
