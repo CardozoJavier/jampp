@@ -29,7 +29,11 @@ export const Default = () => (
  * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive two arguments: index and text of current step.
  * @prop {String} prevButtonText - (Optional) It's the text to be displayed into button for previous step. Default value is "Back".
  * @prop {String} nextButtonText - (Optional) It's the text to be displayed into button for next step. Default value is "Next".
- *
+ * @prop {String} prevButtonType - (Optional) It's the type button to be displayed like "previous button". Default value is "secondary-inverted-medium".
+ * @prop {String} nextButtonType - (Optional) It's the type button to be displayed like "next button". Default value is "secondary-default-medium".
+ * @prop {String} prevButtonDisabled - (Optional) If true, the "previous" button is disabled.
+ * @prop {String} nextButtonDisabled - (Optional) If true, the "next" button is disabled.
+ * 
  *  Step component should be called with
  *  @prop {String} text - (Required) It's the name step.
  */

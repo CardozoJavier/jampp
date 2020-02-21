@@ -27,7 +27,7 @@ export default {
 };
 
 export const Default = () => (
-  <CreationContainer>
+  <CreationContainer height="700px">
     <div>
       <CreationHeader>
         <CreationHeaderTitle>

@@ -10,6 +10,9 @@ export default styled.div`
   z-index: 1;
   min-width: ${({ minWidth }) => minWidth || '130px'};
   width: inherit;
+  max-height: 50vh;
+  overflow: scroll;
+  margin-bottom: 10px;
 
   &.dropdown, &.expandable {
     &-right {}
@@ -20,14 +23,18 @@ export default styled.div`
           z-index: 2;
           opacity: 1;
           visibility: visible;
-          transform: translate(0, 10px);
+          transform: translateY(10px);
           transition: all .3s, z-index 0s, visibility 0s;
+        }
+
+        label ~ &__opened {
+          transform: translateY(20px);
         }
 
         &__closed {
           opacity: 0;
           visibility: hidden;
-          transform: translate(0, 0);
+          transform: translateY(0);
           transition: all .3s, z-index 0s, visibility 0s;
         }
       }

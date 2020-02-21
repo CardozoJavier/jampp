@@ -30,6 +30,7 @@ const UniqueOption = ({ id, className, handleCheck, label, notIcon }) => (
           fill: 'transparent',
           width: '14px',
           height: '10px',
+          margin: '0 0 0 10px',
           className: bemDestruct(className),
         }}
       />

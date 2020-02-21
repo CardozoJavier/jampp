@@ -9,6 +9,7 @@ export const CreationTagContainer = styled(InputFieldContainer)`
   flex-wrap: wrap;
   cursor: text;
   overflow: hidden;
+  min-height: 35px;
 `;
 
 export const SuggestionsList = styled.div`
@@ -18,6 +19,8 @@ export const SuggestionsList = styled.div`
   border: 1px solid ${gray.g2};
   position: absolute;
   width: 100%;
+  opacity: 0;
+  visibility: hidden;
 
   .button.link--default-left {
     font-size: 10px;
@@ -48,4 +51,9 @@ export const SuggestionsList = styled.div`
 export const SuggestionsListContainer = styled.div`
   position: relative;
   width: 100%;
+`;
+
+export const PreviewContainer = styled.div`
+  display: flex;
+  align-items: baseline;
 `;

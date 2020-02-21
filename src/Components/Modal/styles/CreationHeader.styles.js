@@ -6,7 +6,7 @@ export const CreationContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
+  height: ${({ height }) => height};
   width: 100%;
   align-items: center;
 `;

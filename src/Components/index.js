@@ -21,6 +21,11 @@ export {
   MultipleOptionDropdown,
   AdditionalDetailsDropdown,
 } from './Dropdown';
+export {
+  CreationTag,
+  CreationTracking,
+  CreationTagSuggestion,
+} from './CreationTag';
 export { Card } from './Card';
 export { Modal } from './Modal';
 export { Button } from './Button';
@@ -30,6 +35,7 @@ export { OptionList } from './OptionList';
 export { RadioButton } from './RadioButton';
 export { ToggleSwitch } from './ToggleSwitch';
 export { UniqueOption } from './UniqueOption';
+export { CreateElement } from './CreateElement';
 export { InformativeModal } from './InformativeModal';
 export { FooterBreadcrumb } from './FooterBreadcrumb';
 export { StatusLabelOption } from './StatusLabelOption';

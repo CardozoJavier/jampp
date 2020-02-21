@@ -14,10 +14,11 @@ import optionListProps from './optionListProps';
  * @param {Function} onSelect - (Optional) Callback to change text displayed in button dropdown. It receive option ID in first argument, and label option in second argument.
  * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
  * @param {Boolean} notCheckIcon - (Optional) It's a modifier to not display the check icon next to text.
- * @param {String} minWidth - (Optiona) Specified the min width for options list.
+ * @param {String} minWidth - (Optional) Specified the min width for options list.
+ * @param {String} width - (Optional) Specified the width for options list.
  * @return {React Component} A view in which one option can be selected.
  */
-const OptionList = ({ children = [], type, className, menuTitle, onSelect, onChange, notCheckIcon, minWidth, wide, }) => {
+const OptionList = ({ children = [], type, className, menuTitle, onSelect, onChange, notCheckIcon, minWidth, wide, width}) => {
   const { defaultClassName, OptionItem } = optionListProps[type];
   const childrenParsed = settingClassName(children, -1, defaultClassName);
   const [array, setArray] = useState(childrenParsed);
@@ -33,7 +34,7 @@ const OptionList = ({ children = [], type, className, menuTitle, onSelect, onCha
   }
 
   return (
-    <OptionCheckboxGroup className={bemDestruct(className)} minWidth={minWidth} wide={wide}>
+    <OptionCheckboxGroup className={bemDestruct(className)} minWidth={minWidth} wide={wide} width={width}>
       {menuTitle && <MenuTitle>{menuTitle}</MenuTitle>}
       {array.map((input) => (
         <OptionItem
@@ -62,12 +63,12 @@ OptionList.propTypes = {
     })).isRequired,
     type: PropTypes.string.isRequired,
     className: PropTypes.string.isRequired,
-    OptionItem: PropTypes.func.isRequired,
     menuTitle: PropTypes.string,
     onSelect: PropTypes.func,
     onChange: PropTypes.func,
     notCheckIcon: PropTypes.bool,
     minWidth: PropTypes.string,
+    width: PropTypes.string,
   };
   
 OptionList.defaultProps = {
@@ -76,6 +77,7 @@ OptionList.defaultProps = {
   onChange: () => null,
   notCheckIcon: false,
   minWidth: '',
+  width: '',
 };
   
 export default OptionList;

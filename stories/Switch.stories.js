@@ -14,6 +14,8 @@ export default {
  * @prop {String} type - (Optional) It's for use a different option component. 'options' is default value.
  * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive the id option in first argument.
  * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ * @prop {Boolean} defaultValue - (Optional) Define default selected. Default value is any. Must be the button Id.
+ * @prop {String} justifyContent - (Optional) It's the justifyContent of the switch group container.
  * 
  *  Option component should be used with
  *  @prop {String} label - (Optional) It's a text to be display inside button.
@@ -41,6 +43,8 @@ export const Group = () => (
  * @prop {String} type - (Optional) It's for use a different option component. 'options' is default value.
  * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive the id option in first argument.
  * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ * @prop {Boolean} defaultValue - (Optional) Define default selected. Must correspond with the button Id.
+ * @prop {String} justifyContent - (Optional) It's the justifyContent of the switch group container.
  * 
  *  Button component should be used with
  *  @prop {String} label - (Required) Text to be display inside button.
@@ -52,7 +56,7 @@ export const Group = () => (
  *  @prop {Node} children - (Optional) HTML element to be rendered, e.g.: strong tag inside button.
  */
 export const WithBoldText = () => (
-  <SwitchGroup type="button">
+  <SwitchGroup type="button" defaultValue="option2">
     <Button type='option-default-medium' id="option1">
       <strong>Button</strong> Text
     </Button>

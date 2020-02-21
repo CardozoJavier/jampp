@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { TrashIconContainer } from '../Icons/styles';
 
 export const Text = styled.p`
   color: ${({ color }) => color};
   font-size: ${({ fontSize }) => fontSize};
+  font-weight: ${({ fontWeight }) => fontWeight};
   margin: ${({ margin }) => margin || '0'};
   overflow: ${({ overflow }) => overflow || 'auto'};
   justify-self: ${({ justifySelf }) => justifySelf};
@@ -12,6 +12,7 @@ export const Text = styled.p`
   width: ${({ width }) => width};
   padding: ${({ padding }) => padding};
   display: ${({ display }) => display};
+  border-bottom: ${({ borderBottom }) => borderBottom};
 `;
 
 export const GridContainer = styled.div`
@@ -37,13 +38,15 @@ export const Gradient = styled.div`
 `;
 
 export const DivContainer = styled.div`
+  width: ${({ width }) => width};
   display: ${({ display }) => display};
   padding: ${({ padding }) => padding};
   margin: ${({ margin }) => margin};
   border: ${({ border }) => border};
   border-bottom: ${({ borderBottom }) => borderBottom};
   border-radius: ${({ borderRadius }) => borderRadius};
-  ${TrashIconContainer} {
-    display: none;
-  }
+  align-items: ${({ alignItems }) => alignItems};
+  justify-content: ${({ justifyContent }) => justifyContent};
+  grid-template-columns: ${({ gridTemplateColumns }) => gridTemplateColumns};
+  align-self: ${({ alignSelf }) => alignSelf};
 `;

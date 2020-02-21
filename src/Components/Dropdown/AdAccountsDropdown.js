@@ -53,7 +53,7 @@ const AdAccountsDropdown = ({ name, description, avatarSrc, children, email, sig
   useEffect(() => {
     dropdownButton = document.getElementById(dropdownId) || {};
     dropdownList = document.getElementById(listId) || { contains: () => null };
-  });
+  }, []);
     
   const eventHandler = useCallback(
     (e) => {
