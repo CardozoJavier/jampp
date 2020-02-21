@@ -1,9 +1,8 @@
 import React from 'react';
-import { Card, InputField } from '../src/Components';
+import { Card, InputField, CreateElement } from '../src/Components';
 import { ExpandableCard } from '../src/Components/Card';
 import { palette } from '../src/Components/styles';
 import { DivContainer } from '../src/Components/UI/GenericElements/GenericElements.styles';
-import CloneElement from '../src/Components/CloneElement/CloneElement';
 import { BoldAddIcon, TrashIcon } from '../src/Components/UI/Icons';
 const { gray, black } = palette;
 
@@ -47,23 +46,23 @@ export const Expandable = () => (
  * @prop {String} description - (Optional) It's description to be displayed in card below of title.
  * @prop {String} width - (Optional) It's the width of the card container. Default value is 600px.
  * @prop {String} padding - (Optional) It's the padding of the card container.
- * 
- *  CloneElement component should be called with
- *  @prop {Array} children - (Required) They're the structures to be cloned. Should be one React node.
- *  @prop {String} buttonText - (Optional) The text to be displayed into button add structure. Default value is empty string.
- *  @prop {String} buttonType - (Optional) The button type corresponding to class styles. Default value is link-default-left.
- *  @prop {Node} buttonIcon - (Optional) The icon to be displayed into button. Default value is 'null'.
- *  @prop {Boolean} removableFirst - (Optional) Is the flag to determine if the first structure is removable or not. Default value is true.
- *  @prop {Object} buttonProps - (Optional) It's the props to be passed to structure container for modifying Add button styles.
- *  @prop {Function} onDeleteCallback - (Required) It's the callback to be called when remove icon is clicked. It receive the structure ID in first argument.
- * 
- *    DivContainer component should be called with
- *    @prop {Node} children - (Required) It's the content to be displayed.
- *    @prop {String} id - (Required) It's the unique id for structure necessary when remove button is clicked.
  */
 export const DuplicateStructure = () => (
   <ExpandableCard width="800px" title="Title">
-    <CloneElement buttonText="Add more" buttonType="link-default-left" buttonIcon={BoldAddIcon} removableFirst={false} onDeleteCallback={structureId => console.log('Structure with id ' + structureId + ' want to be deleted')}>
+    <DivContainer padding="10px 20px 20px 20px" borderRadius="4px" border={`1px solid ${gray.g1}`}>
+      <InputField id="input1" margin="10px 0 20px 0" placeholder="Text" label="Label" type="basic" />
+      <InputField id="input2" margin="0 0 20px 0" placeholder="Text" label="Label" type="basic" />
+    </DivContainer>
+    {/**
+      *  CreateElement component should be called with
+      *  @prop {Array} children - (Required) It's the structure to be cloned. Should be one React node.
+      *  @prop {String} buttonText - (Optional) The text to be displayed into button add structure. Default value is empty string.
+      *  @prop {String} buttonType - (Optional) The button type corresponding to class styles. Default value is link-default-left.
+      *  @prop {Node} buttonIcon - (Optional) The icon to be displayed into button. Default value is 'null'.
+      *  @prop {Object} buttonProps - (Optional) It's the props to be passed to structure container for modifying Add button styles.
+      *  @prop {Function} onDeleteCallback - (Required) It's the callback to be called when remove icon is clicked. It receive the structure ID in first argument.
+      */}
+    <CreateElement buttonText="Add more" buttonType="link-default-left" buttonIcon={BoldAddIcon} onDeleteCallback={structureId => console.log('Structure with id ' + structureId + ' want to be deleted')}>
       <DivContainer id="expandable-card-structure-id" padding="10px 20px 20px 20px" borderRadius="4px" border={`1px solid ${gray.g1}`}>
         <TrashIcon
           role='icon-to-remove-structure'
@@ -80,6 +79,6 @@ export const DuplicateStructure = () => (
         <InputField id="input1" margin="10px 0 20px 0" placeholder="Text" label="Label" type="basic" />
         <InputField id="input2" margin="0 0 20px 0" placeholder="Text" label="Label" type="basic" />
       </DivContainer>
-    </CloneElement>
+    </CreateElement>
   </ExpandableCard>
 );

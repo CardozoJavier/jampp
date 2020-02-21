@@ -3,7 +3,7 @@ import {
   Modal,
   Button,
   InputField,
-  CloneElement,
+  CreateElement,
   OptionDropdown,
   InformativeModal,
   CreationTracking,
@@ -26,7 +26,7 @@ import { TrashIcon, XIcon, BoldAddIcon } from '../src/Components/UI/Icons';
 import { ParametersDuplicationContainer } from '../src/Components/CreationTag/styles';
 import { Text, DivContainer } from '../src/Components/UI/GenericElements/GenericElements.styles';
 const { gray, link, black, } = palette;
-const { size12 } = fonts;
+const { size10, size12 } = fonts;
 
 export default {
   title: 'Structures',
@@ -170,37 +170,73 @@ export const Informative = () => (
   </Modal>
 );
 
-/**
- *  CloneElement component should be called with
- *  @prop {Array} children - (Required) They're the structures to be cloned. Should be one React node.
- *  @prop {String} buttonText - (Optional) The text to be displayed into button add structure. Default value is empty string.
- *  @prop {String} buttonType - (Optional) The button type corresponding to class styles. Default value is link-default-left.
- *  @prop {Node} buttonIcon - (Optional) The icon to be displayed into button. Default value is 'null'.
- *  @prop {Boolean} removableFirst - (Optional) Is the flag to determine if the first structure is removable or not. Default value is true.
- *  @prop {Object} buttonProps - (Optional) It's the props to be passed to structure container for modifying Add button styles.
- *  @prop {Function} onDeleteCallback - (Required) It's the callback to be called when remove icon is clicked. It receive the structure ID in first argument.
- * 
- *    ParametersDuplicationContainer component should be called with
- *    @prop {Node} children - (Required) It's the content to be displayed.
- *    @prop {String} id - (Required) It's the unique id for structure necessary when remove button is clicked. 
- */
-export const ParametersDuplication = () => (
+export const AddParameter = () => (
   <DivContainer border={`1px solid ${gray.g1}`} borderRadius="4px">
-    <CloneElement buttonText="Add parameter" buttonType="link-default-left" buttonIcon={BoldAddIcon} buttonProps={{ padding: '24px' }} removableFirst={true}  onDeleteCallback={structureId => console.log('Structure with id ' + structureId + ' want to be deleted')}>
-      <ParametersDuplicationContainer id="structure-id" key='asdasd'>
-        <Text id='origin' fontWeight="bold">Parameter</Text>
+    <DivContainer id="original-structure" display="grid" alignItems="center" gridTemplateColumns="28% 5% auto 8%" width="475px" padding="15px" borderBottom={`1px solid ${gray.g1}`}>
+      <Text fontWeight="bold">Parameter</Text>
+      <Text>=</Text>
+      <CreationTracking
+        width="264px"
+        linkText="Full list"
+        id="creation-tracking-A"
+        type="suggestions-tracking"
+        textBelowSuggestions="or select from the"
+        suggestions={["Option 1", "Option 2", "Option 3"]}
+        callback={() => console.log('Displaying full list')}
+        onTagCreated={event => console.log(event + ' has been created')}
+        onTagDeleted={event => console.log(event + ' has been deleted')}
+      />
+      <XIcon
+        role='icon-to-remove-structure'
+        props={{
+          width: '10px',
+          height: '10px',
+          fill: gray.g3,
+          margin: '0 5px',
+          cursor: 'pointer',
+          hover: black,
+          justifySelf: 'end',
+          onClick: () => console.log('Display modal and pass it the structure id: original-structure'),
+        }}
+      />
+    </DivContainer>
+
+    {/**
+      *  CreateElement component should be called with
+      *  @prop {Array} children - (Required) It's the structure to be cloned. Should be one React node.
+      *  @prop {String} buttonText - (Optional) The text to be displayed into button add structure. Default value is empty string.
+      *  @prop {String} buttonType - (Optional) The button type corresponding to class styles. Default value is link-default-left.
+      *  @prop {Node} buttonIcon - (Optional) The icon to be displayed into button. Default value is 'null'.
+      *  @prop {Object} buttonProps - (Optional) It's the props to be passed to structure container for modifying Add button styles.
+      *  @prop {Function} onDeleteCallback - (Required) It's the callback to be called when remove icon is clicked. It receive the structure ID in first argument.
+      */}
+    <CreateElement buttonText="Add parameter" buttonType="link-default-left" buttonIcon={BoldAddIcon} onDeleteCallback={structureId => console.log('Structure with id ' + structureId + ' want to be deleted')}>
+      <ParametersDuplicationContainer>
+        <DropdownContainer width="100%" padding="0 10px 0 0">
+          <DropdownListContainer>
+            <OptionDropdown wide={true} text="Text" type="basic-clean" onChange={optionId => console.log('Option ' + optionId + ' is selected')} listWidth="fit-content">
+              <Option label="Option A" id="a" />
+              <Option label="Option B" id="b" />
+              <Option label="Option C" id="c" />
+              <Option label="Option D" id="d" />
+            </OptionDropdown>
+          </DropdownListContainer>
+        </DropdownContainer>
         <Text>=</Text>
-        <CreationTracking
-          width="264px"
-          linkText="Full list"
-          id="creation-tracking-A"
-          type="suggestions-tracking"
-          textBelowSuggestions="or select from the"
-          suggestions={["Option 1", "Option 2", "Option 3"]}
-          callback={() => console.log('Displaying full list')}
-          onTagCreated={event => console.log(event + ' has been created')}
-          onTagDeleted={event => console.log(event + ' has been deleted')}
-        />
+        <DivContainer alignSelf="flex-start">
+          <CreationTracking
+            width="264px"
+            type="suggestions-tracking"
+            suggestions={["Option 1", "Option 2", "Option 3"]}
+            callback={() => console.log('Displaying full list')}
+            onTagCreated={event => console.log(event + ' has been created')}
+            onTagDeleted={event => console.log(event + ' has been deleted')}
+          />
+          <DivContainer display="flex" alignItems="center" margin="8px 0 0 0">
+            <Text color={gray.g4} fontSize={size10} display="inline" margin="0 3px 0 0">or select from the </Text>
+            <Button fontSize={size10} label="Full token list" type="link-default-left" onClick={() => console.log('Display full token list')} />
+          </DivContainer>
+        </DivContainer>
         <XIcon
           role='icon-to-remove-structure'
           props={{
@@ -215,6 +251,6 @@ export const ParametersDuplication = () => (
           }}
         />
       </ParametersDuplicationContainer>
-    </CloneElement>
+    </CreateElement>
   </DivContainer>
 );
