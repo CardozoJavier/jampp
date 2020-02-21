@@ -87,7 +87,7 @@ export const Default = () => (
         </Card>
     </div>
 
-    <FooterBreadcrumb prevButtonText="Back" nextButtonText="Next">
+    <FooterBreadcrumb prevButtonText="Back" nextButtonText="Next" currentStep={0}>
       <Step text="1. Step 1" />
       <Step text="2. Step 2" />
     </FooterBreadcrumb>
