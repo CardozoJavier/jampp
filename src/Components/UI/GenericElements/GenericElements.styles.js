@@ -48,4 +48,5 @@ export const DivContainer = styled.div`
   align-items: ${({ alignItems }) => alignItems};
   justify-content: ${({ justifyContent }) => justifyContent};
   grid-template-columns: ${({ gridTemplateColumns }) => gridTemplateColumns};
+  align-self: ${({ alignSelf }) => alignSelf};
 `;

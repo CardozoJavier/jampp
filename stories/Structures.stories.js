@@ -26,7 +26,7 @@ import { TrashIcon, XIcon, BoldAddIcon } from '../src/Components/UI/Icons';
 import { ParametersDuplicationContainer } from '../src/Components/CreationTag/styles';
 import { Text, DivContainer } from '../src/Components/UI/GenericElements/GenericElements.styles';
 const { gray, link, black, } = palette;
-const { size12 } = fonts;
+const { size10, size12 } = fonts;
 
 export default {
   title: 'Structures',
@@ -173,7 +173,7 @@ export const Informative = () => (
 export const AddParameter = () => (
   <DivContainer border={`1px solid ${gray.g1}`} borderRadius="4px">
     <DivContainer id="original-structure" display="grid" alignItems="center" gridTemplateColumns="28% 5% auto 8%" width="475px" padding="15px" borderBottom={`1px solid ${gray.g1}`}>
-      <Text role='element-to-replace' fontWeight="bold">Parameter</Text>
+      <Text fontWeight="bold">Parameter</Text>
       <Text>=</Text>
       <CreationTracking
         width="264px"
@@ -210,7 +210,7 @@ export const AddParameter = () => (
       *  @prop {Object} buttonProps - (Optional) It's the props to be passed to structure container for modifying Add button styles.
       *  @prop {Function} onDeleteCallback - (Required) It's the callback to be called when remove icon is clicked. It receive the structure ID in first argument.
       */}
-    <CreateElement buttonText="Add parameter" buttonType="link-default-left" buttonIcon={BoldAddIcon} buttonProps={{ padding: '24px' }}  onDeleteCallback={structureId => console.log('Structure with id ' + structureId + ' want to be deleted')}>
+    <CreateElement buttonText="Add parameter" buttonType="link-default-left" buttonIcon={BoldAddIcon} onDeleteCallback={structureId => console.log('Structure with id ' + structureId + ' want to be deleted')}>
       <ParametersDuplicationContainer>
         <DropdownContainer width="100%" padding="0 10px 0 0">
           <DropdownListContainer>
@@ -223,16 +223,20 @@ export const AddParameter = () => (
           </DropdownListContainer>
         </DropdownContainer>
         <Text>=</Text>
-        <CreationTracking
-          width="264px"
-          linkText="Full list"
-          type="suggestions-tracking"
-          textBelowSuggestions="or select from the"
-          suggestions={["Option 1", "Option 2", "Option 3"]}
-          callback={() => console.log('Displaying full list')}
-          onTagCreated={event => console.log(event + ' has been created')}
-          onTagDeleted={event => console.log(event + ' has been deleted')}
-        />
+        <DivContainer alignSelf="flex-start">
+          <CreationTracking
+            width="264px"
+            type="suggestions-tracking"
+            suggestions={["Option 1", "Option 2", "Option 3"]}
+            callback={() => console.log('Displaying full list')}
+            onTagCreated={event => console.log(event + ' has been created')}
+            onTagDeleted={event => console.log(event + ' has been deleted')}
+          />
+          <DivContainer display="flex" alignItems="center" margin="8px 0 0 0">
+            <Text color={gray.g4} fontSize={size10} display="inline" margin="0 3px 0 0">or select from the </Text>
+            <Button fontSize={size10} label="Full token list" type="link-default-left" onClick={() => console.log('Display full token list')} />
+          </DivContainer>
+        </DivContainer>
         <XIcon
           role='icon-to-remove-structure'
           props={{

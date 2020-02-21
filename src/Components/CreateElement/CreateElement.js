@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { CreateElementContainer } from './styles';
 import { Button } from '../Button';
+import { DivContainer } from '../UI/GenericElements/GenericElements.styles';
 
 /**
  *  CreateElement component should be called with
@@ -65,7 +66,9 @@ const CreateElement = ({ children, buttonText, buttonType, buttonIcon, buttonPro
   return (
     <CreateElementContainer {...buttonProps}>
       {structure}
-      <Button onClick={handleAddStructure} label={buttonText} type={buttonType} icon={buttonIcon} />
+      <DivContainer padding="24px">
+        <Button onClick={handleAddStructure} label={buttonText} type={buttonType} icon={buttonIcon} />
+      </DivContainer>
     </CreateElementContainer>
   );
 };

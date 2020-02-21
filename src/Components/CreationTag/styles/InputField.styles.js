@@ -9,7 +9,7 @@ export const CreationTagContainer = styled(InputFieldContainer)`
   flex-wrap: wrap;
   cursor: text;
   overflow: hidden;
-  min-height: 36px;
+  min-height: 35px;
 `;
 
 export const SuggestionsList = styled.div`
