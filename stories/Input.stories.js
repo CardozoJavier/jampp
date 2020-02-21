@@ -2,15 +2,22 @@ import React from 'react';
 import '../src/main.css';
 import {
   SearchIcon,
+  AlertIcon,
 } from '../src/Components/UI/Icons';
-
 import {
   InputControlled,
   InputField,
 } from '../src/Components/InputField';
+import {
+  Text,
+  DivContainer
+} from '../src/Components/UI/GenericElements/GenericElements.styles';
 export default {
   title: 'Input'
 };
+import { palette, fonts } from '../src/Components/styles';
+const { yellow } = palette;
+const { size10 } = fonts;
 
 /**
  * InputField component should be called with
@@ -26,9 +33,9 @@ export default {
  * @prop {String} label - (Optional) Text to be display in label.
  */
 export const Basic = () => (
-  <div style={{ width: '250px' }}>
+  <DivContainer width="250px">
     <InputField placeholder="Text" type="basic" onChange={value => console.log(value)} />
-  </div>
+  </DivContainer>
 );
 
 /**
@@ -45,9 +52,9 @@ export const Basic = () => (
  * @prop {String} label - (Optional) Text to be display in label.
  */
 export const WithIcon = () => (
-  <div style={{ width: '250px' }}>
+  <DivContainer width="250px">
     <InputField placeholder="Text" type="icon-small-left" icon={SearchIcon} />
-  </div>
+  </DivContainer>
 );
 
 /**
@@ -64,9 +71,9 @@ export const WithIcon = () => (
  * @prop {String} label - (Optional) Text to be display in label.
  */
 export const InputWithLabel = () => (
-  <div style={{ width: '250px' }}>
+  <DivContainer width="250px">
     <InputField placeholder="Text" label="Label" type="basic" />
-  </div>
+  </DivContainer>
 );
 
 /**
@@ -84,7 +91,7 @@ export const InputWithLabel = () => (
  */
 export const WithErrorMessage = () => (
   <>
-    <div style={{ width: '250px' }}>
+    <DivContainer width="250px">
       <InputField
         errorMessage="Warning here"
         placeholder="Input value"
@@ -93,9 +100,9 @@ export const WithErrorMessage = () => (
         type="error-message"
         onError={() => true}
       />
-    </div>
+    </DivContainer>
 
-    <div style={{ width: '250px' }}>
+    <DivContainer width="250px">
       <InputField
         placeholder="Input value"
         label="Label"
@@ -103,7 +110,7 @@ export const WithErrorMessage = () => (
         type="error-message"
         disabled={true}
       />
-    </div>
+    </DivContainer>
   </>
 );
 
@@ -116,9 +123,9 @@ export const WithErrorMessage = () => (
  * @prop {string} label - (Optional) Text to be display in label.
  */
 export const WithBoldPlaceholder = () => (
-  <div style={{ width: '250px' }}>
+  <DivContainer width="250px">
     <InputControlled label="Text" boldPlaceholder="Text" placeholder="text" type="controlled" id="input1" />
-  </div>
+  </DivContainer>
 );
 
 /**
@@ -135,16 +142,11 @@ export const WithBoldPlaceholder = () => (
  * @prop {String} label - (Optional) Text to be display in label.
  */
 export const WithComment = () => (
-  <>
-    <div style={{ width: '250px' }}>
-      <InputField
-        warningMessage="Comment text here"
-        placeholder="Placeholder"
-        label="Label"
-        id="input1" 
-        type="warning-message"
-        onWarning={() => true}
-      />
-    </div>
-  </>
+  <DivContainer width="250px">
+    <InputField label="Label" placeholder="Placeholder" type="basic" />
+    <DivContainer display="flex" alignItems="baseline" margin="8px 0 0 0">
+      <AlertIcon props={{ margin: '0 3px 0 0', width: '10px', height: '10px', fill: yellow.y2 }} />
+      <Text color={yellow.y2} fontSize={size10}>{'Comment text here'}</Text>
+    </DivContainer>
+  </DivContainer>
 );
