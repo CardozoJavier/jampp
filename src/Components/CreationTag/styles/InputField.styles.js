@@ -10,6 +10,49 @@ export const CreationTagContainer = styled(InputFieldContainer)`
   cursor: text;
   overflow: hidden;
   min-height: 35px;
+
+  &:hover {
+    &.input {
+      &.basic {
+        &--default, &--medium, &--small {
+          &__disabled {
+            border: 1px solid ${gray.g1};
+            input {
+              background-color: ${white};
+            }
+            input::placeholder {
+              color: ${gray.g05};
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.input {
+    &.basic {
+      &--default, &--medium, &--small {
+        border: 1px solid ${gray.g1};
+        border-radius: 4px;
+
+        input::placeholder {
+          color: ${gray.g07};
+        }
+
+        &__disabled {
+          background-color: ${white};
+          cursor: default;
+          input {
+            background-color: ${white};
+          }
+
+          input::placeholder {
+            color: ${gray.g05};
+          }
+        }
+      }
+    }
+  }
 `;
 
 export const SuggestionsList = styled.div`

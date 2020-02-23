@@ -39,6 +39,9 @@ export const Gradient = styled.div`
 
 export const DivContainer = styled.div`
   width: ${({ width }) => width};
+  height: ${({ height }) => height};
+  max-height: ${({ maxHeight }) => maxHeight};
+  overflow-y: ${({ overflowY }) => overflowY};
   display: ${({ display }) => display};
   padding: ${({ padding }) => padding};
   margin: ${({ margin }) => margin};
@@ -49,4 +52,9 @@ export const DivContainer = styled.div`
   justify-content: ${({ justifyContent }) => justifyContent};
   grid-template-columns: ${({ gridTemplateColumns }) => gridTemplateColumns};
   align-self: ${({ alignSelf }) => alignSelf};
+  position: ${({ position }) => position};
+  top: ${({ top }) => top};
+  right: ${({ right }) => right};
+  bottom: ${({ bottom }) => bottom};
+  left: ${({ left }) => left};
 `;
