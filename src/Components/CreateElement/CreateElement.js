@@ -13,8 +13,9 @@ import { DivContainer } from '../UI/GenericElements/GenericElements.styles';
  *  @param {Boolean} removableFirst - (Optional) Is the flag to determine if the first structure is removable or not. Default value is true.
  *  @param {Object} buttonProps - (Optional) It's the props to be passed to structure container for modifying Add button styles.
  *  @param {Function} onDeleteCallback - (Required) It's the callback to be called when remove icon is clicked. It receive the structure ID in first argument.
+ *  @param {Boolean} disabled - (Optional) If true, the add button is hide.
  */
-const CreateElement = ({ children, buttonText, buttonType, buttonIcon, buttonProps, onDeleteCallback }) => {
+const CreateElement = ({ children, buttonText, buttonType, buttonIcon, buttonProps, onDeleteCallback, disabled }) => {
   const [structure, setStructure] = useState(null);
 
   /**
@@ -66,9 +67,13 @@ const CreateElement = ({ children, buttonText, buttonType, buttonIcon, buttonPro
   return (
     <CreateElementContainer {...buttonProps}>
       {structure}
-      <DivContainer padding="24px">
-        <Button onClick={handleAddStructure} label={buttonText} type={buttonType} icon={buttonIcon} />
-      </DivContainer>
+      {disabled ?
+        <DivContainer height='63px' />  
+        :
+        <DivContainer padding="24px">
+          <Button onClick={handleAddStructure} label={buttonText} type={buttonType} icon={buttonIcon} />
+        </DivContainer>
+      }
     </CreateElementContainer>
   );
 };
