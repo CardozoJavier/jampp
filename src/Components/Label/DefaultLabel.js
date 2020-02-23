@@ -30,6 +30,7 @@ const DefaultLabel = ({ text, size, onClose, id, ...props }) => {
           className: `icon label--default-${size}__right`,
           onClick: handleClick,
           display: '',
+          margin: '0 0 0 5px',
         }}
       />
     </DefaultLabelContainer>
