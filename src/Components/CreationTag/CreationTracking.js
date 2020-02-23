@@ -26,7 +26,7 @@ const { size10, size12 } = fonts;
  * @param {String} textBelowSuggestions - (Optional) It's the text to be displayed at the bottom of suggestions list.
  * @return {React Component} A view for input field with icon and action on error.
  */
-const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions }) => {
+const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions, flatParameters, labelParameters, parameterKey, }) => {
   const { defaultClassName, optionalClassName, onBlurClassName, onFocusClassName, InputContainer } = inputProps[type];
   const [className, setClassName] = useState(defaultClassName);
   
@@ -94,13 +94,13 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
               id={id}
               text={`{${matchSuggestion[suggestionActive]}}`}
               size="medium"
-              margin="5px"
+              margin="4px"
               maxWidth={maxWidth}
               onClose={onTagDeleted}
             />
           );
           setDefaultLabelArray(defaultLabelArray);
-          onTagCreated && onTagCreated(matchSuggestion[suggestionActive]);
+          onTagCreated(matchSuggestion[suggestionActive], parameterKey, defaultLabelArray);
           setInputValue('');
           setMatchSuggestion([]);
           setSuggestionActive(-1);
@@ -128,13 +128,14 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
           id={id}
           text={`{${value}}`}
           size="medium"
-          margin="5px"
+          margin="4px"
           maxWidth={maxWidth}
           onClose={onTagDeleted}
         />
       );
-      onTagCreated && onTagCreated(value.trim());
     }
+
+    value ? onTagCreated(value.trim(), parameterKey, defaultLabelArray) : null;
     setInputValue('');
     setShowSuggestion(false);
     setPreviewTracking('');
@@ -159,6 +160,14 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     setLabelId(id);
   }, []);
 
+  useEffect(() => {
+    if (disabled) {
+      flatParameters[parameterKey] && setDefaultLabelArray(flatParameters[parameterKey]);
+    } else {
+      labelParameters[parameterKey] && setDefaultLabelArray(labelParameters[parameterKey]);
+    };
+  }, [disabled]);
+
   const handleCallback = () => {
     callback();
     closePreview();
@@ -176,23 +185,23 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
       >
         {defaultLabelArray && defaultLabelArray.map(item => item)}
         <PreviewContainer>
-            <Input
-              id={labelId}
-              value={inputValue}
-              disabled={disabled}
-              maxLength={maxLength}
-              placeholder={placeholder}
-              onKeyDown={handleKeyDown}
-              className={previewTracking}
-              onBlur={disabled ? null : handleBlur}
-              onFocus={disabled ? null : handleFocus}
-              onChange={disabled ? null : handleChange}
-              size={inputValue.length ? inputValue.length + 3 : 5}
-            />
+          <Input
+            id={labelId}
+            value={inputValue}
+            disabled={disabled}
+            maxLength={maxLength}
+            placeholder={placeholder}
+            onKeyDown={handleKeyDown}
+            className={previewTracking}
+            onBlur={disabled ? null : handleBlur}
+            onFocus={disabled ? null : handleFocus}
+            onChange={disabled ? null : handleChange}
+            size={inputValue.length ? inputValue.length + 3 : 5}
+          />
           <XIcon props={{ onClick: closePreview, width: '6px', height: '6px', fill: gray.g07, cursor: 'pointer', display: previewTracking ? 'block' : 'none', position: 'relative', right: '20px', }} />
         </PreviewContainer>
-
       </InputContainer>
+
       <SuggestionsListContainer>
         <SuggestionsList className={showSuggestion ? 'list--expand' : 'list--collapse'}>
           {matchSuggestion.map((suggestion, index) => (
@@ -208,7 +217,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
             >{suggestion}</Text>
           ))}
           {textBelowSuggestions ?
-            <Text color={gray.g4} fontSize={size10} padding="12px 0 0 23px" display="inline">
+            <Text color={gray.g4} fontSize={size10} margin="0 0 0 23px" display="inline">
               {textBelowSuggestions}
             </Text>
             : null
@@ -235,6 +244,8 @@ CreationTracking.propTypes = {
   callback: PropTypes.func,
   linkText: PropTypes.string,
   textBelowSuggestions: PropTypes.string,
+  flatParameters: PropTypes.array,
+  labelParameters: PropTypes.array,
 };
 
 CreationTracking.defaultProps = {
@@ -247,6 +258,8 @@ CreationTracking.defaultProps = {
   callback: () => null,
   linkText: null,
   textBelowSuggestions: null,
+  flatParameters: [],
+  labelParameters: [],
 };
 
 export default CreationTracking;
