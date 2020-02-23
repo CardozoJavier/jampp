@@ -7,6 +7,7 @@ export { default as InfoIconContainer } from './InfoIconContainer.styles';
 export { default as HelpIconContainer } from './HelpIconContainer.styles';
 export { default as EditIconContainer } from './EditIconContainer.styles';
 export { default as ViewIconContainer } from './ViewIconContainer.styles';
+export { default as LockIconContainer } from './LockIconContainer.styles';
 export { default as AlertIconContainer } from './AlertIconContainer.styles';
 export { default as TrashIconContainer } from './TrashIconContainer.styles';
 export { default as CheckIconContainer } from './CheckIconContainer.styles';
