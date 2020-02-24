@@ -15,10 +15,10 @@ const DefaultLabel = ({ text, size, onClose, id, ...props }) => {
   const [className, setClassName] = useState(`label label--default-${size}`);
   const tagId = `${id}__${text}`;
 
-  const handleClick = () => {
-    onClose && onClose(text);
+  const deleteHandler = () => {
+    onClose && onClose(tagId, text);
     const element = document.getElementById(tagId);
-    element.remove();
+    element.style.display = 'none';
   };
 
   return (
@@ -28,7 +28,7 @@ const DefaultLabel = ({ text, size, onClose, id, ...props }) => {
         renderIcon={XIcon}
         props={{
           className: `icon label--default-${size}__right`,
-          onClick: handleClick,
+          onClick: deleteHandler,
           display: '',
           margin: '0 0 0 5px',
         }}
