@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { InputFieldContainer } from '../../InputField/styles';
-import { palette } from '../../styles';
+import { palette, fonts } from '../../styles';
+const { size10 } = fonts;
 const { gray, white, blue } = palette;
 
 export const CreationTagContainer = styled(InputFieldContainer)`
@@ -99,4 +100,10 @@ export const SuggestionsListContainer = styled.div`
 export const PreviewContainer = styled.div`
   display: flex;
   align-items: baseline;
+`;
+
+export const PlainText = styled.p`
+  word-break: break-all;
+  color: ${gray.g3};
+  font-size: ${size10};
 `;
