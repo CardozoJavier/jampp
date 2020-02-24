@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { LabelContainer, Input, Label, SuggestionsListContainer, SuggestionsList, PreviewContainer, } from './styles';
+import { LabelContainer, Input, Label, SuggestionsListContainer, SuggestionsList, PreviewContainer, PlainText} from './styles';
 import { getClassName, bemDestruct, useEventListener } from '../../utils';
 import inputProps from './inputProps';
 import { DefaultLabel } from '../Label';
@@ -43,10 +43,10 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
   const [labelId, setLabelId] = useState('');
   const [textArray, setTextArray] = useState([]);
   const latestTextArray = useRef(textArray);
+  const [plainTextValue, setPlainTextValue] = useState('');
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const maxWidth = Number(width.split('px')[0]) - 53;
-  const maxLength = Math.ceil(maxWidth * 11/100);
 
   const handleClick = () => {
     setClassName(toggleToClassName);
@@ -64,6 +64,8 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     const [flatValue, trackingValue] = value.split('{');
     const regex = trackingValue ? new RegExp(trackingValue.toLowerCase()) : { test: () => null };
     const matchSuggestion = trackingValue === '' ? suggestions : suggestions.filter(suggestion => regex.test(suggestion.toLowerCase()));
+
+    setPlainTextValue(value);
 
     setShowSuggestion(!!matchSuggestion.length);
     setInputValue(value);
@@ -97,7 +99,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
 
     setTextArray(updateTextArray);
     setDefaultLabelArray(updateDefaultLabelArray);
-    onTagDeleted(parameterKey, updateDefaultLabelArray, updateTextArray);
+    onTagDeleted(null, parameterKey, updateDefaultLabelArray, updateTextArray);
   };
 
   /**
@@ -140,7 +142,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
           const updateTextArray = [...textArray];
           const trimValue = matchSuggestion[suggestionActive].split(' ').join('');
           updateTextArray.push(
-            <Text text={matchSuggestion[suggestionActive]} id={id} fontSize={size10} color={gray.g3}>{trimValue}</Text>
+            <PlainText text={matchSuggestion[suggestionActive]} id={id} key={id}>{trimValue}</PlainText>
           );
 
           setDefaultLabelArray(updateDefaultLabelArray);
@@ -156,6 +158,45 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     }
   };
 
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    const id = e.target.id;
+    const updateDefaultLabelArray = [];
+    const updateTextArray = [];
+    setPlainTextValue(value);
+
+    latestDefaultLabelArray.current.forEach(element => {
+      if (element.props.id === id) {
+        const cloneElement = React.cloneElement(element, {
+          value,
+          size: value.length + 2,
+          style: value.length ? { display: 'block' } : { display: 'none' },
+        });
+        updateDefaultLabelArray.push(cloneElement);
+      } else {
+        updateDefaultLabelArray.push(element);
+      }
+    });
+
+    latestTextArray.current.forEach(text => {
+      const trimValue = value.split(' ').join('');
+      if (text.props.id === id) {
+        const cloneElement = React.cloneElement(text, {
+          children: trimValue,
+        });
+        updateTextArray.push(cloneElement);
+      } else {
+        updateTextArray.push(text);
+      }
+    });
+
+
+
+    setDefaultLabelArray(updateDefaultLabelArray);
+    setTextArray(updateTextArray);
+    onTagDeleted(null, parameterKey, updateDefaultLabelArray, updateTextArray);
+  };
+
   /**
    * Create label tag on click event in suggestions list
    */
@@ -163,12 +204,11 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     const updateDefaultLabelArray = [...defaultLabelArray];
     const trimValue = value.split(' ').join('');
     const id = Math.random().toString();
-
     setMatchSuggestion([]);
 
     if (type === 'flat') {
       updateDefaultLabelArray.push(
-        <Text id={id} key={id} fontSize={size10}>{trimValue}</Text>
+        <Input style={{ display: trimValue.length ? 'block' : 'none' }} id={id} key={id} value={plainTextValue} disabled={disabled} placeholder="" fontSize={size10} size={value.length + 2 || 1} width="auto" onChange={handleInputChange} />
       );
     } else {
       updateDefaultLabelArray.push(
@@ -185,11 +225,11 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     }
 
     /**
-     * It's for displaying like plain text the tags when input is freezed
+     * It's for displaying the tags like plain text when input is freezed
      */
     const updateTextArray = [...textArray];
     updateTextArray.push(
-      <Text text={value} id={id} fontSize={size10} color={gray.g3}>{trimValue}</Text>
+      <PlainText text={value} key={id} id={id}>{trimValue}</PlainText>
     );
 
     value ? onTagCreated(value.trim(), parameterKey, updateDefaultLabelArray, updateTextArray) : null;
@@ -233,7 +273,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     } else {
       labelParameters[parameterKey] && setDefaultLabelArray(labelParameters[parameterKey]);
     };
-  }, [disabled]);
+  }, [disabled, flatParameters, labelParameters]);
 
   /**
    * Setting updated labels array for handle it in delete tag callback.
@@ -262,9 +302,9 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
         <PreviewContainer>
           <Input
             id={labelId}
+            fontSize={size10}
             value={inputValue}
             disabled={disabled}
-            // maxLength={maxLength}
             placeholder={placeholder}
             onKeyDown={handleKeyDown}
             className={previewTracking}
