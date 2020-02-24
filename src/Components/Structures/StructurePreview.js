@@ -1,4 +1,4 @@
-import React, { useState, } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   Card,
   Modal,
@@ -24,31 +24,38 @@ const StructurePreview = () => {
   const [flatParameters, setFlatParameters] = useState({});
   const [labelParameters, setLabelParameters] = useState({});
 
+  const latestFlatParameters = useRef(flatParameters);
+  const latestLabelParameters = useRef(labelParameters);
+
   const toggleHandler = (status) => {
     setFreeze(status);
   };
 
-  const addParameterTag = (parameterValue, parameterKey, defaultLabelArray, textArray) => {
-    let updateFlatParameters = Object.assign({}, flatParameters);
-    const updateLabelParameters = Object.assign({}, labelParameters);
-    updateLabelParameters[parameterKey] = defaultLabelArray;
-    updateFlatParameters[parameterKey] = textArray;
+  // const addParameterTag = (parameterValue, parameterKey, defaultLabelArray, textArray) => {
+  //   let updateFlatParameters = Object.assign({}, flatParameters);
+  //   const updateLabelParameters = Object.assign({}, labelParameters);
+  //   updateLabelParameters[parameterKey] = defaultLabelArray;
+  //   updateFlatParameters[parameterKey] = textArray;
     
+  //   setLabelParameters(updateLabelParameters);
+  //   setFlatParameters(updateFlatParameters);
+  // };
+
+  const updateParametersArray = (parameterValue, parameterKey, defaultLabelArray, textArray) => {
+    const updateLabelParameters = Object.assign({}, latestLabelParameters.current);
+    const updateFlatParameters = Object.assign({}, latestFlatParameters.current);
+    updateFlatParameters[parameterKey] = textArray;
+    updateLabelParameters[parameterKey] = defaultLabelArray;
+
     setLabelParameters(updateLabelParameters);
     setFlatParameters(updateFlatParameters);
   };
 
-  const deleteParameterTag = (parameterKey, defaultLabelArray, textArray) => {
-    // console.log({ labelParameters, flatParameters, parameterKey, parameterValue, tagId })
-    // console.log(defaultLabelArray);
-    // console.log({ textArray })
-    const updateLabelParameters = Object.assign({}, labelParameters);
-    const updateFlatParameters = Object.assign({}, flatParameters);
-    updateFlatParameters[parameterKey] = textArray;
-    updateLabelParameters[parameterKey] = defaultLabelArray;
-    setLabelParameters(updateLabelParameters);
-    setFlatParameters(updateFlatParameters);
-  };
+  useEffect(() => {
+    latestLabelParameters.current = labelParameters;
+    latestFlatParameters.current = flatParameters;
+  }, [labelParameters, flatParameters]);
+
   
   return (
     <Modal width="525px">
@@ -81,15 +88,15 @@ const StructurePreview = () => {
                   flatParameters={flatParameters}
                   labelParameters={labelParameters}
                   parameterKey={'c'}
-                  width="264px"
+                  width="100%"
                   linkText="Full list"
                   id="creation-tracking-A"
                   type="suggestions-tracking"
                   textBelowSuggestions="or select from the"
                   suggestions={["First 1", "First 2", "First 3"]}
                   callback={() => console.log('Displaying full list')}
-                  onTagCreated={addParameterTag}
-                  onTagDeleted={deleteParameterTag}
+                  onTagCreated={updateParametersArray}
+                  onTagDeleted={updateParametersArray}
                   disabled={freeze}
                 />
                 <XIcon
@@ -114,15 +121,15 @@ const StructurePreview = () => {
                   flatParameters={flatParameters}
                   labelParameters={labelParameters}
                   parameterKey={'click_id'}
-                  width="264px"
+                  width="100%"
                   linkText="Full list"
                   id="creation-tracking-A"
                   type="suggestions-tracking"
                   textBelowSuggestions="or select from the"
                   suggestions={["Second 1", "Second 2", "Second 3"]}
                   callback={() => console.log('Displaying full list')}
-                  onTagCreated={addParameterTag}
-                  onTagDeleted={deleteParameterTag}
+                  onTagCreated={updateParametersArray}
+                  onTagDeleted={updateParametersArray}
                   disabled={freeze}
                 />
                 <XIcon
@@ -147,15 +154,15 @@ const StructurePreview = () => {
                   flatParameters={flatParameters}
                   labelParameters={labelParameters}
                   parameterKey={'device_id'}
-                  width="264px"
+                  width="100%"
                   linkText="Full list"
                   id="creation-tracking-A"
                   type="suggestions-tracking"
                   textBelowSuggestions="or select from the"
                   suggestions={["third 1", "third 2", "third 3"]}
                   callback={() => console.log('Displaying full list')}
-                  onTagCreated={addParameterTag}
-                  onTagDeleted={deleteParameterTag}
+                  onTagCreated={updateParametersArray}
+                  onTagDeleted={updateParametersArray}
                   disabled={freeze}
                 />
                 <XIcon
@@ -180,15 +187,15 @@ const StructurePreview = () => {
                   flatParameters={flatParameters}
                   labelParameters={labelParameters}
                   parameterKey={'creative'}
-                  width="264px"
+                  width="100%"
                   linkText="Full list"
                   id="creation-tracking-A"
                   type="suggestions-tracking"
                   textBelowSuggestions="or select from the"
                   suggestions={["fourth 1", "fourth 2", "fourth 3"]}
                   callback={() => console.log('Displaying full list')}
-                  onTagCreated={addParameterTag}
-                  onTagDeleted={deleteParameterTag}
+                  onTagCreated={updateParametersArray}
+                  onTagDeleted={updateParametersArray}
                   disabled={freeze}
                 />
                 <XIcon
@@ -224,12 +231,12 @@ const StructurePreview = () => {
                       flatParameters={flatParameters}
                       labelParameters={labelParameters}
                       parameterKey={'Option A'}
-                      width="264px"
+                      width="100%"
                       type="suggestions-tracking"
                       suggestions={["Option 1", "Option 2", "Option 3"]}
                       callback={() => console.log('Displaying full list')}
-                      onTagCreated={addParameterTag}
-                      onTagDeleted={deleteParameterTag}
+                      onTagCreated={updateParametersArray}
+                      onTagDeleted={updateParametersArray}
                       disabled={freeze}
                     />
                     <DivContainer display="flex" alignItems="center" margin="8px 0 0 0">
