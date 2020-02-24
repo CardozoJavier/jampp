@@ -161,11 +161,14 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
    */
   const handleClickSuggestion = (value, type) => {
     const updateDefaultLabelArray = [...defaultLabelArray];
-    setMatchSuggestion([]);
+    const trimValue = value.split(' ').join('');
     const id = Math.random().toString();
+
+    setMatchSuggestion([]);
+
     if (type === 'flat') {
       updateDefaultLabelArray.push(
-        <Text id={id} key={id} fontSize={size10}>{value}</Text>
+        <Text id={id} key={id} fontSize={size10}>{trimValue}</Text>
       );
     } else {
       updateDefaultLabelArray.push(
@@ -185,7 +188,6 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
      * It's for displaying like plain text the tags when input is freezed
      */
     const updateTextArray = [...textArray];
-    const trimValue = value.split(' ').join('');
     updateTextArray.push(
       <Text text={value} id={id} fontSize={size10} color={gray.g3}>{trimValue}</Text>
     );
