@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { LabelContainer, Input, Label, SuggestionsListContainer, SuggestionsList, PreviewContainer, } from './styles';
 import { getClassName, bemDestruct, useEventListener } from '../../utils';
@@ -9,7 +9,7 @@ import { Button } from '../Button';
 import { palette, fonts } from '../styles';
 import { XIcon } from '../UI/Icons';
 const { gray, black } = palette;
-const { size10, size12 } = fonts;
+const { size10 } = fonts;
 
 /**
  * CreationTracking component should be called with
@@ -24,6 +24,9 @@ const { size10, size12 } = fonts;
  * @param {Function} callback - (Optional) Callback to be triggered on click event in button into suggestions list.
  * @param {String} linkText - (Optional) It's the text to be displayed like link.
  * @param {String} textBelowSuggestions - (Optional) It's the text to be displayed at the bottom of suggestions list.
+ * @param {Object} flatParameters - (Optional) It's the object with array of parameters created and parsed to plain text.
+ * @param {Object} labelParameters - (Optional) It's the object with array of original label tags parameters.
+ * @param {String} parameterKey - (Optional) It's the key that correspond with each parameter input text.
  * @return {React Component} A view for input field with icon and action on error.
  */
 const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions, flatParameters, labelParameters, parameterKey, }) => {
@@ -33,15 +36,18 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
   const [inputValue, setInputValue] = useState('');
   const [matchSuggestion, setMatchSuggestion] = useState([]);
   const [defaultLabelArray, setDefaultLabelArray] = useState([]);
+  const latestDefaultLabelArray = useRef(defaultLabelArray);
   const [suggestionActive, setSuggestionActive] = useState(-1);
   const [showSuggestion, setShowSuggestion] = useState(false);
   const [previewTracking, setPreviewTracking] = useState('');
   const [labelId, setLabelId] = useState('');
+  const [textArray, setTextArray] = useState([]);
+  const latestTextArray = useRef(textArray);
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const maxWidth = Number(width.split('px')[0]) - 53;
   const maxLength = Math.ceil(maxWidth * 11/100);
-  
+
   const handleClick = () => {
     setClassName(toggleToClassName);
   }
@@ -66,6 +72,35 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
   }
 
   /**
+   * Update array of tags after one has removed
+   */
+  const deleteTagHandler = (tagId, tagText) => {
+    const updateDefaultLabelArray = [];
+    const updateTextArray = [];
+
+    /**
+     * The ref is used for accessing to latest tags added in input
+     */
+    latestDefaultLabelArray.current.forEach(tag => {
+      const id = `${tag.props.id}__${tag.props.text}`;
+      if (tagId !== id) {
+        updateDefaultLabelArray.push(tag);
+      }
+    });
+
+    latestTextArray.current.forEach(text => {
+      const id = `${text.props.id}__{${text.props.text}}`;
+      if (id !== tagId) {
+        updateTextArray.push(text);
+      }
+    });
+
+    setTextArray(updateTextArray);
+    setDefaultLabelArray(updateDefaultLabelArray);
+    onTagDeleted(parameterKey, updateDefaultLabelArray, updateTextArray);
+  };
+
+  /**
    * Event handler in key down to move through suggestions list and create tag when Enter or Tab key are pressed
    */
   const handleKeyDown = (key) => {
@@ -86,9 +121,11 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
 
       if ((keyCode === '13') || (keyCode === '9')) {
         key.preventDefault();
+        const updateDefaultLabelArray = [...defaultLabelArray];
+
         if (matchSuggestion[suggestionActive]) {
           const id = Math.random().toString();
-          defaultLabelArray.push(
+          updateDefaultLabelArray.push(
             <DefaultLabel
               key={id}
               id={id}
@@ -96,11 +133,19 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
               size="medium"
               margin="4px"
               maxWidth={maxWidth}
-              onClose={onTagDeleted}
+              onClose={deleteTagHandler}
             />
           );
-          setDefaultLabelArray(defaultLabelArray);
-          onTagCreated(matchSuggestion[suggestionActive], parameterKey, defaultLabelArray);
+
+          const updateTextArray = [...textArray];
+          const trimValue = matchSuggestion[suggestionActive].split(' ').join('');
+          updateTextArray.push(
+            <Text text={matchSuggestion[suggestionActive]} id={id} fontSize={size10} color={gray.g3}>{trimValue}</Text>
+          );
+
+          setDefaultLabelArray(updateDefaultLabelArray);
+          onTagCreated(matchSuggestion[suggestionActive], parameterKey, updateDefaultLabelArray, updateTextArray);
+          setTextArray(updateTextArray);
           setInputValue('');
           setMatchSuggestion([]);
           setSuggestionActive(-1);
@@ -115,14 +160,15 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
    * Create label tag on click event in suggestions list
    */
   const handleClickSuggestion = (value, type) => {
+    const updateDefaultLabelArray = [...defaultLabelArray];
     setMatchSuggestion([]);
     const id = Math.random().toString();
     if (type === 'flat') {
-      defaultLabelArray.push(
-        <Text fontSize={size12}>{value}</Text>
+      updateDefaultLabelArray.push(
+        <Text id={id} key={id} fontSize={size10}>{value}</Text>
       );
     } else {
-      defaultLabelArray.push(
+      updateDefaultLabelArray.push(
         <DefaultLabel
           key={id}
           id={id}
@@ -130,12 +176,23 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
           size="medium"
           margin="4px"
           maxWidth={maxWidth}
-          onClose={onTagDeleted}
+          onClose={deleteTagHandler}
         />
       );
     }
 
-    value ? onTagCreated(value.trim(), parameterKey, defaultLabelArray) : null;
+    /**
+     * It's for displaying like plain text the tags when input is freezed
+     */
+    const updateTextArray = [...textArray];
+    const trimValue = value.split(' ').join('');
+    updateTextArray.push(
+      <Text text={value} id={id} fontSize={size10} color={gray.g3}>{trimValue}</Text>
+    );
+
+    value ? onTagCreated(value.trim(), parameterKey, updateDefaultLabelArray, updateTextArray) : null;
+    setDefaultLabelArray(updateDefaultLabelArray);
+    setTextArray(updateTextArray);
     setInputValue('');
     setShowSuggestion(false);
     setPreviewTracking('');
@@ -149,17 +206,25 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     setInputValue('');
   };
 
+  const handleCallback = () => {
+    callback();
+    closePreview();
+    setInputValue('');
+  };
+
   /**
    * Hook to handle click events on window
    */
   const eventHandler = () => setShowSuggestion(false);
   useEventListener('click', eventHandler);
-
   useEffect(() => {
     const id = Math.random().toString();
     setLabelId(id);
   }, []);
 
+  /**
+   * Listening for freeze form event and disable the inputs.
+   */
   useEffect(() => {
     if (disabled) {
       flatParameters[parameterKey] && setDefaultLabelArray(flatParameters[parameterKey]);
@@ -168,11 +233,19 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     };
   }, [disabled]);
 
-  const handleCallback = () => {
-    callback();
-    closePreview();
-    setInputValue('');
-  };
+  /**
+   * Setting updated labels array for handle it in delete tag callback.
+   */
+  useEffect(() => {
+    latestDefaultLabelArray.current = defaultLabelArray;
+  }, [defaultLabelArray]);
+
+  /**
+   * Setting updated plain text array for handle it in delete tag callback.
+   */
+  useEffect(() => {
+    latestTextArray.current = textArray;
+  }, [textArray]);
 
   return (
     <LabelContainer>
@@ -189,14 +262,14 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
             id={labelId}
             value={inputValue}
             disabled={disabled}
-            maxLength={maxLength}
+            // maxLength={maxLength}
             placeholder={placeholder}
             onKeyDown={handleKeyDown}
             className={previewTracking}
             onBlur={disabled ? null : handleBlur}
             onFocus={disabled ? null : handleFocus}
             onChange={disabled ? null : handleChange}
-            size={inputValue.length ? inputValue.length + 3 : 5}
+            size={inputValue.length ? inputValue.length + 3 : 1}
           />
           <XIcon props={{ onClick: closePreview, width: '6px', height: '6px', fill: gray.g07, cursor: 'pointer', display: previewTracking ? 'block' : 'none', position: 'relative', right: '20px', }} />
         </PreviewContainer>
@@ -244,8 +317,9 @@ CreationTracking.propTypes = {
   callback: PropTypes.func,
   linkText: PropTypes.string,
   textBelowSuggestions: PropTypes.string,
-  flatParameters: PropTypes.array,
-  labelParameters: PropTypes.array,
+  flatParameters: PropTypes.shape({}),
+  labelParameters: PropTypes.shape({}),
+  parameterKey: PropTypes.string,
 };
 
 CreationTracking.defaultProps = {
@@ -258,8 +332,9 @@ CreationTracking.defaultProps = {
   callback: () => null,
   linkText: null,
   textBelowSuggestions: null,
-  flatParameters: [],
-  labelParameters: [],
+  flatParameters: {},
+  labelParameters: {},
+  parameterKey: null,
 };
 
 export default CreationTracking;
