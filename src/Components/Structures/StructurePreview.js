@@ -1,6 +1,5 @@
 import React, { useState, } from 'react';
 import {
-  Tab,
   Card,
   Modal,
   Button,
@@ -10,6 +9,7 @@ import {
   OptionDropdown,
 } from '../';
 import { CreationTracking } from '../CreationTag';
+import { Tab } from '../Tab/styles';
 import { ParametersDuplicationContainer } from '../CreationTag/styles';
 import { DropdownContainer, DropdownListContainer } from '../Dropdown/styles';
 import { LockIcon, XIcon, BoldAddIcon } from '../UI/Icons';
@@ -28,17 +28,24 @@ const StructurePreview = () => {
     setFreeze(status);
   };
 
-  const parametersHandler = (parameterValue, parameterKey, labelParametersArray) => {
+  const addParameterTag = (parameterValue, parameterKey, defaultLabelArray, textArray) => {
     let updateFlatParameters = Object.assign({}, flatParameters);
     const updateLabelParameters = Object.assign({}, labelParameters);
-    updateLabelParameters[parameterKey] = labelParametersArray;
-
-    if (updateFlatParameters[parameterKey]) {
-      updateFlatParameters[parameterKey].push(<Text fontSize={size10} color={gray.g3}>{parameterValue}</Text>);
-    } else {
-      updateFlatParameters[parameterKey] = [<Text fontSize={size10} color={gray.g3}>{parameterValue}</Text>];
-    }
+    updateLabelParameters[parameterKey] = defaultLabelArray;
+    updateFlatParameters[parameterKey] = textArray;
     
+    setLabelParameters(updateLabelParameters);
+    setFlatParameters(updateFlatParameters);
+  };
+
+  const deleteParameterTag = (parameterKey, defaultLabelArray, textArray) => {
+    // console.log({ labelParameters, flatParameters, parameterKey, parameterValue, tagId })
+    // console.log(defaultLabelArray);
+    // console.log({ textArray })
+    const updateLabelParameters = Object.assign({}, labelParameters);
+    const updateFlatParameters = Object.assign({}, flatParameters);
+    updateFlatParameters[parameterKey] = textArray;
+    updateLabelParameters[parameterKey] = defaultLabelArray;
     setLabelParameters(updateLabelParameters);
     setFlatParameters(updateFlatParameters);
   };
@@ -57,7 +64,7 @@ const StructurePreview = () => {
         <DivContainer margin="16px 0 0 0">
           <Card width="auto" padding="0" backgroundColor={freeze ? gray.g0 : white}>
             <DivContainer padding="16px" maxHeight='124px' overflowY='scroll'>
-              <Text fontSize={size18} color={freeze ? gray.g3 : black}>{'http://adjust.com/1234/?c=Campaign_Brasil&click_id={C_ID}_Nombre_cualquiera&device_id={D_ID}&creative={ad_parameters}'}</Text>
+              <Text fontSize={size18} color={freeze ? gray.g3 : black}>{'http://adjust.com/1234/?c=Campaign_Brasil&click_id={C_ID}_suffix&device_id={D_ID}&creative={ad_parameters}'}</Text>
             </DivContainer>
             <HeaderParameter>
               <HeaderText padding='4px 37px 4px 16px' borderRight={`1px solid ${gray.g1}`}>{'Partner parameter'}</HeaderText>
@@ -79,10 +86,10 @@ const StructurePreview = () => {
                   id="creation-tracking-A"
                   type="suggestions-tracking"
                   textBelowSuggestions="or select from the"
-                  suggestions={["Option 1", "Option 2", "Option 3"]}
+                  suggestions={["First 1", "First 2", "First 3"]}
                   callback={() => console.log('Displaying full list')}
-                  onTagCreated={parametersHandler}
-                  onTagDeleted={event => console.log(event + ' has been deleted')}
+                  onTagCreated={addParameterTag}
+                  onTagDeleted={deleteParameterTag}
                   disabled={freeze}
                 />
                 <XIcon
@@ -112,10 +119,10 @@ const StructurePreview = () => {
                   id="creation-tracking-A"
                   type="suggestions-tracking"
                   textBelowSuggestions="or select from the"
-                  suggestions={["Option 1", "Option 2", "Optioooooon 3"]}
+                  suggestions={["Second 1", "Second 2", "Second 3"]}
                   callback={() => console.log('Displaying full list')}
-                  onTagCreated={parametersHandler}
-                  onTagDeleted={event => console.log(event + ' has been deleted')}
+                  onTagCreated={addParameterTag}
+                  onTagDeleted={deleteParameterTag}
                   disabled={freeze}
                 />
                 <XIcon
@@ -145,10 +152,10 @@ const StructurePreview = () => {
                   id="creation-tracking-A"
                   type="suggestions-tracking"
                   textBelowSuggestions="or select from the"
-                  suggestions={["Option 1", "Option 2", "Option 3"]}
+                  suggestions={["third 1", "third 2", "third 3"]}
                   callback={() => console.log('Displaying full list')}
-                  onTagCreated={parametersHandler}
-                  onTagDeleted={event => console.log(event + ' has been deleted')}
+                  onTagCreated={addParameterTag}
+                  onTagDeleted={deleteParameterTag}
                   disabled={freeze}
                 />
                 <XIcon
@@ -178,10 +185,10 @@ const StructurePreview = () => {
                   id="creation-tracking-A"
                   type="suggestions-tracking"
                   textBelowSuggestions="or select from the"
-                  suggestions={["Option 1", "Option 2", "Option 3"]}
+                  suggestions={["fourth 1", "fourth 2", "fourth 3"]}
                   callback={() => console.log('Displaying full list')}
-                  onTagCreated={parametersHandler}
-                  onTagDeleted={event => console.log(event + ' has been deleted')}
+                  onTagCreated={addParameterTag}
+                  onTagDeleted={deleteParameterTag}
                   disabled={freeze}
                 />
                 <XIcon
@@ -203,7 +210,7 @@ const StructurePreview = () => {
                 <ParametersDuplicationContainer>
                   <DropdownContainer width="100%" padding="0 10px 0 0">
                     <DropdownListContainer>
-                      <OptionDropdown wide={true} text="Text" type="basic-clean" onChange={optionId => console.log('Option ' + optionId + ' is selected')} listWidth="fit-content">
+                      <OptionDropdown disabled={freeze} wide={true} text="Text" type="basic-clean" onChange={optionId => console.log('Option ' + optionId + ' is selected')} listWidth="fit-content">
                         <Option label="Option A" id="a" />
                         <Option label="Option B" id="b" />
                         <Option label="Option C" id="c" />
@@ -214,12 +221,16 @@ const StructurePreview = () => {
                   <Text>=</Text>
                   <DivContainer alignSelf="flex-start">
                     <CreationTracking
+                      flatParameters={flatParameters}
+                      labelParameters={labelParameters}
+                      parameterKey={'Option A'}
                       width="264px"
                       type="suggestions-tracking"
                       suggestions={["Option 1", "Option 2", "Option 3"]}
                       callback={() => console.log('Displaying full list')}
-                      onTagCreated={parametersHandler}
-                      onTagDeleted={event => console.log(event + ' has been deleted')}
+                      onTagCreated={addParameterTag}
+                      onTagDeleted={deleteParameterTag}
+                      disabled={freeze}
                     />
                     <DivContainer display="flex" alignItems="center" margin="8px 0 0 0">
                       <Text color={gray.g4} fontSize={size10} display="inline" margin="0 3px 0 0">or select from the </Text>
@@ -245,7 +256,7 @@ const StructurePreview = () => {
           </Card>
         </DivContainer>
         {freeze ? 
-          <DivContainer height="74px"/>
+          <DivContainer height="84px"/>
           :
           <DivContainer display='flex' justifyContent='flex-end' padding='24px 0 15px 0'>
             <Button label='Save' type='secondary-default-medium' />
