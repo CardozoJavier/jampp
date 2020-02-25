@@ -15,7 +15,9 @@ import { DropdownContainer, DropdownListContainer } from '../Dropdown/styles';
 import { LockIcon, XIcon, BoldAddIcon } from '../UI/Icons';
 import { DivContainer, Text } from '../UI/GenericElements/GenericElements.styles';
 import { palette, fonts } from '../styles';
+import { getQueryParams } from '../../utils';
 import { HeaderParameter, HeaderText } from './styles/StructurePreview.styles';
+import { InputField } from '../InputField';
 const { gray, green, black, white } = palette;
 const { size10, size12, size18 } = fonts;
 
@@ -23,6 +25,8 @@ const StructurePreview = () => {
   const [freeze, setFreeze] = useState(false);
   const [flatParameters, setFlatParameters] = useState({});
   const [labelParameters, setLabelParameters] = useState({});
+  const [urlValue, setUrlValue] = useState('http://adjust.com/1234/?c=Campaign_Brasil&click_id={C_ID}_suffix&device_id={D_ID}&creative={ad_parameters}');
+  const queryParams = getQueryParams(urlValue);
 
   const latestFlatParameters = useRef(flatParameters);
   const latestLabelParameters = useRef(labelParameters);
@@ -45,8 +49,47 @@ const StructurePreview = () => {
     latestLabelParameters.current = labelParameters;
     latestFlatParameters.current = flatParameters;
   }, [labelParameters, flatParameters]);
-
   
+  const renderQueryParams = (params) => {
+    const elements = [];
+    params.forEach((value, key) => elements.push(
+      <DivContainer id="original-structure" display="grid" alignItems="center" gridTemplateColumns="28% 5% auto 8%" padding="15px" borderBottom={`1px solid ${gray.g1}`}>
+        <Text color={freeze ? gray.g3 : black} fontSize={size12} fontWeight="bold">{key}</Text>
+        <Text>=</Text>
+        <CreationTracking
+          defaultValue={value}
+          flatParameters={flatParameters}
+          labelParameters={labelParameters}
+          parameterKey={key}
+          width="100%"
+          linkText="Full list"
+          id="creation-tracking-A"
+          type="suggestions-tracking"
+          textBelowSuggestions="or select from the"
+          suggestions={["Option 1", "Option 2", "Option 3"]}
+          callback={() => console.log('Displaying full list')}
+          onTagCreated={updateParametersArray}
+          onTagDeleted={updateParametersArray}
+          disabled={freeze}
+        />
+        <XIcon
+          role='icon-to-remove-structure'
+          props={{
+            width: '10px',
+            height: '10px',
+            fill: gray.g3,
+            margin: '0 5px',
+            cursor: 'pointer',
+            hover: black,
+            justifySelf: 'end',
+            onClick: () => console.log('Display modal and pass it the structure id: original-structure'),
+          }}
+        />
+      </DivContainer>
+    ));
+    return elements;
+  };
+
   return (
     <Modal width="525px">
       <DivContainer padding="25px" position='relative' >
@@ -61,7 +104,7 @@ const StructurePreview = () => {
         <DivContainer margin="16px 0 0 0">
           <Card width="auto" padding="0" backgroundColor={freeze ? gray.g0 : white}>
             <DivContainer padding="16px" maxHeight='124px' overflowY='scroll'>
-              <Text fontSize={size18} color={freeze ? gray.g3 : black}>{'http://adjust.com/1234/?c=Campaign_Brasil&click_id={C_ID}_suffix&device_id={D_ID}&creative={ad_parameters}'}</Text>
+              <Text fontSize={size18} color={freeze ? gray.g3 : black}>{urlValue}</Text>
             </DivContainer>
             <HeaderParameter>
               <HeaderText padding='4px 37px 4px 16px' borderRight={`1px solid ${gray.g1}`}>{'Partner parameter'}</HeaderText>
@@ -71,137 +114,8 @@ const StructurePreview = () => {
               }
             </HeaderParameter>
             <DivContainer>
-              <DivContainer id="original-structure" display="grid" alignItems="center" gridTemplateColumns="28% 5% auto 8%" padding="15px" borderBottom={`1px solid ${gray.g1}`}>
-                <Text color={freeze ? gray.g3 : black} fontSize={size12} fontWeight="bold">c</Text>
-                <Text>=</Text>
-                <CreationTracking
-                  flatParameters={flatParameters}
-                  labelParameters={labelParameters}
-                  parameterKey={'c'}
-                  width="100%"
-                  linkText="Full list"
-                  id="creation-tracking-A"
-                  type="suggestions-tracking"
-                  textBelowSuggestions="or select from the"
-                  suggestions={["Option 1", "Option 2", "Option 3"]}
-                  callback={() => console.log('Displaying full list')}
-                  onTagCreated={updateParametersArray}
-                  onTagDeleted={updateParametersArray}
-                  disabled={freeze}
-                />
-                <XIcon
-                  role='icon-to-remove-structure'
-                  props={{
-                    width: '10px',
-                    height: '10px',
-                    fill: gray.g3,
-                    margin: '0 5px',
-                    cursor: 'pointer',
-                    hover: black,
-                    justifySelf: 'end',
-                    onClick: () => console.log('Display modal and pass it the structure id: original-structure'),
-                  }}
-                />
-              </DivContainer>
 
-              <DivContainer id="original-structure" display="grid" alignItems="center" gridTemplateColumns="28% 5% auto 8%" padding="15px" borderBottom={`1px solid ${gray.g1}`}>
-                <Text color={freeze ? gray.g3 : black} fontSize={size12} fontWeight="bold">click_id</Text>
-                <Text>=</Text>
-                <CreationTracking
-                  flatParameters={flatParameters}
-                  labelParameters={labelParameters}
-                  parameterKey={'click_id'}
-                  width="100%"
-                  linkText="Full list"
-                  id="creation-tracking-A"
-                  type="suggestions-tracking"
-                  textBelowSuggestions="or select from the"
-                  suggestions={["Option 1", "Option 2", "Option 3"]}
-                  callback={() => console.log('Displaying full list')}
-                  onTagCreated={updateParametersArray}
-                  onTagDeleted={updateParametersArray}
-                  disabled={freeze}
-                />
-                <XIcon
-                  role='icon-to-remove-structure'
-                  props={{
-                    width: '10px',
-                    height: '10px',
-                    fill: gray.g3,
-                    margin: '0 5px',
-                    cursor: 'pointer',
-                    hover: black,
-                    justifySelf: 'end',
-                    onClick: () => console.log('Display modal and pass it the structure id: original-structure'),
-                  }}
-                />
-              </DivContainer>
-
-              <DivContainer id="original-structure" display="grid" alignItems="center" gridTemplateColumns="28% 5% auto 8%" padding="15px" borderBottom={`1px solid ${gray.g1}`}>
-                <Text color={freeze ? gray.g3 : black} fontSize={size12} fontWeight="bold">device_id</Text>
-                <Text>=</Text>
-                <CreationTracking
-                  flatParameters={flatParameters}
-                  labelParameters={labelParameters}
-                  parameterKey={'device_id'}
-                  width="100%"
-                  linkText="Full list"
-                  id="creation-tracking-A"
-                  type="suggestions-tracking"
-                  textBelowSuggestions="or select from the"
-                  suggestions={["Option 1", "Option 2", "Option 3"]}
-                  callback={() => console.log('Displaying full list')}
-                  onTagCreated={updateParametersArray}
-                  onTagDeleted={updateParametersArray}
-                  disabled={freeze}
-                />
-                <XIcon
-                  role='icon-to-remove-structure'
-                  props={{
-                    width: '10px',
-                    height: '10px',
-                    fill: gray.g3,
-                    margin: '0 5px',
-                    cursor: 'pointer',
-                    hover: black,
-                    justifySelf: 'end',
-                    onClick: () => console.log('Display modal and pass it the structure id: original-structure'),
-                  }}
-                />
-              </DivContainer>
-
-              <DivContainer id="original-structure" display="grid" alignItems="center" gridTemplateColumns="28% 5% auto 8%" padding="15px" borderBottom={`1px solid ${gray.g1}`}>
-                <Text color={freeze ? gray.g3 : black} fontSize={size12} fontWeight="bold">creative</Text>
-                <Text>=</Text>
-                <CreationTracking
-                  flatParameters={flatParameters}
-                  labelParameters={labelParameters}
-                  parameterKey={'creative'}
-                  width="100%"
-                  linkText="Full list"
-                  id="creation-tracking-A"
-                  type="suggestions-tracking"
-                  textBelowSuggestions="or select from the"
-                  suggestions={["Option 1", "Option 2", "Option 3"]}
-                  callback={() => console.log('Displaying full list')}
-                  onTagCreated={updateParametersArray}
-                  onTagDeleted={updateParametersArray}
-                  disabled={freeze}
-                />
-                <XIcon
-                  role='icon-to-remove-structure'
-                  props={{
-                    width: '10px',
-                    height: '10px',
-                    fill: gray.g3,
-                    margin: '0 5px',
-                    cursor: 'pointer',
-                    hover: black,
-                    justifySelf: 'end',
-                    onClick: () => console.log('Display modal and pass it the structure id: original-structure'),
-                  }}
-                />
-              </DivContainer>
+              {queryParams && renderQueryParams(queryParams)}
 
               <CreateElement disabled={freeze} buttonText="Add parameter" buttonType="link-default-left" buttonIcon={BoldAddIcon} onDeleteCallback={structureId => console.log('Structure with id ' + structureId + ' want to be deleted')}>
                 <ParametersDuplicationContainer>

@@ -29,7 +29,7 @@ const { size10 } = fonts;
  * @param {String} parameterKey - (Optional) It's the key that correspond with each parameter input text.
  * @return {React Component} A view for input field with icon and action on error.
  */
-const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions, flatParameters, labelParameters, parameterKey, }) => {
+const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions, flatParameters, labelParameters, parameterKey, defaultValue }) => {
   const { defaultClassName, optionalClassName, onBlurClassName, onFocusClassName, InputContainer } = inputProps[type];
   const [className, setClassName] = useState(defaultClassName);
   
@@ -215,7 +215,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
         <DefaultLabel
           key={id}
           id={id}
-          text={`{${value}}`}
+          text={defaultValue || `{${value}}`}
           size="medium"
           margin="4px"
           maxWidth={maxWidth}
@@ -288,6 +288,10 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
   useEffect(() => {
     latestTextArray.current = textArray;
   }, [textArray]);
+
+  useEffect(() => {
+    defaultValue && handleClickSuggestion(defaultValue);
+  }, []);
 
   return (
     <LabelContainer id="test- label">
