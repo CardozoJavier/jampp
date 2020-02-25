@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { LabelContainer, Input, Label, SuggestionsListContainer, SuggestionsList, PreviewContainer, PlainText} from './styles';
-import { getClassName, bemDestruct, useEventListener } from '../../utils';
+import { getClassName, bemDestruct, useEventListener, removeEmptySpace } from '../../utils';
 import inputProps from './inputProps';
 import { DefaultLabel } from '../Label';
 import { Text } from '../UI/GenericElements/GenericElements.styles';
@@ -140,7 +140,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
           );
 
           const updateTextArray = [...textArray];
-          const trimValue = matchSuggestion[suggestionActive].split(' ').join('');
+          const trimValue = removeEmptySpace(matchSuggestion[suggestionActive]);
           updateTextArray.push(
             <PlainText text={matchSuggestion[suggestionActive]} id={id} key={id}>{trimValue}</PlainText>
           );
@@ -166,7 +166,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     setPlainTextValue(value);
 
     latestDefaultLabelArray.current.forEach(element => {
-      if (element.props.id === id) {
+      if (element.props.id == id) {
         const cloneElement = React.cloneElement(element, {
           value,
           size: value.length + 2,
@@ -179,7 +179,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     });
 
     latestTextArray.current.forEach(text => {
-      const trimValue = value.split(' ').join('');
+      const trimValue = removeEmptySpace(value);
       if (text.props.id === id) {
         const cloneElement = React.cloneElement(text, {
           children: trimValue,
@@ -189,8 +189,6 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
         updateTextArray.push(text);
       }
     });
-
-
 
     setDefaultLabelArray(updateDefaultLabelArray);
     setTextArray(updateTextArray);
@@ -202,13 +200,15 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
    */
   const handleClickSuggestion = (value, type) => {
     const updateDefaultLabelArray = [...defaultLabelArray];
-    const trimValue = value.split(' ').join('');
+    const trimValue = removeEmptySpace(value);
     const id = Math.random().toString();
+    const labelId = Math.random().toString();
     setMatchSuggestion([]);
+    setLabelId(labelId);
 
     if (type === 'flat') {
       updateDefaultLabelArray.push(
-        <Input style={{ display: trimValue.length ? 'block' : 'none' }} id={id} key={id} value={plainTextValue} disabled={disabled} placeholder="" fontSize={size10} size={value.length + 2 || 1} width="auto" onChange={handleInputChange} />
+        <Input style={{ display: trimValue.length ? 'block' : 'none' }} size={value.length + 3} id={id} key={id} value={plainTextValue} disabled={disabled} placeholder="" fontSize={size10} width="auto" onChange={handleInputChange} />
       );
     } else {
       updateDefaultLabelArray.push(
@@ -290,20 +290,21 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
   }, [textArray]);
 
   return (
-    <LabelContainer>
+    <LabelContainer id="test- label">
       {label && <Label htmlFor={labelId}>{label}</Label>}
       <InputContainer
         onClick={disabled ? null : handleClick}
         className={bemDestruct(className, disabled)}
         disabled={disabled}
         width={width}
+        htmlFor={labelId}
       >
         {defaultLabelArray && defaultLabelArray.map(item => item)}
         <PreviewContainer>
           <Input
             id={labelId}
             fontSize={size10}
-            value={inputValue}
+            value={disabled ? removeEmptySpace(inputValue) : inputValue}
             disabled={disabled}
             placeholder={placeholder}
             onKeyDown={handleKeyDown}
