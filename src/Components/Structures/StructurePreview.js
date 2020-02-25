@@ -31,16 +31,6 @@ const StructurePreview = () => {
     setFreeze(status);
   };
 
-  // const addParameterTag = (parameterValue, parameterKey, defaultLabelArray, textArray) => {
-  //   let updateFlatParameters = Object.assign({}, flatParameters);
-  //   const updateLabelParameters = Object.assign({}, labelParameters);
-  //   updateLabelParameters[parameterKey] = defaultLabelArray;
-  //   updateFlatParameters[parameterKey] = textArray;
-    
-  //   setLabelParameters(updateLabelParameters);
-  //   setFlatParameters(updateFlatParameters);
-  // };
-
   const updateParametersArray = (parameterValue, parameterKey, defaultLabelArray, textArray) => {
     const updateLabelParameters = Object.assign({}, latestLabelParameters.current);
     const updateFlatParameters = Object.assign({}, latestFlatParameters.current);
@@ -93,7 +83,7 @@ const StructurePreview = () => {
                   id="creation-tracking-A"
                   type="suggestions-tracking"
                   textBelowSuggestions="or select from the"
-                  suggestions={["First 1", "First 2", "First 3"]}
+                  suggestions={["Option 1", "Option 2", "Option 3"]}
                   callback={() => console.log('Displaying full list')}
                   onTagCreated={updateParametersArray}
                   onTagDeleted={updateParametersArray}
@@ -126,7 +116,7 @@ const StructurePreview = () => {
                   id="creation-tracking-A"
                   type="suggestions-tracking"
                   textBelowSuggestions="or select from the"
-                  suggestions={["Second 1", "Second 2", "Second 3"]}
+                  suggestions={["Option 1", "Option 2", "Option 3"]}
                   callback={() => console.log('Displaying full list')}
                   onTagCreated={updateParametersArray}
                   onTagDeleted={updateParametersArray}
@@ -159,7 +149,7 @@ const StructurePreview = () => {
                   id="creation-tracking-A"
                   type="suggestions-tracking"
                   textBelowSuggestions="or select from the"
-                  suggestions={["third 1", "third 2", "third 3"]}
+                  suggestions={["Option 1", "Option 2", "Option 3"]}
                   callback={() => console.log('Displaying full list')}
                   onTagCreated={updateParametersArray}
                   onTagDeleted={updateParametersArray}
@@ -192,7 +182,7 @@ const StructurePreview = () => {
                   id="creation-tracking-A"
                   type="suggestions-tracking"
                   textBelowSuggestions="or select from the"
-                  suggestions={["fourth 1", "fourth 2", "fourth 3"]}
+                  suggestions={["Option 1", "Option 2", "Option 3"]}
                   callback={() => console.log('Displaying full list')}
                   onTagCreated={updateParametersArray}
                   onTagDeleted={updateParametersArray}
