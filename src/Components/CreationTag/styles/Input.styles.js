@@ -5,7 +5,7 @@ const { violet, gray } = palette;
 
 export default styled(Input)`
   width: ${({ width }) => width};
-  padding: 8px 3px;
+  padding: 8px 0;
   font-size: ${({ fontSize }) => fontSize};
 
   &.preview-tracking {

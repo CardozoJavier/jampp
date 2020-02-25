@@ -65,6 +65,7 @@ export const SuggestionsList = styled.div`
   width: 100%;
   opacity: 0;
   visibility: hidden;
+  word-break: break-all;
 
   .button.link--default-left {
     font-size: 10px;
@@ -106,4 +107,5 @@ export const PlainText = styled.p`
   word-break: break-all;
   color: ${gray.g3};
   font-size: ${size10};
+  margin: 0;
 `;
