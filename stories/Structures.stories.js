@@ -25,7 +25,7 @@ import { LabelContainer } from '../src/Components/InputField/styles';
 import { TrashIcon, XIcon, BoldAddIcon } from '../src/Components/UI/Icons';
 import { ParametersDuplicationContainer } from '../src/Components/CreationTag/styles';
 import { Text, DivContainer } from '../src/Components/UI/GenericElements/GenericElements.styles';
-import StructurePreview from '../src/Components/Structures/StructurePreview';
+import {StructurePreview} from '../src/Components/Structures';
 const { gray, link, black, } = palette;
 const { size10, size12 } = fonts;
 

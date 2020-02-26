@@ -8,6 +8,7 @@ import { Text } from '../UI/GenericElements/GenericElements.styles';
 import { Button } from '../Button';
 import { palette, fonts } from '../styles';
 import { XIcon } from '../UI/Icons';
+import InputText from '../Structures/InputText';
 const { gray, black } = palette;
 const { size10 } = fonts;
 
@@ -29,7 +30,7 @@ const { size10 } = fonts;
  * @param {String} parameterKey - (Optional) It's the key that correspond with each parameter input text.
  * @return {React Component} A view for input field with icon and action on error.
  */
-const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions, flatParameters, labelParameters, parameterKey, defaultValue }) => {
+const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions, flatParameters, labelParameters, parameterKey, parameters, latestParameters }) => {
   const { defaultClassName, optionalClassName, onBlurClassName, onFocusClassName, InputContainer } = inputProps[type];
   const [className, setClassName] = useState(defaultClassName);
   
@@ -44,6 +45,9 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
   const [textArray, setTextArray] = useState([]);
   const latestTextArray = useRef(textArray);
   const [plainTextValue, setPlainTextValue] = useState('');
+
+  // const context = useContext(StructurePreviewContext);
+  // console.log({ context });
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const maxWidth = Number(width.split('px')[0]) - 53;
@@ -80,25 +84,23 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     const updateDefaultLabelArray = [];
     const updateTextArray = [];
 
-    /**
-     * The ref is used for accessing to latest tags added in input
-     */
-    latestDefaultLabelArray.current.forEach(tag => {
+    latestParameters.labelTag[parameterKey].forEach(tag => {
       const id = `${tag.props.id}__${tag.props.text}`;
       if (tagId !== id) {
         updateDefaultLabelArray.push(tag);
       }
     });
-
-    latestTextArray.current.forEach(text => {
+    
+    latestParameters.plainText[parameterKey].forEach(text => {
       const id = `${text.props.id}__{${text.props.text}}`;
+      console.log({ id, tagId })
       if (id !== tagId) {
         updateTextArray.push(text);
       }
     });
 
-    setTextArray(updateTextArray);
-    setDefaultLabelArray(updateDefaultLabelArray);
+    // setTextArray(updateTextArray);
+    // setDefaultLabelArray(updateDefaultLabelArray);
     onTagDeleted(null, parameterKey, updateDefaultLabelArray, updateTextArray);
   };
 
@@ -123,7 +125,8 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
 
       if ((keyCode === '13') || (keyCode === '9')) {
         key.preventDefault();
-        const updateDefaultLabelArray = [...defaultLabelArray];
+        // const updateDefaultLabelArray = [...defaultLabelArray];
+        const updateDefaultLabelArray = latestParameters.labelTag[parameterKey] ? [...latestParameters.labelTag[parameterKey]] : [];
 
         if (matchSuggestion[suggestionActive]) {
           const id = Math.random().toString();
@@ -133,21 +136,22 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
               id={id}
               text={`{${matchSuggestion[suggestionActive]}}`}
               size="medium"
-              margin="4px"
-              maxWidth={maxWidth}
+              margin="4px 3px"
+              // maxWidth={maxWidth}
               onClose={deleteTagHandler}
             />
           );
 
-          const updateTextArray = [...textArray];
+          // const updateTextArray = [...textArray];
+          const updateTextArray = latestParameters.plainText[parameterKey] ? [...latestParameters.plainText[parameterKey]] : [];
           const trimValue = removeEmptySpace(matchSuggestion[suggestionActive]);
           updateTextArray.push(
             <PlainText text={matchSuggestion[suggestionActive]} id={id} key={id}>{trimValue}</PlainText>
           );
 
-          setDefaultLabelArray(updateDefaultLabelArray);
+          // setDefaultLabelArray(updateDefaultLabelArray);
           onTagCreated(matchSuggestion[suggestionActive], parameterKey, updateDefaultLabelArray, updateTextArray);
-          setTextArray(updateTextArray);
+          // setTextArray(updateTextArray);
           setInputValue('');
           setMatchSuggestion([]);
           setSuggestionActive(-1);
@@ -158,67 +162,83 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     }
   };
 
-  const handleInputChange = (e) => {
-    const value = e.target.value;
-    const id = e.target.id;
+  const handleInputChange = (id, value) => {
+    // const value = e.target.value;
+    // const id = e.target.id;
     const updateDefaultLabelArray = [];
     const updateTextArray = [];
-    setPlainTextValue(value);
+    // setPlainTextValue(value);
 
-    latestDefaultLabelArray.current.forEach(element => {
-      if (element.props.id == id) {
-        const cloneElement = React.cloneElement(element, {
+
+
+    // parameters.forEach(param => {
+    //   if (param.props.id === id) {
+
+    //   }
+    // });
+
+    latestParameters.labelTag[parameterKey].forEach(labelTag => {
+      if (labelTag.props.id == id) {
+        const cloneElement = React.cloneElement(labelTag, {
           value,
           size: value.length + 2,
           style: value.length ? { display: 'block' } : { display: 'none' },
         });
         updateDefaultLabelArray.push(cloneElement);
       } else {
-        updateDefaultLabelArray.push(element);
+        updateDefaultLabelArray.push(labelTag);
       }
     });
 
-    latestTextArray.current.forEach(text => {
+    latestParameters.plainText[parameterKey].forEach(plainText => {
+      console.log({ propsId: plainText.props, id })
       const trimValue = removeEmptySpace(value);
-      if (text.props.id === id) {
-        const cloneElement = React.cloneElement(text, {
+      if (plainText.props.id === id) {
+        const cloneElement = React.cloneElement(plainText, {
           children: trimValue,
         });
         updateTextArray.push(cloneElement);
       } else {
-        updateTextArray.push(text);
+        updateTextArray.push(plainText);
       }
     });
 
-    setDefaultLabelArray(updateDefaultLabelArray);
-    setTextArray(updateTextArray);
-    onTagDeleted(null, parameterKey, updateDefaultLabelArray, updateTextArray);
+    // console.log({ e, latestParameters });
+
+    onTagCreated(null, parameterKey, updateDefaultLabelArray, updateTextArray);
+
+    // setDefaultLabelArray(updateDefaultLabelArray);
+    // setTextArray(updateTextArray);
+    // onTagDeleted(null, parameterKey, updateDefaultLabelArray, updateTextArray);
   };
 
   /**
    * Create label tag on click event in suggestions list
    */
   const handleClickSuggestion = (value, type) => {
-    const updateDefaultLabelArray = [...defaultLabelArray];
+    const updateDefaultLabelArray = latestParameters.labelTag[parameterKey] ? [...latestParameters.labelTag[parameterKey]] : [];
     const trimValue = removeEmptySpace(value);
     const id = Math.random().toString();
     const labelId = Math.random().toString();
     setMatchSuggestion([]);
     setLabelId(labelId);
 
+    console.log({ id });
+
     if (type === 'flat') {
+      // <Input value={inputValue} style={{ display: trimValue.length ? 'block' : 'none' }} size={value.length + 3} id={id} key={id} disabled={disabled} placeholder="" fontSize={size10} width="auto" onChange={handleInputChange} />
       updateDefaultLabelArray.push(
-        <Input style={{ display: trimValue.length ? 'block' : 'none' }} size={value.length + 3} id={id} key={id} value={plainTextValue} disabled={disabled} placeholder="" fontSize={size10} width="auto" onChange={handleInputChange} />
+        <InputText id={id} key={id} defaultValue={inputValue} onChange={handleInputChange} disabled={disabled} />
       );
     } else {
       updateDefaultLabelArray.push(
         <DefaultLabel
           key={id}
           id={id}
-          text={defaultValue || `{${value}}`}
+          text={`{${value}}`}
           size="medium"
-          margin="4px"
-          maxWidth={maxWidth}
+          margin="4px 3px"
+          // maxWidth={maxWidth}
           onClose={deleteTagHandler}
         />
       );
@@ -227,14 +247,18 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     /**
      * It's for displaying the tags like plain text when input is freezed
      */
-    const updateTextArray = [...textArray];
+    const updateTextArray = latestParameters.plainText[parameterKey] ? [...latestParameters.plainText[parameterKey]] : [];
+    const plainTextId = Math.random().toString();
     updateTextArray.push(
-      <PlainText text={value} key={id} id={id}>{trimValue}</PlainText>
+      <PlainText text={value} key={plainTextId} id={plainTextId}>{trimValue}</PlainText>
     );
 
-    value ? onTagCreated(value.trim(), parameterKey, updateDefaultLabelArray, updateTextArray) : null;
-    setDefaultLabelArray(updateDefaultLabelArray);
-    setTextArray(updateTextArray);
+
+    // console.log({ latest: latestTextArray.current, updateTextArray, textArray })
+    
+    value.trim() && onTagCreated(value.trim(), parameterKey, updateDefaultLabelArray, updateTextArray);
+    // setDefaultLabelArray(updateDefaultLabelArray); dejamos de controlar el array de tags desde aca para hacerlo desde el padre
+    // setTextArray(updateTextArray); mismo que arriba
     setInputValue('');
     setShowSuggestion(false);
     setPreviewTracking('');
@@ -289,9 +313,9 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     latestTextArray.current = textArray;
   }, [textArray]);
 
-  useEffect(() => {
-    defaultValue && handleClickSuggestion(defaultValue);
-  }, []);
+  // useEffect(() => {
+  //   defaultValue && handleClickSuggestion(defaultValue);
+  // }, []);
 
   return (
     <LabelContainer id="test- label">
@@ -303,7 +327,10 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
         width={width}
         htmlFor={labelId}
       >
-        {defaultLabelArray && defaultLabelArray.map(item => item)}
+        {/* {defaultLabelArray && defaultLabelArray.map(item => item)} */}
+        
+        {parameters && parameters.map(item => item)}
+
         <PreviewContainer>
           <Input
             id={labelId}

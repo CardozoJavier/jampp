@@ -29,6 +29,7 @@ export {
 export { Card } from './Card';
 export { Modal } from './Modal';
 export { Button } from './Button';
+export { TextArea } from './TextArea';
 export { Checkbox } from './Checkbox';
 export { InputField } from './InputField';
 export { OptionList } from './OptionList';
