@@ -16,6 +16,7 @@ export default {
  * @prop {Function} icon - (Optional) Function that returns an svg icon.
  * @prop {Function} onClick - (Optional) Callback to trigger on onClick event.
  * @prop {Node} children - (Optional) HTML element to be rendered, e.g.: strong tag inside button.
+ * @prop {String} fontSize - (Optional) It's the font size for text button. Default value depend on button type.
  */
 export const SolidPurple = () => (
   <>

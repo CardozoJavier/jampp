@@ -37,7 +37,7 @@ export default styled.div`
         &__disabled {
           color: ${gray.g05};
           
-          ${AddIconContainer} {
+          svg {
             fill: ${gray.g05};
           }
         }

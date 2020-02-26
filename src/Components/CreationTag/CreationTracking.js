@@ -159,6 +159,12 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     setLabelId(id);
   }, []);
 
+  const handleCallback = () => {
+    callback();
+    closePreview();
+    setInputValue('');
+  };
+
   return (
     <LabelContainer>
       {label && <Label htmlFor={labelId}>{label}</Label>}
@@ -208,8 +214,8 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
             : null
           }
           {linkText ?
-            <Button label={linkText} type="link-default-left" onClick={callback} />
-            :null
+            <Button label={linkText} type="link-default-left" onClick={handleCallback} />
+            : null
           }
         </SuggestionsList>
       </SuggestionsListContainer>

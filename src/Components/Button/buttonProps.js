@@ -94,7 +94,7 @@ const buttonProps = {
     defaultClassName: 'button link--default-left',
     optionalClassName: '',
     ButtonContainer: LinkButtonContainer,
-    iconClassName: '',
+    iconClassName: 'button link--default-left',
     iconProps: {
       fill: link,
       width: '11px',

@@ -56,6 +56,7 @@ export const Basic = () => (
           * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
           * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
           * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
+          * @prop {String} listWidth - (Optional) It's the width of the list opened.
           */}
         <OptionDropdown text="Text" type="basic-clean" onChange={optionId => console.log('Option ' + optionId + ' is selected')}>
           {/**
@@ -81,6 +82,7 @@ export const Basic = () => (
         * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
         * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
+        * @prop {String} listWidth - (Optional) It's the width of the list opened.
         */}
         <OptionDropdown text="Text" type="basic-status-label" onChange={optionId => console.log('Option ' + optionId + ' is selected')}>
           {/**
@@ -112,6 +114,7 @@ export const BasicWithLabel = () => (
         * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
         * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
+        * @prop {String} listWidth - (Optional) It's the width of the list opened.
         */}
       <OptionDropdown text="Text" type="basic-status-label" notCheckIcon>
         {/**
@@ -163,6 +166,7 @@ export const SolidWithIcon = () => (
         * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
         * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
+        * @prop {String} listWidth - (Optional) It's the width of the list opened.
         */}
       <DropdownListContainer>
 
@@ -189,6 +193,7 @@ export const SolidWithIcon = () => (
         * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
         * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
+        * @prop {String} listWidth - (Optional) It's the width of the list opened.
         */}
       <DropdownListContainer>
 
@@ -217,6 +222,7 @@ export const SolidWithIcon = () => (
         * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
         * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
+        * @prop {String} listWidth - (Optional) It's the width of the list opened.
         */}
       <DropdownListContainer>
 
@@ -271,6 +277,7 @@ export const NoBorder = () => (
         * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
         * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
+        * @prop {String} listWidth - (Optional) It's the width of the list opened.
         */}
       <OptionDropdown text="Text" type="no-border-clean">
         {/**
@@ -294,6 +301,7 @@ export const NoBorder = () => (
         * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
         * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
+        * @prop {String} listWidth - (Optional) It's the width of the list opened.
       */}
       <OptionDropdown text="Text" type="no-border-status-label">
         {/**
@@ -319,6 +327,7 @@ export const NoBorder = () => (
         * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
         * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
+        * @prop {String} listWidth - (Optional) It's the width of the list opened.
       */}
       <OptionDropdown text="Text" type="no-border-clean" disabled={true}>
         {/**
@@ -370,6 +379,7 @@ export const NoBorderLink = () => (
         * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
         * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
+        * @prop {String} listWidth - (Optional) It's the width of the list opened.
         */}
       <OptionDropdown text="Advanced Options" type="no-border-link-clean">
         {/**
@@ -393,6 +403,7 @@ export const NoBorderLink = () => (
         * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
         * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
+        * @prop {String} listWidth - (Optional) It's the width of the list opened.
         */}
       <OptionDropdown text="Advanced Options" type="no-border-link-status-label">
         {/**
@@ -418,6 +429,7 @@ export const NoBorderLink = () => (
         * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
         * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
+        * @prop {String} listWidth - (Optional) It's the width of the list opened.
         */}
       <OptionDropdown text="Advanced Options" type="no-border-link-clean" disabled={true}>
         {/**
@@ -468,7 +480,7 @@ export const NoBorderPurple = () => (
         * @prop {Boolean} notCheckIcon - (Optional) It's a modifier to not display the check icon next to text.
         * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
-        * 
+        * @prop {String} listWidth - (Optional) It's the width of the list opened.
         */}
       <OptionDropdown text="Advertiser" type="no-border-purple-clean">
         {/**
@@ -491,6 +503,7 @@ export const NoBorderPurple = () => (
         * @prop {Boolean} notCheckIcon - (Optional) It's a modifier to not display the check icon next to text.
         * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
+        * @prop {String} listWidth - (Optional) It's the width of the list opened.
         */}
       <OptionDropdown text="Advertiser" type="no-border-purple-status-label">
         {/**
