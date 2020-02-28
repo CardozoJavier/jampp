@@ -50,10 +50,11 @@ const InputField = ({ type, placeholder, errorMessage, warningMessage, label, ic
 
   const handleChange = (e) => {
     const currentValue = e.target.value;
-    const error = onError ? onError(currentValue) : null;
+    const isError = onError ? onError(currentValue) : null;
     const warning = onWarning ? onWarning(currentValue) : null;
+    setValue(currentValue);
 
-    if (error) {
+    if (isError) {
       setError(true);
       setClassName(errorClassName);
     } else if (warning) {
@@ -63,7 +64,6 @@ const InputField = ({ type, placeholder, errorMessage, warningMessage, label, ic
       setError(false);
       setWarning(false);
       onChange(currentValue);
-      setValue(currentValue);
       setClassName(onFocusClassName);
     }
   }
