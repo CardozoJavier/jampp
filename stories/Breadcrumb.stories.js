@@ -33,12 +33,14 @@ export const Default = () => (
  * @prop {String} nextButtonType - (Optional) It's the type button to be displayed like "next button". Default value is "secondary-default-medium".
  * @prop {String} prevButtonDisabled - (Optional) If true, the "previous" button is disabled.
  * @prop {String} nextButtonDisabled - (Optional) If true, the "next" button is disabled.
+ * @prop {Function} onClickBack - (Optional) Callback to trigger on onClick back button event.
+ * @prop {Function} onClickNext - (Optional) Callback to trigger on onClick next button event.
  * 
  *  Step component should be called with
  *  @prop {String} text - (Required) It's the name step.
  */
 export const Footer = () => (
-  <FooterBreadcrumb onChange={(index, text) => console.log('Now we are in ' + text)} currentStep={1}>
+  <FooterBreadcrumb onChange={(index, text) => console.log('Now we are in ' + text)} currentStep={1} onClickBack={() => console.log('Back button has clicked')} onClickNext={() => console.log('Next button has clicked')}>
     <Step text="1. Step 1" />
     <Step text="2. Step 2" />
     <Step text="3. Step 3" />

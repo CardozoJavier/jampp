@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   ControlledInputFieldContainer,
@@ -21,16 +21,22 @@ import inputProps from './inputProps';
  * @param {String} label - (Optional) Text to be display in label.
  * @param {String} id - (Optional) ID to be use for label refering to input field.
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument.
+ * @param {String} defaultValue - (Optional) It's the default value setted in input field.
  * @return {React Component} A view for input field with custom bold placeholder.
  */
-const InputControlled = ({ type, placeholder, boldPlaceholder, id, label, disabled, }) => {
+const InputControlled = ({ type, placeholder, boldPlaceholder, id, label, disabled, onChange, defaultValue }) => {
   const { defaultClassName, optionalClassName, onFocusClassName, onBlurClassName } = inputProps[type];
   const [className, setClassName] = useState(defaultClassName);
   const [input, setInput] = useState(false);
+  const [value, setValue] = useState(defaultValue);
 
   const handleChange = (e) => {
-    const value = e.target.value;
-    if (value) {
+    const currentValue = e.target.value;
+    onChange(currentValue);
+    setValue(currentValue);
+
+    if (currentValue) {
       setInput(true);
       setClassName(optionalClassName);
     } else {
@@ -46,6 +52,12 @@ const InputControlled = ({ type, placeholder, boldPlaceholder, id, label, disabl
   const handleFocus = () => {
     setClassName(onFocusClassName);
   }
+
+  useEffect(() => {
+    if (defaultValue) {
+      setInput(true);
+    }
+  }, []);
   
   return (
     <InputControlledContainer>
@@ -66,6 +78,7 @@ const InputControlled = ({ type, placeholder, boldPlaceholder, id, label, disabl
         <Input 
           id={id}
           type="text"
+          value={value}
           disabled={disabled}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -83,6 +96,8 @@ InputControlled.propTypes = {
   id: PropTypes.string,
   label: PropTypes.string,
   disabled: PropTypes.bool,
+  defaultValue: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 InputControlled.defaultProps = {
@@ -91,6 +106,8 @@ InputControlled.defaultProps = {
   id: '',
   label: '',
   disabled: false,
+  defaultValue: '',
+  onChange: () => null,
 };
 
 export default InputControlled;

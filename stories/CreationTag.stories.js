@@ -13,6 +13,8 @@ export default {
  * @prop {String} label - (Optional) Text to be display in label.
  * @prop {Function} onTagCreated - (Optional) Callback to trigger on tag created. It receive tag value in first argument.
  * @prop {Function} onTagDeleted - (Optional) Callback to trigger when tag is deleted. It receive tag value in first argument.
+ * @prop {Function} onError - (Optional) Function to check input values and trigger error message. It receive the input value in first argument.
+ * @prop {String} errorMessage - (Optional) String to be display on error event.
  */
 export const Default = () => (
   <CreationTag
@@ -22,6 +24,8 @@ export const Default = () => (
     width="433px"
     onTagCreated={event => console.log(event + ' has been created')}
     onTagDeleted={event => console.log(event + ' has been deleted')}
+    errorMessage="Type error"
+    onError={() => true}
   />
 );
 
