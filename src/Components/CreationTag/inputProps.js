@@ -8,7 +8,7 @@ const inputProps = {
     defaultClassName: 'input basic--default-medium',
     onFocusClassName: "input basic--default-medium__focus",
     onBlurClassName: "input basic--default-medium__blur",
-    errorClassName: "",
+    errorClassName: "input basic--default-medium__error",
     InputContainer: CreationTagContainer,
   },
   "suggestions-default": {
