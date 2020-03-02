@@ -20,14 +20,16 @@ const { yellow } = palette;
  * @param {Function} onWarning- (Optional) Function to check input values and trigger warning message.
  * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument.
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ * @param {String} defaultValue - (Optional) It's the default value setted in input field.
  * @return {React Component} A view for input field with icon and action on error.
  */
-const InputField = ({ type, placeholder, errorMessage, warningMessage, label, icon, onError, onWarning, onChange, disabled, margin }) => {
+const InputField = ({ type, placeholder, errorMessage, warningMessage, label, icon, onError, onWarning, onChange, disabled, margin, defaultValue }) => {
   const { defaultClassName, optionalClassName, errorClassName, warningClassName, onBlurClassName, onFocusClassName, InputContainer, iconProps } = inputProps[type];
   const [className, setClassName] = useState(defaultClassName);
   const [error, setError] = useState(false);
   const [warning, setWarning] = useState(false);
   const [labelId, setLabelId] = useState('');
+  const [value, setValue] = useState(defaultValue);
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
 
   const handleClick = () => {
@@ -46,11 +48,13 @@ const InputField = ({ type, placeholder, errorMessage, warningMessage, label, ic
     }
   }
 
-  const handleChange = ({ target: { value }}) => {
-    const error = onError ? onError(value) : null;
-    const warning = onWarning ? onWarning(value) : null;
+  const handleChange = (e) => {
+    const currentValue = e.target.value;
+    const isError = onError ? onError(currentValue) : null;
+    const warning = onWarning ? onWarning(currentValue) : null;
+    setValue(currentValue);
 
-    if (error) {
+    if (isError) {
       setError(true);
       setClassName(errorClassName);
     } else if (warning) {
@@ -59,7 +63,7 @@ const InputField = ({ type, placeholder, errorMessage, warningMessage, label, ic
     } else {
       setError(false);
       setWarning(false);
-      onChange(value);
+      onChange(currentValue);
       setClassName(onFocusClassName);
     }
   }
@@ -79,6 +83,7 @@ const InputField = ({ type, placeholder, errorMessage, warningMessage, label, ic
       >
         <Input
           id={labelId}
+          value={value}
           placeholder={placeholder}
           onBlur={disabled ? null : handleBlur}
           onFocus={disabled ? null : handleFocus}
@@ -89,7 +94,7 @@ const InputField = ({ type, placeholder, errorMessage, warningMessage, label, ic
         {icon ? <IconGenerator renderIcon={icon} props={iconProps} /> : null}
 
         {errorMessage && 
-          <ExclamationIcon />
+          <ExclamationIcon props={{ margin: '0 5px' }} />
         }
       </InputContainer>
       {errorMessage && 
@@ -114,6 +119,7 @@ InputField.propTypes = {
   onError: PropTypes.func,
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
+  defaultValue: PropTypes.string,
 };
 
 InputField.defaultProps = {
@@ -124,6 +130,7 @@ InputField.defaultProps = {
   onError: () => null,
   onChange: () => null,
   disabled: false,
+  defaultValue: '',
 };
 
 export default InputField;

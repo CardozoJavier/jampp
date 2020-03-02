@@ -57,8 +57,9 @@ export const Basic = () => (
           * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
           * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
           * @prop {String} listWidth - (Optional) It's the width of the list opened.
+        * @prop {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
           */}
-        <OptionDropdown text="Text" type="basic-clean" onChange={optionId => console.log('Option ' + optionId + ' is selected')}>
+        <OptionDropdown defaultValue="id2" text="Text" type="basic-clean" onChange={optionId => console.log('Option ' + optionId + ' is selected')}>
           {/**
             * Option component should be used with
             * @prop {String} label - (Optional) It's a text to be display inside button.
@@ -83,8 +84,9 @@ export const Basic = () => (
         * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
         * @prop {String} listWidth - (Optional) It's the width of the list opened.
+        * @prop {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
         */}
-        <OptionDropdown text="Text" type="basic-status-label" onChange={optionId => console.log('Option ' + optionId + ' is selected')}>
+        <OptionDropdown defaultValue="green" text="Text" type="basic-status-label" onChange={optionId => console.log('Option ' + optionId + ' is selected')}>
           {/**
             * Option component should be used with
             * @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
@@ -115,6 +117,7 @@ export const BasicWithLabel = () => (
         * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
         * @prop {String} listWidth - (Optional) It's the width of the list opened.
+        * @prop {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
         */}
       <OptionDropdown text="Text" type="basic-status-label" notCheckIcon>
         {/**
@@ -158,6 +161,7 @@ export const SolidWithIcon = () => (
     </DropdownContainer>
 
     <DropdownContainer>
+      <DropdownListContainer>
       {/**
         * OptionDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
@@ -167,9 +171,8 @@ export const SolidWithIcon = () => (
         * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
         * @prop {String} listWidth - (Optional) It's the width of the list opened.
+        * @prop {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
         */}
-      <DropdownListContainer>
-
       <OptionDropdown text="Dropdown solid w/icon" type="solid-clean" leftIcon={DownloadFileIcon}>
         {/**
           * Option component should be used with
@@ -194,6 +197,7 @@ export const SolidWithIcon = () => (
         * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
         * @prop {String} listWidth - (Optional) It's the width of the list opened.
+        * @prop {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
         */}
       <DropdownListContainer>
 
@@ -223,6 +227,7 @@ export const SolidWithIcon = () => (
         * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
         * @prop {String} listWidth - (Optional) It's the width of the list opened.
+        * @prop {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
         */}
       <DropdownListContainer>
 
@@ -278,6 +283,7 @@ export const NoBorder = () => (
         * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
         * @prop {String} listWidth - (Optional) It's the width of the list opened.
+        * @prop {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
         */}
       <OptionDropdown text="Text" type="no-border-clean">
         {/**
@@ -302,6 +308,7 @@ export const NoBorder = () => (
         * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
         * @prop {String} listWidth - (Optional) It's the width of the list opened.
+        * @prop {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
       */}
       <OptionDropdown text="Text" type="no-border-status-label">
         {/**
@@ -328,6 +335,7 @@ export const NoBorder = () => (
         * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
         * @prop {String} listWidth - (Optional) It's the width of the list opened.
+        * @prop {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
       */}
       <OptionDropdown text="Text" type="no-border-clean" disabled={true}>
         {/**
@@ -380,6 +388,7 @@ export const NoBorderLink = () => (
         * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
         * @prop {String} listWidth - (Optional) It's the width of the list opened.
+        * @prop {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
         */}
       <OptionDropdown text="Advanced Options" type="no-border-link-clean">
         {/**
@@ -404,6 +413,7 @@ export const NoBorderLink = () => (
         * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
         * @prop {String} listWidth - (Optional) It's the width of the list opened.
+        * @prop {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
         */}
       <OptionDropdown text="Advanced Options" type="no-border-link-status-label">
         {/**
@@ -430,6 +440,7 @@ export const NoBorderLink = () => (
         * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
         * @prop {String} listWidth - (Optional) It's the width of the list opened.
+        * @prop {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
         */}
       <OptionDropdown text="Advanced Options" type="no-border-link-clean" disabled={true}>
         {/**
@@ -481,6 +492,7 @@ export const NoBorderPurple = () => (
         * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
         * @prop {String} listWidth - (Optional) It's the width of the list opened.
+        * @prop {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
         */}
       <OptionDropdown text="Advertiser" type="no-border-purple-clean">
         {/**
@@ -504,6 +516,7 @@ export const NoBorderPurple = () => (
         * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
         * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
         * @prop {String} listWidth - (Optional) It's the width of the list opened.
+        * @prop {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
         */}
       <OptionDropdown text="Advertiser" type="no-border-purple-status-label">
         {/**

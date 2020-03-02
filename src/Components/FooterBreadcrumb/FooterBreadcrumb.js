@@ -16,15 +16,20 @@ import { Button } from '../Button';
  * @param {String} nextButtonType - (Optional) It's the type button to be displayed like "next button". Default value is "secondary-default-medium".
  * @param {String} prevButtonDisabled - (Optional) If true, the "previous" button is disabled.
  * @param {String} nextButtonDisabled - (Optional) If true, the "next" button is disabled.
+ * @param {Function} onClickBack - (Optional) Callback to trigger on onClick back button event.
+ * @param {Function} onClickNext - (Optional) Callback to trigger on onClick next button event.
+
  * @return {React Component} A view for breadcrumb into footer with next and back action buttons.
  */
-const FooterBreadcrumb = ({ children = [], onChange, prevButtonText, nextButtonText, currentStep, prevButtonType, nextButtonType, prevButtonDisabled, nextButtonDisabled }) => {
+const FooterBreadcrumb = ({ children = [], onChange, prevButtonText, nextButtonText, currentStep, prevButtonType, nextButtonType, prevButtonDisabled, nextButtonDisabled, onClickBack, onClickNext }) => {
   const handleBack = () => {
     onChange(currentStep, children[currentStep].props.text);
+    onClickBack();
   }
 
   const handleNext = () => {
     onChange(currentStep, children[currentStep].props.text);
+    onClickNext();
   }
 
   return (
@@ -54,6 +59,8 @@ FooterBreadcrumb.propTypes = {
   nextButtonType: PropTypes.string,
   prevButtonDisabled: PropTypes.bool,
   nextButtonDisabled: PropTypes.bool,
+  onClickBack: PropTypes.func,
+  onClickNext: PropTypes.func,
 };
 
 FooterBreadcrumb.defaultProps = {
@@ -64,6 +71,8 @@ FooterBreadcrumb.defaultProps = {
   nextButtonType: 'secondary-default-medium',
   prevButtonDisabled: false,
   nextButtonDisabled: false,
+  onClickBack: () => null,
+  onClickNext: () => null,
 };
 
 export default FooterBreadcrumb;
