@@ -96,7 +96,7 @@ const CreationTag = ({ type, placeholder, width, label, id, onTagCreated, onTagD
           defaultLabelArray.map((text, index) => (
             <DefaultLabel
               key={index}
-              id={index}
+              id={index.toString()}
               text={text}
               size="small"
               margin="5px"
@@ -119,7 +119,7 @@ const CreationTag = ({ type, placeholder, width, label, id, onTagCreated, onTagD
           size={inputValue.length && inputValue.length + 20}
         />
         {errorMessage &&
-          <ExclamationIcon />
+          <ExclamationIcon props={{ margin: '0 5px 0 auto' }} />
         }
       </InputContainer>
       {errorMessage &&
