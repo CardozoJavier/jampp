@@ -15,6 +15,7 @@ export default {
  * @prop {Function} onTagDeleted - (Optional) Callback to trigger when tag is deleted. It receive tag value in first argument.
  * @prop {Function} onError - (Optional) Function to check input values and trigger error message. It receive the input value in first argument.
  * @prop {String} errorMessage - (Optional) String to be display on error event.
+ * @prop {String} defaultValue - (Optional) It's the default value for a tag to be displayed in render.
  */
 export const Default = () => (
   <CreationTag
@@ -24,6 +25,7 @@ export const Default = () => (
     width="433px"
     onTagCreated={event => console.log(event + ' has been created')}
     onTagDeleted={event => console.log(event + ' has been deleted')}
+    defaultValue="Default tag"
     errorMessage="Type error"
     onError={() => true}
   />
