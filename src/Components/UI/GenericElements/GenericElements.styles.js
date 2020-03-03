@@ -42,6 +42,7 @@ export const DivContainer = styled.div`
   width: ${({ width }) => width};
   height: ${({ height }) => height};
   max-height: ${({ maxHeight }) => maxHeight};
+  overflow: ${({ overflow }) => overflow};
   overflow-y: ${({ overflowY }) => overflowY};
   display: ${({ display }) => display};
   padding: ${({ padding }) => padding};

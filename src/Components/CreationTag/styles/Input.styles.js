@@ -12,7 +12,7 @@ export default styled(Input)`
     border: 1px solid ${violet.v05};
     padding: 4px 20px 4px 8px;
 
-    margin: 0 4px;
+    margin: 4px 3px;
   }
 
   &:disabled {

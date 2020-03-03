@@ -11,6 +11,8 @@ export const CreationTagContainer = styled(InputFieldContainer)`
   cursor: text;
   overflow: hidden;
   min-height: 35px;
+  max-height: 98px;
+  overflow: auto;
 
   &:hover {
     &.input {
