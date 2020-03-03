@@ -30,7 +30,7 @@ const { size10 } = fonts;
  * @param {String} parameterKey - (Optional) It's the key that correspond with each parameter input text.
  * @return {React Component} A view for input field with icon and action on error.
  */
-const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions, flatParameters, labelParameters, parameterKey, parameters, latestParameters }) => {
+const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions, flatParameters, labelParameters, parameterKey, parameters, latestParameters, defaultValue }) => {
   const { defaultClassName, optionalClassName, onBlurClassName, onFocusClassName, InputContainer } = inputProps[type];
   const [className, setClassName] = useState(defaultClassName);
   
@@ -93,7 +93,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     
     latestParameters.plainText[parameterKey].forEach(text => {
       const id = `${text.props.id}__{${text.props.text}}`;
-      console.log({ id, tagId })
+      // console.log({ id, tagId })
       if (id !== tagId) {
         updateTextArray.push(text);
       }
@@ -191,7 +191,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     });
 
     latestParameters.plainText[parameterKey].forEach(plainText => {
-      console.log({ propsId: plainText.props, id })
+      // console.log({ propsId: plainText.props, id })
       const trimValue = removeEmptySpace(value);
       if (plainText.props.id === id) {
         const cloneElement = React.cloneElement(plainText, {
@@ -286,6 +286,28 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
   useEffect(() => {
     const id = Math.random().toString();
     setLabelId(id);
+    if (defaultValue) {
+      const defaultLabelId = Math.random().toString();
+      const updateDefaultLabelArray = [];
+      updateDefaultLabelArray.push(
+        <DefaultLabel
+          key={defaultLabelId}
+          id={defaultLabelId}
+          text={`${defaultValue}`}
+          size="medium"
+          margin="4px 3px"
+          // maxWidth={maxWidth}
+          onClose={deleteTagHandler}
+        />
+      );
+      // setDefaultLabelArray(updateDefaultLabelArray);
+      const plainTextId = Math.random().toString();
+      const updateTextArray = [];
+      updateTextArray.push(
+        <PlainText text={defaultValue} key={plainTextId} id={plainTextId}>{defaultValue}</PlainText>
+      );
+      defaultValue.trim() && onTagCreated(defaultValue, parameterKey, updateDefaultLabelArray, updateTextArray);
+    }
   }, []);
 
   /**
