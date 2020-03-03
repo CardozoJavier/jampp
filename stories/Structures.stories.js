@@ -257,5 +257,5 @@ export const AddParameter = () => (
 );
 
 export const Preview = () => (
-  <StructurePreview />
+  <StructurePreview url="http://adjust.com/1234/?c=Campaign_Brasil&click_id={C_ID}_suffix&device_id={D_ID}&creative={ad_parameters}" />
 );

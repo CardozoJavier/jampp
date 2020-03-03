@@ -28,11 +28,11 @@ export const StructurePreviewContext = React.createContext({
 });
 
 
-const StructurePreview = () => {
+const StructurePreview = ({ url }) => {
   const [freeze, setFreeze] = useState(false);
   const [flatParameters, setFlatParameters] = useState({});
   const [labelParameters, setLabelParameters] = useState({});
-  const [urlValue, setUrlValue] = useState('');
+  const [urlValue, setUrlValue] = useState(url);
   const [parameters, setParameters] = useState({ plainText: {}, labelTag: {} });
   const latestParameters = useRef(parameters);
   // const queryParams = getQueryParams(urlValue);
@@ -40,7 +40,7 @@ const StructurePreview = () => {
 
 
 
-  const exampleUrl = 'http://adjust.com/1234/?c=Campaign_Brasil&click_id={C_ID}_suffix&device_id={D_ID}&creative={ad_parameters}';
+  // const exampleUrl = 'http://adjust.com/1234/?c=Campaign_Brasil&click_id={C_ID}_suffix&device_id={D_ID}&creative={ad_parameters}';
 
   const latestFlatParameters = useRef(flatParameters);
   const latestLabelParameters = useRef(labelParameters);
@@ -69,6 +69,11 @@ const StructurePreview = () => {
   useEffect(() => {
     latestParameters.current = parameters;
   }, [parameters]);
+
+  useEffect(() => {
+    const params = getQueryParams(url);
+    setQueryParams(params);
+  }, []);
 
   const handleUrlChange = (url) => {
     const params = getQueryParams(url);
@@ -117,7 +122,7 @@ const StructurePreview = () => {
             <Text color={freeze ? gray.g3 : black} fontSize={size12} fontWeight="bold">{paramKey}</Text>
             <Text>=</Text>
             <CreationTracking
-              // defaultValue={value}
+              defaultValue={value}
               // flatParameters={flatParameters}
               // labelParameters={labelParameters}
               parameterKey={paramKey}
@@ -167,9 +172,9 @@ const StructurePreview = () => {
           </DivContainer>
           <DivContainer margin="16px 0 0 0">
             <Card width="auto" padding="0" backgroundColor={freeze ? gray.g0 : white}>
-              <DivContainer padding="16px">
-                {/* <Text fontSize={size18} color={freeze ? gray.g3 : black}>{exampleUrl}</Text> */}
-                <TextArea width="100%" height="120px" fontSize={size18} disabled={freeze} onChange={value => handleUrlChange(value)} />
+              <DivContainer margin="16px" maxHeight="90px" overflow="auto">
+                <Text fontSize={size18} color={freeze ? gray.g3 : black}>{urlValue}</Text>
+                {/* <TextArea width="100%" height="120px" fontSize={size18} disabled={freeze} onChange={value => handleUrlChange(value)} /> */}
               </DivContainer>
               <HeaderParameter>
                 <HeaderText padding='4px 37px 4px 16px' borderRight={`1px solid ${gray.g1}`}>{'Partner parameter'}</HeaderText>
