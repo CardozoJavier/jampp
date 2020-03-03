@@ -4,7 +4,6 @@ import {
   Modal,
   Button,
   TabGroup,
-  TextArea,
   ToggleSwitch,
   CreateElement,
   OptionDropdown,
@@ -18,7 +17,6 @@ import { DivContainer, Text } from '../UI/GenericElements/GenericElements.styles
 import { palette, fonts } from '../styles';
 import { getQueryParams } from '../../utils';
 import { HeaderParameter, HeaderText } from './styles/StructurePreview.styles';
-import { InputField } from '../InputField';
 const { gray, green, black, white } = palette;
 const { size10, size12, size18 } = fonts;
 
@@ -35,36 +33,11 @@ const StructurePreview = ({ url }) => {
   const [urlValue, setUrlValue] = useState(url);
   const [parameters, setParameters] = useState({ plainText: {}, labelTag: {} });
   const latestParameters = useRef(parameters);
-  // const queryParams = getQueryParams(urlValue);
   const [queryParams, setQueryParams] = useState(null);
-
-
-
-  // const exampleUrl = 'http://adjust.com/1234/?c=Campaign_Brasil&click_id={C_ID}_suffix&device_id={D_ID}&creative={ad_parameters}';
-
-  const latestFlatParameters = useRef(flatParameters);
-  const latestLabelParameters = useRef(labelParameters);
 
   const toggleHandler = (status) => {
     setFreeze(status);
   };
-
-  // const updateParametersArray = (parameterValue, parameterKey, defaultLabelArray, textArray) => {
-  //   const updateLabelParameters = Object.assign({}, latestLabelParameters.current);
-  //   const updateFlatParameters = Object.assign({}, latestFlatParameters.current);
-  //   updateFlatParameters[parameterKey] = textArray;
-  //   updateLabelParameters[parameterKey] = defaultLabelArray;
-    
-  //   // console.log('structurePreview', { latest: latestFlatParameters.current, updateFlatParameters, textArray })
-
-  //   setLabelParameters(updateLabelParameters);
-  //   setFlatParameters(updateFlatParameters);
-  // };
-
-  // useEffect(() => {
-  //   latestLabelParameters.current = labelParameters;
-  //   latestFlatParameters.current = flatParameters;
-  // }, [labelParameters, latestFlatParameters]);
 
   useEffect(() => {
     latestParameters.current = parameters;
@@ -85,14 +58,6 @@ const StructurePreview = ({ url }) => {
     const updateParameters = Object.assign({}, parameters);
     updateParameters.plainText[parameterKey] = arrayPlainText;
     updateParameters.labelTag[parameterKey] = arrayLabelTag;
-    // updateParameters.plainText[parameterKey] = updateParameters.plainText[parameterKey] ? updateParameters.plainText[parameterKey].concat(arrayPlainText) : arrayPlainText;
-    // updateParameters.labelTag[parameterKey] = updateParameters.labelTag[parameterKey] ? updateParameters.labelTag[parameterKey].concat(arrayLabelTag) : arrayLabelTag;
-
-    // const testA = [...updateParameters.labelTag[parameterKey], ...arrayLabelTag];
-    // const testB = [...arrayLabelTag]
-    // console.log(testA);
-    // console.log({ updateParameters, arrayLabelTag, arrayPlainText });
-
     setParameters(updateParameters);
   };
 
@@ -100,16 +65,8 @@ const StructurePreview = ({ url }) => {
     const updateParameters = Object.assign({}, parameters);
     updateParameters.plainText[parameterKey] = arrayPlainText;
     updateParameters.labelTag[parameterKey] = arrayLabelTag;
-
-    // const testA = [...updateParameters.labelTag[parameterKey], ...arrayLabelTag];
-    // const testB = [...arrayLabelTag]
-    // console.log(testA);
-    // console.log({ updateParameters, arrayLabelTag, arrayPlainText });
-
     setParameters(updateParameters);
-
   };
-
   
   const renderQueryParams = (params) => {
     const elements = [];
@@ -123,8 +80,6 @@ const StructurePreview = ({ url }) => {
             <Text>=</Text>
             <CreationTracking
               defaultValue={value}
-              // flatParameters={flatParameters}
-              // labelParameters={labelParameters}
               parameterKey={paramKey}
               width="100%"
               linkText="Full list"
@@ -174,7 +129,6 @@ const StructurePreview = ({ url }) => {
             <Card width="auto" padding="0" backgroundColor={freeze ? gray.g0 : white}>
               <DivContainer margin="16px" maxHeight="90px" overflow="auto">
                 <Text fontSize={size18} color={freeze ? gray.g3 : black}>{urlValue}</Text>
-                {/* <TextArea width="100%" height="120px" fontSize={size18} disabled={freeze} onChange={value => handleUrlChange(value)} /> */}
               </DivContainer>
               <HeaderParameter>
                 <HeaderText padding='4px 37px 4px 16px' borderRight={`1px solid ${gray.g1}`}>{'Partner parameter'}</HeaderText>

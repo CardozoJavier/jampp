@@ -45,9 +45,6 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
   const [textArray, setTextArray] = useState([]);
   const latestTextArray = useRef(textArray);
   const [plainTextValue, setPlainTextValue] = useState('');
-
-  // const context = useContext(StructurePreviewContext);
-  // console.log({ context });
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const maxWidth = Number(width.split('px')[0]) - 53;
@@ -93,14 +90,11 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     
     latestParameters.plainText[parameterKey].forEach(text => {
       const id = `${text.props.id}__{${text.props.text}}`;
-      // console.log({ id, tagId })
       if (id !== tagId) {
         updateTextArray.push(text);
       }
     });
 
-    // setTextArray(updateTextArray);
-    // setDefaultLabelArray(updateDefaultLabelArray);
     onTagDeleted(null, parameterKey, updateDefaultLabelArray, updateTextArray);
   };
 
@@ -125,7 +119,6 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
 
       if ((keyCode === '13') || (keyCode === '9')) {
         key.preventDefault();
-        // const updateDefaultLabelArray = [...defaultLabelArray];
         const updateDefaultLabelArray = latestParameters.labelTag[parameterKey] ? [...latestParameters.labelTag[parameterKey]] : [];
 
         if (matchSuggestion[suggestionActive]) {
@@ -137,21 +130,17 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
               text={`{${matchSuggestion[suggestionActive]}}`}
               size="medium"
               margin="4px 3px"
-              // maxWidth={maxWidth}
               onClose={deleteTagHandler}
             />
           );
 
-          // const updateTextArray = [...textArray];
           const updateTextArray = latestParameters.plainText[parameterKey] ? [...latestParameters.plainText[parameterKey]] : [];
           const trimValue = removeEmptySpace(matchSuggestion[suggestionActive]);
           updateTextArray.push(
             <PlainText text={matchSuggestion[suggestionActive]} id={id} key={id}>{trimValue}</PlainText>
           );
 
-          // setDefaultLabelArray(updateDefaultLabelArray);
           onTagCreated(matchSuggestion[suggestionActive], parameterKey, updateDefaultLabelArray, updateTextArray);
-          // setTextArray(updateTextArray);
           setInputValue('');
           setMatchSuggestion([]);
           setSuggestionActive(-1);
@@ -163,38 +152,26 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
   };
 
   const handleInputChange = (id, value) => {
-    // const value = e.target.value;
-    // const id = e.target.id;
     const updateDefaultLabelArray = [];
     const updateTextArray = [];
-    // setPlainTextValue(value);
-
-
-
-    // parameters.forEach(param => {
-    //   if (param.props.id === id) {
-
-    //   }
-    // });
 
     latestParameters.labelTag[parameterKey].forEach(labelTag => {
-      if (labelTag.props.id == id) {
-        const cloneElement = React.cloneElement(labelTag, {
-          value,
-          size: value.length + 2,
+      if (labelTag.props.targetId == id) {
+        const cloneInputField = React.cloneElement(labelTag, {
+          defaultValue: value,
           style: value.length ? { display: 'block' } : { display: 'none' },
         });
-        updateDefaultLabelArray.push(cloneElement);
+        updateDefaultLabelArray.push(cloneInputField);
       } else {
         updateDefaultLabelArray.push(labelTag);
       }
     });
-
+    
     latestParameters.plainText[parameterKey].forEach(plainText => {
-      // console.log({ propsId: plainText.props, id })
-      const trimValue = removeEmptySpace(value);
-      if (plainText.props.id === id) {
+      if (plainText.props.targetId === id) {
+        const trimValue = removeEmptySpace(value);
         const cloneElement = React.cloneElement(plainText, {
+          text: value,
           children: trimValue,
         });
         updateTextArray.push(cloneElement);
@@ -203,13 +180,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
       }
     });
 
-    // console.log({ e, latestParameters });
-
     onTagCreated(null, parameterKey, updateDefaultLabelArray, updateTextArray);
-
-    // setDefaultLabelArray(updateDefaultLabelArray);
-    // setTextArray(updateTextArray);
-    // onTagDeleted(null, parameterKey, updateDefaultLabelArray, updateTextArray);
   };
 
   /**
@@ -223,12 +194,9 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     setMatchSuggestion([]);
     setLabelId(labelId);
 
-    console.log({ id });
-
     if (type === 'flat') {
-      // <Input value={inputValue} style={{ display: trimValue.length ? 'block' : 'none' }} size={value.length + 3} id={id} key={id} disabled={disabled} placeholder="" fontSize={size10} width="auto" onChange={handleInputChange} />
       updateDefaultLabelArray.push(
-        <InputText id={id} key={id} defaultValue={inputValue} onChange={handleInputChange} disabled={disabled} />
+        <InputText id={id} key={id} targetId={id} defaultValue={inputValue.trim()} onChange={handleInputChange} disabled={disabled} />
       );
     } else {
       updateDefaultLabelArray.push(
@@ -238,7 +206,6 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
           text={`{${value}}`}
           size="medium"
           margin="4px 3px"
-          // maxWidth={maxWidth}
           onClose={deleteTagHandler}
         />
       );
@@ -250,15 +217,10 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     const updateTextArray = latestParameters.plainText[parameterKey] ? [...latestParameters.plainText[parameterKey]] : [];
     const plainTextId = Math.random().toString();
     updateTextArray.push(
-      <PlainText text={value} key={plainTextId} id={plainTextId}>{trimValue}</PlainText>
+      <PlainText targetId={id} text={value} key={plainTextId} id={plainTextId}>{trimValue}</PlainText>
     );
 
-
-    // console.log({ latest: latestTextArray.current, updateTextArray, textArray })
-    
     value.trim() && onTagCreated(value.trim(), parameterKey, updateDefaultLabelArray, updateTextArray);
-    // setDefaultLabelArray(updateDefaultLabelArray); dejamos de controlar el array de tags desde aca para hacerlo desde el padre
-    // setTextArray(updateTextArray); mismo que arriba
     setInputValue('');
     setShowSuggestion(false);
     setPreviewTracking('');
@@ -296,11 +258,10 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
           text={`${defaultValue}`}
           size="medium"
           margin="4px 3px"
-          // maxWidth={maxWidth}
           onClose={deleteTagHandler}
         />
       );
-      // setDefaultLabelArray(updateDefaultLabelArray);
+
       const plainTextId = Math.random().toString();
       const updateTextArray = [];
       updateTextArray.push(
@@ -335,10 +296,6 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     latestTextArray.current = textArray;
   }, [textArray]);
 
-  // useEffect(() => {
-  //   defaultValue && handleClickSuggestion(defaultValue);
-  // }, []);
-
   return (
     <LabelContainer id="test- label">
       {label && <Label htmlFor={labelId}>{label}</Label>}
@@ -349,7 +306,6 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
         width={width}
         htmlFor={labelId}
       >
-        {/* {defaultLabelArray && defaultLabelArray.map(item => item)} */}
         
         {parameters && parameters.map(item => item)}
 
