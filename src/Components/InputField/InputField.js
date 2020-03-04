@@ -63,7 +63,7 @@ const InputField = ({ type, placeholder, errorMessage, warningMessage, label, ic
     } else {
       setError(false);
       setWarning(false);
-      onChange(currentValue);
+      onChange(currentValue, e);
       setClassName(onFocusClassName);
     }
   }

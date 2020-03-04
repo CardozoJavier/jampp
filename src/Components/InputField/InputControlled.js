@@ -33,7 +33,7 @@ const InputControlled = ({ type, placeholder, boldPlaceholder, id, label, disabl
 
   const handleChange = (e) => {
     const currentValue = e.target.value;
-    onChange(currentValue);
+    onChange(currentValue, e);
     setValue(currentValue);
 
     if (currentValue) {
