@@ -40,6 +40,10 @@ const OptionList = ({ children = [], type, className, menuTitle, onSelect, onCha
     };
   }, []);
 
+  useEffect(() => {
+    setArray(childrenParsed);
+  }, [children]);
+
   return (
     <OptionCheckboxGroup className={bemDestruct(className)} minWidth={minWidth} wide={wide} width={width}>
       {menuTitle && <MenuTitle>{menuTitle}</MenuTitle>}
