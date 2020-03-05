@@ -27,14 +27,13 @@ const classesName = {
  *  @param {String} type - (Required) Define dropdown classes for styling.
  *  @param {String} id - (Optional) It's an unique ID to identifier each checkbox.
  *  @param {String} label - (Optional) It's a text to be display next to checkbox.
- *  @param {Boolean} right - (Optional) It's required if left prop is not set. It's define the position of checkbox regarding text.
- *  @param {Boolean} left - (Optional) It's required if right prop is not set. It's define the position of checkbox regarding text.
+ *  @param {Boolean} inverted - (Optional) If true, the checkbox is put on the left text.
  *  @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive two arguments: checkbox id and true/false value.
  *  @param {Boolean} checked - (Optional) It's determines if checkbox is checked or not by default.
  *  @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  *  @return {React Component} A view for checkbox.
  */
-const Checkbox = ({ type, id, label, right, left, onChange, checked, disabled }) => {
+const Checkbox = ({ type, id, label, inverted, onChange, checked, disabled }) => {
   const { defaultClassName, optionalClassName } = classesName[type];
   const { defaultLabel, selectedLabel } = classesName['label'];
   const initialState = checked ? optionalClassName : defaultClassName;
@@ -55,8 +54,7 @@ const Checkbox = ({ type, id, label, right, left, onChange, checked, disabled })
   }
 
   return (
-    <Container className={bemDestruct(className, disabled)} onClick={disabled ? null : handleClick} disabled={disabled}>
-      {right && !left && <CheckboxLabel className={bemDestruct(labelClassName)} disabled={disabled}>{ label }</CheckboxLabel>}
+    <Container className={bemDestruct(className, disabled)} inverted={inverted} onClick={disabled ? null : handleClick} disabled={disabled}>
       <CheckboxContainer>
         <Box className={bemDestruct(className, disabled)} />
         <CheckIcon props={{
@@ -71,7 +69,7 @@ const Checkbox = ({ type, id, label, right, left, onChange, checked, disabled })
           }}
         />
       </CheckboxContainer>
-      { left && !right && <CheckboxLabel className={bemDestruct(labelClassName)} disabled={disabled}>{ label }</CheckboxLabel>}
+      <CheckboxLabel className={bemDestruct(labelClassName)} disabled={disabled}>{ label }</CheckboxLabel>
     </Container>
   )
 };
@@ -80,8 +78,7 @@ Checkbox.propTypes = {
   type: PropTypes.string.isRequired,
   id: PropTypes.string,
   label: PropTypes.string,
-  right: PropTypes.bool,
-  left: PropTypes.bool,
+  inverted: PropTypes.bool,
   onChange: PropTypes.func,
   checked: PropTypes.bool,
   disabled: PropTypes.bool,
@@ -91,8 +88,7 @@ Checkbox.defaultProps = {
   id: '',
   label: '',
   type: 'normal',
-  right: false,
-  left: false,
+  inverted: false,
   onChange: () => null,
   checked: false,
   disabled: false,

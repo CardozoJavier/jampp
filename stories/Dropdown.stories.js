@@ -35,8 +35,7 @@ export const Basic = () => (
         {/**
           * Checkbox component should be called with
           * @prop {String} type - (Required) Define dropdown classes for styling.
-          * @prop {Boolean} right - (Required) It's required if left prop is not set. It's define the position of checkbox regarding text.
-          * @prop {Boolean} left - (Required) It's required if right prop is not set. It's define the position of checkbox regarding text.
+          * @prop {Boolean} inverted - (Optional) If true, the checkbox is put on the left text.
           * @prop {String} label - (Optional) It's a text to be display next to checkbox.
           */}
         <Checkbox label="Option 1" type="dropdown" right />
@@ -149,8 +148,7 @@ export const SolidWithIcon = () => (
         {/**
           * Checkbox component should be called with
           * @prop {String} type - (Required) Define dropdown classes for styling.
-          * @prop {Boolean} right - (Required) It's required if left prop is not set. It's define the position of checkbox regarding text.
-          * @prop {Boolean} left - (Required) It's required if right prop is not set. It's define the position of checkbox regarding text.
+          * @prop {Boolean} inverted - (Optional) If true, the checkbox is put on the left text.
           * @prop {String} label - (Optional) It's a text to be display next to checkbox.
           */}
         <Checkbox label="Option 1" type="dropdown" right />
@@ -262,8 +260,7 @@ export const NoBorder = () => (
         {/**
           * Checkbox component should be called with
           * @prop {String} type - (Required) Define dropdown classes for styling.
-          * @prop {Boolean} right - (Required) It's required if left prop is not set. It's define the position of checkbox regarding text.
-          * @prop {Boolean} left - (Required) It's required if right prop is not set. It's define the position of checkbox regarding text.
+          * @prop {Boolean} inverted - (Optional) If true, the checkbox is put on the left text.
           * @prop {String} label - (Optional) It's a text to be display next to checkbox.
           */}
         <Checkbox label="Option 1" type="dropdown" right />
@@ -367,8 +364,7 @@ export const NoBorderLink = () => (
         {/**
           * Checkbox component should be called with
           * @prop {String} type - (Required) Define dropdown classes for styling.
-          * @prop {Boolean} right - (Required) It's required if left prop is not set. It's define the position of checkbox regarding text.
-          * @prop {Boolean} left - (Required) It's required if right prop is not set. It's define the position of checkbox regarding text.
+          * @prop {Boolean} inverted - (Optional) If true, the checkbox is put on the left text.
           * @prop {String} label - (Optional) It's a text to be display next to checkbox.
           */}
         <Checkbox label="Option 1" type="dropdown" right />
@@ -472,8 +468,7 @@ export const NoBorderPurple = () => (
         {/**
           * Checkbox component should be called with
           * @prop {String} type - (Required) Define dropdown classes for styling.
-          * @prop {Boolean} right - (Required) It's required if left prop is not set. It's define the position of checkbox regarding text.
-          * @prop {Boolean} left - (Required) It's required if right prop is not set. It's define the position of checkbox regarding text.
+          * @prop {Boolean} inverted - (Optional) If true, the checkbox is put on the left text.
           * @prop {String} label - (Optional) It's a text to be display next to checkbox.
           */}
         <Checkbox label="Option 1" type="dropdown" right />
