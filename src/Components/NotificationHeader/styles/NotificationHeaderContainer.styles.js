@@ -4,7 +4,7 @@ import { XIconContainer } from '../../UI/Icons/styles';
 const { gray, green, red, blue, link, black } = palette;
 
 export const NotificationHeaderContainer = styled.div`
-  display: flex;
+  display: ${({ display }) => display ? 'flex' : 'none'};
   align-items: center;
   justify-content: center;
   min-width: 700px;

@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { palette } from '../styles';
 import { NotificationHeaderContainer, NotificationText, TextContainer } from './styles';
 import { IconGenerator, XIcon, InfoIcon, SuccessIcon, AlertIcon } from '../UI/Icons';
-import { bemDestruct, getUniqueId } from '../../utils';
+import { bemDestruct } from '../../utils';
 
 const { gray, green, red, link } = palette;
 
@@ -39,21 +39,16 @@ const types = {
  * @return {React Component} A view for notifications header with X icon on right.
  */
 const NotificationHeader = ({ type, text, onClose, }) => {  
-  let notificationHeader;
-  const id = getUniqueId();
+  const [display, setDisplay] = useState(true);
   const { src, fill } = types[type].icon;
   
-  useEffect(() => {
-    notificationHeader = document.getElementById(id);
-  }, []);
-  
   const handleClick = () => {
-    notificationHeader.remove();
-    onClose && onClose();
+    onClose();
+    setDisplay(false);
   };
 
   return (
-    <NotificationHeaderContainer className={bemDestruct(types[type].className)} id={id}>
+    <NotificationHeaderContainer className={bemDestruct(types[type].className)} display={display}>
       <TextContainer>
         <IconGenerator
           renderIcon={src}
