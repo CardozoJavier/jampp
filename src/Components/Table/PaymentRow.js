@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Button } from '../';
 import {
   PaymentRowContainer,
@@ -7,11 +7,17 @@ import {
 } from './styles';
 import { RowContext } from './PaymentMethodTable';
 
-const PaymentRow = ({ children, id }) => {
+const PaymentRow = ({ children, id, isSelected }) => {
   const context = useContext(RowContext);
   const { row, handleClick } = context;
-  const isSelected = id === row;
-  const className = isSelected ? 'selected' : '';
+  const selected = id === row;
+  const className = selected ? 'selected' : '';
+
+  useEffect(() => {
+    if (isSelected) {
+      handleClick(id);
+    }
+  }, []);
 
   return (
       <PaymentRowContainer className={className}>
@@ -19,7 +25,7 @@ const PaymentRow = ({ children, id }) => {
           if (row.props.button) {
             return (
               <PaymentColumnFieldButton borderLeft="none" key={index}>
-                <Button label={isSelected ? row.props.textWhenSelect : row.props.children} type="link-default-left" onClick={() => handleClick(id, row.props.onClick)} />
+                <Button label={selected ? row.props.textWhenSelect : row.props.children} type="link-default-left" onClick={() => handleClick(id, row.props.onClick)} />
               </PaymentColumnFieldButton>
             );
           } else {

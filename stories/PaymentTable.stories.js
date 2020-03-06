@@ -55,7 +55,7 @@ export const Default = () => (
           <PaymentColumnField>{ 'Data here' }</PaymentColumnField>
           <PaymentColumnField button textWhenSelect="Default payment method">{ 'Make default' }</PaymentColumnField>
         </PaymentRow>
-        <PaymentRow id="row3">
+        <PaymentRow id="row3" isSelected={true}>
           <PaymentRowName>
             <TableImageIcon />
           </PaymentRowName>
