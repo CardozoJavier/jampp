@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import {
   Card,
   Modal,
@@ -28,8 +28,6 @@ export const StructurePreviewContext = React.createContext({
 
 const StructurePreview = ({ url }) => {
   const [freeze, setFreeze] = useState(false);
-  const [flatParameters, setFlatParameters] = useState({});
-  const [labelParameters, setLabelParameters] = useState({});
   const [urlValue, setUrlValue] = useState(url);
   const [parameters, setParameters] = useState({ plainText: {}, labelTag: {} });
   const latestParameters = useRef(parameters);
@@ -49,7 +47,7 @@ const StructurePreview = ({ url }) => {
   }, []);
 
   const handleUrlChange = (key, value) => {
-    const newUrl = new URL(url);
+    const newUrl = new URL(urlValue);
     const params = new URLSearchParams(newUrl.search);
     params.set(key, value);
     newUrl.search = params;
@@ -57,7 +55,6 @@ const StructurePreview = ({ url }) => {
 
     // Avoid problem with race condition
     setTimeout(() => setUrlValue(urlDecoded), 0);
-
   };
 
   const onTagCreated = (parameterValue, parameterKey, arrayLabelTag, arrayPlainText) => {
@@ -135,7 +132,7 @@ const StructurePreview = ({ url }) => {
           <DivContainer margin="16px 0 0 0">
             <Card width="auto" padding="0" backgroundColor={freeze ? gray.g0 : white}>
               <DivContainer margin="16px" maxHeight="90px" overflow="auto">
-                <Text fontSize={size18} color={freeze ? gray.g3 : black}>{urlValue}</Text>
+                <Text key="test-2" fontSize={size18} color={freeze ? gray.g3 : black}>{urlValue}</Text>
               </DivContainer>
               <HeaderParameter>
                 <HeaderText padding='4px 37px 4px 16px' borderRight={`1px solid ${gray.g1}`}>{'Partner parameter'}</HeaderText>
@@ -163,16 +160,20 @@ const StructurePreview = ({ url }) => {
                     <Text>=</Text>
                     <DivContainer alignSelf="flex-start">
                       <CreationTracking
-                        flatParameters={flatParameters}
-                        labelParameters={labelParameters}
-                        parameterKey={'Option A'}
+                        parameterKey={'???'}
                         width="100%"
+                        linkText="Full list"
+                        id={`creation-tracking_CreateElement`}
                         type="suggestions-tracking"
+                        textBelowSuggestions="or select from the"
                         suggestions={["Option 1", "Option 2", "Option 3"]}
                         callback={() => console.log('Displaying full list')}
                         onTagCreated={onTagCreated}
                         onTagDeleted={onTagDelete}
                         disabled={freeze}
+                        parameters={freeze ? parameters.plainText['???'] : parameters.labelTag['???']}
+                        latestParameters={latestParameters.current}
+                        handleUrlChange={handleUrlChange}
                       />
                       <DivContainer display="flex" alignItems="center" margin="8px 0 0 0">
                         <Text color={gray.g4} fontSize={size10} display="inline" margin="0 3px 0 0">or select from the </Text>

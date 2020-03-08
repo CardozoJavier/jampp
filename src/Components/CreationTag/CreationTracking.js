@@ -30,7 +30,7 @@ const { size10 } = fonts;
  * @param {String} parameterKey - (Optional) It's the key that correspond with each parameter input text.
  * @return {React Component} A view for input field with icon and action on error.
  */
-const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions, flatParameters, labelParameters, parameterKey, parameters, latestParameters, defaultValue, handleUrlChange }) => {
+const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions, parameterKey, parameters, latestParameters, defaultValue, handleUrlChange }) => {
   const { defaultClassName, optionalClassName, onBlurClassName, onFocusClassName, InputContainer } = inputProps[type];
   const [className, setClassName] = useState(defaultClassName);
   
@@ -257,10 +257,10 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
   const concatUrlParam = (customParam = '') => {
     let updateUrlParamValue = '';
     parameters && parameters.forEach(element => {
-      const elementValue = element.props.text || element.props.defaultValue || '';
-      updateUrlParamValue = removeEmptySpace(updateUrlParamValue.concat(elementValue));
+      const elementValue = element.props.text || element.props.defaultValue || element.props.children || '';
+      updateUrlParamValue = updateUrlParamValue.concat(elementValue);
     });
-    updateUrlParamValue = updateUrlParamValue.concat(customParam);
+    updateUrlParamValue = removeEmptySpace(updateUrlParamValue.concat(customParam));
     return updateUrlParamValue;
   };
 
@@ -297,18 +297,6 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
   }, []);
 
   /**
-   * Listening for freeze form event and disable the inputs.
-   */
-  useEffect(() => {
-    if (disabled) {
-      setPreviewTracking('');
-      flatParameters[parameterKey] && setDefaultLabelArray(flatParameters[parameterKey]);
-    } else {
-      labelParameters[parameterKey] && setDefaultLabelArray(labelParameters[parameterKey]);
-    };
-  }, [disabled, flatParameters, labelParameters]);
-
-  /**
    * Setting updated labels array for handle it in delete tag callback.
    */
   useEffect(() => {
@@ -326,7 +314,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
    * Concat custom param setted by input field to be displayed in url box.
    */
   useEffect(() => {
-    const parameterValue = concatUrlParam();
+    const parameterValue = concatUrlParam(inputValue);
     handleUrlChange(parameterKey, parameterValue);
   }, [parameters]);
 
