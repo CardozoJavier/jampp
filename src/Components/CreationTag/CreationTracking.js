@@ -30,7 +30,7 @@ const { size10 } = fonts;
  * @param {String} parameterKey - (Optional) It's the key that correspond with each parameter input text.
  * @return {React Component} A view for input field with icon and action on error.
  */
-const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions, flatParameters, labelParameters, parameterKey, parameters, latestParameters, defaultValue }) => {
+const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions, flatParameters, labelParameters, parameterKey, parameters, latestParameters, defaultValue, handleUrlChange }) => {
   const { defaultClassName, optionalClassName, onBlurClassName, onFocusClassName, InputContainer } = inputProps[type];
   const [className, setClassName] = useState(defaultClassName);
   
@@ -44,34 +44,37 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
   const [labelId, setLabelId] = useState('');
   const [textArray, setTextArray] = useState([]);
   const latestTextArray = useRef(textArray);
-  const [plainTextValue, setPlainTextValue] = useState('');
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
-  const maxWidth = Number(width.split('px')[0]) - 53;
 
+  /**
+   * Setting className by pointer events.
+   */
   const handleClick = () => {
     setClassName(toggleToClassName);
   }
-  
   const handleBlur = () => {
     setClassName(onBlurClassName);
   }
-  
   const handleFocus = () => {
     setClassName(onFocusClassName);
   }
   
+  /**
+   * Handle input field.
+   */
   const handleChange = ({ target: { value }}) => {
     const [flatValue, trackingValue] = value.split('{');
     const regex = trackingValue ? new RegExp(trackingValue.toLowerCase()) : { test: () => null };
     const matchSuggestion = trackingValue === '' ? suggestions : suggestions.filter(suggestion => regex.test(suggestion.toLowerCase()));
 
-    setPlainTextValue(value);
-
     setShowSuggestion(!!matchSuggestion.length);
     setInputValue(value);
     setMatchSuggestion(matchSuggestion);
     setClassName(onFocusClassName);
+
+    const parameterValue = concatUrlParam(value);
+    handleUrlChange(parameterKey, parameterValue);
   }
 
   /**
@@ -102,6 +105,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
   const handleKeyDown = (key) => {
     const keyCode = key.keyCode.toString();
     if (keyCode.toString() === '219') {
+      handleUrlChange(parameterKey, inputValue);
       setShowSuggestion(true);
       handleClickSuggestion(inputValue, 'flat');
       setPreviewTracking('preview-tracking');
@@ -152,6 +156,9 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     }
   };
 
+  /**
+   * Input value handler for input field pushed into defaultLabelArray.
+   */
   const handleInputChange = (id, value) => {
     const updateDefaultLabelArray = [];
     const updateTextArray = [];
@@ -182,6 +189,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     });
 
     onTagCreated(null, parameterKey, updateDefaultLabelArray, updateTextArray);
+    handleUrlChange(parameterKey, removeEmptySpace(value));
   };
 
   /**
@@ -244,6 +252,19 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
   };
 
   /**
+   * Concat custom param setted by input field to be displayed in url box.
+   */
+  const concatUrlParam = (customParam = '') => {
+    let updateUrlParamValue = '';
+    parameters && parameters.forEach(element => {
+      const elementValue = element.props.text || element.props.defaultValue || '';
+      updateUrlParamValue = removeEmptySpace(updateUrlParamValue.concat(elementValue));
+    });
+    updateUrlParamValue = updateUrlParamValue.concat(customParam);
+    return updateUrlParamValue;
+  };
+
+  /**
    * Hook to handle click events on window
    */
   const eventHandler = () => setShowSuggestion(false);
@@ -301,8 +322,16 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     latestTextArray.current = textArray;
   }, [textArray]);
 
+  /**
+   * Concat custom param setted by input field to be displayed in url box.
+   */
+  useEffect(() => {
+    const parameterValue = concatUrlParam();
+    handleUrlChange(parameterKey, parameterValue);
+  }, [parameters]);
+
   return (
-    <LabelContainer id="test- label">
+    <LabelContainer>
       {label && <Label htmlFor={labelId}>{label}</Label>}
       <InputContainer
         onClick={disabled ? null : handleClick}

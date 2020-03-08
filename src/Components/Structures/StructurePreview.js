@@ -48,10 +48,16 @@ const StructurePreview = ({ url }) => {
     setQueryParams(params);
   }, []);
 
-  const handleUrlChange = (url) => {
-    const params = getQueryParams(url);
-    setQueryParams(params);
-    setUrlValue(url);
+  const handleUrlChange = (key, value) => {
+    const newUrl = new URL(url);
+    const params = new URLSearchParams(newUrl.search);
+    params.set(key, value);
+    newUrl.search = params;
+    const urlDecoded = decodeURIComponent(newUrl.href);
+
+    // Avoid problem with race condition
+    setTimeout(() => setUrlValue(urlDecoded), 0);
+
   };
 
   const onTagCreated = (parameterValue, parameterKey, arrayLabelTag, arrayPlainText) => {
@@ -75,7 +81,7 @@ const StructurePreview = ({ url }) => {
         params.delete(paramKey);
       } else {
         elements.push(
-          <DivContainer key={paramKey} id="original-structure" display="grid" alignItems="center" gridTemplateColumns="28% 5% auto 8%" padding="15px" borderBottom={`1px solid ${gray.g1}`}>
+          <DivContainer key={paramKey} id="original-structure" display="grid" alignItems="center" gridTemplateColumns="28% 5% 59% 8%" padding="15px" borderBottom={`1px solid ${gray.g1}`}>
             <Text color={freeze ? gray.g3 : black} fontSize={size12} fontWeight="bold">{paramKey}</Text>
             <Text>=</Text>
             <CreationTracking
@@ -93,6 +99,7 @@ const StructurePreview = ({ url }) => {
               disabled={freeze}
               parameters={freeze ? parameters.plainText[paramKey] : parameters.labelTag[paramKey]}
               latestParameters={latestParameters.current}
+              handleUrlChange={handleUrlChange}
             />
             <XIcon
               role='icon-to-remove-structure'
