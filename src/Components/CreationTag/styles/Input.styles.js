@@ -11,7 +11,7 @@ export default styled(Input)`
   &.preview-tracking {
     border: 1px solid ${violet.v05};
     padding: 4px 20px 4px 8px;
-
+    min-width: 50px;
     margin: 4px 3px;
   }
 
