@@ -73,6 +73,10 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
   
   useEventListener('click', eventHandler);
 
+  useEffect(() => {
+    setTextButton(text);
+  }, [text]);
+
   return (
     <>
       <ButtonDropdownContainer wide={wide} className={bemDestruct(buttonClassName, disabled)} onClick={disabled ? null : handleClick} id={dropdownId} minWidth={minWidth}>

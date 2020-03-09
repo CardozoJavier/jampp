@@ -11,9 +11,11 @@ export const DefaultLabelText = styled.p`
   margin: 0;
   max-width: ${({ maxWidth }) => `${maxWidth}px` || 'unset'};
   overflow: hidden;
+  word-break: break-all;
 `;
 
 export const DefaultLabelContainer = styled.div`
+  max-width: ${({ maxWidth }) => maxWidth};
   display: ${({ display }) => display || 'flex'};
   justify-content: space-between;
   margin: ${({ margin }) => margin};
@@ -36,6 +38,7 @@ export const DefaultLabelContainer = styled.div`
       color: ${black};
 
       ${XIconContainer} {
+        margin-left: 10px;
         svg {
           width: 6px;
           height: 6px;

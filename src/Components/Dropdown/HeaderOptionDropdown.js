@@ -64,6 +64,10 @@ const HeaderOptionDropdown = ({ text, type = 'basic', menuTitle, children, onCha
   
   useEventListener('click', eventHandler);
 
+  useEffect(() => {
+    setTextButton(text);
+  }, [text]);
+
   return (
     <>
       <HeaderOptionDropdownContainer className={bemDestruct(className, disabled)} onClick={disabled ? null : handleClick} id={dropdownId}>

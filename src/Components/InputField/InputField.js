@@ -63,7 +63,7 @@ const InputField = ({ type, placeholder, errorMessage, warningMessage, label, ic
     } else {
       setError(false);
       setWarning(false);
-      onChange(currentValue);
+      onChange(currentValue, e);
       setClassName(onFocusClassName);
     }
   }
@@ -94,7 +94,7 @@ const InputField = ({ type, placeholder, errorMessage, warningMessage, label, ic
         {icon ? <IconGenerator renderIcon={icon} props={iconProps} /> : null}
 
         {errorMessage && 
-          <ExclamationIcon />
+          <ExclamationIcon props={{ margin: '0 5px' }} />
         }
       </InputContainer>
       {errorMessage && 

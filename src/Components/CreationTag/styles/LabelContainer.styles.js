@@ -3,4 +3,5 @@ import { LabelContainer } from '../../InputField/styles';
 
 export default styled(LabelContainer)`
   width: auto;
+  background-color: white;
 `;

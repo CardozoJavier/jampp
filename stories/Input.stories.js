@@ -29,13 +29,13 @@ const { size10 } = fonts;
  * @prop {String} placeholder - (Optional) It's to display text into input field.
  * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @prop {Function} icon - (Optional) Function that returns an svg icon.
- * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument.
+ * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument, and event in second argument.
  * @prop {String} label - (Optional) Text to be display in label.
  * @prop {String} defaultValue - (Optional) It's the default value setted in input field.
  */
 export const Basic = () => (
   <DivContainer width="250px">
-    <InputField defaultValue="Default value" placeholder="Text" type="basic" onChange={value => console.log(value)} />
+    <InputField defaultValue="Default value" placeholder="Text" type="basic" onChange={(value, e) => console.log(e.target.value)} />
   </DivContainer>
 );
 
@@ -49,7 +49,7 @@ export const Basic = () => (
  * @prop {String} placeholder - (Optional) It's to display text into input field.
  * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @prop {Function} icon - (Optional) Function that returns an svg icon.
- * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument.
+ * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument, and event in second argument.
  * @prop {String} label - (Optional) Text to be display in label.
  * @prop {String} defaultValue - (Optional) It's the default value setted in input field.
  */
@@ -69,7 +69,7 @@ export const WithIcon = () => (
  * @prop {String} placeholder - (Optional) It's to display text into input field.
  * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @prop {Function} icon - (Optional) Function that returns an svg icon.
- * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument.
+ * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument, and event in second argument.
  * @prop {String} label - (Optional) Text to be display in label.
  * @prop {String} defaultValue - (Optional) It's the default value setted in input field.
  */
@@ -89,7 +89,7 @@ export const InputWithLabel = () => (
  * @prop {String} placeholder - (Optional) It's to display text into input field.
  * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @prop {Function} icon - (Optional) Function that returns an svg icon.
- * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument.
+ * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument, and event in second argument.
  * @prop {String} label - (Optional) Text to be display in label.
  * @prop {String} defaultValue - (Optional) It's the default value setted in input field.
  */
@@ -125,12 +125,12 @@ export const WithErrorMessage = () => (
  * @prop {string} boldPlaceholder - (Optional) It's to display bold text into input field. It'll be in first place.
  * @prop {boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @prop {string} label - (Optional) Text to be display in label.
- * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument.
+ * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument, and event in second argument.
  * @prop {String} defaultValue - (Optional) It's the default value setted in input field.
  */
 export const WithBoldPlaceholder = () => (
   <DivContainer width="250px">
-    <InputControlled defaultValue="Default value" label="Text" boldPlaceholder="Text" placeholder="text" type="controlled" id="input1" onChange={value => console.log(value)} />
+    <InputControlled defaultValue="Default value" label="Text" boldPlaceholder="Text" placeholder="text" type="controlled" id="input1" onChange={(value, e) => console.log(e.target.id)} />
   </DivContainer>
 );
 
@@ -144,7 +144,7 @@ export const WithBoldPlaceholder = () => (
  * @prop {String} placeholder - (Optional) It's to display text into input field.
  * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @prop {Function} icon - (Optional) Function that returns an svg icon.
- * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument.
+ * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument, and event in second argument.
  * @prop {String} label - (Optional) Text to be display in label.
  * @prop {String} defaultValue - (Optional) It's the default value setted in input field.
  */

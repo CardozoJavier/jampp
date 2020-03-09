@@ -9,15 +9,20 @@ import {
   ColumnTitle,
   TableButtons,
   ColumnFieldButton,
+  PaymentRowTitle,
+  PaymentColumnField,
+  PaymentColumnTitle,
+  TableContainer,
 } from '../src/Components/Table/styles';
 import {
   CardHeader,
 } from '../src/Components/Card/styles';
-import { SearchIcon, DownloadFileIcon, AddIcon, TableImageIcon } from '../src/Components/UI/Icons';
+import { PaymentMethodTable, PaymentRow } from '../src/Components/Table';
+import { SearchIcon, DownloadFileIcon, AddIcon, TableImageIcon, CheckIcon } from '../src/Components/UI/Icons';
 import { SearchBarContainer } from '../src/Components/InputField/styles';
 import { GridContainer, Gradient, GradientContainer, Text } from '../src/Components/UI/GenericElements/GenericElements.styles';
 import { palette, fonts } from '../src/Components/styles';
-const { link, black, gray } = palette;
+const { link, black, gray, white } = palette;
 const { size12, size14 } = fonts;
 
 export default {
@@ -312,4 +317,70 @@ export const EndUserB = () => (
       <Text onClick={() => console.log('Link clicked!')} cursor="pointer" width="fit-content" color={link} fontSize={size14}>Link to see more</Text>
     </GridContainer>
   </Card>
+);
+
+
+/**
+ * PatymentMethodTable component should be called with
+ * @prop {Node} children - (Required) It's the content to be displayed.
+ *  
+ *  PaymentRow component should be called with
+ *  @prop {Node} children - (Required) It's the column's content to be displayed.
+ *  @prop {String} id - (Required) It's an unique ID to identifier each option in Payment group.
+ *
+ *    PaymentColumnField component can be called with
+ *    @prop {String} children - (Required) It's the text to be displayed.
+ *    @prop {String} textWhenSelect - (Optional) Text to be displayed when PaymentColumnField is selected.
+ *    @prop {String} iconWhenSelect - (Optional) Icon to be displayed when PaymentColumnField is selected.
+ *    @prop {Boolean} button - (Optional) If true, PaymentColumnField behaves like button.
+ *    @prop {Function} onClick - (Optional) Callback to trigger on onClick event.
+ */
+export const Tick = () => (
+  <div style={{ width: "725px" }}>
+    <TableContainer>
+      <PaymentRowTitle backgroundColor={white} gridTemplateColumns="24% 24% 24% 24% 4%">
+        <PaymentColumnTitle borderLeft="none">{ 'First column title' }</PaymentColumnTitle>
+        <PaymentColumnTitle borderLeft="none">{ 'Column title' }</PaymentColumnTitle>
+        <PaymentColumnTitle borderLeft="none">{ 'Column title' }</PaymentColumnTitle>
+        <PaymentColumnTitle borderLeft="none">{ 'Column title' }</PaymentColumnTitle>
+      </PaymentRowTitle>
+      <PaymentMethodTable>
+        <PaymentRow id="row1" style={{ gridTemplateColumns: '24% 24% 24% 20% 8%' }}>
+          <PaymentColumnField borderLeft="none">{ 'Data here' }</PaymentColumnField>
+          <PaymentColumnField borderLeft="none">{ 'Data here' }</PaymentColumnField>
+          <PaymentColumnField borderLeft="none">{ 'Data here' }</PaymentColumnField>
+          <PaymentColumnField borderLeft="none">{ 'Data here' }</PaymentColumnField>
+          <PaymentColumnField button iconWhenSelect={CheckIcon} onClick={() => console.log('Option clicked!')}>{ 'import' }</PaymentColumnField>
+        </PaymentRow>
+        <PaymentRow id="row2" style={{ gridTemplateColumns: '24% 24% 24% 20% 8%' }}>
+          <PaymentColumnField borderLeft="none">{ 'Data here' }</PaymentColumnField>
+          <PaymentColumnField borderLeft="none">{ 'Data here' }</PaymentColumnField>
+          <PaymentColumnField borderLeft="none">{ 'Data here' }</PaymentColumnField>
+          <PaymentColumnField borderLeft="none">{ 'Data here' }</PaymentColumnField>
+          <PaymentColumnField button iconWhenSelect={CheckIcon}>{ 'import' }</PaymentColumnField>
+        </PaymentRow>
+        <PaymentRow id="row3" isSelected={true} style={{ gridTemplateColumns: '24% 24% 24% 20% 8%' }}>
+          <PaymentColumnField borderLeft="none">{ 'Data here' }</PaymentColumnField>
+          <PaymentColumnField borderLeft="none">{ 'Data here' }</PaymentColumnField>
+          <PaymentColumnField borderLeft="none">{ 'Data here' }</PaymentColumnField>
+          <PaymentColumnField borderLeft="none">{ 'Data here' }</PaymentColumnField>
+          <PaymentColumnField button iconWhenSelect={CheckIcon}>{ 'import' }</PaymentColumnField>
+        </PaymentRow>
+        <PaymentRow id="row4" style={{ gridTemplateColumns: '24% 24% 24% 20% 8%' }}>
+          <PaymentColumnField borderLeft="none">{ 'Data here' }</PaymentColumnField>
+          <PaymentColumnField borderLeft="none">{ 'Data here' }</PaymentColumnField>
+          <PaymentColumnField borderLeft="none">{ 'Data here' }</PaymentColumnField>
+          <PaymentColumnField borderLeft="none">{ 'Data here' }</PaymentColumnField>
+          <PaymentColumnField button iconWhenSelect={CheckIcon}>{ 'import' }</PaymentColumnField>
+        </PaymentRow>
+        <PaymentRow id="row5" style={{ gridTemplateColumns: '24% 24% 24% 20% 8%' }}>
+          <PaymentColumnField borderLeft="none">{ 'Data here' }</PaymentColumnField>
+          <PaymentColumnField borderLeft="none">{ 'Data here' }</PaymentColumnField>
+          <PaymentColumnField borderLeft="none">{ 'Data here' }</PaymentColumnField>
+          <PaymentColumnField borderLeft="none">{ 'Data here' }</PaymentColumnField>
+          <PaymentColumnField button iconWhenSelect={CheckIcon}>{ 'import' }</PaymentColumnField>
+        </PaymentRow>
+      </PaymentMethodTable>
+    </TableContainer>
+  </div>
 );

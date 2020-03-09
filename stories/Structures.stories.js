@@ -6,7 +6,7 @@ import {
   CreateElement,
   OptionDropdown,
   InformativeModal,
-  CreationTracking,
+  CreationTagSuggestion,
 } from '../src/Components';
 import {
   DropdownLabel,
@@ -25,6 +25,7 @@ import { LabelContainer } from '../src/Components/InputField/styles';
 import { TrashIcon, XIcon, BoldAddIcon } from '../src/Components/UI/Icons';
 import { ParametersDuplicationContainer } from '../src/Components/CreationTag/styles';
 import { Text, DivContainer } from '../src/Components/UI/GenericElements/GenericElements.styles';
+import {StructurePreview} from '../src/Components/Structures';
 const { gray, link, black, } = palette;
 const { size10, size12 } = fonts;
 
@@ -175,7 +176,23 @@ export const AddParameter = () => (
     <DivContainer id="original-structure" display="grid" alignItems="center" gridTemplateColumns="28% 5% auto 8%" width="475px" padding="15px" borderBottom={`1px solid ${gray.g1}`}>
       <Text fontWeight="bold">Parameter</Text>
       <Text>=</Text>
-      <CreationTracking
+      {/**
+        * CreationTagSuggestion component should be called with
+        * @param {String} type - (Required) It's to define styles of input field.
+        * @param {String} placeholder - (Optional) It's to display text into input field.
+        * @param {String} label - (Optional) Text to be display in label.
+        * @param {Function} icon - (Optional) Function that returns an svg icon.
+        * @param {Function} onTagCreated - (Optional) Callback to trigger on tag created. It receive tag value in first argument.
+        * @param {Function} onTagDeleted - (Optional) Callback to trigger on tag created. It receive tag value in first argument.
+        * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+        * @param {Array} suggestions - (Required) Array of string to be displayed in suggestions list.
+        * @param {Function} callback - (Optional) Callback to be triggered on click event in button into suggestions list.
+        * @param {String} linkText - (Optional) It's the text to be displayed like link.
+        * @param {String} textBelowSuggestions - (Optional) It's the text to be displayed at the bottom of suggestions list.
+        * @param {String} defaultValue - (Optional) It's the default value for a tag to be displayed in render.
+        * @return {React Component} A view for input field with icon and action on error.
+        */}
+      <CreationTagSuggestion
         width="264px"
         linkText="Full list"
         id="creation-tracking-A"
@@ -224,9 +241,28 @@ export const AddParameter = () => (
         </DropdownContainer>
         <Text>=</Text>
         <DivContainer alignSelf="flex-start">
-          <CreationTracking
+        {/**
+          * CreationTagSuggestion component should be called with
+          * @param {String} type - (Required) It's to define styles of input field.
+          * @param {String} placeholder - (Optional) It's to display text into input field.
+          * @param {String} label - (Optional) Text to be display in label.
+          * @param {Function} icon - (Optional) Function that returns an svg icon.
+          * @param {Function} onTagCreated - (Optional) Callback to trigger on tag created. It receive tag value in first argument.
+          * @param {Function} onTagDeleted - (Optional) Callback to trigger on tag created. It receive tag value in first argument.
+          * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+          * @param {Array} suggestions - (Required) Array of string to be displayed in suggestions list.
+          * @param {Function} callback - (Optional) Callback to be triggered on click event in button into suggestions list.
+          * @param {String} linkText - (Optional) It's the text to be displayed like link.
+          * @param {String} textBelowSuggestions - (Optional) It's the text to be displayed at the bottom of suggestions list.
+          * @param {String} defaultValue - (Optional) It's the default value for a tag to be displayed in render.
+          * @return {React Component} A view for input field with icon and action on error.
+          */}
+          <CreationTagSuggestion
             width="264px"
+            linkText="Full list"
+            id="creation-tracking-A"
             type="suggestions-tracking"
+            textBelowSuggestions="or select from the"
             suggestions={["Option 1", "Option 2", "Option 3"]}
             callback={() => console.log('Displaying full list')}
             onTagCreated={event => console.log(event + ' has been created')}
@@ -253,4 +289,8 @@ export const AddParameter = () => (
       </ParametersDuplicationContainer>
     </CreateElement>
   </DivContainer>
+);
+
+export const Preview = () => (
+  <StructurePreview url="http://adjust.com/1234/?c=Campaign_Brasil&click_id={C_ID}_suffix&device_id={D_ID}&creative={ad_parameters}" />
 );
