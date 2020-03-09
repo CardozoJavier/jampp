@@ -35,9 +35,6 @@ export const CreationTagContainer = styled(InputFieldContainer)`
   &.input {
     &.basic {
       &--default, &--medium, &--small {
-        border: 1px solid ${gray.g1};
-        border-radius: 4px;
-
         input::placeholder {
           color: ${gray.g07};
         }
