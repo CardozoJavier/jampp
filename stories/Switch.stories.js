@@ -23,13 +23,13 @@ export default {
  */
 export const Group = () => (
   <>
-    <SwitchGroup onChange={(id) => console.log(id + ' is selected')}>
+    <SwitchGroup defaultValue="option2" onChange={(id) => console.log(id + ' is selected')}>
       <Option label="Choice" id="option1" />
       <Option label="Choice" id="option2" />
       <Option label="Choice" id="option3" />
     </SwitchGroup>
 
-    <SwitchGroup disabled={true}>
+    <SwitchGroup defaultValue="option2" disabled={true}>
       <Option label="Choice" id="option1" />
       <Option label="Choice" id="option2" />
       <Option label="Choice" id="option3" />
