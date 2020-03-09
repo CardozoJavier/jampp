@@ -15,7 +15,7 @@ import { DropdownContainer, DropdownListContainer } from '../Dropdown/styles';
 import { LockIcon, XIcon, BoldAddIcon } from '../UI/Icons';
 import { DivContainer, Text } from '../UI/GenericElements/GenericElements.styles';
 import { palette, fonts } from '../styles';
-import { getQueryParams } from '../../utils';
+import { getQueryParams, removeEmptySpace } from '../../utils';
 import { HeaderParameter, HeaderText } from './styles/StructurePreview.styles';
 const { gray, green, black, white } = palette;
 const { size10, size12, size18 } = fonts;
@@ -32,6 +32,8 @@ const StructurePreview = ({ url }) => {
   const [parameters, setParameters] = useState({ plainText: {}, labelTag: {} });
   const latestParameters = useRef(parameters);
   const [queryParams, setQueryParams] = useState(null);
+
+  const [newParam, setNewParam] = useState('New Param');
 
   const toggleHandler = (status) => {
     setFreeze(status);
@@ -70,6 +72,16 @@ const StructurePreview = ({ url }) => {
     updateParameters.labelTag[parameterKey] = arrayLabelTag;
     setParameters(updateParameters);
   };
+
+  /**
+   * Set the parameter key when is selected from dropdown
+   */
+  const handleAddNewParam = (optionId, text) => {
+    const keyParameter = removeEmptySpace(text);
+    console.log(text)
+    setNewParam(text);
+    handleUrlChange(keyParameter, '');
+  };
   
   const renderQueryParams = (params) => {
     const elements = [];
@@ -103,12 +115,12 @@ const StructurePreview = ({ url }) => {
               props={{
                 width: '10px',
                 height: '10px',
-                fill: gray.g3,
+                fill: freeze ? gray.g2 : gray.g3,
                 margin: '0 5px',
-                cursor: 'pointer',
+                cursor: freeze ? 'default' : 'pointer',
                 hover: black,
                 justifySelf: 'end',
-                onClick: () => console.log('Display modal and pass it the structure id: original-structure'),
+                onClick: freeze ? null : () => console.log('Display modal and pass it the key parameter: ' + paramKey),
               }}
             />
           </DivContainer>
@@ -149,7 +161,7 @@ const StructurePreview = ({ url }) => {
                   <ParametersDuplicationContainer>
                     <DropdownContainer width="100%" padding="0 10px 0 0">
                       <DropdownListContainer>
-                        <OptionDropdown disabled={freeze} wide={true} text="Text" type="basic-clean" onChange={optionId => console.log('Option ' + optionId + ' is selected')} listWidth="fit-content">
+                        <OptionDropdown disabled={freeze} wide={true} text={newParam} type="basic-clean" onChange={handleAddNewParam} listWidth="fit-content">
                           <Option label="Option A" id="a" />
                           <Option label="Option B" id="b" />
                           <Option label="Option C" id="c" />
@@ -160,10 +172,10 @@ const StructurePreview = ({ url }) => {
                     <Text>=</Text>
                     <DivContainer alignSelf="flex-start">
                       <CreationTracking
-                        parameterKey={'???'}
+                        parameterKey={newParam}
                         width="100%"
                         linkText="Full list"
-                        id={`creation-tracking_CreateElement`}
+                        id={`creation-tracking_${newParam}`}
                         type="suggestions-tracking"
                         textBelowSuggestions="or select from the"
                         suggestions={["Option 1", "Option 2", "Option 3"]}
@@ -171,7 +183,7 @@ const StructurePreview = ({ url }) => {
                         onTagCreated={onTagCreated}
                         onTagDeleted={onTagDelete}
                         disabled={freeze}
-                        parameters={freeze ? parameters.plainText['???'] : parameters.labelTag['???']}
+                        parameters={freeze ? parameters.plainText[newParam] : parameters.labelTag[newParam]}
                         latestParameters={latestParameters.current}
                         handleUrlChange={handleUrlChange}
                       />
@@ -185,12 +197,12 @@ const StructurePreview = ({ url }) => {
                       props={{
                         width: '10px',
                         height: '10px',
-                        fill: gray.g3,
+                        fill: freeze ? gray.g2 : gray.g3,
                         margin: '0 5px',
-                        cursor: 'pointer',
+                        cursor: freeze ? 'default' : 'pointer',
                         hover: black,
                         justifySelf: 'end',
-                        onClick: () => console.log('Display modal and pass it the structure id: structure-id'),
+                        onClick: freeze ? null : () => console.log('Display modal and pass it the key parameter: ' + paramKey),
                       }}
                     />
                   </ParametersDuplicationContainer>
