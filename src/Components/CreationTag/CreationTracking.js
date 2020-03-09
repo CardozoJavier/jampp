@@ -100,63 +100,6 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
   };
 
   /**
-   * Event handler in key down to move through suggestions list and create tag when Enter or Tab key are pressed
-   */
-  const handleKeyDown = (key) => {
-    const keyCode = key.keyCode.toString();
-    if (keyCode.toString() === '219') {
-      handleUrlChange(parameterKey, inputValue);
-      setShowSuggestion(true);
-      handleClickSuggestion(inputValue, 'flat');
-      setPreviewTracking('preview-tracking');
-    };
-    if (inputValue.trim() && showSuggestion) {
-      if (keyCode === '40') {
-        const setIndex = suggestionActive >= (matchSuggestion.length - 1) ? 0 : (suggestionActive + 1);
-        setSuggestionActive(setIndex);
-      } else if (keyCode === '38') {
-        const setIndex = suggestionActive <= 0 ? (matchSuggestion.length - 1) : (suggestionActive - 1);
-        setSuggestionActive(setIndex);
-      }
-
-      if ((keyCode === '13') || (keyCode === '9')) {
-        key.preventDefault();
-        const updateDefaultLabelArray = latestParameters.labelTag[parameterKey] ? [...latestParameters.labelTag[parameterKey]] : [];
-
-        if (matchSuggestion[suggestionActive]) {
-          const targetId = Math.random().toString();
-          const defaultLabelId = Math.random().toString();
-          updateDefaultLabelArray.push(
-            <DefaultLabel
-              targetId={targetId}
-              key={defaultLabelId}
-              id={defaultLabelId}
-              text={`{${matchSuggestion[suggestionActive]}}`}
-              size="medium"
-              margin="4px 3px"
-              onClose={deleteTagHandler}
-            />
-          );
-
-          const updateTextArray = latestParameters.plainText[parameterKey] ? [...latestParameters.plainText[parameterKey]] : [];
-          const trimValue = removeEmptySpace(matchSuggestion[suggestionActive]);
-          const plainTextId = Math.random().toString();
-          updateTextArray.push(
-            <PlainText targetId={targetId} text={matchSuggestion[suggestionActive]} id={plainTextId} key={plainTextId}>{trimValue}</PlainText>
-          );
-
-          onTagCreated(matchSuggestion[suggestionActive], parameterKey, updateDefaultLabelArray, updateTextArray);
-          setInputValue('');
-          setMatchSuggestion([]);
-          setSuggestionActive(-1);
-          setShowSuggestion(false);
-          setPreviewTracking('');
-        }
-      }
-    }
-  };
-
-  /**
    * Input value handler for input field pushed into defaultLabelArray.
    */
   const handleInputChange = (id, value) => {
@@ -193,9 +136,67 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
   };
 
   /**
-   * Create label tag on click event in suggestions list
+   * Event handler in key down to move through suggestions list and create tag when Enter or Tab key are pressed
    */
-  const handleClickSuggestion = (value, type) => {
+  const handleKeyDown = (key) => {
+    const keyCode = key.keyCode.toString();
+    if (keyCode.toString() === '219') {
+      handleUrlChange(parameterKey, inputValue);
+      pushElement(inputValue, 'input-field');
+      // setShowSuggestion(true);
+      // handleClickSuggestion(inputValue, 'flat');
+      // setPreviewTracking('preview-tracking');
+    };
+    if (inputValue.trim() && showSuggestion) {
+      if (keyCode === '40') {
+        const setIndex = suggestionActive >= (matchSuggestion.length - 1) ? 0 : (suggestionActive + 1);
+        setSuggestionActive(setIndex);
+      } else if (keyCode === '38') {
+        const setIndex = suggestionActive <= 0 ? (matchSuggestion.length - 1) : (suggestionActive - 1);
+        setSuggestionActive(setIndex);
+      }
+
+      if ((keyCode === '13') || (keyCode === '9')) {
+        key.preventDefault();
+        // const updateDefaultLabelArray = latestParameters.labelTag[parameterKey] ? [...latestParameters.labelTag[parameterKey]] : [];
+
+        if (matchSuggestion[suggestionActive]) {
+
+          pushElement(matchSuggestion[suggestionActive], 'label-tag');
+
+          // const targetId = Math.random().toString();
+          // const defaultLabelId = Math.random().toString();
+          // updateDefaultLabelArray.push(
+          //   <DefaultLabel
+          //     targetId={targetId}
+          //     key={defaultLabelId}
+          //     id={defaultLabelId}
+          //     text={`{${matchSuggestion[suggestionActive]}}`}
+          //     size="medium"
+          //     margin="4px 3px"
+          //     onClose={deleteTagHandler}
+          //   />
+          // );
+
+          // const updateTextArray = latestParameters.plainText[parameterKey] ? [...latestParameters.plainText[parameterKey]] : [];
+          // const trimValue = removeEmptySpace(matchSuggestion[suggestionActive]);
+          // const plainTextId = Math.random().toString();
+          // updateTextArray.push(
+          //   <PlainText targetId={targetId} text={matchSuggestion[suggestionActive]} id={plainTextId} key={plainTextId}>{trimValue}</PlainText>
+          // );
+
+          // onTagCreated(matchSuggestion[suggestionActive], parameterKey, updateDefaultLabelArray, updateTextArray);
+          // setInputValue('');
+          // setMatchSuggestion([]);
+          // setSuggestionActive(-1);
+          // setShowSuggestion(false);
+          // setPreviewTracking('');
+        }
+      }
+    }
+  };
+
+  const pushElement = (value, type) => {
     const updateDefaultLabelArray = latestParameters.labelTag[parameterKey] ? [...latestParameters.labelTag[parameterKey]] : [];
     const trimValue = removeEmptySpace(value);
     const targetId = Math.random().toString();
@@ -203,11 +204,12 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     setMatchSuggestion([]);
     setLabelId(labelId);
 
-    if (type === 'flat') {
+    if (type === 'input-field') {
       updateDefaultLabelArray.push(
         <InputText id={targetId} key={targetId} targetId={targetId} defaultValue={inputValue.trim()} onChange={handleInputChange} disabled={disabled} />
       );
-    } else {
+      setPreviewTracking('preview-tracking');
+    } else if (type === 'label-tag'){
       const defaultLabelId = Math.random().toString();
       updateDefaultLabelArray.push(
         <DefaultLabel
@@ -220,6 +222,12 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
           onClose={deleteTagHandler}
         />
       );
+      // onTagCreated(value, parameterKey, updateDefaultLabelArray, updateTextArray);
+      // setInputValue('');
+      // setMatchSuggestion([]);
+      // setSuggestionActive(-1);
+      // setShowSuggestion(false);
+      setPreviewTracking('');
     }
 
     /**
@@ -234,8 +242,54 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     value.trim() && onTagCreated(value.trim(), parameterKey, updateDefaultLabelArray, updateTextArray);
     setInputValue('');
     setShowSuggestion(false);
-    setPreviewTracking('');
+    setMatchSuggestion([]);
+    setSuggestionActive(-1);
   };
+
+  /**
+   * Create label tag on click event in suggestions list
+   */
+  // const handleClickSuggestion = (value, type) => {
+  //   const updateDefaultLabelArray = latestParameters.labelTag[parameterKey] ? [...latestParameters.labelTag[parameterKey]] : [];
+  //   const trimValue = removeEmptySpace(value);
+  //   const targetId = Math.random().toString();
+  //   const labelId = Math.random().toString();
+  //   setMatchSuggestion([]);
+  //   setLabelId(labelId);
+
+  //   if (type === 'flat') {
+  //     updateDefaultLabelArray.push(
+  //       <InputText id={targetId} key={targetId} targetId={targetId} defaultValue={inputValue.trim()} onChange={handleInputChange} disabled={disabled} />
+  //     );
+  //   } else {
+  //     const defaultLabelId = Math.random().toString();
+  //     updateDefaultLabelArray.push(
+  //       <DefaultLabel
+  //         targetId={targetId}
+  //         key={defaultLabelId}
+  //         id={defaultLabelId}
+  //         text={`{${value}}`}
+  //         size="medium"
+  //         margin="4px 3px"
+  //         onClose={deleteTagHandler}
+  //       />
+  //     );
+  //   }
+
+  //   /**
+  //    * It's for displaying the tags like plain text when input is freezed
+  //    */
+  //   const updateTextArray = latestParameters.plainText[parameterKey] ? [...latestParameters.plainText[parameterKey]] : [];
+  //   const plainTextId = Math.random().toString();
+  //   updateTextArray.push(
+  //     <PlainText targetId={targetId} text={value} key={plainTextId} id={plainTextId}>{trimValue}</PlainText>
+  //   );
+
+  //   value.trim() && onTagCreated(value.trim(), parameterKey, updateDefaultLabelArray, updateTextArray);
+  //   setInputValue('');
+  //   setShowSuggestion(false);
+  //   setPreviewTracking('');
+  // };
 
   /**
    * Set empty input value and remove preview styles
@@ -359,7 +413,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
               padding="5px 23px"
               key={`${suggestion}-${index}`}
               className={index === suggestionActive ? 'suggestion-active' : ''}
-              onClick={() => handleClickSuggestion(suggestion)}
+              onClick={() => pushElement(suggestion, 'label-tag')}
               onMouseOver={() => setSuggestionActive(index)}
             >{suggestion}</Text>
           ))}
