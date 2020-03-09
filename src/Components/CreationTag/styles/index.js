@@ -1,4 +1,5 @@
 export {
+  PlainText,
   SuggestionsList,
   PreviewContainer,
   CreationTagContainer,

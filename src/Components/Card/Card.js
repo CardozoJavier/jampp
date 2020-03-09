@@ -9,10 +9,11 @@ import { CardContainer, CardTitle, CardDescription, CardHeader } from './styles'
  * @param {String} description - (Optional) It's description to be displayed in card below of title.
  * @param {String} width - (Optional) It's the width of the card container.
  * @param {String} padding - (Optional) It's the padding of the card container.
+ * @param {String} backgroundColor - (Optional) It's the color of background card container.
  * @return {React Component} A view for card with title and description.
  */
-const Card = ({ children, title, description, width, padding, borderBottom, }) => (
-  <CardContainer width={width} padding={padding}>
+const Card = ({ children, title, description, width, padding, borderBottom, backgroundColor, }) => (
+  <CardContainer width={width} padding={padding} backgroundColor={backgroundColor}>
     {title &&
       <CardHeader flexDirection={description ? 'column' : 'row'} borderBottom={borderBottom}>
         <CardTitle>{ title }</CardTitle>
@@ -30,6 +31,7 @@ Card.propTypes = {
   width: PropTypes.string,
   padding: PropTypes.string,
   borderBottom: PropTypes.string,
+  backgroundColor: PropTypes.string,
 };
 
 Card.defaultProps = {
@@ -39,6 +41,7 @@ Card.defaultProps = {
   width: '',
   padding: '',
   borderBottom: '',
+  backgroundColor: 'white',
 };
 
 export default Card;

@@ -30,6 +30,7 @@ export { Card } from './Card';
 export { Modal } from './Modal';
 export { Button } from './Button';
 export { Tooltip } from './Tooltip';
+export { TextArea } from './TextArea';
 export { Checkbox } from './Checkbox';
 export { InputField } from './InputField';
 export { OptionList } from './OptionList';

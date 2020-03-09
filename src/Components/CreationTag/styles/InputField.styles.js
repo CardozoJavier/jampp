@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { InputFieldContainer } from '../../InputField/styles';
-import { palette } from '../../styles';
+import { palette, fonts } from '../../styles';
+const { size10 } = fonts;
 const { gray, white, blue } = palette;
 
 export const CreationTagContainer = styled(InputFieldContainer)`
@@ -10,6 +11,51 @@ export const CreationTagContainer = styled(InputFieldContainer)`
   cursor: text;
   overflow: hidden;
   min-height: 35px;
+  max-height: 98px;
+  overflow: auto;
+
+  &:hover {
+    &.input {
+      &.basic {
+        &--default, &--medium, &--small {
+          &__disabled {
+            border: 1px solid ${gray.g1};
+            input {
+              background-color: ${white};
+            }
+            input::placeholder {
+              color: ${gray.g05};
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.input {
+    &.basic {
+      &--default, &--medium, &--small {
+        border: 1px solid ${gray.g1};
+        border-radius: 4px;
+
+        input::placeholder {
+          color: ${gray.g07};
+        }
+
+        &__disabled {
+          background-color: ${white};
+          cursor: default;
+          input {
+            background-color: ${white};
+          }
+
+          input::placeholder {
+            color: ${gray.g05};
+          }
+        }
+      }
+    }
+  }
 `;
 
 export const SuggestionsList = styled.div`
@@ -21,6 +67,7 @@ export const SuggestionsList = styled.div`
   width: 100%;
   opacity: 0;
   visibility: hidden;
+  word-break: break-all;
 
   .button.link--default-left {
     font-size: 10px;
@@ -56,4 +103,11 @@ export const SuggestionsListContainer = styled.div`
 export const PreviewContainer = styled.div`
   display: flex;
   align-items: baseline;
+`;
+
+export const PlainText = styled.p`
+  word-break: break-all;
+  color: ${gray.g3};
+  font-size: ${size10};
+  margin: 0;
 `;

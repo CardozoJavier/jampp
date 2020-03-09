@@ -14,12 +14,13 @@ export default {
  * DefaultLabel component should be called with
  * @prop {String} text - (Required) Text to be display inside label.
  * @prop {String} size - (Optional) Define label size, it can be small or medium. Small is default.
+ * @prop {String} id - (Required) It's an unique ID to identifier each tag.
  * @prop {Function} onClose - (Optional) Callback to trigger on onClick event on X icon.
  */
 export const Default = () => (
   <>
-    <DefaultLabel text="Label" size="small" />
-    <DefaultLabel text="Label" size="medium" onClose={() => console.log('Closing label is clicked')} />
+    <DefaultLabel text="Label" id="small-label" size="small" />
+    <DefaultLabel text="Label" id="medium-label" size="medium" onClose={() => console.log('Closing label is clicked')} />
   </>
 );
 

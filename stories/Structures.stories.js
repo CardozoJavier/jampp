@@ -25,6 +25,7 @@ import { LabelContainer } from '../src/Components/InputField/styles';
 import { TrashIcon, XIcon, BoldAddIcon } from '../src/Components/UI/Icons';
 import { ParametersDuplicationContainer } from '../src/Components/CreationTag/styles';
 import { Text, DivContainer } from '../src/Components/UI/GenericElements/GenericElements.styles';
+import {StructurePreview} from '../src/Components/Structures';
 const { gray, link, black, } = palette;
 const { size10, size12 } = fonts;
 
@@ -253,4 +254,8 @@ export const AddParameter = () => (
       </ParametersDuplicationContainer>
     </CreateElement>
   </DivContainer>
+);
+
+export const Preview = () => (
+  <StructurePreview url="http://adjust.com/1234/?c=Campaign_Brasil&click_id={C_ID}_suffix&device_id={D_ID}&creative={ad_parameters}" />
 );

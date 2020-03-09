@@ -11,25 +11,25 @@ import { bemDestruct } from '../../utils';
  * @param {String} id - (Required) It's an unique ID to identifier each tag.
  * @param {Function} onClose - (Optional) Callback to trigger on onClick event on X icon.
  */
-const DefaultLabel = ({ text, size, onClose, id, ...props }) => {
+const DefaultLabel = ({ text, size, onClose, id, targetId, ...props }) => {
   const [className, setClassName] = useState(`label label--default-${size}`);
-  const tagId = `${id}__${text}`;
 
-  const handleClick = () => {
-    onClose && onClose(text);
-    const element = document.getElementById(tagId);
-    element.remove();
+  const deleteHandler = () => {
+    onClose && onClose(targetId, text);
+    const element = document.getElementById(id);
+    element.style.display = 'none';
   };
 
   return (
-    <DefaultLabelContainer id={tagId} className={bemDestruct(className)} {...props}>
+    <DefaultLabelContainer id={id} className={bemDestruct(className)} {...props}>
       <DefaultLabelText {...props}>{ text }</DefaultLabelText>
       <IconGenerator
         renderIcon={XIcon}
         props={{
           className: `icon label--default-${size}__right`,
-          onClick: handleClick,
+          onClick: deleteHandler,
           display: '',
+          margin: '0 0 0 5px',
         }}
       />
     </DefaultLabelContainer>
