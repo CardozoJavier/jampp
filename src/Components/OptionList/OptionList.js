@@ -29,7 +29,8 @@ const OptionList = ({ children = [], type, className, menuTitle, onSelect, onCha
    */
   const handleCheck = (id, label, color, flat, textType) => {
     const inputsArray = settingClassName(children, id, defaultClassName);
-    setArray(inputsArray);
+    // Avoid error with race condition when state is updated.
+    setTimeout(() => setArray(inputsArray), 0);
     onChange(id, label);
     onSelect(id, label, color, flat, textType);
   }
