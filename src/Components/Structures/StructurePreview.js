@@ -63,6 +63,9 @@ const StructurePreview = ({ url }) => {
     const updateParameters = Object.assign({}, parameters);
     updateParameters.plainText[parameterKey] = arrayPlainText;
     updateParameters.labelTag[parameterKey] = arrayLabelTag;
+
+    console.log(updateParameters)
+
     setParameters(updateParameters);
   };
 
@@ -176,6 +179,7 @@ const StructurePreview = ({ url }) => {
                         width="100%"
                         linkText="Full list"
                         id={`creation-tracking_${newParam}`}
+                        key={`creation-tracking_${newParam}`}
                         type="suggestions-tracking"
                         textBelowSuggestions="or select from the"
                         suggestions={["Option 1", "Option 2", "Option 3"]}

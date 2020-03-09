@@ -143,9 +143,6 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     if (keyCode.toString() === '219') {
       handleUrlChange(parameterKey, inputValue);
       pushElement(inputValue, 'input-field');
-      // setShowSuggestion(true);
-      // handleClickSuggestion(inputValue, 'flat');
-      // setPreviewTracking('preview-tracking');
     };
     if (inputValue.trim() && showSuggestion) {
       if (keyCode === '40') {
@@ -158,44 +155,16 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
 
       if ((keyCode === '13') || (keyCode === '9')) {
         key.preventDefault();
-        // const updateDefaultLabelArray = latestParameters.labelTag[parameterKey] ? [...latestParameters.labelTag[parameterKey]] : [];
-
         if (matchSuggestion[suggestionActive]) {
-
           pushElement(matchSuggestion[suggestionActive], 'label-tag');
-
-          // const targetId = Math.random().toString();
-          // const defaultLabelId = Math.random().toString();
-          // updateDefaultLabelArray.push(
-          //   <DefaultLabel
-          //     targetId={targetId}
-          //     key={defaultLabelId}
-          //     id={defaultLabelId}
-          //     text={`{${matchSuggestion[suggestionActive]}}`}
-          //     size="medium"
-          //     margin="4px 3px"
-          //     onClose={deleteTagHandler}
-          //   />
-          // );
-
-          // const updateTextArray = latestParameters.plainText[parameterKey] ? [...latestParameters.plainText[parameterKey]] : [];
-          // const trimValue = removeEmptySpace(matchSuggestion[suggestionActive]);
-          // const plainTextId = Math.random().toString();
-          // updateTextArray.push(
-          //   <PlainText targetId={targetId} text={matchSuggestion[suggestionActive]} id={plainTextId} key={plainTextId}>{trimValue}</PlainText>
-          // );
-
-          // onTagCreated(matchSuggestion[suggestionActive], parameterKey, updateDefaultLabelArray, updateTextArray);
-          // setInputValue('');
-          // setMatchSuggestion([]);
-          // setSuggestionActive(-1);
-          // setShowSuggestion(false);
-          // setPreviewTracking('');
         }
       }
     }
   };
 
+  /**
+   * Push new items into box. Can be DefaultLabel components or InputText that could be modified.
+   */
   const pushElement = (value, type) => {
     const updateDefaultLabelArray = latestParameters.labelTag[parameterKey] ? [...latestParameters.labelTag[parameterKey]] : [];
     const trimValue = removeEmptySpace(value);
@@ -222,11 +191,6 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
           onClose={deleteTagHandler}
         />
       );
-      // onTagCreated(value, parameterKey, updateDefaultLabelArray, updateTextArray);
-      // setInputValue('');
-      // setMatchSuggestion([]);
-      // setSuggestionActive(-1);
-      // setShowSuggestion(false);
       setPreviewTracking('');
     }
 
@@ -239,57 +203,14 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
       <PlainText targetId={targetId} text={value} key={plainTextId} id={plainTextId}>{trimValue}</PlainText>
     );
 
+    console.log({ parameterKey, updateDefaultLabelArray });
+
     value.trim() && onTagCreated(value.trim(), parameterKey, updateDefaultLabelArray, updateTextArray);
     setInputValue('');
     setShowSuggestion(false);
     setMatchSuggestion([]);
     setSuggestionActive(-1);
   };
-
-  /**
-   * Create label tag on click event in suggestions list
-   */
-  // const handleClickSuggestion = (value, type) => {
-  //   const updateDefaultLabelArray = latestParameters.labelTag[parameterKey] ? [...latestParameters.labelTag[parameterKey]] : [];
-  //   const trimValue = removeEmptySpace(value);
-  //   const targetId = Math.random().toString();
-  //   const labelId = Math.random().toString();
-  //   setMatchSuggestion([]);
-  //   setLabelId(labelId);
-
-  //   if (type === 'flat') {
-  //     updateDefaultLabelArray.push(
-  //       <InputText id={targetId} key={targetId} targetId={targetId} defaultValue={inputValue.trim()} onChange={handleInputChange} disabled={disabled} />
-  //     );
-  //   } else {
-  //     const defaultLabelId = Math.random().toString();
-  //     updateDefaultLabelArray.push(
-  //       <DefaultLabel
-  //         targetId={targetId}
-  //         key={defaultLabelId}
-  //         id={defaultLabelId}
-  //         text={`{${value}}`}
-  //         size="medium"
-  //         margin="4px 3px"
-  //         onClose={deleteTagHandler}
-  //       />
-  //     );
-  //   }
-
-  //   /**
-  //    * It's for displaying the tags like plain text when input is freezed
-  //    */
-  //   const updateTextArray = latestParameters.plainText[parameterKey] ? [...latestParameters.plainText[parameterKey]] : [];
-  //   const plainTextId = Math.random().toString();
-  //   updateTextArray.push(
-  //     <PlainText targetId={targetId} text={value} key={plainTextId} id={plainTextId}>{trimValue}</PlainText>
-  //   );
-
-  //   value.trim() && onTagCreated(value.trim(), parameterKey, updateDefaultLabelArray, updateTextArray);
-  //   setInputValue('');
-  //   setShowSuggestion(false);
-  //   setPreviewTracking('');
-  // };
 
   /**
    * Set empty input value and remove preview styles
@@ -445,9 +366,11 @@ CreationTracking.propTypes = {
   callback: PropTypes.func,
   linkText: PropTypes.string,
   textBelowSuggestions: PropTypes.string,
-  flatParameters: PropTypes.shape({}),
-  labelParameters: PropTypes.shape({}),
   parameterKey: PropTypes.string,
+  parameters: PropTypes.arrayOf(PropTypes.shape({})),
+  latestParameters: PropTypes.arrayOf(PropTypes.shape({})),
+  defaultValue: PropTypes.string,
+  handleUrlChange: PropTypes.func,
 };
 
 CreationTracking.defaultProps = {
@@ -460,9 +383,11 @@ CreationTracking.defaultProps = {
   callback: () => null,
   linkText: null,
   textBelowSuggestions: null,
-  flatParameters: {},
-  labelParameters: {},
   parameterKey: null,
+  parameters: [],
+  latestParameters: [],
+  defaultValue: '',
+  handleUrlChange: () => null,
 };
 
 export default CreationTracking;
