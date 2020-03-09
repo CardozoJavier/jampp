@@ -203,8 +203,6 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
       <PlainText targetId={targetId} text={value} key={plainTextId} id={plainTextId}>{trimValue}</PlainText>
     );
 
-    console.log({ parameterKey, updateDefaultLabelArray });
-
     value.trim() && onTagCreated(value.trim(), parameterKey, updateDefaultLabelArray, updateTextArray);
     setInputValue('');
     setShowSuggestion(false);

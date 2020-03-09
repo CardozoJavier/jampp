@@ -36,7 +36,7 @@ const StructurePreview = ({ url }) => {
   const [newParam, setNewParam] = useState('New Param');
 
   const toggleHandler = (status) => {
-    setFreeze(status);
+    setFreeze(!status);
   };
 
   useEffect(() => {
@@ -142,7 +142,7 @@ const StructurePreview = ({ url }) => {
           </TabGroup>
           <DivContainer position="absolute" top="25px" right="25px" display="flex" alignItems="center">
             <Text fontSize={size10} color={freeze ? green.g1 : gray.g3} margin="0 5px 0 0">{'Preview tokens'}</Text>
-            <ToggleSwitch onChange={toggleHandler}/>
+            <ToggleSwitch status={freeze} onChange={toggleHandler}/>
           </DivContainer>
           <DivContainer margin="16px 0 0 0">
             <Card width="auto" padding="0" backgroundColor={freeze ? gray.g0 : white}>
