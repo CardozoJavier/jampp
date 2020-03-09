@@ -19,9 +19,10 @@ import { StatusLabel } from '../Label';
  * @param {Boolean} wide - (Optional) If true, dropdown's width will be 100%;
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @param {String} listWidth - (Optional) It's the width of the list opened.
+ * @param {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
  * @return {React Component} A view for button and dropdown of unique option selectable.
  */
-const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, notCheckIcon, wide, disabled, minWidth, listWidth }) => {
+const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, notCheckIcon, wide, disabled, minWidth, listWidth, defaultValue }) => {
   const { defaultClassName, optionalClassName, buttonClassName, typeList } = dropdownProps[type];
 
   const [className, setClassName] = useState(defaultClassName);
@@ -36,17 +37,16 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
     setClassName(toggleToClassName);
     setChevron(toggleChevronDirection);
   };
-
+  
   const onSelect = (id, label, color, flat, textType) => {
     const props = {
       text: label,
       color,
     };
     const buttonText = textType === 'status-label'
-      ? <StatusLabel {...props} key={id} icon={flat ? null : EllipseIcon} />
-      : label;
+    ? <StatusLabel {...props} key={id} icon={flat ? null : EllipseIcon} />
+    : label;
     setTextButton(buttonText);
-    handleClick();
   };
 
   /**
@@ -63,7 +63,6 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
   const eventHandler = useCallback(
     (e) => {
       setClick(e);
-
       if (e.target.id !== dropdownButton.id) {
         setChevron(dropdownProps.chevron.defaultClassName);
         setClassName(defaultClassName);
@@ -73,6 +72,10 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
   );
   
   useEventListener('click', eventHandler);
+
+  useEffect(() => {
+    setTextButton(text);
+  }, [text]);
 
   return (
     <>
@@ -105,6 +108,7 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
         onSelect={onSelect}
         onChange={onChange}
         notCheckIcon={notCheckIcon}
+        defaultValue={defaultValue}
       />
     </>
   );
@@ -120,6 +124,7 @@ OptionDropdown.propTypes = {
   wide: PropTypes.bool,
   disabled: PropTypes.bool,
   listWidth: PropTypes.string,
+  defaultValue: PropTypes.string,
 };
 
 OptionDropdown.defaultProps = {
@@ -129,6 +134,7 @@ OptionDropdown.defaultProps = {
   wide: false,
   disabled: false,
   listWidth: null,
+  defaultValue: null,
 };
 
 export default OptionDropdown;

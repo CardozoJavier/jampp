@@ -121,7 +121,7 @@ const ExpandableCard = ({ children, title, description, width, padding, borderBo
       {title &&
         <ExpandableCardHeader flexDirection={description ? 'column' : 'row'} borderBottom={borderBottom} onClick={handleClick}>
           <CardTitle>{ title }</CardTitle>
-          {description && <ExpandableCardDescription>{ description }</ExpandableCardDescription>}
+          {description && !expand && <ExpandableCardDescription>{ description }</ExpandableCardDescription>}
           <DownChevronIcon props={{
             width: '24px',
             height: '24px',

@@ -2,15 +2,22 @@ import React from 'react';
 import '../src/main.css';
 import {
   SearchIcon,
+  AlertIcon,
 } from '../src/Components/UI/Icons';
-
 import {
   InputControlled,
   InputField,
 } from '../src/Components/InputField';
+import {
+  Text,
+  DivContainer
+} from '../src/Components/UI/GenericElements/GenericElements.styles';
 export default {
   title: 'Input'
 };
+import { palette, fonts } from '../src/Components/styles';
+const { yellow } = palette;
+const { size10 } = fonts;
 
 /**
  * InputField component should be called with
@@ -22,13 +29,14 @@ export default {
  * @prop {String} placeholder - (Optional) It's to display text into input field.
  * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @prop {Function} icon - (Optional) Function that returns an svg icon.
- * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument.
+ * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument, and event in second argument.
  * @prop {String} label - (Optional) Text to be display in label.
+ * @prop {String} defaultValue - (Optional) It's the default value setted in input field.
  */
 export const Basic = () => (
-  <div style={{ width: '250px' }}>
-    <InputField placeholder="Text" type="basic" onChange={value => console.log(value)} />
-  </div>
+  <DivContainer width="250px">
+    <InputField defaultValue="Default value" placeholder="Text" type="basic" onChange={(value, e) => console.log(e.target.value)} />
+  </DivContainer>
 );
 
 /**
@@ -41,13 +49,14 @@ export const Basic = () => (
  * @prop {String} placeholder - (Optional) It's to display text into input field.
  * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @prop {Function} icon - (Optional) Function that returns an svg icon.
- * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument.
+ * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument, and event in second argument.
  * @prop {String} label - (Optional) Text to be display in label.
+ * @prop {String} defaultValue - (Optional) It's the default value setted in input field.
  */
 export const WithIcon = () => (
-  <div style={{ width: '250px' }}>
+  <DivContainer width="250px">
     <InputField placeholder="Text" type="icon-small-left" icon={SearchIcon} />
-  </div>
+  </DivContainer>
 );
 
 /**
@@ -60,13 +69,14 @@ export const WithIcon = () => (
  * @prop {String} placeholder - (Optional) It's to display text into input field.
  * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @prop {Function} icon - (Optional) Function that returns an svg icon.
- * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument.
+ * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument, and event in second argument.
  * @prop {String} label - (Optional) Text to be display in label.
+ * @prop {String} defaultValue - (Optional) It's the default value setted in input field.
  */
 export const InputWithLabel = () => (
-  <div style={{ width: '250px' }}>
+  <DivContainer width="250px">
     <InputField placeholder="Text" label="Label" type="basic" />
-  </div>
+  </DivContainer>
 );
 
 /**
@@ -79,12 +89,13 @@ export const InputWithLabel = () => (
  * @prop {String} placeholder - (Optional) It's to display text into input field.
  * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @prop {Function} icon - (Optional) Function that returns an svg icon.
- * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument.
+ * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument, and event in second argument.
  * @prop {String} label - (Optional) Text to be display in label.
+ * @prop {String} defaultValue - (Optional) It's the default value setted in input field.
  */
 export const WithErrorMessage = () => (
   <>
-    <div style={{ width: '250px' }}>
+    <DivContainer width="250px">
       <InputField
         errorMessage="Warning here"
         placeholder="Input value"
@@ -93,9 +104,9 @@ export const WithErrorMessage = () => (
         type="error-message"
         onError={() => true}
       />
-    </div>
+    </DivContainer>
 
-    <div style={{ width: '250px' }}>
+    <DivContainer width="250px">
       <InputField
         placeholder="Input value"
         label="Label"
@@ -103,7 +114,7 @@ export const WithErrorMessage = () => (
         type="error-message"
         disabled={true}
       />
-    </div>
+    </DivContainer>
   </>
 );
 
@@ -114,11 +125,13 @@ export const WithErrorMessage = () => (
  * @prop {string} boldPlaceholder - (Optional) It's to display bold text into input field. It'll be in first place.
  * @prop {boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @prop {string} label - (Optional) Text to be display in label.
+ * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument, and event in second argument.
+ * @prop {String} defaultValue - (Optional) It's the default value setted in input field.
  */
 export const WithBoldPlaceholder = () => (
-  <div style={{ width: '250px' }}>
-    <InputControlled label="Text" boldPlaceholder="Text" placeholder="text" type="controlled" id="input1" />
-  </div>
+  <DivContainer width="250px">
+    <InputControlled defaultValue="Default value" label="Text" boldPlaceholder="Text" placeholder="text" type="controlled" id="input1" onChange={(value, e) => console.log(e.target.id)} />
+  </DivContainer>
 );
 
 /**
@@ -131,20 +144,16 @@ export const WithBoldPlaceholder = () => (
  * @prop {String} placeholder - (Optional) It's to display text into input field.
  * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @prop {Function} icon - (Optional) Function that returns an svg icon.
- * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument.
+ * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive input value in first argument, and event in second argument.
  * @prop {String} label - (Optional) Text to be display in label.
+ * @prop {String} defaultValue - (Optional) It's the default value setted in input field.
  */
 export const WithComment = () => (
-  <>
-    <div style={{ width: '250px' }}>
-      <InputField
-        warningMessage="Comment text here"
-        placeholder="Placeholder"
-        label="Label"
-        id="input1" 
-        type="warning-message"
-        onWarning={() => true}
-      />
-    </div>
-  </>
+  <DivContainer width="250px">
+    <InputField label="Label" placeholder="Placeholder" type="basic" />
+    <DivContainer display="flex" alignItems="baseline" margin="8px 0 0 0">
+      <AlertIcon props={{ margin: '0 3px 0 0', width: '10px', height: '10px', fill: yellow.y2 }} />
+      <Text color={yellow.y2} fontSize={size10}>{'Comment text here'}</Text>
+    </DivContainer>
+  </DivContainer>
 );

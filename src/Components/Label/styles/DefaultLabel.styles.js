@@ -36,6 +36,7 @@ export const DefaultLabelContainer = styled.div`
       color: ${black};
 
       ${XIconContainer} {
+        margin-left: 10px;
         svg {
           width: 6px;
           height: 6px;

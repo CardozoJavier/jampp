@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { OptionCheckboxGroup, MenuTitle } from './styles';
 import { bemDestruct, settingClassName } from '../../utils';
@@ -16,9 +16,10 @@ import optionListProps from './optionListProps';
  * @param {Boolean} notCheckIcon - (Optional) It's a modifier to not display the check icon next to text.
  * @param {String} minWidth - (Optional) Specified the min width for options list.
  * @param {String} width - (Optional) Specified the width for options list.
+ * @param {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
  * @return {React Component} A view in which one option can be selected.
  */
-const OptionList = ({ children = [], type, className, menuTitle, onSelect, onChange, notCheckIcon, minWidth, wide, width}) => {
+const OptionList = ({ children = [], type, className, menuTitle, onSelect, onChange, notCheckIcon, minWidth, wide, width, defaultValue }) => {
   const { defaultClassName, OptionItem } = optionListProps[type];
   const childrenParsed = settingClassName(children, -1, defaultClassName);
   const [array, setArray] = useState(childrenParsed);
@@ -32,6 +33,16 @@ const OptionList = ({ children = [], type, className, menuTitle, onSelect, onCha
     onChange(id);
     onSelect(id, label, color, flat, textType);
   }
+
+  useEffect(() => {
+    if (defaultValue) {
+      array.forEach(input => (input.id === defaultValue) && handleCheck(input.id, input.label, input.color, input.flat, type));
+    };
+  }, []);
+
+  useEffect(() => {
+    setArray(childrenParsed);
+  }, [children]);
 
   return (
     <OptionCheckboxGroup className={bemDestruct(className)} minWidth={minWidth} wide={wide} width={width}>

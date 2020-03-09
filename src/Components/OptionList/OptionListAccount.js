@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   EmailFieldContainer,
@@ -38,6 +38,10 @@ const OptionListAccount = ({ children = [], type, email, className, OptionItem, 
     const inputsArray = settingClassName(children, id, defaultClassName);
     setArray(inputsArray);
   }
+
+  useEffect(() => {
+    setArray(childrenParsed);
+  }, [children]);
 
   return (
     <OptionListContainer className={bemDestruct(className)} id={listId}>

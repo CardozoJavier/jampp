@@ -32,6 +32,7 @@ export default styled.div`
         }
 
         &__closed {
+          z-index: -9999;
           opacity: 0;
           visibility: hidden;
           transform: translateY(0);
