@@ -38,7 +38,7 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
     setChevron(toggleChevronDirection);
   };
   
-  const onSelect = (id, label, color, flat, textType) => {
+  const onSelect = useCallback((id, label, color, flat, textType) => {
     const props = {
       text: label,
       color,
@@ -48,7 +48,7 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
     : label;
     // Avoid error with race condition when state is updated.
     setTimeout(() => setTextButton(buttonText), 0);
-  };
+  }, [children]);
 
   /**
    * Hook to handle click events on window
@@ -71,7 +71,6 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
     },
     [dropdownButton, setClick]
   );
-  
   useEventListener('click', eventHandler);
 
   useEffect(() => {
@@ -138,4 +137,4 @@ OptionDropdown.defaultProps = {
   defaultValue: null,
 };
 
-export default OptionDropdown;
+export default React.memo(OptionDropdown);

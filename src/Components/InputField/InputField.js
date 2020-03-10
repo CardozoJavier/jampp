@@ -133,4 +133,4 @@ InputField.defaultProps = {
   defaultValue: '',
 };
 
-export default InputField;
+export default React.memo(InputField);

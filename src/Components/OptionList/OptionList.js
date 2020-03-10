@@ -92,4 +92,4 @@ OptionList.defaultProps = {
   width: '',
 };
   
-export default OptionList;
+export default React.memo(OptionList);
