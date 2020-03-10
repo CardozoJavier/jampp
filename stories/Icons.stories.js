@@ -20,7 +20,13 @@ import {
   TrashIcon,
   XIcon,
   AlertIcon,
-  AddAccountIcon
+  AddAccountIcon,
+  LinkedIcon,
+  UnlinkedIcon,
+  UndoIcon,
+  BroomIcon,
+  LockedIcon,
+  UnlockedIcon,
 } from '../src/Components/UI/Icons';
 
 export default {
@@ -48,6 +54,17 @@ export const Icons = () => (
     <XIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
     <AlertIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
     <ExclamationIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
+  </>
+);
+
+export const IconsMarch = () => (
+  <>
+    <LinkedIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
+    <UnlinkedIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
+    <UndoIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
+    <BroomIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
+    <LockedIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
+    <UnlockedIcon props={{ height: '18px', width: '18px', fill: '#000' }} />
   </>
 );
 

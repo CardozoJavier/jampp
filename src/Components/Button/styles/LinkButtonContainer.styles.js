@@ -30,7 +30,7 @@ export default styled.div`
      * ***********************
      */
     &.link {
-      &--default, &--duplicate {
+      &--default, &--duplicate, &--check {
         font-size: 12px;
         color: ${link};
 

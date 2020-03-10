@@ -7,7 +7,7 @@ import {
   LinkButtonContainer,
 } from './styles';
 import { palette } from '../styles';
-const { link } = palette;
+const { link, action } = palette;
 
 const buttonProps = {
   "accessory-default-left": {
@@ -99,6 +99,17 @@ const buttonProps = {
       fill: link,
       width: '11px',
       height: '11px',
+    },
+  },
+  "link-check-left": {
+    defaultClassName: 'button link--default-left',
+    optionalClassName: '',
+    ButtonContainer: LinkButtonContainer,
+    iconClassName: 'button link--default-left',
+    iconProps: {
+      stroke: action,
+      width: '14px',
+      height: '14px',
     },
   },
   "duplicate-structure": {
