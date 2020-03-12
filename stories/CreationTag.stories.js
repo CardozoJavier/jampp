@@ -1,6 +1,6 @@
 import React from 'react';
 import '../src/main.css';
-import { CreationTag, CreationTagSuggestion, CreationTracking } from '../src/Components/CreationTag';
+import { CreationTag, CreationTagSuggestion } from '../src/Components/CreationTag';
 export default {
   title: 'Creation tag'
 };
@@ -23,8 +23,8 @@ export const Default = () => (
     label="Label"
     type="basic"
     width="433px"
-    onTagCreated={event => console.log(event + ' has been created')}
-    onTagDeleted={event => console.log(event + ' has been deleted')}
+    onTagCreated={label => console.log(label + ' has been created')}
+    onTagDeleted={label => console.log(label + ' has been deleted')}
     defaultValue="Default tag"
     errorMessage="Type error"
     onError={() => true}
@@ -50,7 +50,7 @@ export const Suggestions = () => (
     textBelowSuggestions="or select from the"
     suggestions={["Option 1", "Option 2", "Option 3"]}
     callback={() => console.log('Displaying full list')}
-    onTagCreated={event => console.log(event + ' has been created')}
-    onTagDeleted={event => console.log(event + ' has been deleted')}
+    onTagCreated={label => console.log(label + ' has been created')}
+    onTagDeleted={label => console.log(label + ' has been deleted')}
   />
 );

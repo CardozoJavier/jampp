@@ -9,3 +9,4 @@ export { default as getUniqueId } from './getUniqueId';
 export { default as removeEmptySpace } from './removeEmptySpace';
 export { default as getQueryParams } from './getQueryParams';
 export { default as getWidthElement } from './getWidthElement';
+export { default as getReferencedId } from './getReferencedId';

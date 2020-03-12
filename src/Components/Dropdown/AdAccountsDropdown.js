@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { AccountStatement, AccountTitle, AccountDescription, AccountDropdownContainer } from './styles';
 import { AvatarIcon, DownChevronIcon } from '../UI/Icons';
-import { bemDestruct, getClassName, useEventListener, getUniqueId } from '../../utils';
+import { bemDestruct, getClassName, useEventListener, getReferencedId } from '../../utils';
 import AdAccountsPanel from '../OptionList/AdAccountsPanel';
 import { UniqueOption } from '../UniqueOption';
 
@@ -44,8 +44,8 @@ const AdAccountsDropdown = ({ name, description, avatarSrc, children, email, sig
   /**
    * Hook to handle click events on window
    */
-  const dropdownId = getUniqueId();
-  const listId = getUniqueId();
+  const dropdownId = getReferencedId();
+  const listId = getReferencedId();
   const [, setClick] = useState();
   let dropdownButton;
   let dropdownList;
