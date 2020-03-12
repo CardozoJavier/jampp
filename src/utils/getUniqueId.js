@@ -1,11 +1,6 @@
-import { useRef } from 'react';
+/**
+ * Generate an unique ID base of millisecond throw by Date object.
+ */
+const getUniqueId = () => (new Date().valueOf() + Math.random()).toString();
 
-let uniqueId = Math.random();
-const getUniqueId = () => String(uniqueId++);
-
-const useComponentId = () => {
-  const idRef = useRef(getUniqueId());
-  return idRef.current;
-}
-
-export default useComponentId;
+export default getUniqueId;

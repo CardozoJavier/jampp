@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import MultipleOptionList from '../MultipleOptionList';
 import { ButtonInput } from '../Button/styles';
 import { ButtonDropdownContainer } from './styles';
-import { bemDestruct, getClassName, useEventListener, getUniqueId } from '../../utils';
+import { bemDestruct, getClassName, useEventListener, getReferencedId } from '../../utils';
 import { IconGenerator, DownChevronIcon } from '../UI/Icons';
 import dropdownProps from './dropdownProps';
 
@@ -33,8 +33,8 @@ const MultipleOptionDropdown = ({ type = 'basic', text, children, leftIcon, disa
   /**
    * Hook to handle click events on window
    */
-  const dropdownId = getUniqueId();
-  const listId = getUniqueId();
+  const dropdownId = getReferencedId();
+  const listId = getReferencedId();
   const [, setClick] = useState();
   let dropdownButton;
   let dropdownList; 
