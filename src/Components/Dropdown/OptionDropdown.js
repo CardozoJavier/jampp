@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { ButtonInput } from '../Button/styles';
 import { ButtonDropdownContainer } from './styles';
-import { getClassName, bemDestruct, useEventListener, getUniqueId } from '../../utils';
+import { getClassName, bemDestruct, useEventListener, getReferencedId } from '../../utils';
 import { IconGenerator, DownChevronIcon, EllipseIcon } from '../UI/Icons';
 import { OptionList } from '../OptionList';
 import dropdownProps from './dropdownProps';
@@ -53,7 +53,7 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
   /**
    * Hook to handle click events on window
    */
-  const dropdownId = getUniqueId();
+  const dropdownId = getReferencedId();
   const [, setClick] = useState();
   let dropdownButton;
 
