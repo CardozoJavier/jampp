@@ -175,7 +175,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
 
     if (type === 'input-field') {
       updateDefaultLabelArray.push(
-        <InputText id={targetId} key={targetId} targetId={targetId} defaultValue={inputValue.trim()} onChange={handleInputChange} disabled={disabled} />
+        <InputText id={targetId} key={targetId} targetId={targetId} defaultValue={removeEmptySpace(inputValue)} onChange={handleInputChange} disabled={disabled} />
       );
       setPreviewTracking('preview-tracking');
     } else if (type === 'label-tag'){
