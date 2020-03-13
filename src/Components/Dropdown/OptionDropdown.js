@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { ButtonInput } from '../Button/styles';
 import { ButtonDropdownContainer } from './styles';
@@ -7,6 +7,7 @@ import { IconGenerator, DownChevronIcon, EllipseIcon } from '../UI/Icons';
 import { OptionList } from '../OptionList';
 import dropdownProps from './dropdownProps';
 import { StatusLabel } from '../Label';
+import StructurePreviewContext from '../Structures/Context';
 
 /**
  * OptionDropdown component should be called with
@@ -23,6 +24,7 @@ import { StatusLabel } from '../Label';
  * @return {React Component} A view for button and dropdown of unique option selectable.
  */
 const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, notCheckIcon, wide, disabled, minWidth, listWidth, defaultValue }) => {
+  const context = useContext(StructurePreviewContext);
   const { defaultClassName, optionalClassName, buttonClassName, typeList } = dropdownProps[type];
 
   const [className, setClassName] = useState(defaultClassName);
@@ -79,7 +81,7 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
 
   return (
     <>
-      <ButtonDropdownContainer wide={wide} className={bemDestruct(buttonClassName, disabled)} onClick={disabled ? null : handleClick} id={dropdownId} minWidth={minWidth}>
+      <ButtonDropdownContainer wide={wide} className={bemDestruct(buttonClassName, context.disabled)} onClick={context.disabled ? null : handleClick} id={dropdownId} minWidth={minWidth}>
         {leftIcon &&
           <IconGenerator
             renderIcon={leftIcon}

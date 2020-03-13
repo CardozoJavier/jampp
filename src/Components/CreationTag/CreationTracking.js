@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { LabelContainer, Input, Label, SuggestionsListContainer, SuggestionsList, PreviewContainer, PlainText} from './styles';
 import { getClassName, bemDestruct, useEventListener, removeEmptySpace } from '../../utils';
@@ -9,6 +9,7 @@ import { Button } from '../Button';
 import { palette, fonts } from '../styles';
 import { XIcon } from '../UI/Icons';
 import InputText from '../Structures/InputText';
+import StructurePreviewContext from '../Structures/Context';
 const { gray, black } = palette;
 const { size10 } = fonts;
 
@@ -30,7 +31,9 @@ const { size10 } = fonts;
  * @param {String} parameterKey - (Optional) It's the key that correspond with each parameter input text.
  * @return {React Component} A view for input field with icon and action on error.
  */
-const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions, parameterKey, parameters, latestParameters, defaultValue, handleUrlChange }) => {
+const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions, parameterKey, parameters, latestParameters, defaultValue, handleUrlChange, context }) => {
+  const contextValue = context === 'structure-preview' ? useContext(StructurePreviewContext) || {} : disabled;
+  const [contextDisabled, setContextDisabled] = useState(contextValue.disabled);
   const { defaultClassName, optionalClassName, onBlurClassName, onFocusClassName, InputContainer } = inputProps[type];
   const [className, setClassName] = useState(defaultClassName);
   
@@ -64,10 +67,17 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
    * Handle input field.
    */
   const handleChange = ({ target: { value }}) => {
+    let regex;
+    let matchSuggestion;
     const [flatValue, trackingValue] = value.split('{');
-    const regex = trackingValue ? new RegExp(trackingValue.toLowerCase()) : { test: () => null };
-    const matchSuggestion = trackingValue === '' ? suggestions : suggestions.filter(suggestion => regex.test(suggestion.toLowerCase()));
 
+    if (trackingValue === undefined) {
+      regex = value.trim() ? new RegExp(`^${value.toLowerCase()}`) : { test: () => null };
+      matchSuggestion = suggestions.filter(suggestion => regex.test(suggestion.toLowerCase()));
+    } else {
+      regex = new RegExp(`^${trackingValue.toLowerCase()}`);
+      matchSuggestion = trackingValue === '' ? suggestions : suggestions.filter(suggestion => regex.test(suggestion.toLowerCase()));
+    }
     setShowSuggestion(!!matchSuggestion.length);
     setInputValue(value);
     setMatchSuggestion(matchSuggestion);
@@ -291,13 +301,21 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     handleUrlChange(parameterKey, parameterValue);
   }, [parameters]);
 
+  /**
+   * Context listener update props
+   */
+  useEffect(() => {
+    // console.log({contextValue: contextValue.disabled, contextDisabled });
+    setContextDisabled(contextValue.disabled);
+  }, [contextValue.disabled]);
+
   return (
     <LabelContainer>
       {label && <Label htmlFor={labelId}>{label}</Label>}
       <InputContainer
-        onClick={disabled ? null : handleClick}
-        className={bemDestruct(className, disabled)}
-        disabled={disabled}
+        onClick={contextDisabled ? null : handleClick}
+        className={bemDestruct(className, contextDisabled)}
+        disabled={contextDisabled}
         width={width}
         htmlFor={labelId}
       >
@@ -308,14 +326,14 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
           <Input
             id={labelId}
             fontSize={size10}
-            value={disabled ? removeEmptySpace(inputValue) : inputValue}
-            disabled={disabled}
+            value={contextDisabled ? removeEmptySpace(inputValue) : inputValue}
+            disabled={contextDisabled}
             placeholder={placeholder}
             onKeyDown={handleKeyDown}
             className={previewTracking}
-            onBlur={disabled ? null : handleBlur}
-            onFocus={disabled ? null : handleFocus}
-            onChange={disabled ? null : handleChange}
+            onBlur={contextDisabled ? null : handleBlur}
+            onFocus={contextDisabled ? null : handleFocus}
+            onChange={contextDisabled ? null : handleChange}
             size={inputValue.length ? inputValue.length + 3 : 1}
           />
           <XIcon props={{ onClick: closePreview, width: '6px', height: '6px', fill: gray.g07, cursor: 'pointer', display: previewTracking ? 'block' : 'none', position: 'relative', right: '20px', }} />
