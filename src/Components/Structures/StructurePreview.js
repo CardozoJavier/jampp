@@ -87,40 +87,43 @@ const StructurePreview = ({ url }) => {
         params.delete(paramKey);
       } else {
         elements.push(
-          <DivContainer key={paramKey} id="original-structure" display="grid" alignItems="center" gridTemplateColumns="28% 5% 59% 8%" padding="15px" borderBottom={`1px solid ${gray.g1}`}>
-            <Text color={freeze ? gray.g3 : black} fontSize={size12} fontWeight="bold">{paramKey}</Text>
-            <Text>=</Text>
-            <CreationTracking
-              defaultValue={value}
-              parameterKey={paramKey}
-              width="100%"
-              linkText="Full list"
-              id={`creation-tracking_${paramKey}`}
-              type="suggestions-tracking"
-              textBelowSuggestions="or select from the"
-              suggestions={["Option 1", "Option 2", "Option 3"]}
-              callback={() => console.log('Displaying full list')}
-              onTagCreated={onTagCreated}
-              onTagDeleted={onTagDelete}
-              disabled={freeze}
-              parameters={freeze ? parameters.plainText[paramKey] : parameters.labelTag[paramKey]}
-              latestParameters={latestParameters.current}
-              handleUrlChange={handleUrlChange}
-            />
-            <XIcon
-              role='icon-to-remove-structure'
-              props={{
-                width: '10px',
-                height: '10px',
-                fill: freeze ? gray.g2 : gray.g3,
-                margin: '0 5px',
-                cursor: freeze ? 'default' : 'pointer',
-                hover: black,
-                justifySelf: 'end',
-                onClick: freeze ? null : () => console.log('Display modal and pass it the key parameter: ' + paramKey),
-              }}
-            />
-          </DivContainer>
+          <StructurePreviewContext.Provider value={{ disabled: freeze }} key={paramKey}>
+            <DivContainer key={paramKey} id="original-structure" display="grid" alignItems="center" gridTemplateColumns="28% 5% 59% 8%" padding="15px" borderBottom={`1px solid ${gray.g1}`}>
+              <Text color={freeze ? gray.g3 : black} fontSize={size12} fontWeight="bold">{paramKey}</Text>
+              <Text>=</Text>
+              <CreationTracking
+                defaultValue={value}
+                parameterKey={paramKey}
+                width="100%"
+                linkText="Full list"
+                id={`creation-tracking_${paramKey}`}
+                type="suggestions-tracking"
+                textBelowSuggestions="or select from the"
+                suggestions={["Option 1", "Option 2", "Option 3"]}
+                callback={() => console.log('Displaying full list')}
+                onTagCreated={onTagCreated}
+                onTagDeleted={onTagDelete}
+                disabled={freeze}
+                parameters={freeze ? parameters.plainText[paramKey] : parameters.labelTag[paramKey]}
+                latestParameters={latestParameters.current}
+                handleUrlChange={handleUrlChange}
+                context="structure-preview"
+              />
+              <XIcon
+                role='icon-to-remove-structure'
+                props={{
+                  width: '10px',
+                  height: '10px',
+                  fill: freeze ? gray.g2 : gray.g3,
+                  margin: '0 5px',
+                  cursor: freeze ? 'default' : 'pointer',
+                  hover: black,
+                  justifySelf: 'end',
+                  onClick: freeze ? null : () => console.log('Display modal and pass it the key parameter: ' + paramKey),
+                }}
+              />
+            </DivContainer>
+          </StructurePreviewContext.Provider>
         )}
       });
 
