@@ -12,7 +12,7 @@ import { CreationTracking } from '../CreationTag';
 import { Tab } from '../Tab/styles';
 import { ParametersDuplicationContainer } from '../CreationTag/styles';
 import { DropdownContainer, DropdownListContainer } from '../Dropdown/styles';
-import { LockIcon, XIcon, BoldAddIcon } from '../UI/Icons';
+import { LockedIcon, XIcon, BoldAddIcon } from '../UI/Icons';
 import { DivContainer, Text } from '../UI/GenericElements/GenericElements.styles';
 import { palette, fonts } from '../styles';
 import { getQueryParams, removeEmptySpace } from '../../utils';
@@ -150,7 +150,7 @@ const StructurePreview = ({ url }) => {
                 <HeaderText padding='4px 37px 4px 16px' borderRight={`1px solid ${gray.g1}`}>{'Partner parameter'}</HeaderText>
                 <HeaderText padding='4px 0 4px 20px'>{'Jampp parameter'}</HeaderText>
                 {freeze ? null : 
-                  <LockIcon props={{ fill: black, margin: '0 15px 0 auto', cursor: 'pointer', onClick: () => console.log('Lock icon clicked') }} />
+                  <LockedIcon props={{ fill: black, margin: '0 15px 0 auto', cursor: 'pointer', onClick: () => console.log('Lock icon clicked') }} />
                 }
               </HeaderParameter>
               <DivContainer>
