@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Text = styled.p`
-  word-break: break-all
+  word-break: ${({ wordBreak }) => wordBreak || 'break-all'};
   color: ${({ color }) => color};
   font-size: ${({ fontSize }) => fontSize};
   font-weight: ${({ fontWeight }) => fontWeight};
