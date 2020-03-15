@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { CreateElementContainer } from './styles';
 import { Button } from '../Button';
@@ -15,8 +15,8 @@ import { DivContainer } from '../UI/GenericElements/GenericElements.styles';
  *  @param {Function} onDeleteCallback - (Required) It's the callback to be called when remove icon is clicked. It receive the structure ID in first argument.
  *  @param {Boolean} disabled - (Optional) If true, the add button is hide.
  */
-const CreateElement = ({ children, buttonText, buttonType, buttonIcon, buttonProps, onDeleteCallback, disabled }) => {
-  const [structure, setStructure] = useState(null);
+const CreateElement = ({ children, buttonText, buttonType, buttonIcon, buttonProps, onDeleteCallback, disabled, onStructureCreated, id }) => {
+  const [structure, setStructure] = useState([]);
 
   /**
    * Modifying onClick callback to receive the ID of each cloned structure to be removed.
@@ -57,12 +57,22 @@ const CreateElement = ({ children, buttonText, buttonType, buttonIcon, buttonPro
    * Add duplicated children structure to be rendered.
    */
   const handleAddStructure = () => {
-    const structuresArray = Array.isArray(structure) ? [...structure] : [structure];
+    const structuresArray = !!structure.length ? [...structure] : [];
     const newStructure = cloningWithUniqueId(children);
 
     structuresArray.push(newStructure);
     setStructure(structuresArray);
+    onStructureCreated(id);
   };
+
+  useEffect(() => {
+    const structuresArray = [];
+    structure && structure.forEach(() => {
+      structuresArray.push(children);
+    });
+
+    setStructure(structuresArray);
+  }, [disabled]);
 
   return (
     <CreateElementContainer {...buttonProps}>
@@ -86,6 +96,7 @@ CreateElement.propTypes = {
   removableFirst: PropTypes.bool,
   buttonProps: PropTypes.shape({}),
   onDeleteCallback: PropTypes.func,
+  onStructureCreated: PropTypes.func,
 };
 
 CreateElement.defaultProps = {
@@ -95,6 +106,7 @@ CreateElement.defaultProps = {
   removableFirst: true,
   buttonProps: {},
   onDeleteCallback: () => null,
+  onStructureCreated: () => null,
 };
 
-export default CreateElement;
+export default React.memo(CreateElement);
