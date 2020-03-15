@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { OptionCheckboxGroup, MenuTitle } from './styles';
 import { bemDestruct, settingClassName } from '../../utils';
@@ -12,14 +12,13 @@ import optionListProps from './optionListProps';
  * @param {Function} OptionItem - (Required) It's each option component styled to be displayed into list.
  * @param {String} menuTitle - (Optional) It's the title in dropdown opened.
  * @param {Function} onSelect - (Optional) Callback to change text displayed in button dropdown. It receive option ID in first argument, and label option in second argument.
- * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
  * @param {Boolean} notCheckIcon - (Optional) It's a modifier to not display the check icon next to text.
  * @param {String} minWidth - (Optional) Specified the min width for options list.
  * @param {String} width - (Optional) Specified the width for options list.
  * @param {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
  * @return {React Component} A view in which one option can be selected.
  */
-const OptionList = ({ children = [], type, className, menuTitle, onSelect, onChange, notCheckIcon, minWidth, wide, width, defaultValue }) => {
+const OptionList = ({ children = [], type, className, menuTitle, onSelect, notCheckIcon, minWidth, wide, width, defaultValue }) => {
   const { defaultClassName, OptionItem } = optionListProps[type];
   const childrenParsed = settingClassName(children, -1, defaultClassName);
   const [array, setArray] = useState(childrenParsed);
@@ -31,7 +30,6 @@ const OptionList = ({ children = [], type, className, menuTitle, onSelect, onCha
     const inputsArray = settingClassName(children, id, defaultClassName);
     // Avoid error with race condition when state is updated.
     setTimeout(() => setArray(inputsArray), 0);
-    onChange(id, label);
     onSelect(id, label, color, flat, textType);
   }
 
@@ -77,7 +75,6 @@ OptionList.propTypes = {
     className: PropTypes.string.isRequired,
     menuTitle: PropTypes.string,
     onSelect: PropTypes.func,
-    onChange: PropTypes.func,
     notCheckIcon: PropTypes.bool,
     minWidth: PropTypes.string,
     width: PropTypes.string,
@@ -86,7 +83,6 @@ OptionList.propTypes = {
 OptionList.defaultProps = {
   menuTitle: '',
   onSelect: () => null,
-  onChange: () => null,
   notCheckIcon: false,
   minWidth: '',
   width: '',
