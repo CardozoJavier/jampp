@@ -15,69 +15,95 @@ import { DropdownContainer, DropdownListContainer } from '../Dropdown/styles';
 import { LockedIcon, XIcon, BoldAddIcon } from '../UI/Icons';
 import { DivContainer, Text } from '../UI/GenericElements/GenericElements.styles';
 import { palette, fonts } from '../styles';
-import { getQueryParams, removeEmptySpace } from '../../utils';
+import { getQueryParams, removeEmptySpace, getReferencedId } from '../../utils';
 import { HeaderParameter, HeaderText } from './styles/StructurePreview.styles';
 import StructurePreviewContext from './Context';
 const { gray, green, black, white } = palette;
 const { size10, size12, size18 } = fonts;
 
-
-
 const StructurePreview = ({ url }) => {
   const [freeze, setFreeze] = useState(false);
   const [urlValue, setUrlValue] = useState(url);
-  const [parameters, setParameters] = useState({ plainText: {}, labelTag: {} });
-  const latestParameters = useRef(parameters);
+  const [arrayParameters, setArrayParameters] = useState({ plainText: {}, labelTag: {} });
+  const latestParameters = useRef(arrayParameters);
   const [queryParams, setQueryParams] = useState(null);
 
-  const [newParam, setNewParam] = useState('New Param');
+  const [customParam, setCustomParam] = useState(new Map());
+  const optionDropdownId = getReferencedId();
 
   const toggleHandler = (status) => {
     setFreeze(!status);
   };
 
   useEffect(() => {
-    latestParameters.current = parameters;
-  }, [parameters]);
+    latestParameters.current = arrayParameters;
+  }, [arrayParameters]);
 
   useEffect(() => {
     const params = getQueryParams(url);
     setQueryParams(params);
   }, []);
 
-  const handleUrlChange = (key, value) => {
+  const handleUrlChange = (key, value, customParamId) => {
     const newUrl = new URL(urlValue);
     const params = new URLSearchParams(newUrl.search);
     params.set(key, value);
     newUrl.search = params;
     const urlDecoded = decodeURIComponent(newUrl.href);
 
+    if (customParamId) {
+      customParam.set(customParamId, {
+        paramName: key,
+        paramValue: value,
+      });
+      setCustomParam(customParam);
+    };
+
     // Avoid problem with race condition
     setTimeout(() => setUrlValue(urlDecoded), 0);
   };
 
   const onTagCreated = (parameterValue, parameterKey, arrayLabelTag, arrayPlainText) => {
-    const updateParameters = Object.assign({}, parameters);
+    const updateParameters = Object.assign({}, arrayParameters);
     updateParameters.plainText[parameterKey] = arrayPlainText;
     updateParameters.labelTag[parameterKey] = arrayLabelTag;
 
-    setParameters(updateParameters);
+    setArrayParameters(updateParameters);
   };
 
   const onTagDelete = (parameterValue, parameterKey, arrayLabelTag, arrayPlainText) => {
-    const updateParameters = Object.assign({}, parameters);
+    const updateParameters = Object.assign({}, arrayParameters);
     updateParameters.plainText[parameterKey] = arrayPlainText;
     updateParameters.labelTag[parameterKey] = arrayLabelTag;
-    setParameters(updateParameters);
+    setArrayParameters(updateParameters);
   };
 
   /**
-   * Set the parameter key when is selected from dropdown
+   * Setting default value and unique id for new param created.
    */
-  const handleAddNewParam = (optionId, text) => {
-    const keyParameter = removeEmptySpace(text);
-    setNewParam(text);
-    handleUrlChange(keyParameter, '');
+  const onStructureCreated = (id) => {
+    customParam.set(id, { paramName: 'NewParam', paramValue: '' });
+    setCustomParam(customParam);
+    // handleUrlChange('NewParam', '');
+
+    // console.log({ id, customParam });
+    // setCustomParam(customParam);
+  };
+
+  /**
+   * Callback triggered when option is selected from dropdown. It's used for update URL query string parameters.
+   */
+  const handleOptionChange = (id, text) => {
+    const paramName = removeEmptySpace(text);
+    const paramValue = removeEmptySpace(customParam.get(id).paramValue);
+    customParam.set(id, { paramName, paramValue });
+
+    // console.log({ paramName, paramValue, customParam })
+
+    handleUrlChange(paramName, paramValue);
+    setCustomParam(customParam);
+
+    // console.log({ id, text, customParam })
   };
   
   const renderQueryParams = (params) => {
@@ -104,7 +130,7 @@ const StructurePreview = ({ url }) => {
                 onTagCreated={onTagCreated}
                 onTagDeleted={onTagDelete}
                 disabled={freeze}
-                parameters={freeze ? parameters.plainText[paramKey] : parameters.labelTag[paramKey]}
+                arrayParameters={freeze ? arrayParameters.plainText[paramKey] : arrayParameters.labelTag[paramKey]}
                 latestParameters={latestParameters.current}
                 handleUrlChange={handleUrlChange}
                 context="structure-preview"
@@ -150,19 +176,19 @@ const StructurePreview = ({ url }) => {
                 <HeaderText padding='4px 37px 4px 16px' borderRight={`1px solid ${gray.g1}`}>{'Partner parameter'}</HeaderText>
                 <HeaderText padding='4px 0 4px 20px'>{'Jampp parameter'}</HeaderText>
                 {freeze ? null : 
-                  <LockedIcon props={{ fill: black, margin: '0 15px 0 auto', cursor: 'pointer', onClick: () => console.log('Lock icon clicked') }} />
+                  <LockedIcon props={{ fill: black, margin: '0 20px 0 auto', cursor: 'pointer', onClick: () => console.log('Lock icon clicked') }} />
                 }
               </HeaderParameter>
               <DivContainer>
 
                 {queryParams && renderQueryParams(queryParams)}
 
-                <StructurePreviewContext.Provider value={{ disabled: freeze }}>
-                <CreateElement disabled={freeze} buttonText="Add parameter" buttonType="link-default-left" buttonIcon={BoldAddIcon} onDeleteCallback={structureId => console.log('Structure with id ' + structureId + ' want to be deleted')}>
+                <StructurePreviewContext.Provider value={{ disabled: freeze, handleOptionChange, customParam, optionDropdownId }}>
+                  <CreateElement id={optionDropdownId} onStructureCreated={onStructureCreated} disabled={freeze} buttonText="Add parameter" buttonType="link-default-left" buttonIcon={BoldAddIcon} onDeleteCallback={structureId => console.log('Structure with id ' + structureId + ' want to be deleted')}>
                     <ParametersDuplicationContainer>
                       <DropdownContainer width="100%" padding="0 10px 0 0">
                         <DropdownListContainer>
-                          <OptionDropdown disabled={freeze} wide={true} text={newParam} type="basic-clean" onChange={handleAddNewParam} listWidth="fit-content">
+                          <OptionDropdown optionDropdownId={optionDropdownId} disabled={freeze} wide={true} text={'New Param'} type="basic-clean" listWidth="fit-content">
                             <Option label="Option A" id="a" />
                             <Option label="Option B" id="b" />
                             <Option label="Option C" id="c" />
@@ -173,11 +199,10 @@ const StructurePreview = ({ url }) => {
                       <Text>=</Text>
                       <DivContainer alignSelf="flex-start">
                         <CreationTracking
-                          parameterKey={newParam}
                           width="100%"
                           linkText="Full list"
-                          id={`creation-tracking_${newParam}`}
-                          key={`creation-tracking_${newParam}`}
+                          id={optionDropdownId}
+                          key={optionDropdownId}
                           type="suggestions-tracking"
                           textBelowSuggestions="or select from the"
                           suggestions={["Option 1", "Option 2", "Option 3"]}
@@ -185,12 +210,12 @@ const StructurePreview = ({ url }) => {
                           onTagCreated={onTagCreated}
                           onTagDeleted={onTagDelete}
                           disabled={freeze}
-                          parameters={freeze ? parameters.plainText[newParam] : parameters.labelTag[newParam]}
+                          arrayParameters={freeze ? arrayParameters.plainText[customParam.get(optionDropdownId)?.key] : arrayParameters.labelTag[customParam.get(optionDropdownId)?.key]}
                           latestParameters={latestParameters.current}
                           handleUrlChange={handleUrlChange}
                           context="structure-preview"
                         />
-                        <DivContainer display="flex" alignItems="center" margin="8px 0 0 0">
+                        <DivContainer display={freeze ? 'none' : 'flex'} alignItems="center" margin="8px 0 0 0">
                           <Text color={gray.g4} fontSize={size10} display="inline" margin="0 3px 0 0">or select from the </Text>
                           <Button disabled={freeze} fontSize={size10} label="Full token list" type="link-default-left" onClick={() => console.log('Display full token list')} />
                         </DivContainer>
@@ -210,7 +235,7 @@ const StructurePreview = ({ url }) => {
                         }}
                       />
                     </ParametersDuplicationContainer>
-                </CreateElement>
+                  </CreateElement>
                 </StructurePreviewContext.Provider>
               </DivContainer>
             </Card>
