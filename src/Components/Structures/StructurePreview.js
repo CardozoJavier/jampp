@@ -52,9 +52,11 @@ const StructurePreview = ({ url }) => {
     const urlDecoded = decodeURIComponent(newUrl.href);
 
     if (customParamId) {
+      const defaultValue = customParam.get(customParamId).defaultValue;
       customParam.set(customParamId, {
         paramName: key,
         paramValue: value,
+        defaultValue,
       });
       setCustomParam(customParam);
     };
@@ -90,13 +92,11 @@ const StructurePreview = ({ url }) => {
     // setCustomParam(customParam);
   };
 
-  /**
-   * Callback triggered when option is selected from dropdown. It's used for update URL query string parameters.
-   */
-  const handleOptionChange = (id, text) => {
+
+  const handleOptionChange = (buttonId, text, selectedOptionId) => {
     const paramName = removeEmptySpace(text);
-    const paramValue = removeEmptySpace(customParam.get(id).paramValue);
-    customParam.set(id, { paramName, paramValue });
+    const paramValue = removeEmptySpace(customParam.get(buttonId).paramValue);
+    customParam.set(buttonId, { paramName, paramValue, defaultValue: selectedOptionId });
 
     // console.log({ paramName, paramValue, customParam })
 
@@ -188,7 +188,7 @@ const StructurePreview = ({ url }) => {
                     <ParametersDuplicationContainer>
                       <DropdownContainer width="100%" padding="0 10px 0 0">
                         <DropdownListContainer>
-                          <OptionDropdown optionDropdownId={optionDropdownId} disabled={freeze} wide={true} text={'New Param'} type="basic-clean" listWidth="fit-content">
+                          <OptionDropdown optionDropdownId={optionDropdownId} wide={true} text={'New Param'} type="basic-clean" listWidth="fit-content">
                             <Option label="Option A" id="a" />
                             <Option label="Option B" id="b" />
                             <Option label="Option C" id="c" />
