@@ -31,7 +31,7 @@ const { size10 } = fonts;
  * @param {String} parameterKey - (Optional) It's the key that correspond with each parameter input text.
  * @return {React Component} A view for input field with icon and action on error.
  */
-const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions, parameterKey, parameters, latestParameters, defaultValue, handleUrlChange, context }) => {
+const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions, parameterKey, arrayParameters, latestParameters, defaultValue, handleUrlChange, context }) => {
   const contextValue = context === 'structure-preview' ? useContext(StructurePreviewContext) || {} : disabled;
   const [contextDisabled, setContextDisabled] = useState(contextValue.disabled);
   const { defaultClassName, optionalClassName, onBlurClassName, onFocusClassName, InputContainer } = inputProps[type];
@@ -84,7 +84,10 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     setClassName(onFocusClassName);
 
     const parameterValue = concatUrlParam(value);
-    handleUrlChange(parameterKey, parameterValue);
+    const { customParam, optionDropdownId } = contextValue;
+    const paramKey = parameterKey || customParam.get(optionDropdownId).paramName;
+    // console.log({ paramKey: customParam?.get(optionDropdownId).paramName, parameterKey });
+    handleUrlChange(paramKey, parameterValue, optionDropdownId);
   }
 
   /**
@@ -115,8 +118,10 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
   const handleInputChange = (id, value) => {
     const updateDefaultLabelArray = [];
     const updateTextArray = [];
+    const { customParam, optionDropdownId } = contextValue;
+    const paramKey = parameterKey || customParam.get(optionDropdownId);
 
-    latestParameters.labelTag[parameterKey].forEach(labelTag => {
+    latestParameters.labelTag[paramKey].forEach(labelTag => {
       if (labelTag.props.targetId == id) {
         const cloneInputField = React.cloneElement(labelTag, {
           defaultValue: value,
@@ -128,7 +133,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
       }
     });
     
-    latestParameters.plainText[parameterKey].forEach(plainText => {
+    latestParameters.plainText[paramKey].forEach(plainText => {
       if (plainText.props.targetId === id) {
         const trimValue = removeEmptySpace(value);
         const cloneElement = React.cloneElement(plainText, {
@@ -141,17 +146,19 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
       }
     });
 
-    onTagCreated(null, parameterKey, updateDefaultLabelArray, updateTextArray);
-    handleUrlChange(parameterKey, removeEmptySpace(value));
+    onTagCreated(null, paramKey, updateDefaultLabelArray, updateTextArray);
+    handleUrlChange(paramKey, removeEmptySpace(value));
   };
 
   /**
    * Event handler in key down to move through suggestions list and create tag when Enter or Tab key are pressed
    */
   const handleKeyDown = (key) => {
+    const { customParam, optionDropdownId } = contextValue;
+    const paramKey = parameterKey || customParam.get(optionDropdownId);
     const keyCode = key.keyCode.toString();
     if (keyCode.toString() === '219') {
-      handleUrlChange(parameterKey, inputValue);
+      handleUrlChange(paramKey, inputValue);
       pushElement(inputValue, 'input-field');
     };
     if (inputValue.trim() && showSuggestion) {
@@ -239,7 +246,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
    */
   const concatUrlParam = (customParam = '') => {
     let updateUrlParamValue = '';
-    parameters && parameters.forEach(element => {
+    arrayParameters && arrayParameters.forEach(element => {
       const elementValue = element.props.text || element.props.defaultValue || element.props.children || '';
       updateUrlParamValue = updateUrlParamValue.concat(elementValue);
     });
@@ -298,8 +305,11 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
    */
   useEffect(() => {
     const parameterValue = concatUrlParam(inputValue);
-    handleUrlChange(parameterKey, parameterValue);
-  }, [parameters]);
+    const { customParam, optionDropdownId } = contextValue;
+    const paramKey = parameterKey || customParam.get(optionDropdownId).paramName;
+    handleUrlChange(paramKey, parameterValue);
+    // console.log(customParam)
+  }, [arrayParameters]);
 
   /**
    * Context listener update props
@@ -320,7 +330,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
         htmlFor={labelId}
       >
         
-        {parameters && parameters.map(item => item)}
+        {arrayParameters && arrayParameters.map(item => item)}
 
         <PreviewContainer>
           <Input
@@ -383,7 +393,7 @@ CreationTracking.propTypes = {
   linkText: PropTypes.string,
   textBelowSuggestions: PropTypes.string,
   parameterKey: PropTypes.string,
-  parameters: PropTypes.arrayOf(PropTypes.shape({})),
+  arrayParameters: PropTypes.arrayOf(PropTypes.shape({})),
   latestParameters: PropTypes.arrayOf(PropTypes.shape({})),
   defaultValue: PropTypes.string,
   handleUrlChange: PropTypes.func,
@@ -400,7 +410,7 @@ CreationTracking.defaultProps = {
   linkText: null,
   textBelowSuggestions: null,
   parameterKey: null,
-  parameters: [],
+  arrayParameters: [],
   latestParameters: [],
   defaultValue: '',
   handleUrlChange: () => null,

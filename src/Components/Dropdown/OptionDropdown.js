@@ -23,7 +23,7 @@ import StructurePreviewContext from '../Structures/Context';
  * @param {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
  * @return {React Component} A view for button and dropdown of unique option selectable.
  */
-const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, notCheckIcon, wide, disabled, minWidth, listWidth, defaultValue }) => {
+const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, notCheckIcon, wide, disabled, minWidth, listWidth, defaultValue, optionDropdownId, }) => {
   const context = useContext(StructurePreviewContext);
   const { defaultClassName, optionalClassName, buttonClassName, typeList } = dropdownProps[type];
 
@@ -50,6 +50,8 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
     : label;
     // Avoid error with race condition when state is updated.
     setTimeout(() => setTextButton(buttonText), 0);
+    onChange(id, label);
+    context.handleOptionChange(optionDropdownId, label);
   }, [children]);
 
   /**
@@ -108,7 +110,6 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
         children={children}
         className={className}
         onSelect={onSelect}
-        onChange={onChange}
         notCheckIcon={notCheckIcon}
         defaultValue={defaultValue}
       />
