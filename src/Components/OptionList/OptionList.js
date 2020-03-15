@@ -18,7 +18,7 @@ import optionListProps from './optionListProps';
  * @param {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
  * @return {React Component} A view in which one option can be selected.
  */
-const OptionList = ({ children = [], type, className, menuTitle, onSelect, notCheckIcon, minWidth, wide, width, defaultValue }) => {
+const OptionList = ({ children = [], type, className, menuTitle, onSelect, notCheckIcon, minWidth, wide, width, defaultValue, disabled }) => {
   const { defaultClassName, OptionItem } = optionListProps[type];
   const childrenParsed = settingClassName(children, -1, defaultClassName);
   const [array, setArray] = useState(childrenParsed);
@@ -37,7 +37,7 @@ const OptionList = ({ children = [], type, className, menuTitle, onSelect, notCh
     if (defaultValue) {
       array.forEach(input => (input.id === defaultValue) && handleCheck(input.id, input.label, input.color, input.flat, type));
     };
-  }, []);
+  }, [defaultValue, disabled]);
 
   useEffect(() => {
     setArray(childrenParsed);
@@ -63,22 +63,23 @@ const OptionList = ({ children = [], type, className, menuTitle, onSelect, notCh
 };
 
 OptionList.propTypes = {
-    children: PropTypes.arrayOf(PropTypes.shape({
-      props: PropTypes.shape({
-        id: PropTypes.string,
-        label: PropTypes.string,
-        color: PropTypes.string,
-        children: PropTypes.array,
-      }),
-    })).isRequired,
-    type: PropTypes.string.isRequired,
-    className: PropTypes.string.isRequired,
-    menuTitle: PropTypes.string,
-    onSelect: PropTypes.func,
-    notCheckIcon: PropTypes.bool,
-    minWidth: PropTypes.string,
-    width: PropTypes.string,
-  };
+  children: PropTypes.arrayOf(PropTypes.shape({
+    props: PropTypes.shape({
+      id: PropTypes.string,
+      label: PropTypes.string,
+      color: PropTypes.string,
+      children: PropTypes.array,
+    }),
+  })).isRequired,
+  type: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired,
+  menuTitle: PropTypes.string,
+  onSelect: PropTypes.func,
+  notCheckIcon: PropTypes.bool,
+  minWidth: PropTypes.string,
+  width: PropTypes.string,
+  disabled: PropTypes.bool,
+};
   
 OptionList.defaultProps = {
   menuTitle: '',
@@ -86,6 +87,7 @@ OptionList.defaultProps = {
   notCheckIcon: false,
   minWidth: '',
   width: '',
+  disabled: false,
 };
   
 export default React.memo(OptionList);
