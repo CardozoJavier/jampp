@@ -25,6 +25,8 @@ import StructurePreviewContext from '../Structures/Context';
  */
 const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, notCheckIcon, wide, disabled, minWidth, listWidth, defaultValue, optionDropdownId, }) => {
   const context = useContext(StructurePreviewContext);
+  disabled = context ? context.disabled : disabled; 
+  defaultValue = context ? context.customParam.get(optionDropdownId).defaultValue : defaultValue;
   const { defaultClassName, optionalClassName, buttonClassName, typeList } = dropdownProps[type];
 
   const [className, setClassName] = useState(defaultClassName);
@@ -51,7 +53,7 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
     // Avoid error with race condition when state is updated.
     setTimeout(() => setTextButton(buttonText), 0);
     onChange(id, label);
-    context.handleOptionChange(optionDropdownId, label);
+    context && context.handleOptionChange(optionDropdownId, label, id);
   }, [children]);
 
   /**
@@ -83,7 +85,7 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
 
   return (
     <>
-      <ButtonDropdownContainer wide={wide} className={bemDestruct(buttonClassName, context.disabled)} onClick={context.disabled ? null : handleClick} id={dropdownId} minWidth={minWidth}>
+      <ButtonDropdownContainer wide={wide} className={bemDestruct(buttonClassName, disabled)} onClick={disabled ? null : handleClick} id={dropdownId} minWidth={minWidth}>
         {leftIcon &&
           <IconGenerator
             renderIcon={leftIcon}
@@ -112,6 +114,7 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
         onSelect={onSelect}
         notCheckIcon={notCheckIcon}
         defaultValue={defaultValue}
+        disabled={disabled}
       />
     </>
   );
