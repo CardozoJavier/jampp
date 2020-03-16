@@ -31,9 +31,10 @@ const { size10 } = fonts;
  * @param {String} parameterKey - (Optional) It's the key that correspond with each parameter input text.
  * @return {React Component} A view for input field with icon and action on error.
  */
-const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions, parameterKey, arrayParameters, latestParameters, defaultValue, handleUrlChange, context }) => {
-  const contextValue = context === 'structure-preview' ? useContext(StructurePreviewContext) || {} : disabled;
-  const [contextDisabled, setContextDisabled] = useState(contextValue.disabled);
+const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions, parameterKey, arrayParameters, latestParameters, defaultValue, handleUrlChange }) => {
+  const context = useContext(StructurePreviewContext);
+  disabled = context ? context.disabled : disabled;
+  // const [disabled, setContextDisabled] = useState(context.disabled);
   const { defaultClassName, optionalClassName, onBlurClassName, onFocusClassName, InputContainer } = inputProps[type];
   const [className, setClassName] = useState(defaultClassName);
   
@@ -84,9 +85,11 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     setClassName(onFocusClassName);
 
     const parameterValue = concatUrlParam(value);
-    const { customParam, optionDropdownId } = contextValue;
+    const { customParam, optionDropdownId } = context;
     const paramKey = parameterKey || customParam.get(optionDropdownId).paramName;
-    // console.log({ paramKey: customParam?.get(optionDropdownId).paramName, parameterKey });
+
+    // console.log('%c CreationTracking', 'background-color: red; color: white;', { value, inputValue, customParam: customParam.get(optionDropdownId) })
+
     handleUrlChange(paramKey, parameterValue, optionDropdownId);
   }
 
@@ -118,7 +121,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
   const handleInputChange = (id, value) => {
     const updateDefaultLabelArray = [];
     const updateTextArray = [];
-    const { customParam, optionDropdownId } = contextValue;
+    const { customParam, optionDropdownId } = context;
     const paramKey = parameterKey || customParam.get(optionDropdownId);
 
     latestParameters.labelTag[paramKey].forEach(labelTag => {
@@ -154,11 +157,11 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
    * Event handler in key down to move through suggestions list and create tag when Enter or Tab key are pressed
    */
   const handleKeyDown = (key) => {
-    const { customParam, optionDropdownId } = contextValue;
+    const { customParam, optionDropdownId } = context;
     const paramKey = parameterKey || customParam.get(optionDropdownId);
     const keyCode = key.keyCode.toString();
     if (keyCode.toString() === '219') {
-      handleUrlChange(paramKey, inputValue);
+      handleUrlChange(paramKey, inputValue, optionDropdownId);
       pushElement(inputValue, 'input-field');
     };
     if (inputValue.trim() && showSuggestion) {
@@ -304,28 +307,33 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
    * Concat custom param setted by input field to be displayed in url box.
    */
   useEffect(() => {
-    const parameterValue = concatUrlParam(inputValue);
-    const { customParam, optionDropdownId } = contextValue;
+    const { customParam, optionDropdownId } = context;
+    const parameterValue = concatUrlParam(inputValue) || customParam?.get(optionDropdownId).paramValue;
     const paramKey = parameterKey || customParam.get(optionDropdownId).paramName;
-    handleUrlChange(paramKey, parameterValue);
-    // console.log(customParam)
+    handleUrlChange(paramKey, parameterValue, optionDropdownId);
+
+    console.log({ paramKey, parameterValue, optionDropdownId,  })
   }, [arrayParameters]);
 
   /**
    * Context listener update props
    */
   useEffect(() => {
-    // console.log({contextValue: contextValue.disabled, contextDisabled });
-    setContextDisabled(contextValue.disabled);
-  }, [contextValue.disabled]);
+    const { customParam, optionDropdownId } = context;
+    if (optionDropdownId) {
+      const parameterValue = customParam.get(optionDropdownId).paramValue;
+      setInputValue(parameterValue);
+    };
+  }, [disabled]);
+  
 
   return (
     <LabelContainer>
       {label && <Label htmlFor={labelId}>{label}</Label>}
       <InputContainer
-        onClick={contextDisabled ? null : handleClick}
-        className={bemDestruct(className, contextDisabled)}
-        disabled={contextDisabled}
+        onClick={disabled ? null : handleClick}
+        className={bemDestruct(className, disabled)}
+        disabled={disabled}
         width={width}
         htmlFor={labelId}
       >
@@ -336,14 +344,14 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
           <Input
             id={labelId}
             fontSize={size10}
-            value={contextDisabled ? removeEmptySpace(inputValue) : inputValue}
-            disabled={contextDisabled}
+            value={disabled ? removeEmptySpace(inputValue) : inputValue}
+            disabled={disabled}
             placeholder={placeholder}
             onKeyDown={handleKeyDown}
             className={previewTracking}
-            onBlur={contextDisabled ? null : handleBlur}
-            onFocus={contextDisabled ? null : handleFocus}
-            onChange={contextDisabled ? null : handleChange}
+            onBlur={disabled ? null : handleBlur}
+            onFocus={disabled ? null : handleFocus}
+            onChange={disabled ? null : handleChange}
             size={inputValue.length ? inputValue.length + 3 : 1}
           />
           <XIcon props={{ onClick: closePreview, width: '6px', height: '6px', fill: gray.g07, cursor: 'pointer', display: previewTracking ? 'block' : 'none', position: 'relative', right: '20px', }} />
