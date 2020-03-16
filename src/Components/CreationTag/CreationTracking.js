@@ -31,7 +31,7 @@ const { size10 } = fonts;
  * @param {String} parameterKey - (Optional) It's the key that correspond with each parameter input text.
  * @return {React Component} A view for input field with icon and action on error.
  */
-const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions, parameterKey, arrayParameters, latestParameters, defaultValue, handleUrlChange }) => {
+const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions, parameterKey, arrayParameters, latestParameters, defaultValue, handleUrlChange, optionDropdownId }) => {
   const context = useContext(StructurePreviewContext);
   disabled = context ? context.disabled : disabled;
   // const [disabled, setContextDisabled] = useState(context.disabled);
@@ -85,7 +85,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     setClassName(onFocusClassName);
 
     const parameterValue = concatUrlParam(value);
-    const { customParam, optionDropdownId } = context;
+    const { customParam, } = context;
     const paramKey = parameterKey || customParam.get(optionDropdownId).paramName;
 
     // console.log('%c CreationTracking', 'background-color: red; color: white;', { value, inputValue, customParam: customParam.get(optionDropdownId) })
@@ -307,19 +307,19 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
    * Concat custom param setted by input field to be displayed in url box.
    */
   useEffect(() => {
-    const { customParam, optionDropdownId } = context;
+    const { customParam } = context;
     const parameterValue = concatUrlParam(inputValue) || customParam?.get(optionDropdownId).paramValue;
     const paramKey = parameterKey || customParam.get(optionDropdownId).paramName;
     handleUrlChange(paramKey, parameterValue, optionDropdownId);
 
-    console.log({ paramKey, parameterValue, optionDropdownId,  })
+    // console.log('%c CreationTracking', 'background-color: red; color: white;', { paramKey, parameterValue, optionDropdownId,  })
   }, [arrayParameters]);
 
   /**
    * Context listener update props
    */
   useEffect(() => {
-    const { customParam, optionDropdownId } = context;
+    const { customParam } = context;
     if (optionDropdownId) {
       const parameterValue = customParam.get(optionDropdownId).paramValue;
       setInputValue(parameterValue);

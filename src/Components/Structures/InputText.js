@@ -18,7 +18,7 @@ const InputText = ({ id, defaultValue, onChange, disabled }) => {
   };
   
   useEffect(() => {
-    const updateWidth = getWidthElement(value);
+    const updateWidth = getWidthElement(value, 3);
     setWidth(updateWidth);
   }, [value]);
   

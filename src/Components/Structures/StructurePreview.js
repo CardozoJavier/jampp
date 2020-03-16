@@ -29,7 +29,9 @@ const StructurePreview = ({ url }) => {
   const [queryParams, setQueryParams] = useState(null);
 
   const [customParam, setCustomParam] = useState(new Map());
-  const optionDropdownId = getReferencedId();
+  const [optionDropdownId, setOptionDropdownId] = useState(getReferencedId());
+  const [previousParamName, setPreviousParamName] = useState('');
+  
 
   const toggleHandler = (status) => {
     setFreeze(!status);
@@ -47,20 +49,26 @@ const StructurePreview = ({ url }) => {
   const handleUrlChange = (key, value, customParamId) => {
     const newUrl = new URL(urlValue);
     const params = new URLSearchParams(newUrl.search);
-    params.set(key, value);
-    newUrl.search = params;
-    const urlDecoded = decodeURIComponent(newUrl.href);
-
+    
     if (customParamId) {
-      const defaultValue = customParam.get(customParamId).defaultValue;
+      const { defaultValue, paramName } = customParam.get(customParamId);
+
       customParam.set(customParamId, {
         paramName: key,
         paramValue: value,
         defaultValue,
       });
       setCustomParam(customParam);
-    };
+      params.delete(previousParamName);
+      params.set(key, value);
 
+      console.log('%c StructurePreview', 'background-color: white; color: red;',{ previousParamName, customParam, paramName, key, params: params.toString().split('&') })
+    } else {
+      params.set(key, value);
+    };
+    
+    newUrl.search = params;
+    const urlDecoded = decodeURIComponent(newUrl.href);
     // Avoid problem with race condition
     setTimeout(() => setUrlValue(urlDecoded), 0);
   };
@@ -88,22 +96,25 @@ const StructurePreview = ({ url }) => {
     setCustomParam(customParam);
     // handleUrlChange('NewParam', '');
 
-    // console.log({ id, customParam });
     // setCustomParam(customParam);
   };
 
 
-  const handleOptionChange = (buttonId, text, selectedOptionId) => {
+  const handleOptionChange = (buttonId, text, selectedOptionId, prevParamName) => {
     const paramName = removeEmptySpace(text);
     const paramValue = removeEmptySpace(customParam.get(buttonId).paramValue);
+
+    console.log({ paramName, prevParamName });
+    if (prevParamName !== paramName) {
+      setPreviousParamName(prevParamName);
+    }
     customParam.set(buttonId, { paramName, paramValue, defaultValue: selectedOptionId });
 
-    // console.log({ paramName, paramValue, customParam })
 
-    handleUrlChange(paramName, paramValue);
+    handleUrlChange(paramName, paramValue, buttonId);
     setCustomParam(customParam);
 
-    // console.log({ id, text, customParam })
+    // console.log(customParam)
   };
   
   const renderQueryParams = (params) => {
@@ -133,7 +144,6 @@ const StructurePreview = ({ url }) => {
                 arrayParameters={freeze ? arrayParameters.plainText[paramKey] : arrayParameters.labelTag[paramKey]}
                 latestParameters={latestParameters.current}
                 handleUrlChange={handleUrlChange}
-                context="structure-preview"
               />
               <XIcon
                 role='icon-to-remove-structure'
@@ -183,7 +193,7 @@ const StructurePreview = ({ url }) => {
 
                 {queryParams && renderQueryParams(queryParams)}
 
-                <StructurePreviewContext.Provider value={{ disabled: freeze, handleOptionChange, customParam, optionDropdownId }}>
+                <StructurePreviewContext.Provider value={{ disabled: freeze, handleOptionChange, customParam,  }}>
                   <CreateElement id={optionDropdownId} onStructureCreated={onStructureCreated} disabled={freeze} buttonText="Add parameter" buttonType="link-default-left" buttonIcon={BoldAddIcon} onDeleteCallback={structureId => console.log('Structure with id ' + structureId + ' want to be deleted')}>
                     <ParametersDuplicationContainer>
                       <DropdownContainer width="100%" padding="0 10px 0 0">
@@ -213,7 +223,7 @@ const StructurePreview = ({ url }) => {
                           arrayParameters={freeze ? arrayParameters.plainText[customParam.get(optionDropdownId)?.key] : arrayParameters.labelTag[customParam.get(optionDropdownId)?.key]}
                           latestParameters={latestParameters.current}
                           handleUrlChange={handleUrlChange}
-                          context="structure-preview"
+                          optionDropdownId={optionDropdownId}
                         />
                         <DivContainer display={freeze ? 'none' : 'flex'} alignItems="center" margin="8px 0 0 0">
                           <Text color={gray.g4} fontSize={size10} display="inline" margin="0 3px 0 0">or select from the </Text>
