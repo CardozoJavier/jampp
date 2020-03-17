@@ -15,7 +15,7 @@ export default {
  * @prop {Function} onTagDeleted - (Optional) Callback to trigger when tag is deleted. It receive tag value in first argument.
  * @prop {Function} onError - (Optional) Function to check input values and trigger error message. It receive the input value in first argument.
  * @prop {String} errorMessage - (Optional) String to be display on error event.
- * @prop {String} defaultValue - (Optional) It's the default value for a tag to be displayed in render.
+ * @prop {Array} defaultValue - (Optional) It's the default value for a tag to be displayed in render.
  */
 export const Default = () => (
   <CreationTag
@@ -25,7 +25,7 @@ export const Default = () => (
     width="433px"
     onTagCreated={label => console.log(label + ' has been created')}
     onTagDeleted={label => console.log(label + ' has been deleted')}
-    defaultValue="Default tag"
+    defaultValue={["Default tag"]}
     errorMessage="Type error"
     onError={() => true}
   />
@@ -40,11 +40,13 @@ export const Default = () => (
  * @prop {Function} onTagCreated - (Optional) Callback to trigger on tag created. It receive tag value in first argument.
  * @prop {Function} onTagDeleted - (Optional) Callback to trigger when tag is deleted. It receive tag value in first argument.
  * @prop {Array} suggestions - (Required) Array of string to be displayed in suggestions list.
+ * @prop {Array} defaultValue - (Optional) It's the default value for one or more tags to be displayed in render.
  * @prop {Function} callback - (Optional) Callback to be triggered on click event in button into suggestions list.
  */
 export const Suggestions = () => (
   <CreationTagSuggestion
     type="suggestions-default"
+    label="Label"
     width="433px"
     linkText="Full list"
     textBelowSuggestions="or select from the"
@@ -52,5 +54,6 @@ export const Suggestions = () => (
     callback={() => console.log('Displaying full list')}
     onTagCreated={label => console.log(label + ' has been created')}
     onTagDeleted={label => console.log(label + ' has been deleted')}
+    defaultValue={["Option 4", "Option 5"]}
   />
 );

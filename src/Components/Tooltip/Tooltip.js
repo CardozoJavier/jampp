@@ -52,7 +52,7 @@ const Tooltip = React.memo(({ children, text, hide }) => {
       {Children}
       <TooltipBox left={left} display={display}>
         <TooltipIndicator />
-        <Text color={white} fontSize={size10}>{text}</Text>
+        <Text wordBreak="break-word" color={white} fontSize={size10}>{text}</Text>
       </TooltipBox>
     </TooltipContainer>
   );
