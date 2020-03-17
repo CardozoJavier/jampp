@@ -7,6 +7,7 @@ export default styled(Input)`
   width: ${({ width }) => width};
   padding: 8px 0;
   font-size: ${({ fontSize }) => fontSize};
+  text-align: ${({ textAlign }) => textAlign};
 
   &.preview-tracking {
     border: 1px solid ${violet.v05};

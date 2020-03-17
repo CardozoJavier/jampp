@@ -34,6 +34,7 @@ const InputText = ({ id, defaultValue, onChange, disabled }) => {
       fontSize={size10}
       width={width}
       disabled={disabled}
+      textAlign="center"
     />
   );
 };
