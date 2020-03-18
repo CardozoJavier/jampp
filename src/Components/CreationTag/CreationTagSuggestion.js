@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { LabelContainer, Input, Label, SuggestionsListContainer, SuggestionsList, PreviewContainer } from './styles';
-import { getClassName, bemDestruct, useEventListener, removeEmptySpace } from '../../utils';
+import { getClassName, bemDestruct, useEventListener, removeEmptySpace, getUniqueId } from '../../utils';
 import inputProps from './inputProps';
 import { DefaultLabel } from '../Label';
 import { Text } from '../UI/GenericElements/GenericElements.styles';
@@ -25,7 +25,7 @@ const { size10 } = fonts;
  * @param {Function} callback - (Optional) Callback to be triggered on click event in button into suggestions list.
  * @param {String} linkText - (Optional) It's the text to be displayed like link.
  * @param {String} textBelowSuggestions - (Optional) It's the text to be displayed at the bottom of suggestions list.
- * @param {String} defaultValue - (Optional) It's the default value for a tag to be displayed in render.
+ * @param {Array} defaultValue - (Optional) It's the default value for one or more tags to be displayed in render.
  * @return {React Component} A view for input field with icon and action on error.
  */
 const CreationTagSuggestion = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions, defaultValue }) => {
@@ -203,24 +203,26 @@ const CreationTagSuggestion = ({ type, placeholder, width, label, onTagCreated, 
   const eventHandler = () => setShowSuggestion(false);
   useEventListener('click', eventHandler);
   useEffect(() => {
-    const targetId = Math.random().toString();
-    setLabelId(targetId);
     if (defaultValue) {
-      const defaultLabelId = Math.random().toString();
       const updateDefaultLabelArray = [];
-      updateDefaultLabelArray.push(
-        <DefaultLabel
-          targetId={targetId}
-          key={defaultLabelId}
-          id={defaultLabelId}
-          text={`${defaultValue}`}
-          size="medium"
-          margin="4px 3px"
-          onClose={deleteTagHandler}
-        />
-      );
+      defaultValue.forEach(value => {
+        const targetId = getUniqueId();
+        setLabelId(targetId);
+        const defaultLabelId = getUniqueId();
+        updateDefaultLabelArray.push(
+          <DefaultLabel
+            targetId={targetId}
+            key={defaultLabelId}
+            id={defaultLabelId}
+            text={`${value}`}
+            size="medium"
+            margin="4px 3px"
+            onClose={deleteTagHandler}
+          />
+        )
+      });
 
-      defaultValue.trim() && onTagCreated(defaultValue);
+      setDefaultLabelArray(updateDefaultLabelArray);
     }
   }, []);
 
@@ -297,7 +299,7 @@ CreationTagSuggestion.propTypes = {
   callback: PropTypes.func,
   linkText: PropTypes.string,
   textBelowSuggestions: PropTypes.string,
-  defaultValue: PropTypes.string,
+  defaultValue: PropTypes.arrayOf(PropTypes.string),
 };
 
 CreationTagSuggestion.defaultProps = {
@@ -310,7 +312,7 @@ CreationTagSuggestion.defaultProps = {
   callback: () => null,
   linkText: null,
   textBelowSuggestions: null,
-  defaultValue: '',
+  defaultValue: [''],
   handleUrlChange: () => null,
 };
 
