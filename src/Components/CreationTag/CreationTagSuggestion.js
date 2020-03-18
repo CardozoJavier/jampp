@@ -83,9 +83,7 @@ const CreationTagSuggestion = ({ type, placeholder, width, label, onTagCreated, 
   const deleteTagHandler = (tagId, tagText) => {
     const updateDefaultLabelArray = [];
 
-    
     latestDefaultLabelArray.current.forEach(tag => {
-      console.log({ tagId, targetId: tag.props.targetId })
       if (tag.props.targetId !== tagId) {
         updateDefaultLabelArray.push(tag);
       }
