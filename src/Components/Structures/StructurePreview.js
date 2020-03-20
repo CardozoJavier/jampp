@@ -46,13 +46,15 @@ const StructurePreview = ({ url }) => {
     setQueryParams(params);
   }, []);
 
-  const handleUrlChange = (key, value, customParamId) => {
+  const handleUrlChange = useCallback((key, value, customParamId, previousParamName) => {
     const newUrl = new URL(urlValue);
     const params = new URLSearchParams(newUrl.search);
     
     if (customParamId) {
       const { defaultValue, paramName } = customParam.get(customParamId);
 
+      console.log('%c handleUrlChange', 'background-color: white; color: red;', { previousParamName, params: params.toString(), newUrl, urlValue, })
+      
       customParam.set(customParamId, {
         paramName: key,
         paramValue: value,
@@ -61,17 +63,22 @@ const StructurePreview = ({ url }) => {
       setCustomParam(customParam);
       params.delete(previousParamName);
       params.set(key, value);
+      console.log('%c handleUrlChange', 'background-color: cyan; color: white;',{ key, value, customParamId, previousParamName, params: params.toString(), customParam })
 
-      console.log('%c StructurePreview', 'background-color: white; color: red;',{ previousParamName, customParam, paramName, key, params: params.toString().split('&') })
     } else {
       params.set(key, value);
     };
     
+    // console.log('%c handleUrlChange', 'background-color: red; color: white;',{ key, value, customParamId, params, newUrl, urlValue, customParam })
+    
     newUrl.search = params;
     const urlDecoded = decodeURIComponent(newUrl.href);
+
+    console.log({ search: newUrl.search, urlDecoded })
+
     // Avoid problem with race condition
     setTimeout(() => setUrlValue(urlDecoded), 0);
-  };
+  }, [urlValue.search]);
 
   const onTagCreated = (parameterValue, parameterKey, arrayLabelTag, arrayPlainText) => {
     const updateParameters = Object.assign({}, arrayParameters);
@@ -95,6 +102,7 @@ const StructurePreview = ({ url }) => {
     customParam.set(id, { paramName: 'NewParam', paramValue: '' });
     setCustomParam(customParam);
     // handleUrlChange('NewParam', '');
+    // console.log('%c onStructureCreated', 'background-color: white; color: red;', { id, customParam })
 
     // setCustomParam(customParam);
   };
@@ -104,14 +112,16 @@ const StructurePreview = ({ url }) => {
     const paramName = removeEmptySpace(text);
     const paramValue = removeEmptySpace(customParam.get(buttonId).paramValue);
 
-    console.log({ paramName, prevParamName });
+    // console.log({ paramName, prevParamName });
+    
     if (prevParamName !== paramName) {
       setPreviousParamName(prevParamName);
     }
     customParam.set(buttonId, { paramName, paramValue, defaultValue: selectedOptionId });
+    
+    // console.log('%c handleOptionChange', 'background-color: cyan; color: black;',{ buttonId, customParam, });
 
-
-    handleUrlChange(paramName, paramValue, buttonId);
+    handleUrlChange(paramName, paramValue, buttonId, prevParamName);
     setCustomParam(customParam);
 
     // console.log(customParam)
@@ -137,7 +147,7 @@ const StructurePreview = ({ url }) => {
                 type="suggestions-tracking"
                 textBelowSuggestions="or select from the"
                 suggestions={["Option 1", "Option 2", "Option 3"]}
-                callback={() => console.log('Displaying full list')}
+                // callback={() => console.log('Displaying full list')}
                 onTagCreated={onTagCreated}
                 onTagDeleted={onTagDelete}
                 disabled={freeze}
