@@ -50,20 +50,24 @@ const StructurePreview = ({ url }) => {
     const newUrl = new URL(urlValue);
     const params = new URLSearchParams(newUrl.search);
     
+    console.log('%c handleUrlChange', 'background-color: white; color: red;', customParam)
     if (customParamId) {
       const { defaultValue, paramName } = customParam.get(customParamId);
 
-      console.log('%c handleUrlChange', 'background-color: white; color: red;', { previousParamName, params: params.toString(), newUrl, urlValue, })
+      if (key !== previousParamName) {
+        customParam.set(customParamId, {
+          paramName: key,
+          paramValue: value,
+          defaultValue,
+        });
+        setCustomParam(customParam);
+        // console.log('%c handleUrlChange', 'background-color: cyan; color: white;',{ key, value, customParamId, previousParamName, params: params.toString(), customParam })
+      }
       
-      customParam.set(customParamId, {
-        paramName: key,
-        paramValue: value,
-        defaultValue,
-      });
-      setCustomParam(customParam);
+      // console.log('%c before', 'background-color: red; color: white;', params.toString(), { key, value, previousParamName });
       params.delete(previousParamName);
       params.set(key, value);
-      console.log('%c handleUrlChange', 'background-color: cyan; color: white;',{ key, value, customParamId, previousParamName, params: params.toString(), customParam })
+      // console.log('%c after', 'background-color: green; color: white;',params.toString());
 
     } else {
       params.set(key, value);
@@ -74,11 +78,11 @@ const StructurePreview = ({ url }) => {
     newUrl.search = params;
     const urlDecoded = decodeURIComponent(newUrl.href);
 
-    console.log({ search: newUrl.search, urlDecoded })
+    // console.log({ urlValueSearch: urlValue, urlDecoded })
 
     // Avoid problem with race condition
-    setTimeout(() => setUrlValue(urlDecoded), 0);
-  }, [urlValue.search]);
+    setUrlValue(urlDecoded);
+  }, [urlValue]);
 
   const onTagCreated = (parameterValue, parameterKey, arrayLabelTag, arrayPlainText) => {
     const updateParameters = Object.assign({}, arrayParameters);
@@ -114,8 +118,8 @@ const StructurePreview = ({ url }) => {
 
     // console.log({ paramName, prevParamName });
     
+    setPreviousParamName(prevParamName);
     if (prevParamName !== paramName) {
-      setPreviousParamName(prevParamName);
     }
     customParam.set(buttonId, { paramName, paramValue, defaultValue: selectedOptionId });
     
