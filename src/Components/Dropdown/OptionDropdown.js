@@ -64,7 +64,7 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
 
   useEffect(() => {
     dropdownButton = document.getElementById(dropdownId) || {};
-  }, []);
+  }, [customTextButton, textButton]);
 
   const eventHandler = useCallback(
     (e) => {
@@ -72,9 +72,14 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
       if (e.target.id !== dropdownButton.id) {
         setChevron(dropdownProps.chevron.defaultClassName);
         setClassName(defaultClassName);
+        if (customTextButton) {
+          setDefaultOption('custom-param');
+          setCustomTextButton(false);
+          onChange(textButton);
+        }
       }
     },
-    [dropdownButton, setClick]
+    [dropdownButton, setClick, customTextButton, textButton]
   );
   useEventListener('click', eventHandler);
 
@@ -93,6 +98,7 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
    * Callback to set custom mode for button text
    */
   const customizeTextClick = () => {
+    setDefaultOption('custom-param');
     setCustomTextButton(true);
   };
 
@@ -100,7 +106,6 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
     const keyCode = e.keyCode?.toString();
     if (keyCode === '13' || keyCode === '9') {
       e.preventDefault();
-      setDefaultOption('custom-param');
       setCustomTextButton(false);
       onChange(textButton);
     };
