@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { ModalContainer, ModalTitle, ModalHeader, ModalFooter, IconTitleContainer } from './styles';
 import { IconGenerator, XIcon } from '../UI/Icons';
-import { getUniqueId } from '../../utils';
+import { getReferencedId } from '../../utils';
 
 /**
  * Modal component can be called with
@@ -15,15 +15,15 @@ import { getUniqueId } from '../../utils';
  */
 const Modal = ({ title, icon, width, children, minHeight }) => {
   let ModalElement;
-  const id = getUniqueId();
+  const id = getReferencedId();
   
   useEffect(() => {
     ModalElement = document.getElementById(id);
   }, []);
   
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     ModalElement.remove();
-  };
+  }, [children]);
 
   return (
     <ModalContainer width={width} id={id} minHeight={minHeight}>
@@ -74,4 +74,4 @@ Modal.defaultProps = {
   minHeight: '240px',
 };
 
-export default Modal;
+export default React.memo(Modal);

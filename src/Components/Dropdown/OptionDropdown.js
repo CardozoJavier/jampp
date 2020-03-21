@@ -2,11 +2,12 @@ import React, { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { ButtonInput } from '../Button/styles';
 import { ButtonDropdownContainer } from './styles';
-import { getClassName, bemDestruct, useEventListener, getUniqueId } from '../../utils';
+import { getClassName, bemDestruct, useEventListener, getReferencedId } from '../../utils';
 import { IconGenerator, DownChevronIcon, EllipseIcon } from '../UI/Icons';
 import { OptionList } from '../OptionList';
 import dropdownProps from './dropdownProps';
 import { StatusLabel } from '../Label';
+import InputText from '../Structures/InputText';
 
 /**
  * OptionDropdown component should be called with
@@ -20,15 +21,18 @@ import { StatusLabel } from '../Label';
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @param {String} listWidth - (Optional) It's the width of the list opened.
  * @param {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
+ * @param {String} buttonList - (Optional) It's the button text to be displayed into list when customize-text type is selected.
  * @return {React Component} A view for button and dropdown of unique option selectable.
  */
-const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, notCheckIcon, wide, disabled, minWidth, listWidth, defaultValue }) => {
+const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, notCheckIcon, wide, disabled, minWidth, listWidth, defaultValue, buttonList }) => {
   const { defaultClassName, optionalClassName, buttonClassName, typeList } = dropdownProps[type];
 
   const [className, setClassName] = useState(defaultClassName);
   const [chevron, setChevron] = useState(dropdownProps.chevron.defaultClassName);
 
   const [textButton, setTextButton] = useState(text);
+  const [customTextButton, setCustomTextButton] = useState(null);
+  const [defaultOption, setDefaultOption] = useState(defaultValue);
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const toggleChevronDirection = getClassName(chevron, dropdownProps.chevron.defaultClassName, dropdownProps.chevron.optionalClassName);
@@ -38,7 +42,7 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
     setChevron(toggleChevronDirection);
   };
   
-  const onSelect = (id, label, color, flat, textType) => {
+  const onSelect = useCallback((id, label, color, flat, textType) => {
     const props = {
       text: label,
       color,
@@ -46,19 +50,21 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
     const buttonText = textType === 'status-label'
     ? <StatusLabel {...props} key={id} icon={flat ? null : EllipseIcon} />
     : label;
-    setTextButton(buttonText);
-  };
+    // Avoid error with race condition when state is updated.
+    setTimeout(() => setTextButton(buttonText), 0);
+    setDefaultOption('-1');
+  }, [children]);
 
   /**
    * Hook to handle click events on window
    */
-  const dropdownId = getUniqueId();
+  const dropdownId = getReferencedId();
   const [, setClick] = useState();
   let dropdownButton;
 
   useEffect(() => {
     dropdownButton = document.getElementById(dropdownId) || {};
-  }, []);
+  }, [customTextButton, textButton]);
 
   const eventHandler = useCallback(
     (e) => {
@@ -66,20 +72,48 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
       if (e.target.id !== dropdownButton.id) {
         setChevron(dropdownProps.chevron.defaultClassName);
         setClassName(defaultClassName);
+        if (customTextButton) {
+          setDefaultOption('custom-param');
+          setCustomTextButton(false);
+          onChange(textButton);
+        }
       }
     },
-    [dropdownButton, setClick]
+    [dropdownButton, setClick, customTextButton, textButton]
   );
-  
   useEventListener('click', eventHandler);
 
   useEffect(() => {
     setTextButton(text);
   }, [text]);
 
+  /**
+   * Callback to set value from input text in custom mode
+   */
+  const customizeTextHandler = (id, value) => {
+    setTextButton(value);
+  };
+  
+  /**
+   * Callback to set custom mode for button text
+   */
+  const customizeTextClick = () => {
+    setDefaultOption('custom-param');
+    setCustomTextButton(true);
+  };
+
+  const onKeyDownHandler = (e) => {
+    const keyCode = e.keyCode?.toString();
+    if (keyCode === '13' || keyCode === '9') {
+      e.preventDefault();
+      setCustomTextButton(false);
+      onChange(textButton);
+    };
+  };
+
   return (
     <>
-      <ButtonDropdownContainer wide={wide} className={bemDestruct(buttonClassName, disabled)} onClick={disabled ? null : handleClick} id={dropdownId} minWidth={minWidth}>
+      <ButtonDropdownContainer customMode={customTextButton} wide={wide} className={bemDestruct(buttonClassName, disabled)} onClick={disabled ? null : handleClick} id={dropdownId} minWidth={minWidth}>
         {leftIcon &&
           <IconGenerator
             renderIcon={leftIcon}
@@ -87,7 +121,10 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
             disabled={disabled}
           />
         }
-        <ButtonInput maxWidth="100%" overflow="hidden" children={textButton} />
+        {customTextButton ?
+          <InputText onKeyDown={onKeyDownHandler} defaultValue={textButton} autoFocus={true} minWidth="50px" margin="0 8px" fontSize="12px" onChange={customizeTextHandler} />
+          : <ButtonInput maxWidth="100%" overflow="hidden" children={textButton} />
+        }
         <DownChevronIcon
           props={{
             width: '16px',
@@ -108,7 +145,9 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
         onSelect={onSelect}
         onChange={onChange}
         notCheckIcon={notCheckIcon}
-        defaultValue={defaultValue}
+        defaultValue={defaultOption}
+        buttonList={buttonList}
+        customizeTextClick={customizeTextClick}
       />
     </>
   );
@@ -125,6 +164,7 @@ OptionDropdown.propTypes = {
   disabled: PropTypes.bool,
   listWidth: PropTypes.string,
   defaultValue: PropTypes.string,
+  buttonList: PropTypes.string,
 };
 
 OptionDropdown.defaultProps = {
@@ -135,6 +175,7 @@ OptionDropdown.defaultProps = {
   disabled: false,
   listWidth: null,
   defaultValue: null,
+  buttonList: null,
 };
 
-export default OptionDropdown;
+export default React.memo(OptionDropdown);

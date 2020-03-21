@@ -68,4 +68,4 @@ Button.defaultProps = {
   fixed: false,
 };
 
-export default Button;
+export default React.memo(Button);

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { LabelContainer, Input, Label } from './styles';
-import { getClassName, bemDestruct } from '../../utils';
+import { getClassName, bemDestruct, getUniqueId } from '../../utils';
 import inputProps from './inputProps';
 import { DefaultLabel } from '../Label';
 import { ErrorMessage } from '../InputField/styles';
@@ -18,10 +18,10 @@ import { ExclamationIcon } from '../UI/Icons';
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @param {Function} onError - (Optional) Function to check input values and trigger error message. It receive the input value in first argument.
  * @param {String} errorMessage - (Optional) String to be display on error event.
- * @param {String} defaultValue - (Optional) It's the default value for a tag to be displayed in render.
+ * @param {Array} defaultValue - (Optional) It's the default value for one or more tags to be displayed in render.
  * @return {React Component} A view for input field with icon and action on error.
  */
-const CreationTag = ({ type, placeholder, width, label, id, onTagCreated, onTagDeleted, disabled, errorMessage, onError, defaultValue }) => {
+const CreationTag = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, errorMessage, onError, defaultValue }) => {
   const { defaultClassName, optionalClassName, onBlurClassName, onFocusClassName, errorClassName, InputContainer } = inputProps[type];
   const [className, setClassName] = useState(defaultClassName);
   
@@ -65,8 +65,12 @@ const CreationTag = ({ type, placeholder, width, label, id, onTagCreated, onTagD
       setClassName(onFocusClassName);
     }
   }
-    
-    const handleKeyDown = (key) => {
+
+  const handleClose = (targetId, text) => {
+    onTagDeleted(text);
+  };
+
+  const handleKeyDown = (key) => {
     const keyCode = key.keyCode.toString();
     const updateDefaultLabelArray = [...defaultLabelArray];
     
@@ -80,11 +84,11 @@ const CreationTag = ({ type, placeholder, width, label, id, onTagCreated, onTagD
   };
 
   useEffect(() => {
-    const id = Math.random().toString();
+    const id = getUniqueId();
     setLabelId(id);
     if (defaultValue) {
       const updateDefaultLabelArray = [...defaultLabelArray];
-      updateDefaultLabelArray.push(defaultValue);
+      defaultValue.forEach(value => updateDefaultLabelArray.push(value));
       setDefaultLabelArray(updateDefaultLabelArray);
     }
   }, []);
@@ -99,17 +103,16 @@ const CreationTag = ({ type, placeholder, width, label, id, onTagCreated, onTagD
         width={width}
       >
         {defaultLabelArray &&
-          defaultLabelArray.map((text, index) => (
+          useMemo(() => defaultLabelArray.map((text, index) => (
             <DefaultLabel
               key={index}
-              id={index.toString()}
               text={text}
               size="medium"
               margin="5px"
               maxWidth={maxWidth}
-              onClose={onTagDeleted}
+              onClose={handleClose}
             />
-          ))
+          )), [defaultLabelArray])
         }
         <Input
           id={labelId}
@@ -145,7 +148,7 @@ CreationTag.propTypes = {
   disabled: PropTypes.bool,
   onErrorMessage: PropTypes.string,
   onError: PropTypes.func,
-  defaultValue: PropTypes.string,
+  defaultValue: PropTypes.arrayOf(PropTypes.string),
 };
 
 CreationTag.defaultProps = {
@@ -157,7 +160,7 @@ CreationTag.defaultProps = {
   disabled: false,
   onErrorMessage: null,
   onError: () => null,
-  defaultValue: null,
+  defaultValue: [''],
 };
 
-export default CreationTag;
+export default React.memo(CreationTag);

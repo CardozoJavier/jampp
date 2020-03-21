@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { HeaderOptionDropdownContainer } from './styles';
-import { getClassName, bemDestruct, useEventListener, getUniqueId } from '../../utils';
+import { getClassName, bemDestruct, useEventListener, getReferencedId } from '../../utils';
 import dropdownProps from './dropdownProps';
 import { DownChevronIcon } from '../UI/Icons';
 import { OptionList } from '../OptionList';
@@ -42,7 +42,7 @@ const HeaderOptionDropdown = ({ text, type = 'basic', menuTitle, children, onCha
   /**
    * Hook to handle click events on window
    */
-  const dropdownId = getUniqueId();
+  const dropdownId = getReferencedId();
   const [, setClick] = useState();
   let dropdownButton;
 
