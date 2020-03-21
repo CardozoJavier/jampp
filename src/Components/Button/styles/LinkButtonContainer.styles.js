@@ -14,9 +14,6 @@ export default styled.div`
 
   &:hover {
     cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
-    &.button.link--customize-left {
-      background-color: ${gray.g0};
-    }
   }
 
   &.button {

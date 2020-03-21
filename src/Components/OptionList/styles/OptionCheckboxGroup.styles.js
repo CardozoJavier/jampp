@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
-const { violet } = palette;
+const { violet, gray } = palette;
 
 export default styled.div`
   position: absolute;
@@ -18,6 +18,9 @@ export default styled.div`
 
   .button.link--customize-left {
     background-color: ${({ customSelected }) => customSelected ? violet.v05 : 'unset'};
+    &:hover {
+      background-color: ${({ customSelected }) => customSelected ? violet.v05 : gray.g0};
+    }
   }
 
   &.dropdown, &.expandable {
