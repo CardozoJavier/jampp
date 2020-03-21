@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { palette } from '../../styles';
+const { violet } = palette;
 
 export default styled.div`
   position: absolute;
@@ -13,6 +15,10 @@ export default styled.div`
   max-height: 50vh;
   overflow: scroll;
   margin-bottom: 10px;
+
+  .button.link--customize-left {
+    background-color: ${({ customSelected }) => customSelected ? violet.v05 : 'unset'};
+  }
 
   &.dropdown, &.expandable {
     &-right {}

@@ -42,14 +42,19 @@ const OptionList = ({ children = [], type, className, menuTitle, onSelect, onCha
     if (defaultValue) {
       array.forEach(input => (input.id === defaultValue) && handleCheck(input.id, input.label, input.color, input.flat, type));
     };
-  }, []);
+    if (defaultValue === 'custom-param') {
+      const resetList = settingClassName(children, -1, defaultClassName);
+      setArray(resetList);
+    };
+  }, [defaultValue]);
 
   useEffect(() => {
     setArray(childrenParsed);
   }, [children]);
 
+
   return (
-    <OptionCheckboxGroup className={bemDestruct(className)} minWidth={minWidth} wide={wide} width={width}>
+    <OptionCheckboxGroup customSelected={defaultValue === 'custom-param'} className={bemDestruct(className)} minWidth={minWidth} wide={wide} width={width}>
       {menuTitle && <MenuTitle>{menuTitle}</MenuTitle>}
       {array.map((input) => (
         <OptionItem

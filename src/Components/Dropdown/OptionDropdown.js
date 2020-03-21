@@ -32,6 +32,7 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
 
   const [textButton, setTextButton] = useState(text);
   const [customTextButton, setCustomTextButton] = useState(null);
+  const [defaultOption, setDefaultOption] = useState(defaultValue);
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const toggleChevronDirection = getClassName(chevron, dropdownProps.chevron.defaultClassName, dropdownProps.chevron.optionalClassName);
@@ -51,6 +52,7 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
     : label;
     // Avoid error with race condition when state is updated.
     setTimeout(() => setTextButton(buttonText), 0);
+    setDefaultOption('-1');
   }, [children]);
 
   /**
@@ -95,10 +97,12 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
   };
 
   const onKeyDownHandler = (e) => {
-    const keyCode = e.keyCode.toString();
+    const keyCode = e.keyCode?.toString();
     if (keyCode === '13' || keyCode === '9') {
       e.preventDefault();
+      setDefaultOption('custom-param');
       setCustomTextButton(false);
+      onChange(textButton);
     };
   };
 
@@ -136,7 +140,7 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
         onSelect={onSelect}
         onChange={onChange}
         notCheckIcon={notCheckIcon}
-        defaultValue={defaultValue}
+        defaultValue={defaultOption}
         buttonList={buttonList}
         customizeTextClick={customizeTextClick}
       />
