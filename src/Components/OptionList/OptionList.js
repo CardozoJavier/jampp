@@ -64,7 +64,7 @@ const OptionList = ({ children = [], type, className, menuTitle, onSelect, onCha
         />
       ))}
       {buttonList ? 
-        <Button type="link-default-left" label={buttonList} onClick={customizeTextClick} />
+        <Button type="link-customize-left" label={buttonList} onClick={customizeTextClick} />
         : null
       }
     </OptionCheckboxGroup>

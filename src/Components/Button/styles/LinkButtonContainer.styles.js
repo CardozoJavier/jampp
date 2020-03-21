@@ -14,6 +14,9 @@ export default styled.div`
 
   &:hover {
     cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
+    &.button.link--customize-left {
+      background-color: ${gray.g0};
+    }
   }
 
   &.button {
@@ -30,7 +33,7 @@ export default styled.div`
      * ***********************
      */
     &.link {
-      &--default, &--duplicate, &--check {
+      &--default, &--duplicate, &--check, &--customize {
         font-size: 12px;
         color: ${link};
 
@@ -41,6 +44,12 @@ export default styled.div`
             fill: ${gray.g05};
           }
         }
+      }
+      &--customize {
+        padding: 10px;
+        width: 100%;
+        border-top: 1px solid ${gray.g1};
+        justify-content: center;
       }
     }
   }
