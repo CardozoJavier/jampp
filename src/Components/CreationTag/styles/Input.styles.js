@@ -5,6 +5,9 @@ const { violet, gray } = palette;
 
 export default styled(Input)`
   width: ${({ width }) => width};
+  min-width: ${({ minWidth }) => minWidth};
+  margin: ${({ margin }) => margin};
+  display: ${({ display }) => display};
   padding: 8px 0;
   font-size: ${({ fontSize }) => fontSize};
 
