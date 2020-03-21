@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { OptionCheckboxGroup, MenuTitle } from './styles';
 import { bemDestruct, settingClassName } from '../../utils';
 import optionListProps from './optionListProps';
+import { Button } from '../Button';
 
 /**
  * OptionList component should be called with
@@ -17,9 +18,11 @@ import optionListProps from './optionListProps';
  * @param {String} minWidth - (Optional) Specified the min width for options list.
  * @param {String} width - (Optional) Specified the width for options list.
  * @param {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
+ * @param {String} buttonList - (Optional) It's the button text to be displayed into list when customize-text type is selected.
+ * @param {Function} customizeTextClick - (Optional) Callback to trigger when button for customize button text is clicked.
  * @return {React Component} A view in which one option can be selected.
  */
-const OptionList = ({ children = [], type, className, menuTitle, onSelect, onChange, notCheckIcon, minWidth, wide, width, defaultValue }) => {
+const OptionList = ({ children = [], type, className, menuTitle, onSelect, onChange, notCheckIcon, minWidth, wide, width, defaultValue, buttonList, customizeTextClick }) => {
   const { defaultClassName, OptionItem } = optionListProps[type];
   const childrenParsed = settingClassName(children, -1, defaultClassName);
   const [array, setArray] = useState(childrenParsed);
@@ -60,6 +63,10 @@ const OptionList = ({ children = [], type, className, menuTitle, onSelect, onCha
           id={input.id}
         />
       ))}
+      {buttonList ? 
+        <Button type="link-default-left" label={buttonList} onClick={customizeTextClick} />
+        : null
+      }
     </OptionCheckboxGroup>
   );
 };
@@ -81,6 +88,8 @@ OptionList.propTypes = {
     notCheckIcon: PropTypes.bool,
     minWidth: PropTypes.string,
     width: PropTypes.string,
+    buttonList: PropTypes.string,
+    customizeTextClick: PropTypes.func,
   };
   
 OptionList.defaultProps = {
@@ -90,6 +99,8 @@ OptionList.defaultProps = {
   notCheckIcon: false,
   minWidth: '',
   width: '',
+  buttonList: null,
+  customizeTextClick: () => null,
 };
   
 export default React.memo(OptionList);
