@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import parse from 'html-react-parser';
 import {
   Card,
   Modal,
@@ -15,11 +16,13 @@ import { DropdownContainer, DropdownListContainer } from '../Dropdown/styles';
 import { LockedIcon, XIcon, BoldAddIcon } from '../UI/Icons';
 import { DivContainer, Text } from '../UI/GenericElements/GenericElements.styles';
 import { palette, fonts } from '../styles';
-import { getQueryParams, removeEmptySpace, getReferencedId } from '../../utils';
+import { getQueryParams, removeEmptySpace, getReferencedId, highlighter } from '../../utils';
 import { HeaderParameter, HeaderText } from './styles/StructurePreview.styles';
 import StructurePreviewContext from './Context';
 const { gray, green, black, white } = palette;
 const { size10, size12, size18 } = fonts;
+
+const highlightColor = '#ab94ff';
 
 const StructurePreview = ({ url }) => {
   const [freeze, setFreeze] = useState(false);
@@ -32,9 +35,12 @@ const StructurePreview = ({ url }) => {
   const [optionDropdownId, setOptionDropdownId] = useState(getReferencedId());
   const [previousParamName, setPreviousParamName] = useState('');
   
+  const [newParam, setNewParam] = useState('New Param');
+  const [paramFocus, setParamFocus] = useState(null);
 
   const toggleHandler = (status) => {
     setFreeze(!status);
+    setParamFocus(null);
   };
 
   useEffect(() => {
@@ -46,11 +52,23 @@ const StructurePreview = ({ url }) => {
     setQueryParams(params);
   }, []);
 
-  const handleUrlChange = useCallback((key, value, customParamId, previousParamName) => {
-    const newUrl = new URL(urlValue);
+
+  /**
+   * Function to remove span tags from the url
+   */
+  const sanitizeUrl = (url) => {
+    const firsTag = new RegExp('<span.+?>');
+    const secondTag = new RegExp('</span>');
+    const urlSanitized = url.replace(firsTag, '').replace(secondTag, '');
+
+    return urlSanitized;
+  };
+
+  const handleUrlChange = useCallback((key, value, customParamId) => {
+    const urlSanitized = sanitizeUrl(urlValue);
+    const newUrl = new URL(urlSanitized);
     const params = new URLSearchParams(newUrl.search);
     
-    console.log('%c handleUrlChange', 'background-color: white; color: red;', customParam)
     if (customParamId) {
       const { defaultValue, paramName } = customParam.get(customParamId);
 
@@ -61,28 +79,21 @@ const StructurePreview = ({ url }) => {
           defaultValue,
         });
         setCustomParam(customParam);
-        // console.log('%c handleUrlChange', 'background-color: cyan; color: white;',{ key, value, customParamId, previousParamName, params: params.toString(), customParam })
       }
       
-      // console.log('%c before', 'background-color: red; color: white;', params.toString(), { key, value, previousParamName });
       params.delete(previousParamName);
       params.set(key, value);
-      // console.log('%c after', 'background-color: green; color: white;',params.toString());
-
     } else {
       params.set(key, value);
     };
     
-    // console.log('%c handleUrlChange', 'background-color: red; color: white;',{ key, value, customParamId, params, newUrl, urlValue, customParam })
-    
     newUrl.search = params;
     const urlDecoded = decodeURIComponent(newUrl.href);
-
-    // console.log({ urlValueSearch: urlValue, urlDecoded })
+    const urlHighlighted = paramFocus ? urlHighlightHandler(key, urlDecoded) : urlDecoded;
 
     // Avoid problem with race condition
-    setUrlValue(urlDecoded);
-  }, [urlValue]);
+    setTimeout(() => setUrlValue(urlHighlighted), 0);
+  }, [urlValue, paramFocus]);
 
   const onTagCreated = (parameterValue, parameterKey, arrayLabelTag, arrayPlainText) => {
     const updateParameters = Object.assign({}, arrayParameters);
@@ -105,10 +116,6 @@ const StructurePreview = ({ url }) => {
   const onStructureCreated = (id) => {
     customParam.set(id, { paramName: 'NewParam', paramValue: '' });
     setCustomParam(customParam);
-    // handleUrlChange('NewParam', '');
-    // console.log('%c onStructureCreated', 'background-color: white; color: red;', { id, customParam })
-
-    // setCustomParam(customParam);
   };
 
 
@@ -116,20 +123,30 @@ const StructurePreview = ({ url }) => {
     const paramName = removeEmptySpace(text);
     const paramValue = removeEmptySpace(customParam.get(buttonId).paramValue);
 
-    // console.log({ paramName, prevParamName });
-    
     setPreviousParamName(prevParamName);
     if (prevParamName !== paramName) {
     }
     customParam.set(buttonId, { paramName, paramValue, defaultValue: selectedOptionId });
-    
-    // console.log('%c handleOptionChange', 'background-color: cyan; color: black;',{ buttonId, customParam, });
-
     handleUrlChange(paramName, paramValue, buttonId, prevParamName);
     setCustomParam(customParam);
-
-    // console.log(customParam)
   };
+
+  /**
+   * Callback to handle parameter focus for highlight url
+   */
+  const urlHighlightHandler = useCallback((paramKey, url = urlValue) => {
+    const urlSanitized = sanitizeUrl(url);
+    const newUrl = new URL(urlSanitized);
+    const params = new URLSearchParams(newUrl.search);
+    const paramFocused = `${paramKey}=${params.get(paramKey)}`;
+    const paramHighlighted = highlighter(paramFocused, highlightColor);
+    const updateUrl = newUrl.href.replace(paramFocused, paramHighlighted);
+    const urlDecoded = decodeURIComponent(updateUrl);
+
+    setParamFocus(paramKey);
+    setTimeout(setUrlValue(urlDecoded), 0);
+    return urlDecoded;
+  }, [arrayParameters]);
   
   const renderQueryParams = (params) => {
     const elements = [];
@@ -158,6 +175,7 @@ const StructurePreview = ({ url }) => {
                 arrayParameters={freeze ? arrayParameters.plainText[paramKey] : arrayParameters.labelTag[paramKey]}
                 latestParameters={latestParameters.current}
                 handleUrlChange={handleUrlChange}
+                urlHighlightHandler={urlHighlightHandler}
               />
               <XIcon
                 role='icon-to-remove-structure'
@@ -194,7 +212,7 @@ const StructurePreview = ({ url }) => {
           <DivContainer margin="16px 0 0 0">
             <Card width="auto" padding="0" backgroundColor={freeze ? gray.g0 : white}>
               <DivContainer margin="16px" maxHeight="90px" overflow="auto">
-                <Text key="test-2" fontSize={size18} color={freeze ? gray.g3 : black}>{urlValue}</Text>
+                <Text key="test-2" fontSize={size18} color={freeze ? gray.g3 : black}>{parse(urlValue)}</Text>
               </DivContainer>
               <HeaderParameter>
                 <HeaderText padding='4px 37px 4px 16px' borderRight={`1px solid ${gray.g1}`}>{'Partner parameter'}</HeaderText>
@@ -212,7 +230,7 @@ const StructurePreview = ({ url }) => {
                     <ParametersDuplicationContainer>
                       <DropdownContainer width="100%" padding="0 10px 0 0">
                         <DropdownListContainer>
-                          <OptionDropdown optionDropdownId={optionDropdownId} wide={true} text={'New Param'} type="basic-clean" listWidth="fit-content">
+                          <OptionDropdown optionDropdownId={optionDropdownId} wide={true} text={'New Param'} type="customize-text" buttonList="Custom parameter" listWidth="fit-content">
                             <Option label="Option A" id="a" />
                             <Option label="Option B" id="b" />
                             <Option label="Option C" id="c" />
@@ -238,6 +256,7 @@ const StructurePreview = ({ url }) => {
                           latestParameters={latestParameters.current}
                           handleUrlChange={handleUrlChange}
                           optionDropdownId={optionDropdownId}
+                          urlHighlightHandler={urlHighlightHandler}
                         />
                         <DivContainer display={freeze ? 'none' : 'flex'} alignItems="center" margin="8px 0 0 0">
                           <Text color={gray.g4} fontSize={size10} display="inline" margin="0 3px 0 0">or select from the </Text>

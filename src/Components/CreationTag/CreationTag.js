@@ -18,7 +18,7 @@ import { ExclamationIcon } from '../UI/Icons';
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @param {Function} onError - (Optional) Function to check input values and trigger error message. It receive the input value in first argument.
  * @param {String} errorMessage - (Optional) String to be display on error event.
- * @param {String} defaultValue - (Optional) It's the default value for a tag to be displayed in render.
+ * @param {Array} defaultValue - (Optional) It's the default value for one or more tags to be displayed in render.
  * @return {React Component} A view for input field with icon and action on error.
  */
 const CreationTag = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, errorMessage, onError, defaultValue }) => {
@@ -88,7 +88,7 @@ const CreationTag = ({ type, placeholder, width, label, onTagCreated, onTagDelet
     setLabelId(id);
     if (defaultValue) {
       const updateDefaultLabelArray = [...defaultLabelArray];
-      updateDefaultLabelArray.push(defaultValue);
+      defaultValue.forEach(value => updateDefaultLabelArray.push(value));
       setDefaultLabelArray(updateDefaultLabelArray);
     }
   }, []);
@@ -148,7 +148,7 @@ CreationTag.propTypes = {
   disabled: PropTypes.bool,
   onErrorMessage: PropTypes.string,
   onError: PropTypes.func,
-  defaultValue: PropTypes.string,
+  defaultValue: PropTypes.arrayOf(PropTypes.string),
 };
 
 CreationTag.defaultProps = {
@@ -160,7 +160,7 @@ CreationTag.defaultProps = {
   disabled: false,
   onErrorMessage: null,
   onError: () => null,
-  defaultValue: null,
+  defaultValue: [''],
 };
 
 export default React.memo(CreationTag);
