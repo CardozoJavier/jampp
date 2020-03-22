@@ -28,9 +28,28 @@ const { size10 } = fonts;
  * @param {Object} flatParameters - (Optional) It's the object with array of parameters created and parsed to plain text.
  * @param {Object} labelParameters - (Optional) It's the object with array of original label tags parameters.
  * @param {String} parameterKey - (Optional) It's the key that correspond with each parameter input text.
+ * @param {Function} urlHighlightHandler - (Optional) Callback to trigger when parameter is on focus, for highlight the url.
  * @return {React Component} A view for input field with icon and action on error.
  */
-const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions, parameterKey, parameters, latestParameters, defaultValue, handleUrlChange }) => {
+const CreationTracking = ({
+  type,
+  placeholder,
+  width,
+  label,
+  onTagCreated,
+  onTagDeleted,
+  disabled,
+  suggestions = [],
+  callback,
+  linkText,
+  textBelowSuggestions,
+  parameterKey,
+  parameters,
+  latestParameters,
+  defaultValue,
+  handleUrlChange,
+  urlHighlightHandler,
+}) => {
   const { defaultClassName, optionalClassName, onBlurClassName, onFocusClassName, InputContainer } = inputProps[type];
   const [className, setClassName] = useState(defaultClassName);
   
@@ -58,6 +77,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
   }
   const handleFocus = () => {
     setClassName(onFocusClassName);
+    urlHighlightHandler(parameterKey);
   }
   
   /**
