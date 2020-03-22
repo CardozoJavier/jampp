@@ -529,3 +529,32 @@ export const NoBorderPurple = () => (
     </DropdownContainer>
   </>
 );
+
+export const CustomizeText = () => (
+  <DropdownContainer>
+    <DropdownListContainer>
+      {/**
+        * OptionDropdown component should be called with
+        * @prop {String} type - (Required) Define dropdown classes for styling.
+        * @prop {String} text - (Required) Text to be displayed inside button.
+        * @prop {Boolean} notCheckIcon - (Optional) It's a modifier to not display the check icon next to text.
+        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
+        * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+        * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
+        * @prop {String} listWidth - (Optional) It's the width of the list opened.
+      * @prop {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
+        */}
+      <OptionDropdown defaultValue="id2" text="Text" type="customize-text" buttonList="Custom param" onChange={optionId => console.log('Option ' + optionId + ' is selected')}>
+        {/**
+          * Option component should be used with
+          * @prop {String} label - (Optional) It's a text to be display inside button.
+          * @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
+          */}
+        <Option label="Option 1" id="id1" />
+        <Option label="Option 2" id="id2" />
+        <Option label="Option 3" id="id3" />
+        <Option label="Option 4" id="id4" />
+      </OptionDropdown>
+    </DropdownListContainer>
+  </DropdownContainer>
+);

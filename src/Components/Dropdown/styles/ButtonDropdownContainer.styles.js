@@ -121,7 +121,7 @@ export const ButtonDropdownContainer = styled(AccessoryButtonContainer)`
       &--basic {
         background-color: ${white};
         color: ${gray.g4};
-        border: 1px solid ${gray.g1};
+        border: ${({ customMode }) => customMode ? `1px solid ${gray.g07}` : `1px solid ${gray.g1}`};
 
         ${ButtonInput} {
           font-size: 12px;

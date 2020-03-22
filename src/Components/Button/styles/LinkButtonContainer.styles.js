@@ -30,7 +30,7 @@ export default styled.div`
      * ***********************
      */
     &.link {
-      &--default, &--duplicate, &--check {
+      &--default, &--duplicate, &--check, &--customize {
         font-size: 12px;
         color: ${link};
 
@@ -40,6 +40,15 @@ export default styled.div`
           svg {
             fill: ${gray.g05};
           }
+        }
+      }
+      &--customize {
+        padding: 10px;
+        width: 100%;
+        border-top: 1px solid ${gray.g1};
+        justify-content: center;
+        a {
+          white-space: nowrap;
         }
       }
     }

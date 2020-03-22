@@ -10,3 +10,4 @@ export { default as removeEmptySpace } from './removeEmptySpace';
 export { default as getQueryParams } from './getQueryParams';
 export { default as getWidthElement } from './getWidthElement';
 export { default as getReferencedId } from './getReferencedId';
+export { default as highlighter } from './highlighter';
