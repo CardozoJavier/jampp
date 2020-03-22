@@ -164,7 +164,7 @@ const StructurePreview = ({ url }) => {
                   <ParametersDuplicationContainer>
                     <DropdownContainer width="100%" padding="0 10px 0 0">
                       <DropdownListContainer>
-                        <OptionDropdown disabled={freeze} wide={true} text={newParam} type="basic-clean" onChange={handleAddNewParam} listWidth="fit-content">
+                        <OptionDropdown listWidth="auto" disabled={freeze} wide={true} text={newParam} type="customize-text" buttonList="Custom parameter" onChange={handleAddNewParam}>
                           <Option label="Option A" id="a" />
                           <Option label="Option B" id="b" />
                           <Option label="Option C" id="c" />

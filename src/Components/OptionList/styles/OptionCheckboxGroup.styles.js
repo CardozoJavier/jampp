@@ -11,7 +11,7 @@ export default styled.div`
   background-color: white;
   z-index: 1;
   min-width: ${({ minWidth }) => minWidth || '130px'};
-  width: inherit;
+  width: ${({ width }) => width || 'inherit'};
   max-height: 50vh;
   overflow: scroll;
   margin-bottom: 10px;

@@ -25,7 +25,7 @@ import InputText from '../Structures/InputText';
  * @return {React Component} A view for button and dropdown of unique option selectable.
  */
 const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, notCheckIcon, wide, disabled, minWidth, listWidth, defaultValue, buttonList }) => {
-  const { defaultClassName, optionalClassName, buttonClassName, typeList } = dropdownProps[type];
+  const { defaultClassName, optionalClassName, buttonClassName, typeList, buttonProps } = dropdownProps[type];
 
   const [className, setClassName] = useState(defaultClassName);
   const [chevron, setChevron] = useState(dropdownProps.chevron.defaultClassName);
@@ -123,7 +123,7 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
         }
         {customTextButton ?
           <InputText onKeyDown={onKeyDownHandler} defaultValue={textButton} autoFocus={true} minWidth="50px" margin="0 8px" fontSize="12px" onChange={customizeTextHandler} />
-          : <ButtonInput maxWidth="100%" overflow="hidden" children={textButton} />
+          : <ButtonInput {...buttonProps} maxWidth="100%" overflow="hidden" children={textButton} />
         }
         <DownChevronIcon
           props={{
