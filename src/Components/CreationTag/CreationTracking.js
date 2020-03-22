@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useState, useEffect, useRef, useContext, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { LabelContainer, Input, Label, SuggestionsListContainer, SuggestionsList, PreviewContainer, PlainText} from './styles';
 import { getClassName, bemDestruct, useEventListener, removeEmptySpace } from '../../utils';
@@ -120,7 +120,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
   /**
    * Input value handler for input field pushed into defaultLabelArray.
    */
-  const handleInputChange = (id, value) => {
+  const handleInputChange = useCallback((id, value) => {
     const updateDefaultLabelArray = [];
     const updateTextArray = [];
     const { customParam, optionDropdownId } = context;
@@ -153,7 +153,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
 
     onTagCreated(null, paramKey, updateDefaultLabelArray, updateTextArray);
     handleUrlChange(paramKey, removeEmptySpace(value));
-  };
+  }, [arrayParameters]);
 
   /**
    * Event handler in key down to move through suggestions list and create tag when Enter or Tab key are pressed
@@ -197,7 +197,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
 
     if (type === 'input-field') {
       updateDefaultLabelArray.push(
-        <InputText id={targetId} key={targetId} targetId={targetId} defaultValue={removeEmptySpace(inputValue)} onChange={handleInputChange} disabled={disabled} textAlign="center" />
+        <InputText fontSize={size10} id={targetId} key={targetId} targetId={targetId} defaultValue={removeEmptySpace(inputValue)} onChange={handleInputChange} disabled={disabled} textAlign="center" />
       );
       setPreviewTracking('preview-tracking');
     } else if (type === 'label-tag'){
