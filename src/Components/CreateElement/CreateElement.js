@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { CreateElementContainer } from './styles';
 import { Button } from '../Button';
 import { DivContainer } from '../UI/GenericElements/GenericElements.styles';
+import { getUniqueId } from '../../utils';
 
 /**
  *  CreateElement component should be called with
@@ -42,7 +43,7 @@ const CreateElement = ({ children, buttonText, buttonType, buttonIcon, buttonPro
    * Assigning unique id to new structures
    */
   const cloningWithUniqueId = (clone) => {
-    const key = Math.random().toString();
+    const key = getUniqueId();
     return (
       React.cloneElement(clone, {
         key: key,

@@ -25,7 +25,21 @@ import InputText from '../Structures/InputText';
  * @param {String} buttonList - (Optional) It's the button text to be displayed into list when customize-text type is selected.
  * @return {React Component} A view for button and dropdown of unique option selectable.
  */
-const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, notCheckIcon, wide, disabled, minWidth, listWidth, defaultValue, optionDropdownId, buttonList }) => {
+const OptionDropdown = ({ type = 'basic',
+  text,
+  children,
+  leftIcon,
+  onChange,
+  notCheckIcon,
+  wide,
+  disabled,
+  minWidth,
+  listWidth,
+  defaultValue,
+  optionDropdownId,
+  buttonList,
+  handleOptionChange,
+}) => {
   const context = useContext(StructurePreviewContext);
   disabled = context ? context.disabled : disabled;
   defaultValue = context ? context.customParam.get(optionDropdownId).defaultValue : defaultValue;
@@ -60,7 +74,8 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
 
     const { customParam } = context;
     const previousParamName = customParam.get(optionDropdownId).paramName;
-    context && context.handleOptionChange(optionDropdownId, label, id, previousParamName);
+    // console.log('%c OptionDropdown', 'background-color: #eee; color: blue;', { customParam });
+    handleOptionChange(optionDropdownId, label, id);
     setDefaultOption('-1');
   }, [children]);
 
@@ -173,6 +188,7 @@ OptionDropdown.propTypes = {
   listWidth: PropTypes.string,
   defaultValue: PropTypes.string,
   buttonList: PropTypes.string,
+  handleOptionChange: PropTypes.func,
 };
 
 OptionDropdown.defaultProps = {
@@ -184,6 +200,7 @@ OptionDropdown.defaultProps = {
   listWidth: null,
   defaultValue: null,
   buttonList: null,
+  handleOptionChange: () => null,
 };
 
 export default React.memo(OptionDropdown);

@@ -34,9 +34,7 @@ const StructurePreview = ({ url }) => {
 
   const [customParam, setCustomParam] = useState(new Map());
   const [optionDropdownId, setOptionDropdownId] = useState(getReferencedId());
-  const [previousParamName, setPreviousParamName] = useState('');
   
-  const [newParam, setNewParam] = useState('New Param');
   const [paramFocus, setParamFocus] = useState(null);
 
   const toggleHandler = (status) => {
@@ -70,30 +68,29 @@ const StructurePreview = ({ url }) => {
   };
 
   const handleUrlChange = useCallback((key, value = '', customParamId) => {
-    const urlSanitized = sanitizeUrl(urlValue);
+    const urlSanitized = sanitizeUrl(latestUrlValue.current);
     const newUrl = new URL(urlSanitized);
     const params = new URLSearchParams(newUrl.search);
     
     if (customParamId) {
       const { defaultValue, paramName } = customParam.get(customParamId);
-      if (key !== previousParamName) {
-        customParam.set(customParamId, {
-          paramName: key,
-          paramValue: value,
-          defaultValue,
-        });
-        setCustomParam(customParam);
-      }
-      params.delete(previousParamName);
+      customParam.set(customParamId, {
+        paramName: key,
+        paramValue: value,
+        defaultValue,
+      });
+      setCustomParam(customParam);
+      // Delete old param from URL
+      params.delete(paramName);
       params.set(key, value);
     } else {
       params.set(key, value);
     };
     
-    
     newUrl.search = params;
     const urlDecoded = decodeURIComponent(newUrl.href);
     const urlHighlighted = paramFocus ? urlHighlightHandler(key, urlDecoded) : urlDecoded;
+
     // Avoid problem with race condition
     setTimeout(() => setUrlValue(urlHighlighted), 0);
   }, [urlValue, paramFocus, arrayParameters]);
@@ -103,6 +100,8 @@ const StructurePreview = ({ url }) => {
     updateParameters.plainText[parameterKey] = arrayPlainText;
     updateParameters.labelTag[parameterKey] = arrayLabelTag;
     setArrayParameters(updateParameters);
+
+    // console.log('%c onTagCreated', 'background-color: red; color: white;', { parameterKey, arrayLabelTag, arrayPlainText});
   };
 
   const onTagDelete = (parameterValue, parameterKey, arrayLabelTag, arrayPlainText) => {
@@ -110,27 +109,29 @@ const StructurePreview = ({ url }) => {
     updateParameters.plainText[parameterKey] = arrayPlainText;
     updateParameters.labelTag[parameterKey] = arrayLabelTag;
     setArrayParameters(updateParameters);
+    urlHighlightHandler(parameterKey);
   };
 
   /**
    * Setting default value and unique id for new param created.
    */
   const onStructureCreated = (id) => {
+    // console.log('%c onStructureCreated', 'background-color: green; color: white;');
     customParam.set(id, { paramName: 'NewParam', paramValue: '' });
     setCustomParam(customParam);
   };
 
-  const handleOptionChange = (buttonId, text, selectedOptionId, prevParamName) => {
+  const handleOptionChange = useCallback((buttonId, text, selectedOptionId) => {
     const paramName = removeEmptySpace(text);
-    const paramValue = removeEmptySpace(customParam.get(buttonId).paramValue);
+    const paramValue = removeEmptySpace(customParam.get(buttonId)?.paramValue);
+    
+    // console.log('%c handleOptionChange', 'background-color: magenta;', { paramName, paramValue, buttonId, text, customParam });
 
-    setPreviousParamName(prevParamName);
-    if (prevParamName !== paramName) {
-    }
-    customParam.set(buttonId, { paramName, paramValue, defaultValue: selectedOptionId });
-    handleUrlChange(paramName, paramValue, buttonId, prevParamName);
-    setCustomParam(customParam);
-  };
+    // customParam.set(buttonId, { paramName, paramValue, defaultValue: selectedOptionId });
+    handleUrlChange(paramName, paramValue, buttonId);
+    // setCustomParam(customParam);
+  }, [customParam]);
+
 
   /**
    * Callback to handle parameter focus for highlight url
@@ -144,6 +145,9 @@ const StructurePreview = ({ url }) => {
     const paramHighlighted = highlighter(paramFocused, highlightColor);
     const updateUrl = newUrl.href.replace(paramFocused, paramHighlighted);
     const urlDecoded = decodeURIComponent(updateUrl);
+
+    // console.log('%c highlight', 'background-color: magenta;', { urlDecoded });
+
     setParamFocus(paramKey);
     setUrlValue(urlDecoded);
     return urlDecoded;
@@ -156,7 +160,7 @@ const StructurePreview = ({ url }) => {
         params.delete(paramKey);
       } else {
         elements.push(
-          <StructurePreviewContext.Provider value={{ disabled: freeze }} key={paramKey}>
+          <StructurePreviewContext.Provider value={{ disabled: freeze, arrayParameters }} key={paramKey}>
             <DivContainer key={paramKey} id="original-structure" display="grid" alignItems="center" gridTemplateColumns="28% 5% 59% 8%" padding="15px" borderBottom={`1px solid ${gray.g1}`}>
               <Text color={freeze ? gray.g3 : black} fontSize={size12} fontWeight="bold">{paramKey}</Text>
               <Text>=</Text>
@@ -173,7 +177,7 @@ const StructurePreview = ({ url }) => {
                 onTagCreated={onTagCreated}
                 onTagDeleted={onTagDelete}
                 disabled={freeze}
-                arrayParameters={freeze ? arrayParameters.plainText[paramKey] : arrayParameters.labelTag[paramKey]}
+                // arrayParameters={freeze ? arrayParameters.plainText[paramKey] : arrayParameters.labelTag[paramKey]}
                 latestParameters={latestParameters.current}
                 handleUrlChange={handleUrlChange}
                 urlHighlightHandler={urlHighlightHandler}
@@ -226,12 +230,12 @@ const StructurePreview = ({ url }) => {
 
                 {queryParams && renderQueryParams(queryParams)}
 
-                <StructurePreviewContext.Provider value={{ disabled: freeze, handleOptionChange, customParam,  }}>
+                <StructurePreviewContext.Provider value={{ disabled: freeze, customParam, arrayParameters, }}>
                   <CreateElement id={optionDropdownId} onStructureCreated={onStructureCreated} disabled={freeze} buttonText="Add parameter" buttonType="link-default-left" buttonIcon={BoldAddIcon} onDeleteCallback={structureId => console.log('Structure with id ' + structureId + ' want to be deleted')}>
                     <ParametersDuplicationContainer>
                       <DropdownContainer width="100%" padding="0 10px 0 0">
                         <DropdownListContainer>
-                          <OptionDropdown optionDropdownId={optionDropdownId} wide={true} text={'New Param'} type="customize-text" buttonList="Custom parameter" listWidth="fit-content">
+                          <OptionDropdown handleOptionChange={handleOptionChange} optionDropdownId={optionDropdownId} wide={true} text={'New Param'} type="customize-text" buttonList="Custom parameter" listWidth="fit-content">
                             <Option label="Option A" id="a" />
                             <Option label="Option B" id="b" />
                             <Option label="Option C" id="c" />
@@ -244,6 +248,7 @@ const StructurePreview = ({ url }) => {
                         <CreationTracking
                           width="100%"
                           linkText="Full list"
+                          // parameterKey={customParam.get(optionDropdownId)?.paramName || 'NewParam'}
                           id={optionDropdownId}
                           key={optionDropdownId}
                           type="suggestions-tracking"
@@ -253,7 +258,7 @@ const StructurePreview = ({ url }) => {
                           onTagCreated={onTagCreated}
                           onTagDeleted={onTagDelete}
                           disabled={freeze}
-                          arrayParameters={freeze ? arrayParameters.plainText[customParam.get(optionDropdownId)?.key] : arrayParameters.labelTag[customParam.get(optionDropdownId)?.key]}
+                          // arrayParameters={freeze ? arrayParameters.plainText[customParam.get(optionDropdownId)?.key] : arrayParameters.labelTag[customParam.get(optionDropdownId)?.key]}
                           latestParameters={latestParameters.current}
                           handleUrlChange={handleUrlChange}
                           optionDropdownId={optionDropdownId}
