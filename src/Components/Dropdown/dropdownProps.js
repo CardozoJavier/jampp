@@ -115,6 +115,12 @@ const dropdownProps = {
       overflow: "hidden",
     },
   },
+  "customize-text": {
+    defaultClassName: "dropdown button--basic-right__closed",
+    optionalClassName: "dropdown button--basic-right__opened",
+    buttonClassName: "dropdown button--basic-right",
+    typeList: "customize-text",
+  },
 };
 
 export default dropdownProps;
