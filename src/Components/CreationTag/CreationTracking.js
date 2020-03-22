@@ -32,7 +32,26 @@ const { size10 } = fonts;
  * @param {Function} urlHighlightHandler - (Optional) Callback to trigger when parameter is on focus, for highlight the url.
  * @return {React Component} A view for input field with icon and action on error.
  */
-const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions, parameterKey, arrayParameters, latestParameters, defaultValue, handleUrlChange, optionDropdownId, urlHighlightHandler }) => {
+const CreationTracking = ({ 
+  type,
+  placeholder,
+  width,
+  label,
+  onTagCreated,
+  onTagDeleted,
+  disabled,
+  suggestions = [],
+  callback,
+  linkText,
+  textBelowSuggestions,
+  parameterKey,
+  arrayParameters,
+  latestParameters,
+  defaultValue,
+  handleUrlChange,
+  optionDropdownId,
+  urlHighlightHandler
+}) => {
   const context = useContext(StructurePreviewContext);
   disabled = context ? context.disabled : disabled;
   // const [disabled, setContextDisabled] = useState(context.disabled);
@@ -60,11 +79,11 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
   }
   const handleBlur = () => {
     setClassName(onBlurClassName);
-  }
+  };
   const handleFocus = () => {
     setClassName(onFocusClassName);
     urlHighlightHandler(parameterKey);
-  }
+  };
   
   /**
    * Handle input field.
@@ -197,7 +216,18 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
 
     if (type === 'input-field') {
       updateDefaultLabelArray.push(
-        <InputText fontSize={size10} id={targetId} key={targetId} targetId={targetId} defaultValue={removeEmptySpace(inputValue)} onChange={handleInputChange} disabled={disabled} textAlign="center" />
+        <InputText 
+          id={targetId}
+          key={targetId}
+          fontSize={size10}
+          textAlign="center"
+          targetId={targetId}
+          disabled={disabled}
+          onChange={handleInputChange}
+          onBlur={disabled ? null : handleBlur}
+          onFocus={disabled ? null : handleFocus}
+          defaultValue={removeEmptySpace(inputValue)}
+        />
       );
       setPreviewTracking('preview-tracking');
     } else if (type === 'label-tag'){

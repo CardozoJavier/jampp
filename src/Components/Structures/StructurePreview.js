@@ -27,6 +27,7 @@ const highlightColor = '#ab94ff';
 const StructurePreview = ({ url }) => {
   const [freeze, setFreeze] = useState(false);
   const [urlValue, setUrlValue] = useState(url);
+  const latestUrlValue = useRef(urlValue);
   const [arrayParameters, setArrayParameters] = useState({ plainText: {}, labelTag: {} });
   const latestParameters = useRef(arrayParameters);
   const [queryParams, setQueryParams] = useState(null);
@@ -48,6 +49,10 @@ const StructurePreview = ({ url }) => {
   }, [arrayParameters]);
 
   useEffect(() => {
+    latestUrlValue.current = urlValue;
+  }, [urlValue]);
+
+  useEffect(() => {
     const params = getQueryParams(url);
     setQueryParams(params);
   }, []);
@@ -64,14 +69,13 @@ const StructurePreview = ({ url }) => {
     return urlSanitized;
   };
 
-  const handleUrlChange = useCallback((key, value, customParamId) => {
+  const handleUrlChange = useCallback((key, value = '', customParamId) => {
     const urlSanitized = sanitizeUrl(urlValue);
     const newUrl = new URL(urlSanitized);
     const params = new URLSearchParams(newUrl.search);
     
     if (customParamId) {
       const { defaultValue, paramName } = customParam.get(customParamId);
-
       if (key !== previousParamName) {
         customParam.set(customParamId, {
           paramName: key,
@@ -80,26 +84,24 @@ const StructurePreview = ({ url }) => {
         });
         setCustomParam(customParam);
       }
-      
       params.delete(previousParamName);
       params.set(key, value);
     } else {
       params.set(key, value);
     };
     
+    
     newUrl.search = params;
     const urlDecoded = decodeURIComponent(newUrl.href);
     const urlHighlighted = paramFocus ? urlHighlightHandler(key, urlDecoded) : urlDecoded;
-
     // Avoid problem with race condition
     setTimeout(() => setUrlValue(urlHighlighted), 0);
-  }, [urlValue, paramFocus]);
+  }, [urlValue, paramFocus, arrayParameters]);
 
   const onTagCreated = (parameterValue, parameterKey, arrayLabelTag, arrayPlainText) => {
     const updateParameters = Object.assign({}, arrayParameters);
     updateParameters.plainText[parameterKey] = arrayPlainText;
     updateParameters.labelTag[parameterKey] = arrayLabelTag;
-
     setArrayParameters(updateParameters);
   };
 
@@ -118,7 +120,6 @@ const StructurePreview = ({ url }) => {
     setCustomParam(customParam);
   };
 
-
   const handleOptionChange = (buttonId, text, selectedOptionId, prevParamName) => {
     const paramName = removeEmptySpace(text);
     const paramValue = removeEmptySpace(customParam.get(buttonId).paramValue);
@@ -134,19 +135,19 @@ const StructurePreview = ({ url }) => {
   /**
    * Callback to handle parameter focus for highlight url
    */
-  const urlHighlightHandler = useCallback((paramKey, url = urlValue) => {
+  const urlHighlightHandler = useCallback((paramKey, url = latestUrlValue.current) => {
     const urlSanitized = sanitizeUrl(url);
     const newUrl = new URL(urlSanitized);
     const params = new URLSearchParams(newUrl.search);
-    const paramFocused = `${paramKey}=${params.get(paramKey)}`;
+    const paramValue = params.get(paramKey);
+    const paramFocused = `${paramKey}=${paramValue}`;
     const paramHighlighted = highlighter(paramFocused, highlightColor);
     const updateUrl = newUrl.href.replace(paramFocused, paramHighlighted);
     const urlDecoded = decodeURIComponent(updateUrl);
-
     setParamFocus(paramKey);
-    setTimeout(setUrlValue(urlDecoded), 0);
+    setUrlValue(urlDecoded);
     return urlDecoded;
-  }, [arrayParameters]);
+  }, [urlValue]);
   
   const renderQueryParams = (params) => {
     const elements = [];

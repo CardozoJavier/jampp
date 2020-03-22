@@ -63,8 +63,6 @@ const OptionDropdown = ({ type = 'basic', text, children, leftIcon, onChange, no
     context && context.handleOptionChange(optionDropdownId, label, id, previousParamName);
     setDefaultOption('-1');
   }, [children]);
-  
-  // console.log('%c OptionDropdown', 'background-color: white; color: red;', { disabled, defaultValue })
 
   /**
    * Hook to handle click events on window
