@@ -53,12 +53,13 @@ const CreationTracking = ({
   urlHighlightHandler
 }) => {
 
-  // console.log('%c onTagCreated', 'background-color: orange; color: white;', { parameterKey });
-
-
-
+  
+  
+  
   const context = useContext(StructurePreviewContext);
   disabled = context ? context.disabled : disabled;
+
+  console.log('%c CreationTracking', 'background-color: orange; color: white;', context);
 
   const arrayParameters = disabled ? context.arrayParameters.plainText[parameterKey] : context.arrayParameters.labelTag[parameterKey];
 
@@ -116,9 +117,9 @@ const CreationTracking = ({
 
     const parameterValue = concatUrlParam(value);
     const { customParam, } = context;
-    const paramKey = parameterKey || customParam.get(optionDropdownId).paramName;
+    const paramKey = customParam?.get(optionDropdownId).paramName || parameterKey;
 
-    // console.log('%c CreationTracking', 'background-color: red; color: white;', { value, inputValue, customParam: customParam.get(optionDropdownId) })
+    // console.log('%c handleChange', 'background-color: red; color: white;', { context, parameterKey })
 
     handleUrlChange(paramKey, parameterValue, optionDropdownId);
   };
@@ -152,7 +153,7 @@ const CreationTracking = ({
     const updateDefaultLabelArray = [];
     const updateTextArray = [];
     const { customParam, optionDropdownId } = context;
-    const paramKey = parameterKey || customParam.get(optionDropdownId);
+    const paramKey = customParam?.get(optionDropdownId) || parameterKey;
 
     latestParameters.labelTag[paramKey].forEach(labelTag => {
       if (labelTag.props.targetId == id) {
@@ -264,10 +265,10 @@ const CreationTracking = ({
       <PlainText targetId={targetId} text={value} key={plainTextId} id={plainTextId}>{trimValue}</PlainText>
     );
 
-    const { customParam, } = context;
-    const paramKey = parameterKey || customParam.get(optionDropdownId).paramName;
+    // const { customParam, } = context;
+    // const paramKey = parameterKey || customParam.get(optionDropdownId).paramName;
 
-    value.trim() && onTagCreated(value.trim(), paramKey, updateDefaultLabelArray, updateTextArray);
+    value.trim() && onTagCreated(value.trim(), parameterKey, updateDefaultLabelArray, updateTextArray);
     setInputValue('');
     setShowSuggestion(false);
     setMatchSuggestion([]);
@@ -381,7 +382,6 @@ const CreationTracking = ({
         width={width}
         htmlFor={labelId}
       >
-        
         {arrayParameters && arrayParameters.map(item => item)}
 
         <PreviewContainer>

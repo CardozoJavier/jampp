@@ -33,6 +33,7 @@ const StructurePreview = ({ url }) => {
   const [queryParams, setQueryParams] = useState(null);
 
   const [customParam, setCustomParam] = useState(new Map());
+  const latestCustomParam = useRef(customParam);
   const [optionDropdownId, setOptionDropdownId] = useState(getReferencedId());
   
   const [paramFocus, setParamFocus] = useState(null);
@@ -41,6 +42,10 @@ const StructurePreview = ({ url }) => {
     setFreeze(!status);
     setParamFocus(null);
   };
+
+  useEffect(() => {
+    latestCustomParam.current = customParam;
+  }, [customParam]);
 
   useEffect(() => {
     latestParameters.current = arrayParameters;
@@ -72,6 +77,9 @@ const StructurePreview = ({ url }) => {
     const newUrl = new URL(urlSanitized);
     const params = new URLSearchParams(newUrl.search);
     
+    // console.log({ before: newUrl.href });
+
+    
     if (customParamId) {
       const { defaultValue, paramName } = customParam.get(customParamId);
       customParam.set(customParamId, {
@@ -87,6 +95,8 @@ const StructurePreview = ({ url }) => {
       params.set(key, value);
     };
     
+    console.log('%c handleUrlChange', 'background-color: green; color: white;', { params: params.toString(), key, value, customParamId, });
+
     newUrl.search = params;
     const urlDecoded = decodeURIComponent(newUrl.href);
     const urlHighlighted = paramFocus ? urlHighlightHandler(key, urlDecoded) : urlDecoded;
@@ -101,7 +111,7 @@ const StructurePreview = ({ url }) => {
     updateParameters.labelTag[parameterKey] = arrayLabelTag;
     setArrayParameters(updateParameters);
 
-    // console.log('%c onTagCreated', 'background-color: red; color: white;', { parameterKey, arrayLabelTag, arrayPlainText});
+    console.log('%c onTagCreated', 'background-color: red; color: white;', { parameterKey, arrayLabelTag, arrayPlainText});
   };
 
   const onTagDelete = (parameterValue, parameterKey, arrayLabelTag, arrayPlainText) => {
@@ -230,7 +240,7 @@ const StructurePreview = ({ url }) => {
 
                 {queryParams && renderQueryParams(queryParams)}
 
-                <StructurePreviewContext.Provider value={{ disabled: freeze, customParam, arrayParameters, }}>
+                <StructurePreviewContext.Provider value={{ disabled: freeze, customParam: latestCustomParam.current, arrayParameters, }}>
                   <CreateElement id={optionDropdownId} onStructureCreated={onStructureCreated} disabled={freeze} buttonText="Add parameter" buttonType="link-default-left" buttonIcon={BoldAddIcon} onDeleteCallback={structureId => console.log('Structure with id ' + structureId + ' want to be deleted')}>
                     <ParametersDuplicationContainer>
                       <DropdownContainer width="100%" padding="0 10px 0 0">
@@ -248,7 +258,8 @@ const StructurePreview = ({ url }) => {
                         <CreationTracking
                           width="100%"
                           linkText="Full list"
-                          // parameterKey={customParam.get(optionDropdownId)?.paramName || 'NewParam'}
+                          // parameterKey={latestCustomParam.current.get(optionDropdownId)?.paramName || 'NewParam'}
+                          // parameterKey={'PEPE'}
                           id={optionDropdownId}
                           key={optionDropdownId}
                           type="suggestions-tracking"
