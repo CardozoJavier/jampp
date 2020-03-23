@@ -4,6 +4,7 @@ import { OptionCheckboxGroup, MenuTitle } from './styles';
 import { bemDestruct, settingClassName } from '../../utils';
 import optionListProps from './optionListProps';
 import { Button } from '../Button';
+import StructurePreviewContext from '../Structures/Context';
 
 /**
  * OptionList component should be called with
@@ -21,7 +22,9 @@ import { Button } from '../Button';
  * @param {Function} customizeTextClick - (Optional) Callback to trigger when button for customize button text is clicked.
  * @return {React Component} A view in which one option can be selected.
  */
-const OptionList = ({ children = [], type, className, menuTitle, onSelect, notCheckIcon, minWidth, wide, width, defaultValue, buttonList, customizeTextClick  }) => {
+const OptionList = ({ children = [], type, className, menuTitle, onSelect, notCheckIcon, minWidth, wide, width, defaultValue, buttonList, customizeTextClick, optionDropdownId,  }) => {
+  const context = useContext(StructurePreviewContext);
+  const { customParam } = context;
   const { defaultClassName, OptionItem } = optionListProps[type];
   const childrenParsed = settingClassName(children, -1, defaultClassName);
   const [array, setArray] = useState(childrenParsed);
@@ -37,14 +40,15 @@ const OptionList = ({ children = [], type, className, menuTitle, onSelect, notCh
   }
 
   useEffect(() => {
-    if (defaultValue) {
-      array.forEach(input => (input.id === defaultValue) && handleCheck(input.id, input.label, input.color, input.flat, type));
+    const contextDefaultValue = customParam.get(optionDropdownId)?.defaultValue;
+    if (contextDefaultValue) {
+      array.forEach(input => (input.id === contextDefaultValue) && handleCheck(input.id, input.label, input.color, input.flat, type));
     };
-    if (defaultValue === 'custom-param') {
+    if (contextDefaultValue === 'custom-param') {
       const resetList = settingClassName(children, -1, defaultClassName);
       setArray(resetList);
     };
-  }, [defaultValue, children]);
+  }, [context.customParam, children]);
 
   useEffect(() => {
     setArray(childrenParsed);

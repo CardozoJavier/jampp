@@ -45,7 +45,6 @@ const OptionDropdown = ({ type = 'basic',
   defaultValue = context ? context.customParam.get(optionDropdownId).defaultValue : defaultValue;
   text = context ? context.customParam.get(optionDropdownId).paramName : text;
 
-
   const { defaultClassName, optionalClassName, buttonClassName, typeList, buttonProps } = dropdownProps[type];
 
   const [className, setClassName] = useState(defaultClassName);
@@ -77,7 +76,6 @@ const OptionDropdown = ({ type = 'basic',
 
 
     handleOptionChange(optionDropdownId, label, id);
-    setDefaultOption(defaultValue);
   }, [children]);
 
   /**
@@ -169,7 +167,7 @@ const OptionDropdown = ({ type = 'basic',
         className={className}
         onSelect={onSelect}
         notCheckIcon={notCheckIcon}
-        defaultValue={defaultOption}
+        optionDropdownId={optionDropdownId}
         buttonList={buttonList}
         customizeTextClick={customizeTextClick}
       />
