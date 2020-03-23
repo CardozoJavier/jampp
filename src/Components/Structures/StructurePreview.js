@@ -40,11 +40,16 @@ const StructurePreview = ({ url }) => {
   const [buttonText, setButtonText] = useState('New Param');
   
   const [paramFocus, setParamFocus] = useState(null);
+  const latestParamFocus = useRef(paramFocus);
 
   const toggleHandler = (status) => {
     setFreeze(!status);
     setParamFocus(null);
   };
+
+  useEffect(() => {
+    latestParamFocus.current = paramFocus;
+  }, [paramFocus]);
 
   useEffect(() => {
     latestCustomParam.current = customParam;
@@ -85,12 +90,12 @@ const StructurePreview = ({ url }) => {
       delete arrayParameters.labelTag[paramName];
     }
 
-    console.log({ updateParameters, arrayParameters });
+    console.log('%c updateCustomParam', 'background-color: green;', { key, value, customParam, customParamId, });
 
     customParam.set(customParamId, {
       paramName: key,
       paramValue: value,
-      defaultValue: defaultValue || selectedOptionId,
+      defaultValue: selectedOptionId || defaultValue,
     });
     setCustomParam(customParam);
   };
@@ -104,20 +109,7 @@ const StructurePreview = ({ url }) => {
       const { paramName } = customParam.get(customParamId);
 
       updateCustomParam(key, value, customParamId, selectedOptionId);
-      // const updateParameters = Object.assign({}, arrayParameters);
-      // updateParameters.plainText[key] = updateParameters.plainText[paramName];
-      // updateParameters.labelTag[key] = updateParameters.labelTag[paramName];
-      // delete arrayParameters.plainText[paramName];
-      // delete arrayParameters.labelTag[paramName];
 
-      // console.log({ updateParameters, arrayParameters });
-
-      // customParam.set(customParamId, {
-      //   paramName: key,
-      //   paramValue: value,
-      //   defaultValue: defaultValue || selectedOptionId,
-      // });
-      // setCustomParam(customParam);
       // Delete old param from URL
       params.delete(paramName);
       params.set(key, value);
@@ -127,7 +119,10 @@ const StructurePreview = ({ url }) => {
 
     newUrl.search = params;
     const urlDecoded = decodeURIComponent(newUrl.href);
-    const urlHighlighted = paramFocus ? urlHighlightHandler(key, urlDecoded) : urlDecoded;
+
+    const urlHighlighted = latestParamFocus.current ? urlHighlightHandler(key, urlDecoded) : urlDecoded;
+    
+    // console.log('%c handleUrlChange', 'background-color: gree;', { paramFocus, key, urlHighlighted })
     // Avoid problem with race condition
     setTimeout(() => setUrlValue(urlHighlighted), 0);
   }, [urlValue, paramFocus, arrayParameters]);
@@ -155,13 +150,11 @@ const StructurePreview = ({ url }) => {
     setCustomParam(customParam);
   };
 
-  const handleOptionChange = useCallback((buttonId, text, selectedOptionId) => {
+  const handleOptionChange = useCallback((dropdownId, text, selectedOptionId) => {
     setButtonText(text);
     const paramName = removeEmptySpace(text);
-    const paramValue = removeEmptySpace(customParam.get(buttonId)?.paramValue);
-    // customParam.set(buttonId, { paramName, paramValue, defaultValue: selectedOptionId });
-    handleUrlChange(paramName, paramValue, buttonId, selectedOptionId);
-    // setCustomParam(customParam);
+    const paramValue = removeEmptySpace(customParam.get(dropdownId)?.paramValue);
+    handleUrlChange(paramName, paramValue, dropdownId, selectedOptionId);
   }, [customParam]);
 
 
@@ -177,8 +170,6 @@ const StructurePreview = ({ url }) => {
     const paramHighlighted = highlighter(paramFocused, highlightColor);
     const updateUrl = newUrl.href.replace(paramFocused, paramHighlighted);
     const urlDecoded = decodeURIComponent(updateUrl);
-
-    // console.log('%c highlight', 'background-color: magenta;', { urlDecoded });
 
     setParamFocus(paramKey);
     setUrlValue(urlDecoded);
