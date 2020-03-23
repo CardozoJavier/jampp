@@ -58,9 +58,6 @@ const OptionDropdown = ({ type = 'basic',
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const toggleChevronDirection = getClassName(chevron, dropdownProps.chevron.defaultClassName, dropdownProps.chevron.optionalClassName);
 
-
-  console.log('%c onSelect', 'background-color: green; color: white;', { textButton, context, optionDropdownId })
-
   const handleClick = () => {
     setClassName(toggleToClassName);
     setChevron(toggleChevronDirection);
@@ -150,7 +147,7 @@ const OptionDropdown = ({ type = 'basic',
           />
         }
         {customTextButton ?
-          <InputText textAlign="start" onKeyDown={onKeyDownHandler} defaultValue={textButton} autoFocus={true} minWidth="50px" margin="0 8px" fontSize="12px" onChange={customizeTextHandler} />
+          <InputText textAlign="start" onKeyDown={onKeyDownHandler} defaultValue={textButton} autoFocus={true} padding="10px 0" minWidth="50px" margin="0 8px" fontSize="12px" onChange={customizeTextHandler} />
           : <ButtonInput {...buttonProps} maxWidth="100%" overflow="hidden" children={textButton} />
         }
         <DownChevronIcon

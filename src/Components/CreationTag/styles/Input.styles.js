@@ -8,7 +8,7 @@ export default styled(Input)`
   min-width: ${({ minWidth }) => minWidth};
   margin: ${({ margin }) => margin};
   display: ${({ display }) => display};
-  padding: 8px 0;
+  padding: ${({ padding }) => padding || '8px 0'};
   font-size: ${({ fontSize }) => fontSize};
   text-align: ${({ textAlign }) => textAlign};
 
