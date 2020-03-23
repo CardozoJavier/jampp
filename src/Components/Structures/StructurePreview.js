@@ -35,6 +35,8 @@ const StructurePreview = ({ url }) => {
   const [customParam, setCustomParam] = useState(new Map());
   const latestCustomParam = useRef(customParam);
   const [optionDropdownId, setOptionDropdownId] = useState(getReferencedId());
+
+  const [buttonText, setButtonText] = useState('New Param');
   
   const [paramFocus, setParamFocus] = useState(null);
 
@@ -72,7 +74,7 @@ const StructurePreview = ({ url }) => {
     return urlSanitized;
   };
 
-  const handleUrlChange = useCallback((key, value = '', customParamId) => {
+  const handleUrlChange = useCallback((key, value = '', customParamId, selectedOptionId) => {
     const urlSanitized = sanitizeUrl(latestUrlValue.current);
     const newUrl = new URL(urlSanitized);
     const params = new URLSearchParams(newUrl.search);
@@ -82,7 +84,7 @@ const StructurePreview = ({ url }) => {
       customParam.set(customParamId, {
         paramName: key,
         paramValue: value,
-        defaultValue,
+        defaultValue: defaultValue || selectedOptionId,
       });
       setCustomParam(customParam);
       // Delete old param from URL
@@ -123,9 +125,11 @@ const StructurePreview = ({ url }) => {
   };
 
   const handleOptionChange = useCallback((buttonId, text, selectedOptionId) => {
+    setButtonText(text);
     const paramName = removeEmptySpace(text);
     const paramValue = removeEmptySpace(customParam.get(buttonId)?.paramValue);
-    handleUrlChange(paramName, paramValue, buttonId);
+    // customParam.set(buttonId, { paramName, paramValue, defaultValue: selectedOptionId });
+    handleUrlChange(paramName, paramValue, buttonId, selectedOptionId);
     // setCustomParam(customParam);
   }, [customParam]);
 
@@ -225,12 +229,12 @@ const StructurePreview = ({ url }) => {
 
                 {queryParams && renderQueryParams(queryParams)}
 
-                <StructurePreviewContext.Provider value={{ disabled: freeze, customParam: latestCustomParam.current, arrayParameters, }}>
+                <StructurePreviewContext.Provider value={{ disabled: freeze, customParam: latestCustomParam.current, arrayParameters, text: buttonText }}>
                   <CreateElement id={optionDropdownId} onStructureCreated={onStructureCreated} disabled={freeze} buttonText="Add parameter" buttonType="link-default-left" buttonIcon={BoldAddIcon} onDeleteCallback={structureId => console.log('Structure with id ' + structureId + ' want to be deleted')}>
                     <ParametersDuplicationContainer>
                       <DropdownContainer width="100%" padding="0 10px 0 0">
                         <DropdownListContainer>
-                          <OptionDropdown handleOptionChange={handleOptionChange} optionDropdownId={optionDropdownId} wide={true} text={'New Param'} type="customize-text" buttonList="Custom parameter" listWidth="fit-content">
+                          <OptionDropdown handleOptionChange={handleOptionChange} optionDropdownId={optionDropdownId} wide={true} text={buttonText} type="customize-text" buttonList="Custom parameter" listWidth="fit-content">
                             <Option label="Option A" id="a" />
                             <Option label="Option B" id="b" />
                             <Option label="Option C" id="c" />

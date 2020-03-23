@@ -44,7 +44,7 @@ const OptionList = ({ children = [], type, className, menuTitle, onSelect, notCh
       const resetList = settingClassName(children, -1, defaultClassName);
       setArray(resetList);
     };
-  }, [defaultValue]);
+  }, [defaultValue, children]);
 
   useEffect(() => {
     setArray(childrenParsed);

@@ -43,6 +43,9 @@ const OptionDropdown = ({ type = 'basic',
   const context = useContext(StructurePreviewContext);
   disabled = context ? context.disabled : disabled;
   defaultValue = context ? context.customParam.get(optionDropdownId).defaultValue : defaultValue;
+  text = context ? context.customParam.get(optionDropdownId).paramName : text;
+
+
   const { defaultClassName, optionalClassName, buttonClassName, typeList, buttonProps } = dropdownProps[type];
 
   const [className, setClassName] = useState(defaultClassName);
@@ -54,6 +57,9 @@ const OptionDropdown = ({ type = 'basic',
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const toggleChevronDirection = getClassName(chevron, dropdownProps.chevron.defaultClassName, dropdownProps.chevron.optionalClassName);
+
+
+  console.log('%c onSelect', 'background-color: green; color: white;', { textButton, context, optionDropdownId })
 
   const handleClick = () => {
     setClassName(toggleToClassName);
@@ -72,8 +78,9 @@ const OptionDropdown = ({ type = 'basic',
     setTimeout(() => setTextButton(buttonText), 0);
     onChange(id, label);
 
+
     handleOptionChange(optionDropdownId, label, id);
-    setDefaultOption('-1');
+    setDefaultOption(defaultValue);
   }, [children]);
 
   /**
