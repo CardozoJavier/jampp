@@ -76,10 +76,7 @@ const StructurePreview = ({ url }) => {
     const urlSanitized = sanitizeUrl(latestUrlValue.current);
     const newUrl = new URL(urlSanitized);
     const params = new URLSearchParams(newUrl.search);
-    
-    // console.log({ before: newUrl.href });
 
-    
     if (customParamId) {
       const { defaultValue, paramName } = customParam.get(customParamId);
       customParam.set(customParamId, {
@@ -94,13 +91,10 @@ const StructurePreview = ({ url }) => {
     } else {
       params.set(key, value);
     };
-    
-    console.log('%c handleUrlChange', 'background-color: green; color: white;', { params: params.toString(), key, value, customParamId, });
 
     newUrl.search = params;
     const urlDecoded = decodeURIComponent(newUrl.href);
     const urlHighlighted = paramFocus ? urlHighlightHandler(key, urlDecoded) : urlDecoded;
-
     // Avoid problem with race condition
     setTimeout(() => setUrlValue(urlHighlighted), 0);
   }, [urlValue, paramFocus, arrayParameters]);
@@ -110,8 +104,6 @@ const StructurePreview = ({ url }) => {
     updateParameters.plainText[parameterKey] = arrayPlainText;
     updateParameters.labelTag[parameterKey] = arrayLabelTag;
     setArrayParameters(updateParameters);
-
-    console.log('%c onTagCreated', 'background-color: red; color: white;', { parameterKey, arrayLabelTag, arrayPlainText});
   };
 
   const onTagDelete = (parameterValue, parameterKey, arrayLabelTag, arrayPlainText) => {
@@ -126,7 +118,6 @@ const StructurePreview = ({ url }) => {
    * Setting default value and unique id for new param created.
    */
   const onStructureCreated = (id) => {
-    // console.log('%c onStructureCreated', 'background-color: green; color: white;');
     customParam.set(id, { paramName: 'NewParam', paramValue: '' });
     setCustomParam(customParam);
   };
@@ -134,10 +125,6 @@ const StructurePreview = ({ url }) => {
   const handleOptionChange = useCallback((buttonId, text, selectedOptionId) => {
     const paramName = removeEmptySpace(text);
     const paramValue = removeEmptySpace(customParam.get(buttonId)?.paramValue);
-    
-    // console.log('%c handleOptionChange', 'background-color: magenta;', { paramName, paramValue, buttonId, text, customParam });
-
-    // customParam.set(buttonId, { paramName, paramValue, defaultValue: selectedOptionId });
     handleUrlChange(paramName, paramValue, buttonId);
     // setCustomParam(customParam);
   }, [customParam]);
@@ -187,8 +174,6 @@ const StructurePreview = ({ url }) => {
                 onTagCreated={onTagCreated}
                 onTagDeleted={onTagDelete}
                 disabled={freeze}
-                // arrayParameters={freeze ? arrayParameters.plainText[paramKey] : arrayParameters.labelTag[paramKey]}
-                latestParameters={latestParameters.current}
                 handleUrlChange={handleUrlChange}
                 urlHighlightHandler={urlHighlightHandler}
               />
@@ -258,8 +243,6 @@ const StructurePreview = ({ url }) => {
                         <CreationTracking
                           width="100%"
                           linkText="Full list"
-                          // parameterKey={latestCustomParam.current.get(optionDropdownId)?.paramName || 'NewParam'}
-                          // parameterKey={'PEPE'}
                           id={optionDropdownId}
                           key={optionDropdownId}
                           type="suggestions-tracking"
@@ -269,7 +252,6 @@ const StructurePreview = ({ url }) => {
                           onTagCreated={onTagCreated}
                           onTagDeleted={onTagDelete}
                           disabled={freeze}
-                          // arrayParameters={freeze ? arrayParameters.plainText[customParam.get(optionDropdownId)?.key] : arrayParameters.labelTag[customParam.get(optionDropdownId)?.key]}
                           latestParameters={latestParameters.current}
                           handleUrlChange={handleUrlChange}
                           optionDropdownId={optionDropdownId}

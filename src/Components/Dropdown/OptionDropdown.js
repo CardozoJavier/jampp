@@ -72,9 +72,6 @@ const OptionDropdown = ({ type = 'basic',
     setTimeout(() => setTextButton(buttonText), 0);
     onChange(id, label);
 
-    const { customParam } = context;
-    const previousParamName = customParam.get(optionDropdownId).paramName;
-    // console.log('%c OptionDropdown', 'background-color: #eee; color: blue;', { customParam });
     handleOptionChange(optionDropdownId, label, id);
     setDefaultOption('-1');
   }, [children]);

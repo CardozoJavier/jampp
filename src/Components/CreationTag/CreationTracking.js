@@ -45,39 +45,25 @@ const CreationTracking = ({
   linkText,
   textBelowSuggestions,
   parameterKey,
-  // arrayParameters,
-  latestParameters,
   defaultValue,
   handleUrlChange,
   optionDropdownId,
   urlHighlightHandler
 }) => {
-
-  
-  
-  
   const context = useContext(StructurePreviewContext);
   disabled = context ? context.disabled : disabled;
+  const { customParam, } = context;
+  const paramKey = customParam?.get(optionDropdownId).paramName || parameterKey;
+  const arrayParameters = disabled ? context.arrayParameters.plainText[paramKey] : context.arrayParameters.labelTag[paramKey];
 
-  console.log('%c CreationTracking', 'background-color: orange; color: white;', context);
-
-  const arrayParameters = disabled ? context.arrayParameters.plainText[parameterKey] : context.arrayParameters.labelTag[parameterKey];
-
-  // const [disabled, setContextDisabled] = useState(context.disabled);
   const { defaultClassName, optionalClassName, onBlurClassName, onFocusClassName, InputContainer } = inputProps[type];
   const [className, setClassName] = useState(defaultClassName);
-  
   const [inputValue, setInputValue] = useState('');
   const [matchSuggestion, setMatchSuggestion] = useState([]);
-  const [defaultLabelArray, setDefaultLabelArray] = useState([]);
-  const latestDefaultLabelArray = useRef(defaultLabelArray);
   const [suggestionActive, setSuggestionActive] = useState(-1);
   const [showSuggestion, setShowSuggestion] = useState(false);
   const [previewTracking, setPreviewTracking] = useState('');
   const [labelId, setLabelId] = useState('');
-  const [textArray, setTextArray] = useState([]);
-  const latestTextArray = useRef(textArray);
-  
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
 
   /**
@@ -91,8 +77,7 @@ const CreationTracking = ({
   };
   const handleFocus = () => {
     setClassName(onFocusClassName);
-    // console.log('%c focus', 'background-color: magenta;', { parameterKey });
-    urlHighlightHandler(parameterKey);
+    urlHighlightHandler(paramKey);
   };
   
   /**
@@ -114,13 +99,7 @@ const CreationTracking = ({
     setInputValue(value);
     setMatchSuggestion(matchSuggestion);
     setClassName(onFocusClassName);
-
     const parameterValue = concatUrlParam(value);
-    const { customParam, } = context;
-    const paramKey = customParam?.get(optionDropdownId).paramName || parameterKey;
-
-    // console.log('%c handleChange', 'background-color: red; color: white;', { context, parameterKey })
-
     handleUrlChange(paramKey, parameterValue, optionDropdownId);
   };
 
@@ -131,19 +110,19 @@ const CreationTracking = ({
     const updateDefaultLabelArray = [];
     const updateTextArray = [];
 
-    latestParameters.labelTag[parameterKey].forEach(tag => {
+    context.arrayParameters.labelTag[paramKey].forEach(tag => {
       if (tag.props.targetId !== tagId) {
         updateDefaultLabelArray.push(tag);
       }
     });
     
-    latestParameters.plainText[parameterKey].forEach(text => {
+    context.arrayParameters.plainText[paramKey].forEach(text => {
       if (text.props.targetId !== tagId) {
         updateTextArray.push(text);
       }
     });
 
-    onTagDeleted(null, parameterKey, updateDefaultLabelArray, updateTextArray);
+    onTagDeleted(null, paramKey, updateDefaultLabelArray, updateTextArray);
   };
 
   /**
@@ -152,10 +131,7 @@ const CreationTracking = ({
   const handleInputChange = useCallback((id, value) => {
     const updateDefaultLabelArray = [];
     const updateTextArray = [];
-    const { customParam, optionDropdownId } = context;
-    const paramKey = customParam?.get(optionDropdownId) || parameterKey;
-
-    latestParameters.labelTag[paramKey].forEach(labelTag => {
+    context.arrayParameters.labelTag[paramKey].forEach(labelTag => {
       if (labelTag.props.targetId == id) {
         const cloneInputField = React.cloneElement(labelTag, {
           defaultValue: value,
@@ -167,7 +143,7 @@ const CreationTracking = ({
       }
     });
     
-    latestParameters.plainText[paramKey].forEach(plainText => {
+    context.arrayParameters.plainText[paramKey].forEach(plainText => {
       if (plainText.props.targetId === id) {
         const trimValue = removeEmptySpace(value);
         const cloneElement = React.cloneElement(plainText, {
@@ -189,7 +165,6 @@ const CreationTracking = ({
    */
   const handleKeyDown = (key) => {
     const { customParam, optionDropdownId } = context;
-    const paramKey = parameterKey || customParam.get(optionDropdownId);
     const keyCode = key.keyCode.toString();
     if (keyCode.toString() === '219') {
       handleUrlChange(paramKey, inputValue, optionDropdownId);
@@ -217,7 +192,7 @@ const CreationTracking = ({
    * Push new items into box. Can be DefaultLabel components or InputText that could be modified.
    */
   const pushElement = (value, type) => {
-    const updateDefaultLabelArray = latestParameters.labelTag[parameterKey] ? [...latestParameters.labelTag[parameterKey]] : [];
+    const updateDefaultLabelArray = context.arrayParameters.labelTag[paramKey] ? [...context.arrayParameters.labelTag[paramKey]] : [];
     const trimValue = removeEmptySpace(value);
     const targetId = Math.random().toString();
     const labelId = Math.random().toString();
@@ -259,16 +234,12 @@ const CreationTracking = ({
     /**
      * It's for displaying the tags like plain text when input is freezed
      */
-    const updateTextArray = latestParameters.plainText[parameterKey] ? [...latestParameters.plainText[parameterKey]] : [];
+    const updateTextArray = context.arrayParameters.plainText[paramKey] ? [...context.arrayParameters.plainText[paramKey]] : [];
     const plainTextId = Math.random().toString();
     updateTextArray.push(
       <PlainText targetId={targetId} text={value} key={plainTextId} id={plainTextId}>{trimValue}</PlainText>
     );
-
-    // const { customParam, } = context;
-    // const paramKey = parameterKey || customParam.get(optionDropdownId).paramName;
-
-    value.trim() && onTagCreated(value.trim(), parameterKey, updateDefaultLabelArray, updateTextArray);
+    value.trim() && onTagCreated(value.trim(), paramKey, updateDefaultLabelArray, updateTextArray);
     setInputValue('');
     setShowSuggestion(false);
     setMatchSuggestion([]);
@@ -330,41 +301,22 @@ const CreationTracking = ({
       updateTextArray.push(
         <PlainText targetId={targetId} text={defaultValue} key={plainTextId} id={plainTextId}>{defaultValue}</PlainText>
       );
-      defaultValue.trim() && onTagCreated(defaultValue, parameterKey, updateDefaultLabelArray, updateTextArray);
+      defaultValue.trim() && onTagCreated(defaultValue, paramKey, updateDefaultLabelArray, updateTextArray);
     }
   }, []);
-
-  /**
-   * Setting updated labels array for handle it in delete tag callback.
-   */
-  useEffect(() => {
-    latestDefaultLabelArray.current = defaultLabelArray;
-  }, [defaultLabelArray]);
-
-  /**
-   * Setting updated plain text array for handle it in delete tag callback.
-   */
-  useEffect(() => {
-    latestTextArray.current = textArray;
-  }, [textArray]);
 
   /**
    * Concat custom param setted by input field to be displayed in url box.
    */
   useEffect(() => {
-    const { customParam } = context;
     const parameterValue = concatUrlParam(inputValue) || customParam?.get(optionDropdownId).paramValue;
-    const paramKey = parameterKey || customParam.get(optionDropdownId).paramName;
     handleUrlChange(paramKey, parameterValue, optionDropdownId);
-
-    // console.log('%c CreationTracking', 'background-color: red; color: white;', { paramKey, parameterValue, optionDropdownId,  })
   }, [arrayParameters]);
 
   /**
    * Context listener update props
    */
   useEffect(() => {
-    const { customParam } = context;
     if (optionDropdownId) {
       const parameterValue = customParam.get(optionDropdownId).paramValue;
       setInputValue(parameterValue);
@@ -445,8 +397,6 @@ CreationTracking.propTypes = {
   linkText: PropTypes.string,
   textBelowSuggestions: PropTypes.string,
   parameterKey: PropTypes.string,
-  arrayParameters: PropTypes.arrayOf(PropTypes.shape({})),
-  latestParameters: PropTypes.arrayOf(PropTypes.shape({})),
   defaultValue: PropTypes.string,
   handleUrlChange: PropTypes.func,
 };
@@ -462,8 +412,6 @@ CreationTracking.defaultProps = {
   linkText: null,
   textBelowSuggestions: null,
   parameterKey: null,
-  arrayParameters: [],
-  latestParameters: [],
   defaultValue: '',
   handleUrlChange: () => null,
 };
