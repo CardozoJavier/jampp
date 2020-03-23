@@ -122,7 +122,6 @@ const StructurePreview = ({ url }) => {
 
     const urlHighlighted = latestParamFocus.current ? urlHighlightHandler(key, urlDecoded) : urlDecoded;
     
-    // console.log('%c handleUrlChange', 'background-color: gree;', { paramFocus, key, urlHighlighted })
     // Avoid problem with race condition
     setTimeout(() => setUrlValue(urlHighlighted), 0);
   }, [urlValue, paramFocus, arrayParameters]);

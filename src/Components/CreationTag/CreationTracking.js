@@ -330,7 +330,6 @@ const CreationTracking = ({
       if (!arrayParameters) {
         const parameterValue = customParam.get(optionDropdownId).paramValue;
         setInputValue(parameterValue);
-        console.log({ parameterValue, customParam, arrayParameters })
       }
     };
     setPreviewTracking('');

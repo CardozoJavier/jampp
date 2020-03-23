@@ -73,8 +73,6 @@ const OptionDropdown = ({ type = 'basic',
     // Avoid error with race condition when state is updated.
     setTimeout(() => setTextButton(buttonText), 0);
     onChange(id, label);
-
-
     handleOptionChange(optionDropdownId, label, id);
   }, [children]);
 
@@ -131,6 +129,7 @@ const OptionDropdown = ({ type = 'basic',
       e.preventDefault();
       setCustomTextButton(false);
       onChange(textButton);
+      handleOptionChange(optionDropdownId, textButton, 'custom-param', 'custom-param');
     };
   };
 

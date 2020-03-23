@@ -25,6 +25,7 @@ import StructurePreviewContext from '../Structures/Context';
 const OptionList = ({ children = [], type, className, menuTitle, onSelect, notCheckIcon, minWidth, wide, width, defaultValue, buttonList, customizeTextClick, optionDropdownId,  }) => {
   const context = useContext(StructurePreviewContext);
   const { customParam } = context;
+  const contextDefaultOption = customParam.get(optionDropdownId)?.defaultValue;
   const { defaultClassName, OptionItem } = optionListProps[type];
   const childrenParsed = settingClassName(children, -1, defaultClassName);
   const [array, setArray] = useState(childrenParsed);
@@ -44,19 +45,21 @@ const OptionList = ({ children = [], type, className, menuTitle, onSelect, notCh
     if (contextDefaultValue) {
       array.forEach(input => (input.id === contextDefaultValue) && handleCheck(input.id, input.label, input.color, input.flat, type));
     };
-    if (contextDefaultValue === 'custom-param') {
+  }, [context.customParam, children]);
+
+  useEffect(() => {
+    if (contextDefaultOption === 'custom-param') {
       const resetList = settingClassName(children, -1, defaultClassName);
       setArray(resetList);
     };
-  }, [context.customParam, children]);
-
+  }, [contextDefaultOption]);
+  
   useEffect(() => {
     setArray(childrenParsed);
   }, [children]);
 
-
   return (
-    <OptionCheckboxGroup customSelected={defaultValue === 'custom-param'} className={bemDestruct(className)} minWidth={minWidth} wide={wide} width={width}>
+    <OptionCheckboxGroup customSelected={contextDefaultOption === 'custom-param'} className={bemDestruct(className)} minWidth={minWidth} wide={wide} width={width}>
       {menuTitle && <MenuTitle>{menuTitle}</MenuTitle>}
       {array.map((input) => (
         <OptionItem
