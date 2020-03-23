@@ -74,6 +74,7 @@ const CreationTracking = ({
   }
   const handleBlur = () => {
     setClassName(onBlurClassName);
+    urlHighlightHandler(null);
   };
   const handleFocus = () => {
     setClassName(onFocusClassName);
@@ -100,7 +101,9 @@ const CreationTracking = ({
     setMatchSuggestion(matchSuggestion);
     setClassName(onFocusClassName);
     const parameterValue = concatUrlParam(value);
-    handleUrlChange(paramKey, parameterValue, optionDropdownId);
+    // Take from context the default option selected for dropdown if exists
+    const optionDropdownDefaultValue = customParam?.get(optionDropdownId).defaultValue;
+    handleUrlChange(paramKey, parameterValue, optionDropdownId, optionDropdownDefaultValue);
   };
 
   /**
@@ -314,8 +317,9 @@ const CreationTracking = ({
    * Concat custom param setted by input field to be displayed in url box.
    */
   useEffect(() => {
-    const parameterValue = concatUrlParam(inputValue) || customParam?.get(optionDropdownId).paramValue;
-    handleUrlChange(paramKey, parameterValue, optionDropdownId);
+    const { paramName, defaultValue, paramValue } = customParam ? customParam.get(optionDropdownId) : {};
+    const parameterValue = concatUrlParam(inputValue) || paramValue;
+    handleUrlChange(paramKey, parameterValue, optionDropdownId, defaultValue);
   }, [arrayParameters]);
 
   /**
@@ -326,6 +330,7 @@ const CreationTracking = ({
       const parameterValue = customParam.get(optionDropdownId).paramValue;
       setInputValue(parameterValue);
     };
+    setPreviewTracking('');
   }, [disabled]);
   
 
