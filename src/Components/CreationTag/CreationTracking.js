@@ -327,8 +327,11 @@ const CreationTracking = ({
    */
   useEffect(() => {
     if (optionDropdownId) {
-      const parameterValue = customParam.get(optionDropdownId).paramValue;
-      setInputValue(parameterValue);
+      if (!arrayParameters) {
+        const parameterValue = customParam.get(optionDropdownId).paramValue;
+        setInputValue(parameterValue);
+        console.log({ parameterValue, customParam, arrayParameters })
+      }
     };
     setPreviewTracking('');
   }, [disabled]);
