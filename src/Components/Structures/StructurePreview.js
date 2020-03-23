@@ -19,10 +19,11 @@ import { palette, fonts } from '../styles';
 import { getQueryParams, removeEmptySpace, getReferencedId, highlighter } from '../../utils';
 import { HeaderParameter, HeaderText } from './styles/StructurePreview.styles';
 import StructurePreviewContext from './Context';
-const { gray, green, black, white } = palette;
+const { gray, green, black, white, action } = palette;
 const { size10, size12, size18 } = fonts;
 
 const highlightColor = '#ab94ff';
+// const highlightColor = action;
 
 const StructurePreview = ({ url }) => {
   const [freeze, setFreeze] = useState(false);
@@ -74,19 +75,49 @@ const StructurePreview = ({ url }) => {
     return urlSanitized;
   };
 
+  const updateCustomParam = (key, value, customParamId, selectedOptionId) => {
+    const { defaultValue, paramName } = customParam.get(customParamId);
+    const updateParameters = Object.assign({}, arrayParameters);
+    updateParameters.plainText[key] = updateParameters.plainText[paramName];
+    updateParameters.labelTag[key] = updateParameters.labelTag[paramName];
+    if (key !== paramName) {
+      delete arrayParameters.plainText[paramName];
+      delete arrayParameters.labelTag[paramName];
+    }
+
+    console.log({ updateParameters, arrayParameters });
+
+    customParam.set(customParamId, {
+      paramName: key,
+      paramValue: value,
+      defaultValue: defaultValue || selectedOptionId,
+    });
+    setCustomParam(customParam);
+  };
+
   const handleUrlChange = useCallback((key, value = '', customParamId, selectedOptionId) => {
     const urlSanitized = sanitizeUrl(latestUrlValue.current);
     const newUrl = new URL(urlSanitized);
     const params = new URLSearchParams(newUrl.search);
 
     if (customParamId) {
-      const { defaultValue, paramName } = customParam.get(customParamId);
-      customParam.set(customParamId, {
-        paramName: key,
-        paramValue: value,
-        defaultValue: defaultValue || selectedOptionId,
-      });
-      setCustomParam(customParam);
+      const { paramName } = customParam.get(customParamId);
+
+      updateCustomParam(key, value, customParamId, selectedOptionId);
+      // const updateParameters = Object.assign({}, arrayParameters);
+      // updateParameters.plainText[key] = updateParameters.plainText[paramName];
+      // updateParameters.labelTag[key] = updateParameters.labelTag[paramName];
+      // delete arrayParameters.plainText[paramName];
+      // delete arrayParameters.labelTag[paramName];
+
+      // console.log({ updateParameters, arrayParameters });
+
+      // customParam.set(customParamId, {
+      //   paramName: key,
+      //   paramValue: value,
+      //   defaultValue: defaultValue || selectedOptionId,
+      // });
+      // setCustomParam(customParam);
       // Delete old param from URL
       params.delete(paramName);
       params.set(key, value);

@@ -109,20 +109,21 @@ const CreationTracking = ({
   const deleteTagHandler = (tagId, tagText) => {
     const updateDefaultLabelArray = [];
     const updateTextArray = [];
+    const paramKeyUpdated = customParam?.get(optionDropdownId).paramName || parameterKey;
 
-    context.arrayParameters.labelTag[paramKey].forEach(tag => {
+    context.arrayParameters.labelTag[paramKeyUpdated].forEach(tag => {
       if (tag.props.targetId !== tagId) {
         updateDefaultLabelArray.push(tag);
       }
     });
     
-    context.arrayParameters.plainText[paramKey].forEach(text => {
+    context.arrayParameters.plainText[paramKeyUpdated].forEach(text => {
       if (text.props.targetId !== tagId) {
         updateTextArray.push(text);
       }
     });
 
-    onTagDeleted(null, paramKey, updateDefaultLabelArray, updateTextArray);
+    onTagDeleted(null, paramKeyUpdated, updateDefaultLabelArray, updateTextArray);
   };
 
   /**
@@ -131,7 +132,11 @@ const CreationTracking = ({
   const handleInputChange = useCallback((id, value) => {
     const updateDefaultLabelArray = [];
     const updateTextArray = [];
-    context.arrayParameters.labelTag[paramKey].forEach(labelTag => {
+    const paramKeyUpdated = customParam?.get(optionDropdownId).paramName || parameterKey;
+
+    console.log({ paramKeyUpdated, customParam})
+
+    context.arrayParameters.labelTag[paramKeyUpdated].forEach(labelTag => {
       if (labelTag.props.targetId == id) {
         const cloneInputField = React.cloneElement(labelTag, {
           defaultValue: value,
@@ -143,7 +148,7 @@ const CreationTracking = ({
       }
     });
     
-    context.arrayParameters.plainText[paramKey].forEach(plainText => {
+    context.arrayParameters.plainText[paramKeyUpdated].forEach(plainText => {
       if (plainText.props.targetId === id) {
         const trimValue = removeEmptySpace(value);
         const cloneElement = React.cloneElement(plainText, {
@@ -156,9 +161,9 @@ const CreationTracking = ({
       }
     });
 
-    onTagCreated(null, paramKey, updateDefaultLabelArray, updateTextArray);
-    handleUrlChange(paramKey, removeEmptySpace(value));
-  }, [arrayParameters]);
+    onTagCreated(null, paramKeyUpdated, updateDefaultLabelArray, updateTextArray);
+    handleUrlChange(paramKeyUpdated, removeEmptySpace(value));
+  }, [arrayParameters, customParam]);
 
   /**
    * Event handler in key down to move through suggestions list and create tag when Enter or Tab key are pressed
