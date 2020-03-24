@@ -43,7 +43,7 @@ const OptionDropdown = ({ type = 'basic',
   const context = useContext(StructurePreviewContext);
   disabled = context ? context.disabled : disabled;
   defaultValue = context ? context.customParam.get(optionDropdownId).defaultValue : defaultValue;
-  text = context ? context.customParam.get(optionDropdownId).paramName : text;
+  text = context ? context.text : text;
 
   const { defaultClassName, optionalClassName, buttonClassName, typeList, buttonProps } = dropdownProps[type];
 
