@@ -146,7 +146,7 @@ const OptionDropdown = ({ type = 'basic',
           />
         }
         {customTextButton ?
-          <InputText textAlign="start" onKeyDown={onKeyDownHandler} autoFocus={true} padding="10px 0" minWidth="50px" margin="0 8px" fontSize="12px" onChange={customizeTextHandler} />
+          <InputText valueTrimed textAlign="start" onKeyDown={onKeyDownHandler} autoFocus={true} padding="10px 0" minWidth="50px" margin="0 8px" fontSize="12px" onChange={customizeTextHandler} />
           : <ButtonInput {...buttonProps} maxWidth="100%" overflow="hidden" children={textButton} />
         }
         <DownChevronIcon
@@ -177,7 +177,7 @@ const OptionDropdown = ({ type = 'basic',
 };
 
 OptionDropdown.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
   type: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   leftIcon: PropTypes.func,
