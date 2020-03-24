@@ -104,7 +104,8 @@ const CreationTracking = ({
     const parameterValue = concatUrlParam(value);
     // Take from context the default option selected for dropdown if exists
     const optionDropdownDefaultValue = customParam?.get(optionDropdownId).defaultValue;
-    handleUrlChange(paramKey, parameterValue, optionDropdownId, optionDropdownDefaultValue);
+    const buttonText = customParam?.get(optionDropdownId).buttonText;
+    handleUrlChange(paramKey, parameterValue, optionDropdownId, optionDropdownDefaultValue, buttonText);
   };
 
   /**
@@ -137,8 +138,6 @@ const CreationTracking = ({
     const updateDefaultLabelArray = [];
     const updateTextArray = [];
     const paramKeyUpdated = customParam?.get(optionDropdownId).paramName || parameterKey;
-
-    console.log({ paramKeyUpdated, customParam})
 
     context.arrayParameters.labelTag[paramKeyUpdated].forEach(labelTag => {
       if (labelTag.props.targetId == id) {
@@ -320,7 +319,8 @@ const CreationTracking = ({
   useEffect(() => {
     const { paramName, defaultValue, paramValue } = customParam ? customParam.get(optionDropdownId) : {};
     const parameterValue = concatUrlParam(inputValue) || paramValue;
-    handleUrlChange(paramKey, parameterValue, optionDropdownId, defaultValue);
+    const buttonText = customParam?.get(optionDropdownId).buttonText;
+    handleUrlChange(paramKey, parameterValue, optionDropdownId, defaultValue, buttonText);
   }, [arrayParameters]);
 
   /**

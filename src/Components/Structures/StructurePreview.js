@@ -16,7 +16,7 @@ import { DropdownContainer, DropdownListContainer } from '../Dropdown/styles';
 import { LockedIcon, XIcon, BoldAddIcon } from '../UI/Icons';
 import { DivContainer, Text } from '../UI/GenericElements/GenericElements.styles';
 import { palette, fonts } from '../styles';
-import { getQueryParams, removeEmptySpace, getReferencedId, highlighter } from '../../utils';
+import { getQueryParams, removeEmptySpace, getReferencedId, highlighter, getUniqueId } from '../../utils';
 import { HeaderParameter, HeaderText } from './styles/StructurePreview.styles';
 import StructurePreviewContext from './Context';
 const { gray, green, black, white, action } = palette;
@@ -80,7 +80,7 @@ const StructurePreview = ({ url }) => {
     return urlSanitized;
   };
 
-  const updateCustomParam = (key, value, customParamId, selectedOptionId) => {
+  const updateCustomParam = (key, value, customParamId, selectedOptionId, buttonText) => {
     const { defaultValue, paramName } = customParam.get(customParamId);
     const updateParameters = Object.assign({}, arrayParameters);
     updateParameters.plainText[key] = updateParameters.plainText[paramName];
@@ -89,18 +89,16 @@ const StructurePreview = ({ url }) => {
       delete arrayParameters.plainText[paramName];
       delete arrayParameters.labelTag[paramName];
     }
-
-    console.log('%c updateCustomParam', 'background-color: green;', { key, value, customParam, customParamId, });
-
     customParam.set(customParamId, {
       paramName: key,
       paramValue: value,
       defaultValue: selectedOptionId || defaultValue,
+      buttonText,
     });
     setCustomParam(customParam);
   };
 
-  const handleUrlChange = useCallback((key, value = '', customParamId, selectedOptionId) => {
+  const handleUrlChange = useCallback((key, value = '', customParamId, selectedOptionId, buttonText) => {
     const urlSanitized = sanitizeUrl(latestUrlValue.current);
     const newUrl = new URL(urlSanitized);
     const params = new URLSearchParams(newUrl.search);
@@ -108,7 +106,7 @@ const StructurePreview = ({ url }) => {
     if (customParamId) {
       const { paramName } = customParam.get(customParamId);
 
-      updateCustomParam(key, value, customParamId, selectedOptionId);
+      updateCustomParam(key, value, customParamId, selectedOptionId, buttonText);
 
       // Delete old param from URL
       params.delete(paramName);
@@ -145,15 +143,16 @@ const StructurePreview = ({ url }) => {
    * Setting default value and unique id for new param created.
    */
   const onStructureCreated = (id) => {
-    customParam.set(id, { paramName: 'NewParam', paramValue: '' });
+    customParam.set(id, { paramName: 'NewParam', paramValue: '', defaultValue: null, buttonText: 'New Param', });
     setCustomParam(customParam);
+    setOptionDropdownId(getUniqueId());
   };
 
   const handleOptionChange = useCallback((dropdownId, text, selectedOptionId) => {
     setButtonText(text);
     const paramName = removeEmptySpace(text);
     const paramValue = removeEmptySpace(customParam.get(dropdownId)?.paramValue);
-    handleUrlChange(paramName, paramValue, dropdownId, selectedOptionId);
+    handleUrlChange(paramName, paramValue, dropdownId, selectedOptionId, text);
   }, [customParam]);
 
 
@@ -250,12 +249,12 @@ const StructurePreview = ({ url }) => {
 
                 {queryParams && renderQueryParams(queryParams)}
 
-                <StructurePreviewContext.Provider value={{ disabled: freeze, customParam: latestCustomParam.current, arrayParameters, text: buttonText }}>
+                <StructurePreviewContext.Provider value={{ disabled: freeze, customParam: latestCustomParam.current, arrayParameters, }}>
                   <CreateElement id={optionDropdownId} onStructureCreated={onStructureCreated} disabled={freeze} buttonText="Add parameter" buttonType="link-default-left" buttonIcon={BoldAddIcon} onDeleteCallback={structureId => console.log('Structure with id ' + structureId + ' want to be deleted')}>
                     <ParametersDuplicationContainer>
                       <DropdownContainer width="100%" padding="0 10px 0 0">
                         <DropdownListContainer>
-                          <OptionDropdown handleOptionChange={handleOptionChange} optionDropdownId={optionDropdownId} wide={true} text={buttonText} type="customize-text" buttonList="Custom parameter" listWidth="fit-content">
+                          <OptionDropdown handleOptionChange={handleOptionChange} optionDropdownId={optionDropdownId} wide={true} type="customize-text" buttonList="Custom parameter" listWidth="fit-content">
                             <Option label="Option A" id="a" />
                             <Option label="Option B" id="b" />
                             <Option label="Option C" id="c" />

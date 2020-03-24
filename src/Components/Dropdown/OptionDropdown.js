@@ -41,9 +41,15 @@ const OptionDropdown = ({ type = 'basic',
   handleOptionChange,
 }) => {
   const context = useContext(StructurePreviewContext);
+  const { customParam } = context;
+  text = customParam?.get(optionDropdownId).buttonText || text;
+
+  const texto = customParam?.get(optionDropdownId);
+  console.log('%c OptionDropdown', 'background-color: green;', { texto, optionDropdownId, customParam,  });
+
+  // debugger;
   disabled = context ? context.disabled : disabled;
   defaultValue = context ? context.customParam.get(optionDropdownId).defaultValue : defaultValue;
-  text = context ? context.text : text;
 
   const { defaultClassName, optionalClassName, buttonClassName, typeList, buttonProps } = dropdownProps[type];
 
@@ -73,7 +79,8 @@ const OptionDropdown = ({ type = 'basic',
     // Avoid error with race condition when state is updated.
     setTimeout(() => setTextButton(buttonText), 0);
     onChange(id, label);
-    handleOptionChange(optionDropdownId, label, id);
+    const text = customParam?.get(optionDropdownId).buttonText;
+    handleOptionChange(optionDropdownId, label, id, text);
   }, [children]);
 
   /**
@@ -129,7 +136,7 @@ const OptionDropdown = ({ type = 'basic',
       e.preventDefault();
       setCustomTextButton(false);
       onChange(textButton);
-      handleOptionChange(optionDropdownId, textButton, 'custom-param', 'custom-param');
+      handleOptionChange(optionDropdownId, textButton, 'custom-param');
     };
   };
 
