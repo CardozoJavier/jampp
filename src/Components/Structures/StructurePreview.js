@@ -118,7 +118,7 @@ const StructurePreview = ({ url }) => {
 
     newUrl.search = params;
     const urlDecoded = decodeURIComponent(newUrl.href);
-    const urlHighlighted = latestParamFocus.current ? urlHighlightHandler(key, urlDecoded) : urlDecoded;
+    const urlHighlighted = (paramFocus || latestParamFocus.current) ? urlHighlightHandler(key, urlDecoded) : urlDecoded;
     // Avoid problem with race condition
     setTimeout(() => setUrlValue(urlHighlighted), 0);
   }, [urlValue, paramFocus, arrayParameters]);
