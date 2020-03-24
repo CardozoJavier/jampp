@@ -43,13 +43,8 @@ const OptionDropdown = ({ type = 'basic',
   const context = useContext(StructurePreviewContext);
   const { customParam } = context;
   text = customParam?.get(optionDropdownId).buttonText || text;
-
-  const texto = customParam?.get(optionDropdownId);
-  console.log('%c OptionDropdown', 'background-color: green;', { texto, optionDropdownId, customParam,  });
-
-  // debugger;
-  disabled = context ? context.disabled : disabled;
-  defaultValue = context ? context.customParam.get(optionDropdownId).defaultValue : defaultValue;
+  disabled = context?.disabled || disabled;
+  defaultValue = customParam?.get(optionDropdownId).defaultValue || defaultValue;
 
   const { defaultClassName, optionalClassName, buttonClassName, typeList, buttonProps } = dropdownProps[type];
 

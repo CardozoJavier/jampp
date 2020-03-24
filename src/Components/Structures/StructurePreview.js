@@ -101,25 +101,24 @@ const StructurePreview = ({ url }) => {
   const handleUrlChange = useCallback((key, value = '', customParamId, selectedOptionId, buttonText) => {
     const urlSanitized = sanitizeUrl(latestUrlValue.current);
     const newUrl = new URL(urlSanitized);
-    const params = new URLSearchParams(newUrl.search);
+    let params = new URLSearchParams(newUrl.search);
 
     if (customParamId) {
       const { paramName } = customParam.get(customParamId);
-
       updateCustomParam(key, value, customParamId, selectedOptionId, buttonText);
-
-      // Delete old param from URL
-      params.delete(paramName);
-      params.set(key, value);
+      if (params.has(paramName)) {
+        // Replace previous param with new param key
+        const updateParams = new URLSearchParams(params.toString().replace(paramName, key));
+        params = updateParams;
+      }
+      params.set(key, value)
     } else {
       params.set(key, value);
     };
 
     newUrl.search = params;
     const urlDecoded = decodeURIComponent(newUrl.href);
-
     const urlHighlighted = latestParamFocus.current ? urlHighlightHandler(key, urlDecoded) : urlDecoded;
-    
     // Avoid problem with race condition
     setTimeout(() => setUrlValue(urlHighlighted), 0);
   }, [urlValue, paramFocus, arrayParameters]);
