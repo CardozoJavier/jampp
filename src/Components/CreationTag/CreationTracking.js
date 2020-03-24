@@ -77,8 +77,9 @@ const CreationTracking = ({
     urlHighlightHandler(null);
   };
   const handleFocus = () => {
+    const latestParamKey = customParam?.get(optionDropdownId).paramName || parameterKey;
     setClassName(onFocusClassName);
-    urlHighlightHandler(paramKey);
+    urlHighlightHandler(latestParamKey);
   };
   
   /**
