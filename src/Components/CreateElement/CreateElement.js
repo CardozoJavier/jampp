@@ -66,14 +66,14 @@ const CreateElement = ({ children, buttonText, buttonType, buttonIcon, buttonPro
     onStructureCreated(id);
   };
 
-  useEffect(() => {
-    const structuresArray = [];
-    structure && structure.forEach(() => {
-      structuresArray.push(children);
-    });
+  // useEffect(() => {
+  //   const structuresArray = [];
+  //   structure && structure.forEach(() => {
+  //     structuresArray.push(children);
+  //   });
 
-    setStructure(structuresArray);
-  }, [disabled]);
+  //   setStructure(structuresArray);
+  // }, [disabled]);
 
   return (
     <CreateElementContainer {...buttonProps}>

@@ -19,6 +19,7 @@ import { palette, fonts } from '../styles';
 import { getQueryParams, removeEmptySpace, getReferencedId, highlighter, getUniqueId, deleteQueryStringParameter, sanitizeUrl } from '../../utils';
 import { HeaderParameter, HeaderText } from './styles/StructurePreview.styles';
 import StructurePreviewContext from './Context';
+import Consumer from './Consumer';
 const { gray, green, black, white, action } = palette;
 const { size10, size12, size18 } = fonts;
 
@@ -171,6 +172,26 @@ const StructurePreview = ({ url }) => {
     setUrlValue(updateUrl);
   };
 
+  const divContainerConstructor = (context) => {
+    const { disabled } = context;
+    return {
+      display: disabled ? 'none' : 'flex',
+    };
+  };
+
+  const xIconConstructor = (context, props) => {
+    const { disabled } = context;
+    return {
+      ...props,
+      props: {
+        ...props.props,
+        fill: disabled ? gray.g2 : gray.g3,
+        cursor: disabled ? 'default' : 'pointer',
+        onClick: disabled ? null : () => onDeleteStructureHandler('NewParam'),
+      }
+    };
+  };
+
   const renderQueryParams = (params) => {
     const elements = [];
     params.forEach((value, paramKey) => {
@@ -278,25 +299,29 @@ const StructurePreview = ({ url }) => {
                           optionDropdownId={optionDropdownId}
                           urlHighlightHandler={urlHighlightHandler}
                         />
-                        <DivContainer display={freeze ? 'none' : 'flex'} alignItems="center" margin="8px 0 0 0">
-                          <Text color={gray.g4} fontSize={size10} display="inline" margin="0 3px 0 0">or select from the </Text>
-                          <Button disabled={freeze} fontSize={size10} label="Full token list" type="link-default-left" onClick={() => console.log('Display full token list')} />
-                        </DivContainer>
+                        <Consumer constructor={divContainerConstructor}>
+                          <DivContainer alignItems="center" margin="8px 0 0 0">
+                            <Text color={gray.g4} fontSize={size10} display="inline" margin="0 3px 0 0">or select from the </Text>
+                            <Button fontSize={size10} label="Full token list" type="link-default-left" onClick={() => console.log('Display full token list')} />
+                          </DivContainer>
+                        </Consumer>
                       </DivContainer>
-                      <XIcon
-                        context="structure-previeww"
-                        role='icon-to-remove-structure'
-                        props={{
-                          width: '10px',
-                          height: '10px',
-                          fill: freeze ? gray.g2 : gray.g3,
-                          margin: '0 5px',
-                          cursor: freeze ? 'default' : 'pointer',
-                          hover: black,
-                          justifySelf: 'end',
-                          onClick: freeze ? null : () => onDeleteStructureHandler(paramKey),
-                        }}
-                      />
+                      <Consumer constructor={xIconConstructor}>
+                        <XIcon
+                          context="structure-previeww"
+                          role='icon-to-remove-structure'
+                          props={{
+                            width: '10px',
+                            height: '10px',
+                            fill: freeze ? gray.g2 : gray.g3,
+                            margin: '0 5px',
+                            cursor: freeze ? 'default' : 'pointer',
+                            hover: black,
+                            justifySelf: 'end',
+                            onClick: freeze ? null : () => onDeleteStructureHandler(paramKey),
+                          }}
+                        />
+                      </Consumer>
                     </ParametersDuplicationContainer>
                   </CreateElement>
                 </StructurePreviewContext.Provider>
