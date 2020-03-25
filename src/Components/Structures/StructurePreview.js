@@ -16,7 +16,7 @@ import { DropdownContainer, DropdownListContainer } from '../Dropdown/styles';
 import { LockedIcon, XIcon, BoldAddIcon } from '../UI/Icons';
 import { DivContainer, Text } from '../UI/GenericElements/GenericElements.styles';
 import { palette, fonts } from '../styles';
-import { getQueryParams, removeEmptySpace, getReferencedId, highlighter, getUniqueId } from '../../utils';
+import { getQueryParams, removeEmptySpace, getReferencedId, highlighter, getUniqueId, deleteQueryStringParameter, sanitizeUrl } from '../../utils';
 import { HeaderParameter, HeaderText } from './styles/StructurePreview.styles';
 import StructurePreviewContext from './Context';
 const { gray, green, black, white, action } = palette;
@@ -68,18 +68,6 @@ const StructurePreview = ({ url }) => {
     setQueryParams(params);
   }, []);
 
-
-  /**
-   * Function to remove span tags from the url
-   */
-  const sanitizeUrl = (url) => {
-    const firsTag = new RegExp('<span.+?>');
-    const secondTag = new RegExp('</span>');
-    const urlSanitized = url.replace(firsTag, '').replace(secondTag, '');
-
-    return urlSanitized;
-  };
-
   const updateCustomParam = (key, value, customParamId, selectedOptionId, buttonText) => {
     const { defaultValue, paramName } = customParam.get(customParamId);
     const updateParameters = Object.assign({}, arrayParameters);
@@ -99,7 +87,7 @@ const StructurePreview = ({ url }) => {
   };
 
   const handleUrlChange = useCallback((key, value = '', customParamId, selectedOptionId, buttonText) => {
-    const urlSanitized = sanitizeUrl(latestUrlValue.current);
+    const urlSanitized = sanitizeUrl(latestUrlValue.current, 'span');
     const newUrl = new URL(urlSanitized);
     let params = new URLSearchParams(newUrl.search);
 
@@ -159,7 +147,7 @@ const StructurePreview = ({ url }) => {
    * Callback to handle parameter focus for highlight url
    */
   const urlHighlightHandler = useCallback((paramKey, url = latestUrlValue.current) => {
-    const urlSanitized = sanitizeUrl(url);
+    const urlSanitized = sanitizeUrl(url, 'span');
     const newUrl = new URL(urlSanitized);
     const params = new URLSearchParams(newUrl.search);
     const paramValue = params.get(paramKey);
@@ -173,6 +161,16 @@ const StructurePreview = ({ url }) => {
     return urlDecoded;
   }, [urlValue]);
   
+  /**
+   * Delete structure of parameter
+   */
+  const onDeleteStructureHandler = (key) => {
+    const updateUrl = deleteQueryStringParameter(latestUrlValue.current, key);
+    queryParams.delete(key);
+    setQueryParams(queryParams);
+    setUrlValue(updateUrl);
+  };
+
   const renderQueryParams = (params) => {
     const elements = [];
     params.forEach((value, paramKey) => {
@@ -210,7 +208,7 @@ const StructurePreview = ({ url }) => {
                   cursor: freeze ? 'default' : 'pointer',
                   hover: black,
                   justifySelf: 'end',
-                  onClick: freeze ? null : () => console.log('Display modal and pass it the key parameter: ' + paramKey),
+                  onClick: freeze ? null : () => onDeleteStructureHandler(paramKey),
                 }}
               />
             </DivContainer>
@@ -296,7 +294,7 @@ const StructurePreview = ({ url }) => {
                           cursor: freeze ? 'default' : 'pointer',
                           hover: black,
                           justifySelf: 'end',
-                          onClick: freeze ? null : () => console.log('Display modal and pass it the key parameter: ' + paramKey),
+                          onClick: freeze ? null : () => onDeleteStructureHandler(paramKey),
                         }}
                       />
                     </ParametersDuplicationContainer>
