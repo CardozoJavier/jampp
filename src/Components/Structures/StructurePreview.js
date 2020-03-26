@@ -32,9 +32,9 @@ const StructurePreview = ({ url }) => {
   const latestUrlValue = useRef(urlValue);
   const [arrayParameters, setArrayParameters] = useState({ plainText: {}, labelTag: {} });
   const latestParameters = useRef(arrayParameters);
-  const [queryParams, setQueryParams] = useState(null);
-
+  const [queryParams, setQueryParams] = useState(new Map());
   const [customParam, setCustomParam] = useState(new Map());
+
   const latestCustomParam = useRef(customParam);
   const [optionDropdownId, setOptionDropdownId] = useState(getReferencedId());
 
@@ -165,12 +165,20 @@ const StructurePreview = ({ url }) => {
   /**
    * Delete structure of parameter
    */
-  const onDeleteStructureHandler = (key) => {
-    const updateUrl = deleteQueryStringParameter(latestUrlValue.current, key);
-    queryParams.delete(key);
+  const onDeleteStructureHandler = useCallback((key) => {   
+    let paramKey; 
+    if (queryParams.has(key)) {
+      paramKey = key;
+      queryParams.delete(key);
+    } else if (customParam.has(key)) {
+      paramKey = customParam.get(key).paramName;
+      const structure = document.getElementById(key);
+      structure.style.display = 'none';
+    }
+    const updateUrl = deleteQueryStringParameter(latestUrlValue.current, paramKey);
     setQueryParams(queryParams);
     setUrlValue(updateUrl);
-  };
+  }, [queryParams, customParam]);
 
   const divContainerConstructor = (context) => {
     const { disabled } = context;
@@ -187,7 +195,6 @@ const StructurePreview = ({ url }) => {
         ...props.props,
         fill: disabled ? gray.g2 : gray.g3,
         cursor: disabled ? 'default' : 'pointer',
-        onClick: disabled ? null : () => onDeleteStructureHandler('NewParam'),
       }
     };
   };
@@ -268,7 +275,7 @@ const StructurePreview = ({ url }) => {
                 {queryParams && renderQueryParams(queryParams)}
 
                 <StructurePreviewContext.Provider value={{ disabled: freeze, customParam: latestCustomParam.current, arrayParameters, }}>
-                  <CreateElement id={optionDropdownId} onStructureCreated={onStructureCreated} disabled={freeze} buttonText="Add parameter" buttonType="link-default-left" buttonIcon={BoldAddIcon} onDeleteCallback={structureId => console.log('Structure with id ' + structureId + ' want to be deleted')}>
+                  <CreateElement id={optionDropdownId} onStructureCreated={onStructureCreated} disabled={freeze} buttonText="Add parameter" buttonType="link-default-left" buttonIcon={BoldAddIcon} onDeleteCallback={onDeleteStructureHandler}>
                     <ParametersDuplicationContainer>
                       <DropdownContainer width="100%" padding="0 10px 0 0">
                         <DropdownListContainer>
@@ -285,7 +292,6 @@ const StructurePreview = ({ url }) => {
                         <CreationTracking
                           width="100%"
                           linkText="Full list"
-                          id={optionDropdownId}
                           key={optionDropdownId}
                           type="suggestions-tracking"
                           textBelowSuggestions="or select from the"
@@ -318,7 +324,7 @@ const StructurePreview = ({ url }) => {
                             cursor: freeze ? 'default' : 'pointer',
                             hover: black,
                             justifySelf: 'end',
-                            onClick: freeze ? null : () => onDeleteStructureHandler(paramKey),
+                            onClick: freeze ? null : () => onDeleteStructureHandler(optionDropdownId),
                           }}
                         />
                       </Consumer>
