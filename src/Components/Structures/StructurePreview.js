@@ -276,7 +276,7 @@ const StructurePreview = ({ url }) => {
 
                 <StructurePreviewContext.Provider value={{ disabled: freeze, customParam: latestCustomParam.current, arrayParameters, }}>
                   <CreateElement id={optionDropdownId} onStructureCreated={onStructureCreated} disabled={freeze} buttonText="Add parameter" buttonType="link-default-left" buttonIcon={BoldAddIcon} onDeleteCallback={onDeleteStructureHandler}>
-                    <ParametersDuplicationContainer>
+                    <ParametersDuplicationContainer id={optionDropdownId} key={optionDropdownId}>
                       <DropdownContainer width="100%" padding="0 10px 0 0">
                         <DropdownListContainer>
                           <OptionDropdown handleOptionChange={handleOptionChange} optionDropdownId={optionDropdownId} wide={true} type="customize-text" buttonList="Custom parameter" listWidth="fit-content">
