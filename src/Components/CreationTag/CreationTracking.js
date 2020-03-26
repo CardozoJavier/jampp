@@ -53,7 +53,7 @@ const CreationTracking = ({
   const context = useContext(StructurePreviewContext);
   disabled = context ? context.disabled : disabled;
   const { customParam, } = context;
-  const paramKey = customParam?.get(optionDropdownId).paramName || parameterKey;
+  const paramKey = customParam?.get(optionDropdownId)?.paramName || parameterKey;
   const arrayParameters = disabled ? context.arrayParameters.plainText[paramKey] : context.arrayParameters.labelTag[paramKey];
 
   const { defaultClassName, optionalClassName, onBlurClassName, onFocusClassName, InputContainer } = inputProps[type];
