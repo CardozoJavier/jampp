@@ -73,8 +73,8 @@ const OptionList = ({ children = [], type, className, menuTitle, onSelect, notCh
           id={input.id}
         />
       ))}
-      {buttonList ? 
-        <Button type="link-customize-left" label={buttonList} onClick={customizeTextClick} />
+      {buttonList ?
+        <Button data-id={optionDropdownId} type="link-customize-left" label={buttonList} onClick={customizeTextClick} />
         : null
       }
     </OptionCheckboxGroup>

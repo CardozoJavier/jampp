@@ -42,9 +42,9 @@ const OptionDropdown = ({ type = 'basic',
 }) => {
   const context = useContext(StructurePreviewContext);
   const { customParam } = context;
-  text = customParam?.get(optionDropdownId).buttonText || text;
+  text = customParam?.get(optionDropdownId)?.buttonText || text;
   disabled = context?.disabled || disabled;
-  defaultValue = customParam?.get(optionDropdownId).defaultValue || defaultValue;
+  defaultValue = customParam?.get(optionDropdownId)?.defaultValue || defaultValue;
 
   const { defaultClassName, optionalClassName, buttonClassName, typeList, buttonProps } = dropdownProps[type];
 
@@ -74,8 +74,13 @@ const OptionDropdown = ({ type = 'basic',
     // Avoid error with race condition when state is updated.
     setTimeout(() => setTextButton(buttonText), 0);
     onChange(id, label);
-    const text = customParam?.get(optionDropdownId).buttonText;
+    const text = customParam?.get(optionDropdownId)?.buttonText;
     handleOptionChange(optionDropdownId, label, id, text);
+    if (customTextButton) {
+      setDefaultOption('custom-param');
+      setCustomTextButton(false);
+      onChange(textButton);
+    }
   }, [children]);
 
   /**
@@ -92,6 +97,9 @@ const OptionDropdown = ({ type = 'basic',
   const eventHandler = useCallback(
     (e) => {
       setClick(e);
+      const id = e.target.dataset.id;
+
+      console.log({ id, dp: dropdownButton.id })
       if (e.target.id !== dropdownButton.id) {
         setChevron(dropdownProps.chevron.defaultClassName);
         setClassName(defaultClassName);
