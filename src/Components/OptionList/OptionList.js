@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { OptionCheckboxGroup, MenuTitle } from './styles';
 import { bemDestruct, settingClassName } from '../../utils';
@@ -13,50 +13,35 @@ import { Button } from '../Button';
  * @param {Function} OptionItem - (Required) It's each option component styled to be displayed into list.
  * @param {String} menuTitle - (Optional) It's the title in dropdown opened.
  * @param {Function} onSelect - (Optional) Callback to change text displayed in button dropdown. It receive option ID in first argument, and label option in second argument.
- * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
  * @param {Boolean} notCheckIcon - (Optional) It's a modifier to not display the check icon next to text.
  * @param {String} minWidth - (Optional) Specified the min width for options list.
  * @param {String} width - (Optional) Specified the width for options list.
- * @param {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
+ * @param {String} optionSelected - (Optional) It's the option selected. Should be the Option id.
  * @param {String} buttonList - (Optional) It's the button text to be displayed into list when customize-text type is selected.
  * @param {Function} customizeTextClick - (Optional) Callback to trigger when button for customize button text is clicked.
  * @return {React Component} A view in which one option can be selected.
  */
-const OptionList = ({ children = [], type, className, menuTitle, onSelect, onChange, notCheckIcon, minWidth, wide, width, defaultValue, buttonList, customizeTextClick }) => {
+const OptionList = ({ children = [], type, className, menuTitle, onSelect, notCheckIcon, minWidth, wide, width, optionSelected, buttonList, customizeTextClick }) => {
   const { defaultClassName, OptionItem } = optionListProps[type];
-  const childrenParsed = settingClassName(children, -1, defaultClassName);
-  const [array, setArray] = useState(childrenParsed);
+  const childrenParsed = settingClassName(children, optionSelected, defaultClassName);
 
   /**
    * When an option is clicked, his className is toggle to selected and everyone else are being uncheck.
    */
-  const handleCheck = (id, label, color, flat, textType) => {
-    const inputsArray = settingClassName(children, id, defaultClassName);
-    // Avoid error with race condition when state is updated.
-    setTimeout(() => setArray(inputsArray), 0);
-    onChange(id, label);
+  const handleCheck = useCallback((id, label, color, flat, textType) => {
     onSelect(id, label, color, flat, textType);
-  }
+  }, [optionSelected]);
 
   useEffect(() => {
-    if (defaultValue) {
-      array.forEach(input => (input.id === defaultValue) && handleCheck(input.id, input.label, input.color, input.flat, type));
+    if (optionSelected) {
+      childrenParsed.forEach(input => (input.id === optionSelected) && handleCheck(input.id, input.label, input.color, input.flat, type));
     };
-    if (defaultValue === 'custom-param') {
-      const resetList = settingClassName(children, -1, defaultClassName);
-      setArray(resetList);
-    };
-  }, [defaultValue]);
-
-  useEffect(() => {
-    setArray(childrenParsed);
-  }, [children]);
-
+  }, [children, optionSelected]);
 
   return (
-    <OptionCheckboxGroup customSelected={defaultValue === 'custom-param'} className={bemDestruct(className)} minWidth={minWidth} wide={wide} width={width}>
+    <OptionCheckboxGroup customSelected={optionSelected === 'custom-param'} className={bemDestruct(className)} minWidth={minWidth} wide={wide} width={width}>
       {menuTitle && <MenuTitle>{menuTitle}</MenuTitle>}
-      {array.map((input) => (
+      {childrenParsed.map((input) => (
         <OptionItem
           className={input.className}
           handleCheck={handleCheck}
@@ -95,6 +80,7 @@ OptionList.propTypes = {
     width: PropTypes.string,
     buttonList: PropTypes.string,
     customizeTextClick: PropTypes.func,
+    optionSelected: PropTypes.string.isRequired,
   };
   
 OptionList.defaultProps = {
