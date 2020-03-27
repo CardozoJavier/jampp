@@ -112,6 +112,12 @@ const buttonProps = {
       height: '14px',
     },
   },
+  "link-customize-left": {
+    defaultClassName: 'button link--customize-left',
+    optionalClassName: '',
+    ButtonContainer: LinkButtonContainer,
+    iconClassName: 'button link--customize-left',
+  },
   "duplicate-structure": {
     defaultClassName: 'button link--duplicate-left',
     optionalClassName: '',
