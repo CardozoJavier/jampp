@@ -39,7 +39,7 @@ const CreationTagSuggestion = ({ type, placeholder, width, label, onTagCreated, 
   const [suggestionActive, setSuggestionActive] = useState(-1);
   const [showSuggestion, setShowSuggestion] = useState(false);
   const [previewTracking, setPreviewTracking] = useState('');
-  const [labelId, setLabelId] = useState('');
+  const [labelId, setLabelId] = useState(getUniqueId());
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
 
@@ -203,7 +203,7 @@ const CreationTagSuggestion = ({ type, placeholder, width, label, onTagCreated, 
   const eventHandler = () => setShowSuggestion(false);
   useEventListener('click', eventHandler);
   useEffect(() => {
-    if (defaultValue) {
+    if (defaultValue.length) {
       const updateDefaultLabelArray = [];
       defaultValue.forEach(value => {
         const targetId = getUniqueId();
@@ -312,7 +312,7 @@ CreationTagSuggestion.defaultProps = {
   callback: () => null,
   linkText: null,
   textBelowSuggestions: null,
-  defaultValue: [''],
+  defaultValue: [],
   handleUrlChange: () => null,
 };
 
