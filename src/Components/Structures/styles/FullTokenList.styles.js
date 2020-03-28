@@ -10,6 +10,7 @@ export const ModalContainer = styled.div`
 export const TokenListContainer = styled.div`
   max-height: 214px;
   overflow: scroll;
+  padding: 0 22px 22px 22px;
 `;
 
 export const FullTokenListRowTitle = styled(PaymentRowTitle)`
