@@ -137,7 +137,7 @@ const StructurePreview = ({ url, onSave, partnerParameterList, jamppParameterLis
     setArrayParameters(updateParameters);
   };
 
-  const onTagDelete = (parameterValue, parameterKey, arrayLabelTag, arrayPlainText) => {
+  const onTagDeleted = (parameterValue, parameterKey, arrayLabelTag, arrayPlainText) => {
     const updateParameters = Object.assign({}, arrayParameters);
     updateParameters.plainText[parameterKey] = arrayPlainText;
     updateParameters.labelTag[parameterKey] = arrayLabelTag;
@@ -153,11 +153,6 @@ const StructurePreview = ({ url, onSave, partnerParameterList, jamppParameterLis
     setCustomParam(customParam);
     setOptionDropdownId(getUniqueId());
   };
-  
-  // useEffect(() => {
-  //   console.log('%c useEffect', 'background-color: grey; color: red;', { optionDropdownId })
-  //   setFullTokenListId(optionDropdownId);
-  // }, [customParam]);
 
   const handleOptionChange = useCallback((dropdownId, text, selectedOptionId) => {
     setButtonText(text);
@@ -222,14 +217,13 @@ const StructurePreview = ({ url, onSave, partnerParameterList, jamppParameterLis
     };
   };
 
-  const onFullTokenListClick = (id) => {
-    console.log({ id, customParam })
+  const onFullTokenListClick = (id, paramKey) => {
     setTokenList(true);
+    console.log({ id, paramKey })
     setFullTokenListId(id);
   };
 
   const onFullTokenListSelect = (parameterValue, parameterKey, arrayLabelTag, arrayPlainText) => {
-    // console.log({ parameterValue, parameterKey, arrayLabelTag, arrayPlainText });
     onTagCreated(parameterValue, parameterKey, arrayLabelTag, arrayPlainText);
   };
   
@@ -257,9 +251,9 @@ const StructurePreview = ({ url, onSave, partnerParameterList, jamppParameterLis
                 type="suggestions-tracking"
                 textBelowSuggestions="or select from the"
                 suggestions={["Option 1", "Option 2", "Option 3"]}
-                // callback={() => console.log('Displaying full list')}
+                callback={() => onFullTokenListClick(paramKey)}
                 onTagCreated={onTagCreated}
-                onTagDeleted={onTagDelete}
+                onTagDeleted={onTagDeleted}
                 disabled={freeze}
                 handleUrlChange={handleUrlChange}
                 urlHighlightHandler={urlHighlightHandler}
@@ -326,14 +320,11 @@ const StructurePreview = ({ url, onSave, partnerParameterList, jamppParameterLis
                       <DivContainer alignSelf="flex-start">
                         <CreationTracking
                           width="100%"
-                          linkText="Full list"
                           key={optionDropdownId}
                           type="suggestions-tracking"
-                          textBelowSuggestions="or select from the"
                           suggestions={jamppParameterList}
-                          callback={() => console.log('Displaying full list')}
                           onTagCreated={onTagCreated}
-                          onTagDeleted={onTagDelete}
+                          onTagDeleted={onTagDeleted}
                           disabled={freeze}
                           latestParameters={latestParameters.current}
                           handleUrlChange={handleUrlChange}
@@ -379,7 +370,14 @@ const StructurePreview = ({ url, onSave, partnerParameterList, jamppParameterLis
         </DivContainer>
         <StructurePreviewContext.Provider value={{ customParam: latestCustomParam.current, arrayParameters }}>
           {tokenList ?
-            <FullTokenList optionDropdownId={fullTokenListId} tokenList={fullTokenList} onSelect={onFullTokenListSelect} onFullTokenListClose={onFullTokenListClose} />
+            <FullTokenList
+              tokenList={fullTokenList}
+              onTagDeleted={onTagDeleted}
+              onSelect={onFullTokenListSelect}
+              optionDropdownId={fullTokenListId}
+              parameterKey={fullTokenListId}
+              onFullTokenListClose={onFullTokenListClose}
+            />
             : null
           }
         </StructurePreviewContext.Provider>

@@ -12,12 +12,36 @@ import { CheckIcon } from '../UI/Icons';
 import { removeEmptySpace, getUniqueId } from '../../utils';
 import StructurePreviewContext from './Context';
 
-const FullTokenList = ({ tokenList, onSelect, onFullTokenListClose, optionDropdownId }) => {
+const FullTokenList = ({ tokenList, onSelect, onFullTokenListClose, optionDropdownId, parameterKey, onTagDeleted }) => {
   const context = useContext(StructurePreviewContext);
+
+  /**
+   * Update array of tags after one has removed
+   */
+  const deleteTagHandler = (tagId, tagText) => {
+    const updateDefaultLabelArray = [];
+    const updateTextArray = [];
+    const { customParam, arrayParameters } = context;
+    const paramKeyUpdated = customParam?.get(optionDropdownId).paramName || parameterKey;
+
+    arrayParameters.labelTag[paramKeyUpdated].forEach(tag => {
+      if (tag.props.targetId !== tagId) {
+        updateDefaultLabelArray.push(tag);
+      }
+    });
+    
+    arrayParameters.plainText[paramKeyUpdated].forEach(text => {
+      if (text.props.targetId !== tagId) {
+        updateTextArray.push(text);
+      }
+    });
+
+    onTagDeleted(null, paramKeyUpdated, updateDefaultLabelArray, updateTextArray);
+  };
   
   const handleClick = (optionSelected) => {
     const { customParam, arrayParameters } = context;
-    const paramKey = customParam.get(optionDropdownId)?.paramName;
+    const paramKey = customParam.get(optionDropdownId)?.paramName || parameterKey;
     const updateDefaultLabelArray = arrayParameters.labelTag[paramKey] ? [...arrayParameters.labelTag[paramKey]] : [];
     const trimValue = removeEmptySpace(optionSelected);
     const defaultLabelId = getUniqueId();
@@ -30,7 +54,7 @@ const FullTokenList = ({ tokenList, onSelect, onFullTokenListClose, optionDropdo
         text={`{${optionSelected}}`}
         size="medium"
         margin="4px 3px"
-        // onClose={deleteTagHandler}
+        onClose={deleteTagHandler}
       />
     );
 
