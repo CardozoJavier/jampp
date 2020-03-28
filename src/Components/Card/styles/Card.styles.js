@@ -16,6 +16,11 @@ export const CardContainer = styled.div`
   border-radius: 4px;
   padding: ${({ padding }) => padding || '15px'};
   background-color: ${({ backgroundColor }) => backgroundColor};
+  position: ${({ position }) => position};
+  top: ${({ top }) => top};
+  left: ${({ left }) => left};
+  bottom: ${({ bottom }) => bottom};
+  right: ${({ right }) => right};
 `;
 
 export const CardDescription = styled.p`
