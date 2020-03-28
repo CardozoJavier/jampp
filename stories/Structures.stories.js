@@ -189,7 +189,7 @@ export const AddParameter = () => (
         * @param {Function} callback - (Optional) Callback to be triggered on click event in button into suggestions list.
         * @param {String} linkText - (Optional) It's the text to be displayed like link.
         * @param {String} textBelowSuggestions - (Optional) It's the text to be displayed at the bottom of suggestions list.
-        * @param {String} defaultValue - (Optional) It's the default value for a tag to be displayed in render.
+        * @param {Array} defaultValue - (Optional) It's the default value for a tag to be displayed in render.
         * @return {React Component} A view for input field with icon and action on error.
         */}
       <CreationTagSuggestion

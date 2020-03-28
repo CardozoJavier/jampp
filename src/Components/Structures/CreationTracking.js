@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useRef, useContext, useCallback } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { LabelContainer, Input, Label, SuggestionsListContainer, SuggestionsList, PreviewContainer, PlainText} from './styles';
+import { LabelContainer, Input, Label, SuggestionsListContainer, SuggestionsList, PreviewContainer, PlainText} from '../CreationTag/styles';
 import { getClassName, bemDestruct, useEventListener, removeEmptySpace } from '../../utils';
-import inputProps from './inputProps';
+import inputProps from '../CreationTag/inputProps';
 import { DefaultLabel } from '../Label';
 import { Text } from '../UI/GenericElements/GenericElements.styles';
 import { Button } from '../Button';
 import { palette, fonts } from '../styles';
 import { XIcon } from '../UI/Icons';
-import InputText from '../Structures/InputText';
-import StructurePreviewContext from '../Structures/Context';
+import InputText from './InputText';
+import StructurePreviewContext from './Context';
 const { gray, black } = palette;
 const { size10 } = fonts;
 
