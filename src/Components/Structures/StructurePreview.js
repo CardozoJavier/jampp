@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import parse from 'html-react-parser';
 import {
   Card,
@@ -10,6 +11,7 @@ import {
 } from '../';
 import CreationTracking from './CreationTracking';
 import AddParameterDropdown from './AddParameterDropdown';
+import FullTokenList from './FullTokenList';
 import { Tab } from '../Tab/styles';
 import { ParametersDuplicationContainer } from '../CreationTag/styles';
 import { DropdownContainer, DropdownListContainer } from '../Dropdown/styles';
@@ -26,7 +28,15 @@ const { size10, size12, size18 } = fonts;
 const highlightColor = '#ab94ff';
 // const highlightColor = action;
 
-const StructurePreview = ({ url, onSave }) => {
+/**
+ * StructurePreview should be called with
+ * @param {String} url - (Required) It's the original url pasted by user
+ * @param {Function} onSave - (Required) It's the callback to be call when save button is clicked
+ * @param {Array} partnerParameterList - (Required) It's the array list to be displayed when new parameter is added
+ * @param {Array} jamppParameterList - (Optional) It's the array of jampp parameter suggestions to be displayed when user is typing the new parameter value
+ * @param {Array} fullTokenList - (Optional) It's the array of all available tokens can be selected. The array of 'jamppParameterList' will be the default value
+ */
+const StructurePreview = ({ url, onSave, partnerParameterList, jamppParameterList, fullTokenList }) => {
   const [freeze, setFreeze] = useState(false);
   const [urlValue, setUrlValue] = useState(url);
   const latestUrlValue = useRef(urlValue);
@@ -42,6 +52,8 @@ const StructurePreview = ({ url, onSave }) => {
   
   const [paramFocus, setParamFocus] = useState(null);
   const latestParamFocus = useRef(paramFocus);
+
+  const [tokenList, setTokenList] = useState(false);
 
   const handleSave = () => {
     onSave(urlValue);
@@ -203,6 +215,19 @@ const StructurePreview = ({ url, onSave }) => {
     };
   };
 
+  const onFullTokenListClick = () => {
+    setTokenList(true);
+  };
+
+  const onFullTokenListSelect = (parameterValue, parameterKey, arrayLabelTag, arrayPlainText) => {
+    console.log({ parameterValue, parameterKey, arrayLabelTag, arrayPlainText });
+    onTagCreated(parameterValue, parameterKey, arrayLabelTag, arrayPlainText);
+  };
+  
+  const onFullTokenListClose = () => {
+    setTokenList(false);
+  };
+
   const renderQueryParams = (params) => {
     const elements = [];
     params.forEach((value, paramKey) => {
@@ -252,7 +277,7 @@ const StructurePreview = ({ url, onSave }) => {
   };
 
   return (
-      <Modal width="525px">
+      <Modal width="525px" style={{ position: 'relative' }}>
         <DivContainer padding="25px" position='relative' >
           <TabGroup defaultActive="tab1" name="group1" onChange={id => console.log(id + ' is active')}>
             <Tab text="Clicks URL" id="tab1" />
@@ -284,10 +309,7 @@ const StructurePreview = ({ url, onSave }) => {
                       <DropdownContainer width="100%" padding="0 10px 0 0">
                         <DropdownListContainer>
                           <AddParameterDropdown handleOptionChange={handleOptionChange} optionDropdownId={optionDropdownId} wide={true} type="customize-text" buttonList="Custom parameter" listWidth="fit-content">
-                            <Option label="Option A" id="a" />
-                            <Option label="Option B" id="b" />
-                            <Option label="Option C" id="c" />
-                            <Option label="Option D" id="d" />
+                            {partnerParameterList.map((param, i) => <Option label={param} id={`${param}-${i}`} key={`${param}-${i}`} />)}
                           </AddParameterDropdown>
                         </DropdownListContainer>
                       </DropdownContainer>
@@ -299,7 +321,7 @@ const StructurePreview = ({ url, onSave }) => {
                           key={optionDropdownId}
                           type="suggestions-tracking"
                           textBelowSuggestions="or select from the"
-                          suggestions={["Option 1", "Option 2", "Option 3"]}
+                          suggestions={jamppParameterList}
                           callback={() => console.log('Displaying full list')}
                           onTagCreated={onTagCreated}
                           onTagDeleted={onTagDelete}
@@ -312,7 +334,7 @@ const StructurePreview = ({ url, onSave }) => {
                         <Consumer constructor={divContainerConstructor}>
                           <DivContainer alignItems="center" margin="8px 0 0 0">
                             <Text color={gray.g4} fontSize={size10} display="inline" margin="0 3px 0 0">or select from the </Text>
-                            <Button fontSize={size10} label="Full token list" type="link-default-left" onClick={() => console.log('Display full token list')} />
+                            <Button fontSize={size10} label="Full token list" type="link-default-left" onClick={onFullTokenListClick} />
                           </DivContainer>
                         </Consumer>
                       </DivContainer>
@@ -346,8 +368,31 @@ const StructurePreview = ({ url, onSave }) => {
             </DivContainer>
           }
         </DivContainer>
+        <StructurePreviewContext.Provider value={{ customParam: latestCustomParam.current, arrayParameters }}>
+          {console.log('%c render', 'background-color: green;', { optionDropdownId })}
+          {tokenList ?
+            <FullTokenList optionDropdownId={optionDropdownId} tokenList={fullTokenList} onSelect={onFullTokenListSelect} onFullTokenListClose={onFullTokenListClose} />
+            : null
+          }
+        </StructurePreviewContext.Provider>
       </Modal>
   );
+};
+
+StructurePreview.propTypes = {
+  url: PropTypes.string.isRequired,
+  onSave: PropTypes.func.isRequired,
+  partnerParameterList: PropTypes.arrayOf(PropTypes.string).isRequired,
+  jamppParameterList: PropTypes.arrayOf(PropTypes.string),
+  fullTokenList: PropTypes.arrayOf(PropTypes.shape({
+    token: PropTypes.string,
+    description: PropTypes.string,
+  })),
+};
+
+PropTypes.defaultProps = {
+  jamppParameterList: [],
+  fullTokenList: [],
 };
 
 export default StructurePreview;
