@@ -26,7 +26,7 @@ const { size10, size12, size18 } = fonts;
 const highlightColor = '#ab94ff';
 // const highlightColor = action;
 
-const StructurePreview = ({ url }) => {
+const StructurePreview = ({ url, onSave }) => {
   const [freeze, setFreeze] = useState(false);
   const [urlValue, setUrlValue] = useState(url);
   const latestUrlValue = useRef(urlValue);
@@ -42,6 +42,10 @@ const StructurePreview = ({ url }) => {
   
   const [paramFocus, setParamFocus] = useState(null);
   const latestParamFocus = useRef(paramFocus);
+
+  const handleSave = () => {
+    onSave(urlValue);
+  };
 
   const toggleHandler = (status) => {
     setFreeze(!status);
@@ -338,7 +342,7 @@ const StructurePreview = ({ url }) => {
             <DivContainer height="84px"/>
             :
             <DivContainer display='flex' justifyContent='flex-end' padding='24px 0 15px 0'>
-              <Button label='Save' type='secondary-default-medium' />
+              <Button onClick={handleSave} label='Save' type='secondary-default-medium' />
             </DivContainer>
           }
         </DivContainer>
