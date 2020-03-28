@@ -7,9 +7,9 @@ import {
   TabGroup,
   ToggleSwitch,
   CreateElement,
-  OptionDropdown,
 } from '../';
-import { CreationTracking } from '../CreationTag';
+import CreationTracking from './CreationTracking';
+import AddParameterDropdown from './AddParameterDropdown';
 import { Tab } from '../Tab/styles';
 import { ParametersDuplicationContainer } from '../CreationTag/styles';
 import { DropdownContainer, DropdownListContainer } from '../Dropdown/styles';
@@ -279,12 +279,12 @@ const StructurePreview = ({ url }) => {
                     <ParametersDuplicationContainer id={optionDropdownId} key={optionDropdownId}>
                       <DropdownContainer width="100%" padding="0 10px 0 0">
                         <DropdownListContainer>
-                          <OptionDropdown handleOptionChange={handleOptionChange} optionDropdownId={optionDropdownId} wide={true} type="customize-text" buttonList="Custom parameter" listWidth="fit-content">
+                          <AddParameterDropdown handleOptionChange={handleOptionChange} optionDropdownId={optionDropdownId} wide={true} type="customize-text" buttonList="Custom parameter" listWidth="fit-content">
                             <Option label="Option A" id="a" />
                             <Option label="Option B" id="b" />
                             <Option label="Option C" id="c" />
                             <Option label="Option D" id="d" />
-                          </OptionDropdown>
+                          </AddParameterDropdown>
                         </DropdownListContainer>
                       </DropdownContainer>
                       <Text>=</Text>
