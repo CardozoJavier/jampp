@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, useContext } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { ButtonInput } from '../Button/styles';
 import { ButtonDropdownContainer } from './styles';
@@ -7,7 +7,6 @@ import { IconGenerator, DownChevronIcon, EllipseIcon } from '../UI/Icons';
 import { OptionList } from '../OptionList';
 import dropdownProps from './dropdownProps';
 import { StatusLabel } from '../Label';
-import StructurePreviewContext from '../Structures/Context';
 import InputText from '../Structures/InputText';
 
 /**
@@ -36,32 +35,24 @@ const OptionDropdown = ({ type = 'basic',
   minWidth,
   listWidth,
   defaultValue,
-  optionDropdownId,
   buttonList,
-  handleOptionChange,
 }) => {
-  const context = useContext(StructurePreviewContext);
-  const { customParam } = context;
-  text = customParam?.get(optionDropdownId)?.buttonText || text;
-  disabled = context?.disabled || disabled;
-  defaultValue = customParam?.get(optionDropdownId)?.defaultValue || defaultValue;
-
   const { defaultClassName, optionalClassName, buttonClassName, typeList, buttonProps } = dropdownProps[type];
-
   const [className, setClassName] = useState(defaultClassName);
   const [chevron, setChevron] = useState(dropdownProps.chevron.defaultClassName);
 
   const [textButton, setTextButton] = useState(text);
   const [customTextButton, setCustomTextButton] = useState(null);
-  const [defaultOption, setDefaultOption] = useState(defaultValue);
+  const [optionSelected, setOptionSelected] = useState(defaultValue);
+  const [isCustomOption, setIsCustomOption] = useState(false);
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const toggleChevronDirection = getClassName(chevron, dropdownProps.chevron.defaultClassName, dropdownProps.chevron.optionalClassName);
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     setClassName(toggleToClassName);
     setChevron(toggleChevronDirection);
-  };
+  }, [toggleToClassName, toggleChevronDirection]);
   
   const onSelect = useCallback((id, label, color, flat, textType) => {
     const props = {
@@ -73,14 +64,44 @@ const OptionDropdown = ({ type = 'basic',
     : label;
     // Avoid error with race condition when state is updated.
     setTimeout(() => setTextButton(buttonText), 0);
+    setOptionSelected(id);
     onChange(id, label);
-    const text = customParam?.get(optionDropdownId)?.buttonText;
-    handleOptionChange(optionDropdownId, label, id, text);
-    if (customTextButton) {
-      setDefaultOption('custom-param');
+    setIsCustomOption(false);
+  }, [children]);
+
+  /**
+   * Callback to set value from input text in custom mode
+   */
+  const customizeTextHandler = useCallback((id, value) => {
+    setTextButton(value);
+  }, [children, optionSelected]);
+  
+  /**
+   * Callback to set custom mode for button text
+   */
+  const customizeTextClick = useCallback(() => {
+    setCustomTextButton(true);
+  }, []);
+
+  const onKeyDownHandler = (e) => {
+    const keyCode = e.keyCode?.toString();
+    if (keyCode === '13' || keyCode === '9') {
+      e.preventDefault();
       setCustomTextButton(false);
       onChange(textButton);
+      setOptionSelected('custom-param');
+      setIsCustomOption(true);
+    };
+  };
+
+  useEffect(() => {
+    if (!isCustomOption) {
+      setOptionSelected(defaultValue);
     }
+  }, [defaultValue]);
+
+  useEffect(() => {
+    setTextButton(text);
   }, [children]);
 
   /**
@@ -98,13 +119,11 @@ const OptionDropdown = ({ type = 'basic',
     (e) => {
       setClick(e);
       const id = e.target.dataset.id;
-
-      console.log({ id, dp: dropdownButton.id })
       if (e.target.id !== dropdownButton.id) {
         setChevron(dropdownProps.chevron.defaultClassName);
         setClassName(defaultClassName);
         if (customTextButton) {
-          setDefaultOption('custom-param');
+          setOptionSelected('custom-param');
           setCustomTextButton(false);
           onChange(textButton);
         }
@@ -113,35 +132,6 @@ const OptionDropdown = ({ type = 'basic',
     [dropdownButton, setClick, customTextButton, textButton]
   );
   useEventListener('click', eventHandler);
-
-  useEffect(() => {
-    setTextButton(text);
-  }, [text]);
-
-  /**
-   * Callback to set value from input text in custom mode
-   */
-  const customizeTextHandler = (id, value) => {
-    setTextButton(value);
-  };
-  
-  /**
-   * Callback to set custom mode for button text
-   */
-  const customizeTextClick = () => {
-    setDefaultOption('custom-param');
-    setCustomTextButton(true);
-  };
-
-  const onKeyDownHandler = (e) => {
-    const keyCode = e.keyCode?.toString();
-    if (keyCode === '13' || keyCode === '9') {
-      e.preventDefault();
-      setCustomTextButton(false);
-      onChange(textButton);
-      handleOptionChange(optionDropdownId, textButton, 'custom-param');
-    };
-  };
 
   return (
     <>
@@ -176,9 +166,10 @@ const OptionDropdown = ({ type = 'basic',
         className={className}
         onSelect={onSelect}
         notCheckIcon={notCheckIcon}
-        optionDropdownId={optionDropdownId}
         buttonList={buttonList}
+        customSelected={customTextButton}
         customizeTextClick={customizeTextClick}
+        optionSelected={optionSelected}
       />
     </>
   );
@@ -206,7 +197,7 @@ OptionDropdown.defaultProps = {
   wide: false,
   disabled: false,
   listWidth: null,
-  defaultValue: null,
+  defaultValue: '',
   buttonList: null,
   handleOptionChange: () => null,
 };
