@@ -84,6 +84,12 @@ const AddParameterDropdown = ({ type = 'basic',
   }, [children]);
 
   /**
+   * Setting custom param id to check when is clicked
+   */
+  const customParamId = getReferencedId();
+  let customParamButton;
+
+  /**
    * Hook to handle click events on window
    */
   const dropdownId = getReferencedId();
@@ -92,21 +98,21 @@ const AddParameterDropdown = ({ type = 'basic',
 
   useEffect(() => {
     dropdownButton = document.getElementById(dropdownId) || {};
-  }, [customTextButton, textButton]);
+    customParamButton = document.getElementById(customParamId) || {};
+  }, [customTextButton, textButton, customParamId]);
 
   const eventHandler = useCallback(
     (e) => {
       setClick(e);
-      const id = e.target.dataset.id;
-
-      console.log({ id, dp: dropdownButton.id })
-      if (e.target.id !== dropdownButton.id) {
+      const targetId = e.target.id;
+      if (targetId !== dropdownButton.id && targetId !== customParamButton.id) {
         setChevron(dropdownProps.chevron.defaultClassName);
         setClassName(defaultClassName);
         if (customTextButton) {
           setDefaultOption('custom-param');
           setCustomTextButton(false);
           onChange(textButton);
+          handleOptionChange(optionDropdownId, textButton, 'custom-param');
         }
       }
     },
@@ -137,6 +143,9 @@ const AddParameterDropdown = ({ type = 'basic',
     const keyCode = e.keyCode?.toString();
     if (keyCode === '13' || keyCode === '9') {
       e.preventDefault();
+      setChevron(dropdownProps.chevron.defaultClassName);
+      setClassName(defaultClassName);
+      setDefaultOption('custom-param');
       setCustomTextButton(false);
       onChange(textButton);
       handleOptionChange(optionDropdownId, textButton, 'custom-param');
@@ -179,6 +188,7 @@ const AddParameterDropdown = ({ type = 'basic',
         optionDropdownId={optionDropdownId}
         buttonList={buttonList}
         customizeTextClick={customizeTextClick}
+        customParamId={customParamId}
       />
     </>
   );

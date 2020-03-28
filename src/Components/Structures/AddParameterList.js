@@ -22,7 +22,7 @@ import StructurePreviewContext from './Context';
  * @param {Function} customizeTextClick - (Optional) Callback to trigger when button for customize button text is clicked.
  * @return {React Component} A view in which one option can be selected.
  */
-const AddParameterList = ({ children = [], type, className, menuTitle, onSelect, notCheckIcon, minWidth, wide, width, defaultValue, buttonList, customizeTextClick, optionDropdownId,  }) => {
+const AddParameterList = ({ children = [], type, className, menuTitle, onSelect, notCheckIcon, minWidth, wide, width, defaultValue, buttonList, customizeTextClick, optionDropdownId, customParamId }) => {
   const context = useContext(StructurePreviewContext);
   const { customParam } = context;
   const contextDefaultOption = customParam.get(optionDropdownId)?.defaultValue;
@@ -74,7 +74,7 @@ const AddParameterList = ({ children = [], type, className, menuTitle, onSelect,
         />
       ))}
       {buttonList ?
-        <Button data-id={optionDropdownId} type="link-customize-left" label={buttonList} onClick={customizeTextClick} />
+        <Button id={customParamId} type="link-customize-left" label={buttonList} onClick={customizeTextClick} />
         : null
       }
     </OptionCheckboxGroup>
