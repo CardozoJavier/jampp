@@ -14,10 +14,10 @@ import StructurePreviewContext from './Context';
 
 const FullTokenList = ({ tokenList, onSelect, onFullTokenListClose, optionDropdownId }) => {
   const context = useContext(StructurePreviewContext);
-  const { customParam, arrayParameters } = context;
-  const paramKey = customParam.get(optionDropdownId)?.paramName;
-
+  
   const handleClick = (optionSelected) => {
+    const { customParam, arrayParameters } = context;
+    const paramKey = customParam.get(optionDropdownId)?.paramName;
     const updateDefaultLabelArray = arrayParameters.labelTag[paramKey] ? [...arrayParameters.labelTag[paramKey]] : [];
     const trimValue = removeEmptySpace(optionSelected);
     const defaultLabelId = getUniqueId();
@@ -47,7 +47,7 @@ const FullTokenList = ({ tokenList, onSelect, onFullTokenListClose, optionDropdo
 
   return (
     <ModalContainer>
-      <Modal title="Full token list" onClose={onFullTokenListClose}>
+      <Modal title="Full token list" onClose={onFullTokenListClose} padding='22px'>
         <FullTokenListRowTitle gridTemplateColumns="22% 78%">
           <PaymentColumnTitle borderLeft="none">{ 'Jampp parameter' }</PaymentColumnTitle>
           <PaymentColumnTitle borderLeft="none">{ 'Description' }</PaymentColumnTitle>
@@ -55,7 +55,7 @@ const FullTokenList = ({ tokenList, onSelect, onFullTokenListClose, optionDropdo
         <TokenListContainer>
           <PaymentMethodTable>
             {tokenList.map(token => (
-              <PaymentRow id={token.name} style={{ gridTemplateColumns: '20% 68% 12%', padding: '0', margin: '0 22px' }}>
+              <PaymentRow key={token.name} id={token.name} style={{ gridTemplateColumns: '20% 68% 12%', padding: '0' }}>
                 <PaymentColumnField borderLeft="none">{token.name}</PaymentColumnField>
                 <PaymentColumnField borderLeft="none">{token.description}</PaymentColumnField>
                 <PaymentColumnField button iconWhenSelect={CheckIcon} onClick={() => handleClick(token.name)}>{ 'Select' }</PaymentColumnField>

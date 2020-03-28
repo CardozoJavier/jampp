@@ -44,9 +44,11 @@ const StructurePreview = ({ url, onSave, partnerParameterList, jamppParameterLis
   const latestParameters = useRef(arrayParameters);
   const [queryParams, setQueryParams] = useState(new Map());
   const [customParam, setCustomParam] = useState(new Map());
-
   const latestCustomParam = useRef(customParam);
-  const [optionDropdownId, setOptionDropdownId] = useState(getReferencedId());
+
+  const globalId = getReferencedId(); 
+  const [optionDropdownId, setOptionDropdownId] = useState(globalId);
+  const [fullTokenListId, setFullTokenListId] = useState(globalId);
 
   const [buttonText, setButtonText] = useState('New Param');
   
@@ -151,6 +153,11 @@ const StructurePreview = ({ url, onSave, partnerParameterList, jamppParameterLis
     setCustomParam(customParam);
     setOptionDropdownId(getUniqueId());
   };
+  
+  // useEffect(() => {
+  //   console.log('%c useEffect', 'background-color: grey; color: red;', { optionDropdownId })
+  //   setFullTokenListId(optionDropdownId);
+  // }, [customParam]);
 
   const handleOptionChange = useCallback((dropdownId, text, selectedOptionId) => {
     setButtonText(text);
@@ -215,12 +222,14 @@ const StructurePreview = ({ url, onSave, partnerParameterList, jamppParameterLis
     };
   };
 
-  const onFullTokenListClick = () => {
+  const onFullTokenListClick = (id) => {
+    console.log({ id, customParam })
     setTokenList(true);
+    setFullTokenListId(id);
   };
 
   const onFullTokenListSelect = (parameterValue, parameterKey, arrayLabelTag, arrayPlainText) => {
-    console.log({ parameterValue, parameterKey, arrayLabelTag, arrayPlainText });
+    // console.log({ parameterValue, parameterKey, arrayLabelTag, arrayPlainText });
     onTagCreated(parameterValue, parameterKey, arrayLabelTag, arrayPlainText);
   };
   
@@ -278,7 +287,7 @@ const StructurePreview = ({ url, onSave, partnerParameterList, jamppParameterLis
 
   return (
       <Modal width="525px" style={{ position: 'relative' }}>
-        <DivContainer padding="25px" position='relative' >
+        <DivContainer padding="25px" position='relative'>
           <TabGroup defaultActive="tab1" name="group1" onChange={id => console.log(id + ' is active')}>
             <Tab text="Clicks URL" id="tab1" />
             <Tab text="Impressions URL" id="tab2" />
@@ -334,7 +343,7 @@ const StructurePreview = ({ url, onSave, partnerParameterList, jamppParameterLis
                         <Consumer constructor={divContainerConstructor}>
                           <DivContainer alignItems="center" margin="8px 0 0 0">
                             <Text color={gray.g4} fontSize={size10} display="inline" margin="0 3px 0 0">or select from the </Text>
-                            <Button fontSize={size10} label="Full token list" type="link-default-left" onClick={onFullTokenListClick} />
+                            <Button fontSize={size10} label="Full token list" type="link-default-left" onClick={() => onFullTokenListClick(optionDropdownId)} />
                           </DivContainer>
                         </Consumer>
                       </DivContainer>
@@ -369,9 +378,8 @@ const StructurePreview = ({ url, onSave, partnerParameterList, jamppParameterLis
           }
         </DivContainer>
         <StructurePreviewContext.Provider value={{ customParam: latestCustomParam.current, arrayParameters }}>
-          {console.log('%c render', 'background-color: green;', { optionDropdownId })}
           {tokenList ?
-            <FullTokenList optionDropdownId={optionDropdownId} tokenList={fullTokenList} onSelect={onFullTokenListSelect} onFullTokenListClose={onFullTokenListClose} />
+            <FullTokenList optionDropdownId={fullTokenListId} tokenList={fullTokenList} onSelect={onFullTokenListSelect} onFullTokenListClose={onFullTokenListClose} />
             : null
           }
         </StructurePreviewContext.Provider>
