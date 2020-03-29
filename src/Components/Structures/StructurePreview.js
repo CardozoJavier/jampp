@@ -105,6 +105,18 @@ const StructurePreview = ({ url, onSave, partnerParameterList, jamppParameterLis
     setCustomParam(customParam);
   };
 
+  const replaceParamKey = (params, oldKey, newKey) => {
+    const paramsSplitted = params.split('&');
+    const paramsMapped = paramsSplitted.map(param => param.split('='));
+    paramsMapped.forEach(param => {
+      if (param[0] === oldKey) {
+        param[0] = newKey;
+      }
+    });
+    const paramsJoin = paramsMapped.map(param => param.join('='));
+    return paramsJoin.join('&');
+  };
+
   const handleUrlChange = useCallback((key, value = '', customParamId, selectedOptionId, buttonText) => {
     const urlSanitized = sanitizeUrl(latestUrlValue.current, 'span');
     const newUrl = new URL(urlSanitized);
@@ -115,7 +127,7 @@ const StructurePreview = ({ url, onSave, partnerParameterList, jamppParameterLis
       updateCustomParam(key, value, customParamId, selectedOptionId, buttonText);
       if (params.has(paramName)) {
         // Replace previous param with new param key
-        const updateParams = new URLSearchParams(params.toString().replace(paramName, key));
+        const updateParams = new URLSearchParams(replaceParamKey(params.toString(), paramName, key));
         params = updateParams;
       }
       params.set(key, value)
@@ -165,6 +177,7 @@ const StructurePreview = ({ url, onSave, partnerParameterList, jamppParameterLis
     setOptionDropdownId(getUniqueId());
   };
 
+  // TODO: Fix when a new parameter is added and has the same key with other
   const handleOptionChange = useCallback((dropdownId, text, selectedOptionId) => {
     setButtonText(text);
     const paramName = removeEmptySpace(text);
