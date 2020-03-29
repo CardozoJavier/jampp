@@ -243,7 +243,7 @@ const CreationTracking = ({
     const updateTextArray = context.arrayParameters.plainText[paramKey] ? [...context.arrayParameters.plainText[paramKey]] : [];
     const plainTextId = Math.random().toString();
     updateTextArray.push(
-      <PlainText targetId={targetId} text={`{${value}}`} key={plainTextId} id={plainTextId}>{trimValue}</PlainText>
+      <PlainText targetId={targetId} text={value} key={plainTextId} id={plainTextId}>{trimValue}</PlainText>
     );
     value.trim() && onTagCreated(value.trim(), paramKey, updateDefaultLabelArray, updateTextArray);
     setInputValue('');

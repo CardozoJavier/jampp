@@ -22,11 +22,10 @@ import { getQueryParams, removeEmptySpace, getReferencedId, highlighter, getUniq
 import { HeaderParameter, HeaderText } from './styles/StructurePreview.styles';
 import StructurePreviewContext from './Context';
 import Consumer from './Consumer';
-const { gray, green, black, white, action } = palette;
+const { gray, green, black, white } = palette;
 const { size10, size12, size18 } = fonts;
 
 const highlightColor = '#ab94ff';
-// const highlightColor = action;
 
 /**
  * StructurePreview should be called with

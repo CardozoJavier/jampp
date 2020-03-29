@@ -65,7 +65,7 @@ const FullTokenList = ({ tokenList, onSelect, onFullTokenListClose, optionDropdo
     const updateTextArray = context.arrayParameters.plainText[paramKey] ? [...context.arrayParameters.plainText[paramKey]] : [];
     const plainTextId = Math.random().toString();
     updateTextArray.push(
-      <PlainText targetId={targetId} text={`{${optionSelected}}`} key={plainTextId} id={plainTextId}>{trimValue}</PlainText>
+      <PlainText targetId={targetId} text={optionSelected} key={plainTextId} id={plainTextId}>{trimValue}</PlainText>
     );
     optionSelected.trim() && onSelect(optionSelected.trim(), paramKey, updateDefaultLabelArray, updateTextArray);
   };
