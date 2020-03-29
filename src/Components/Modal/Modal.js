@@ -13,7 +13,7 @@ import { getReferencedId } from '../../utils';
  * @param {String} minHeight - (Optional) It's the min-height of the modal container. Default value is 240px.
  * @return {React Component} A view for plain modal with title with or not icon and footer.
  */
-const Modal = ({ title, icon, width, children, minHeight }) => {
+const Modal = ({ title, icon, width, children, minHeight, onClose, ...props }) => {
   let ModalElement;
   const id = getReferencedId();
   
@@ -22,11 +22,11 @@ const Modal = ({ title, icon, width, children, minHeight }) => {
   }, []);
   
   const handleClick = useCallback(() => {
-    ModalElement.remove();
+    onClose(id);
   }, [children]);
 
   return (
-    <ModalContainer width={width} id={id} minHeight={minHeight}>
+    <ModalContainer width={width} id={id} minHeight={minHeight} {...props}>
       {icon &&
         <IconTitleContainer>
           <IconGenerator
@@ -46,8 +46,8 @@ const Modal = ({ title, icon, width, children, minHeight }) => {
           <XIcon
             props={{
               right: '8px',
-              width: '6px',
-              height: '6px',
+              width: '8px',
+              height: '8px',
               onClick: handleClick,
             }}
           />
@@ -64,6 +64,7 @@ Modal.propTypes = {
   width: PropTypes.string,
   children: PropTypes.node,
   minHeight: PropTypes.string,
+  onClose: PropTypes.func
 };
 
 Modal.defaultProps = {
@@ -72,6 +73,7 @@ Modal.defaultProps = {
   width: '600px',
   children: null,
   minHeight: '240px',
+  onClose: () => null,
 };
 
 export default React.memo(Modal);

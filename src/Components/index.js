@@ -23,7 +23,6 @@ export {
 } from './Dropdown';
 export {
   CreationTag,
-  CreationTracking,
   CreationTagSuggestion,
 } from './CreationTag';
 export { Card } from './Card';

@@ -53,7 +53,7 @@ const OptionList = ({ children = [], type, className, menuTitle, onSelect, notCh
           id={input.id}
         />
       ))}
-      {buttonList ? 
+      {buttonList ?
         <Button type="link-customize-left" label={buttonList} onClick={customizeTextClick} />
         : null
       }
@@ -86,7 +86,6 @@ OptionList.propTypes = {
 OptionList.defaultProps = {
   menuTitle: '',
   onSelect: () => null,
-  onChange: () => null,
   notCheckIcon: false,
   minWidth: '',
   width: '',

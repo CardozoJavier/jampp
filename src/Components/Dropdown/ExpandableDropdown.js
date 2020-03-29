@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { ButtonInput } from '../Button/styles';
 import { ButtonDropdownContainer } from './styles';
@@ -15,13 +15,16 @@ import { UniqueOption } from '../UniqueOption';
  * @param {String} text - (Required) Text to be displayed inside button.
  * @param {Node} children - (Required) The options to be display.
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ * @param {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
+ * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
  * @return {React Component} A view for button and expandable dropdown of unique option selectable.
  */
-const ExpandableDropdown = ({ type = 'basic', text, children, disabled }) => {
+const ExpandableDropdown = ({ type = 'basic', text, children, disabled, defaultValue, onChange }) => {
   const { defaultClassName, optionalClassName, buttonClassName } = dropdownProps[type];
 
   const [className, setClassName] = useState(defaultClassName);
   const [chevron, setChevron] = useState(dropdownProps.chevron.defaultClassName);
+  const [optionSelected, setOptionSelected] = useState(defaultValue);
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const toggleChevronDirection = getClassName(chevron, dropdownProps.chevron.defaultClassName, dropdownProps.chevron.optionalClassName);
@@ -31,7 +34,17 @@ const ExpandableDropdown = ({ type = 'basic', text, children, disabled }) => {
     setChevron(toggleChevronDirection);
   };
 
-  
+  const onSelect = useCallback((id, label) => {
+    setOptionSelected(id);
+    onChange(id, label);
+  }, [children]);
+
+  useEffect(() => {
+    if (defaultValue) {
+      setOptionSelected(defaultValue);
+    }
+  }, [defaultValue]);
+
   return (
     <>
       <ButtonDropdownContainer className={bemDestruct(buttonClassName, disabled)} onClick={disabled ? null : handleClick}>
@@ -48,7 +61,14 @@ const ExpandableDropdown = ({ type = 'basic', text, children, disabled }) => {
           disabled={disabled}
         />
       </ButtonDropdownContainer>
-      <OptionList type="unique-option" OptionItem={UniqueOption} children={children} className={className} />
+      <OptionList
+        type="unique-option"
+        OptionItem={UniqueOption}
+        children={children}
+        className={className}
+        onSelect={onSelect}
+        optionSelected={optionSelected}
+      />
     </>
   );
 };
@@ -58,10 +78,14 @@ ExpandableDropdown.propTypes = {
   text: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   disabled: PropTypes.bool,
+  onChange: PropTypes.func,
+  defaultValue: PropTypes.string,
 };
 
 ExpandableDropdown.defaultProps = {
   disabled: false,
+  onChange: () => null,
+  defaultValue: '',
 };
 
 export default ExpandableDropdown;
