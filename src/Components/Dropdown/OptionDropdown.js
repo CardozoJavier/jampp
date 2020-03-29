@@ -167,6 +167,7 @@ const OptionDropdown = ({ type = 'basic',
         onSelect={onSelect}
         notCheckIcon={notCheckIcon}
         buttonList={buttonList}
+        customSelected={customTextButton}
         customizeTextClick={customizeTextClick}
         optionSelected={optionSelected}
       />
