@@ -75,11 +75,13 @@ const CreationTag = ({ type, placeholder, width, label, onTagCreated, onTagDelet
     const updateDefaultLabelArray = [...defaultLabelArray];
     
     if (!error && (keyCode === '13' || keyCode === '9')) {
-      key.preventDefault();
-      updateDefaultLabelArray.push(inputValue);
-      setDefaultLabelArray(updateDefaultLabelArray);
-      onTagCreated && onTagCreated(inputValue.trim());
-      setInputValue('');
+      if (inputValue.trim()) {
+        key.preventDefault();
+        updateDefaultLabelArray.push(inputValue);
+        setDefaultLabelArray(updateDefaultLabelArray);
+        onTagCreated && onTagCreated(inputValue);
+        setInputValue('');
+      }
     } 
   };
 
