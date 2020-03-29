@@ -130,7 +130,7 @@ export const WithErrorMessage = () => (
  */
 export const WithBoldPlaceholder = () => (
   <DivContainer width="250px">
-    <InputControlled defaultValue="Default value" label="Text" boldPlaceholder="Text" placeholder="text" type="controlled" id="input1" onChange={(value, e) => console.log(e.target.id)} />
+    <InputControlled label="Text" boldPlaceholder="Text" placeholder="text" type="controlled" id="input1" onChange={(value, e) => console.log(e.target.id)} />
   </DivContainer>
 );
 
