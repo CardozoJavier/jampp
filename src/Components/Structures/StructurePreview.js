@@ -122,7 +122,6 @@ const StructurePreview = ({ url, onSave, partnerParameterList, jamppParameterLis
     } else {
       params.set(key, value);
     };
-
     newUrl.search = params;
     const urlDecoded = decodeURIComponent(newUrl.href);
     const urlHighlighted = (paramFocus || latestParamFocus.current) ? urlHighlightHandler(key, urlDecoded) : urlDecoded;
@@ -137,10 +136,22 @@ const StructurePreview = ({ url, onSave, partnerParameterList, jamppParameterLis
     setArrayParameters(updateParameters);
   };
 
-  const onTagDeleted = (parameterValue, parameterKey, arrayLabelTag, arrayPlainText) => {
+  const onTagDeleted = (parameterValue, parameterKey, arrayLabelTag, arrayPlainText, optionDropdownId) => {
     const updateParameters = Object.assign({}, arrayParameters);
     updateParameters.plainText[parameterKey] = arrayPlainText;
     updateParameters.labelTag[parameterKey] = arrayLabelTag;
+    const customParamKey = customParam.get(optionDropdownId);
+
+    if (customParamKey) {
+      const { paramName, buttonText } = customParamKey;
+      customParam.set(optionDropdownId, {
+        paramName,
+        paramValue: parameterValue,
+        buttonText,
+      });
+      setCustomParam(customParam);
+    }
+    
     setArrayParameters(updateParameters);
     urlHighlightHandler(parameterKey);
   };
@@ -174,7 +185,7 @@ const StructurePreview = ({ url, onSave, partnerParameterList, jamppParameterLis
     const paramHighlighted = highlighter(paramFocused, highlightColor);
     const updateUrl = newUrl.href.replace(paramFocused, paramHighlighted);
     const urlDecoded = decodeURIComponent(updateUrl);
-
+ 
     setParamFocus(paramKey);
     setUrlValue(urlDecoded);
     return urlDecoded;
@@ -217,9 +228,8 @@ const StructurePreview = ({ url, onSave, partnerParameterList, jamppParameterLis
     };
   };
 
-  const onFullTokenListClick = (id, paramKey) => {
+  const onFullTokenListClick = (id) => {
     setTokenList(true);
-    console.log({ id, paramKey })
     setFullTokenListId(id);
   };
 

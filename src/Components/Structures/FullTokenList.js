@@ -22,7 +22,8 @@ const FullTokenList = ({ tokenList, onSelect, onFullTokenListClose, optionDropdo
     const updateDefaultLabelArray = [];
     const updateTextArray = [];
     const { customParam, arrayParameters } = context;
-    const paramKeyUpdated = customParam?.get(optionDropdownId).paramName || parameterKey;
+    const paramKeyUpdated = customParam?.get(optionDropdownId)?.paramName || parameterKey;
+    const parameterValue = customParam?.get(optionDropdownId)?.paramValue.replace(removeEmptySpace(tagText), '');
 
     arrayParameters.labelTag[paramKeyUpdated].forEach(tag => {
       if (tag.props.targetId !== tagId) {
@@ -36,7 +37,7 @@ const FullTokenList = ({ tokenList, onSelect, onFullTokenListClose, optionDropdo
       }
     });
 
-    onTagDeleted(null, paramKeyUpdated, updateDefaultLabelArray, updateTextArray);
+    onTagDeleted(parameterValue, paramKeyUpdated, updateDefaultLabelArray, updateTextArray, optionDropdownId);
   };
   
   const handleClick = (optionSelected) => {

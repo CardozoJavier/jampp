@@ -115,20 +115,19 @@ const CreationTracking = ({
     const updateDefaultLabelArray = [];
     const updateTextArray = [];
     const paramKeyUpdated = customParam?.get(optionDropdownId).paramName || parameterKey;
+    const parameterValue = customParam?.get(optionDropdownId).paramValue.replace(removeEmptySpace(tagText), '');
 
     context.arrayParameters.labelTag[paramKeyUpdated].forEach(tag => {
       if (tag.props.targetId !== tagId) {
         updateDefaultLabelArray.push(tag);
       }
     });
-    
     context.arrayParameters.plainText[paramKeyUpdated].forEach(text => {
       if (text.props.targetId !== tagId) {
         updateTextArray.push(text);
       }
     });
-
-    onTagDeleted(null, paramKeyUpdated, updateDefaultLabelArray, updateTextArray);
+    onTagDeleted(parameterValue, paramKeyUpdated, updateDefaultLabelArray, updateTextArray, optionDropdownId);
   };
 
   /**
@@ -150,7 +149,6 @@ const CreationTracking = ({
         updateDefaultLabelArray.push(labelTag);
       }
     });
-    
     context.arrayParameters.plainText[paramKeyUpdated].forEach(plainText => {
       if (plainText.props.targetId === id) {
         const trimValue = removeEmptySpace(value);
@@ -172,7 +170,7 @@ const CreationTracking = ({
    * Event handler in key down to move through suggestions list and create tag when Enter or Tab key are pressed
    */
   const handleKeyDown = (key) => {
-    const { customParam, optionDropdownId } = context;
+    const { optionDropdownId } = context;
     const keyCode = key.keyCode.toString();
     if (keyCode.toString() === '219') {
       handleUrlChange(paramKey, inputValue, optionDropdownId);
