@@ -189,7 +189,7 @@ export const AddParameter = () => (
         * @param {Function} callback - (Optional) Callback to be triggered on click event in button into suggestions list.
         * @param {String} linkText - (Optional) It's the text to be displayed like link.
         * @param {String} textBelowSuggestions - (Optional) It's the text to be displayed at the bottom of suggestions list.
-        * @param {String} defaultValue - (Optional) It's the default value for a tag to be displayed in render.
+        * @param {Array} defaultValue - (Optional) It's the default value for a tag to be displayed in render.
         * @return {React Component} A view for input field with icon and action on error.
         */}
       <CreationTagSuggestion
@@ -291,6 +291,29 @@ export const AddParameter = () => (
   </DivContainer>
 );
 
+/**
+ * StructurePreview should be called with
+ * @prop {String} url - (Required) It's the original url pasted by user
+ * @prop {Function} onSave - (Required) It's the callback to be call when save button is clicked
+ * @prop {Array} partnerParameterList - (Required) It's the array list to be displayed when new parameter is added
+ * @prop {Array} jamppParameterList - (Optional) It's the array of jampp parameter suggestions to be displayed when user is typing the new parameter value
+ * @prop {Array} fullTokenList - (Optional) It's the array of all available tokens can be selected. The array of 'jamppParameterList' will be the default value
+ */
 export const Preview = () => (
-  <StructurePreview url="http://adjust.com/1234/?c=Campaign_Brasil&click_id={C_ID}_suffix&device_id={D_ID}&creative={ad_parameters}" />
+  <StructurePreview
+    onSave={url => console.log(url)}
+    url="http://adjust.com/1234/?c=Campaign_Brasil&click_id={C_ID}_suffix&device_id={D_ID}&creative={ad_parameters}"
+    partnerParameterList={["Option 1", "Option 2", "Option 3", "Option 4"]}
+    jamppParameterList={["Option A", "Option B", "Option C", "Option D"]}
+    fullTokenList={[
+      { name: "Option A", description: "Very long description will be placed in this place, and will fit all width" },
+      { name: "Option B", description: "Very long description will be placed in this place, and will fit all width" },
+      { name: "Option C", description: "Very long description will be placed in this place, and will fit all width" },
+      { name: "Option D", description: "Very long description will be placed in this place, and will fit all width" },
+      { name: "Option E", description: "Very long description will be placed in this place, and will fit all width" },
+      { name: "Option F", description: "Very long description will be placed in this place, and will fit all width" },
+      { name: "Option G", description: "Very long description will be placed in this place, and will fit all width" },
+      { name: "Option H", description: "Very long description will be placed in this place, and will fit all width" },
+    ]}
+  />
 );
