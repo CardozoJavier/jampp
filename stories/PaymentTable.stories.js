@@ -19,12 +19,15 @@ export default {
  * @prop {Node} children - (Required) It's the content to be displayed.
  *  
  *  PaymentRow component should be called with
- *  @prop {children} - (Required) It's the content to be displayed.
+ *  @prop {Node} children - (Required) It's the column's content to be displayed.
  *  @prop {String} id - (Required) It's an unique ID to identifier each option in Payment group.
+ *  @prop {Boolean} isSelected - (Optional) Define is row is selected by default.
+ *  @prop {Object} style - (Optional) It's define the container styles.
  *
  *    PaymentColumnField component can be called with
  *    @prop {String} children - (Required) It's the text to be displayed.
  *    @prop {String} textWhenSelect - (Optional) Text to be displayed when PaymentColumnField is selected.
+ *    @prop {String} iconWhenSelect - (Optional) Icon to be displayed when PaymentColumnField is selected.
  *    @prop {Boolean} button - (Optional) If true, PaymentColumnField behaves like button.
  *    @prop {Function} onClick - (Optional) Callback to trigger on onClick event.
  */
@@ -55,7 +58,7 @@ export const Default = () => (
           <PaymentColumnField>{ 'Data here' }</PaymentColumnField>
           <PaymentColumnField button textWhenSelect="Default payment method">{ 'Make default' }</PaymentColumnField>
         </PaymentRow>
-        <PaymentRow id="row3">
+        <PaymentRow id="row3" isSelected={true}>
           <PaymentRowName>
             <TableImageIcon />
           </PaymentRowName>

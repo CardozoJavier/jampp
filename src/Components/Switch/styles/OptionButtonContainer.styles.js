@@ -81,6 +81,12 @@ export const OptionButtonContainer = styled.div`
           color: ${gray.g1};
           border: 1px solid ${gray.g1};
         }
+
+        &__disabled&__selected {
+          border: 1px solid ${gray.g1};
+          background-color: ${gray.g0};
+          color: ${gray.g07};
+        }
       }
 
       /**************************

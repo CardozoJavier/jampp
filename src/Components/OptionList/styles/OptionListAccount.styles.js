@@ -10,7 +10,7 @@ export const OptionListContainer = styled(OptionCheckboxGroup)`
   right: -5px;
   left: unset;
   background-color: #fff;
-  max-height: 75vh;
+  max-height: none;
   &.dropdown.button--default-right__opened {
     z-index: 0;
   }

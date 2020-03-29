@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { LabelContainer, Input, Label } from './styles';
-import { getClassName, bemDestruct } from '../../utils';
+import { getClassName, bemDestruct, getUniqueId } from '../../utils';
 import inputProps from './inputProps';
 import { DefaultLabel } from '../Label';
+import { ErrorMessage } from '../InputField/styles';
+import { ExclamationIcon } from '../UI/Icons';
 
 /**
  * CreationTag component should be called with
@@ -14,51 +16,81 @@ import { DefaultLabel } from '../Label';
  * @param {Function} onTagCreated - (Optional) Callback to trigger on tag created. It receive tag value in first argument.
  * @param {Function} onTagDeleted - (Optional) Callback to trigger on tag created. It receive tag value in first argument.
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+ * @param {Function} onError - (Optional) Function to check input values and trigger error message. It receive the input value in first argument.
+ * @param {String} errorMessage - (Optional) String to be display on error event.
+ * @param {Array} defaultValue - (Optional) It's the default value for one or more tags to be displayed in render.
  * @return {React Component} A view for input field with icon and action on error.
  */
-const CreationTag = ({ type, placeholder, width, label, id, onTagCreated, onTagDeleted, disabled }) => {
-  const { defaultClassName, optionalClassName, onBlurClassName, onFocusClassName, InputContainer } = inputProps[type];
+const CreationTag = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, errorMessage, onError, defaultValue }) => {
+  const { defaultClassName, optionalClassName, onBlurClassName, onFocusClassName, errorClassName, InputContainer } = inputProps[type];
   const [className, setClassName] = useState(defaultClassName);
   
   const [defaultLabelArray, setDefaultLabelArray] = useState([]);
   const [inputValue, setInputValue] = useState('');
-  const [labelId, setLabelId] = useState('');
+  const [labelId, setLabelId] = useState(getUniqueId());
+  const [error, setError] = useState(false);
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const maxWidth = Number(width.split('px')[0]) - 53;
   const maxLength = Math.ceil(maxWidth * 11/100);
 
   const handleClick = () => {
-    setClassName(toggleToClassName);
+    if (!error) {
+      setClassName(toggleToClassName);
+    }
   }
 
   const handleBlur = () => {
-    setClassName(onBlurClassName);
+    if (!error) {
+      setClassName(onBlurClassName);
+    }
   }
 
   const handleFocus = () => {
-    setClassName(onFocusClassName);
+    if (!error) {
+      setClassName(onFocusClassName);
+    }
   }
 
-  const handleChange = ({ target: { value }}) => {
-    const tabAsciiCode = value && value[value.length-1].charCodeAt();
+  const handleChange = (e) => {
+    const value = e.target.value;
+    const isError = onError ? onError(value) : null;
+    setInputValue(value);   
+    
+    if (isError) {
+      setError(true);
+      setClassName(errorClassName);
+    } else {
+      setError(false);
+      setClassName(onFocusClassName);
+    }
+  }
 
-    setInputValue(value);
+  const handleClose = (targetId, text) => {
+    onTagDeleted(text);
+  };
 
-    if (tabAsciiCode === 32 && inputValue.trim()) {
-      const trimValue = value.trim();
-      defaultLabelArray.push(trimValue);
-      setDefaultLabelArray(defaultLabelArray);
+  const handleKeyDown = (key) => {
+    const keyCode = key.keyCode.toString();
+    const updateDefaultLabelArray = [...defaultLabelArray];
+    
+    if (!error && (keyCode === '13' || keyCode === '9')) {
+      key.preventDefault();
+      updateDefaultLabelArray.push(inputValue);
+      setDefaultLabelArray(updateDefaultLabelArray);
       onTagCreated && onTagCreated(inputValue.trim());
       setInputValue('');
-    }
-
-    setClassName(onFocusClassName);
-  }
+    } 
+  };
 
   useEffect(() => {
-    const id = Math.random().toString();
+    const id = getUniqueId();
     setLabelId(id);
+    if (defaultValue.length) {
+      const updateDefaultLabelArray = [...defaultLabelArray];
+      defaultValue.forEach(value => updateDefaultLabelArray.push(value));
+      setDefaultLabelArray(updateDefaultLabelArray);
+    }
   }, []);
 
   return (
@@ -71,17 +103,16 @@ const CreationTag = ({ type, placeholder, width, label, id, onTagCreated, onTagD
         width={width}
       >
         {defaultLabelArray &&
-          defaultLabelArray.map((text, index) => (
+          useMemo(() => defaultLabelArray.map((text, index) => (
             <DefaultLabel
               key={index}
-              id={index}
               text={text}
-              size="small"
+              size="medium"
               margin="5px"
               maxWidth={maxWidth}
-              onClose={onTagDeleted}
+              onClose={handleClose}
             />
-          ))
+          )), [defaultLabelArray])
         }
         <Input
           id={labelId}
@@ -93,10 +124,16 @@ const CreationTag = ({ type, placeholder, width, label, id, onTagCreated, onTagD
           onBlur={disabled ? null : handleBlur}
           onFocus={disabled ? null : handleFocus}
           onChange={disabled ? null : handleChange}
+          onKeyDown={disabled ? null : handleKeyDown}
           size={inputValue.length && inputValue.length + 20}
         />
-
+        {errorMessage &&
+          <ExclamationIcon props={{ margin: '0 5px 0 auto' }} />
+        }
       </InputContainer>
+      {errorMessage &&
+        <ErrorMessage className={bemDestruct(className)}>{errorMessage}</ErrorMessage>
+      }
     </LabelContainer>
   );
 };
@@ -109,6 +146,9 @@ CreationTag.propTypes = {
   onTagCreated: PropTypes.func,
   onTagDeleted: PropTypes.func,
   disabled: PropTypes.bool,
+  onErrorMessage: PropTypes.string,
+  onError: PropTypes.func,
+  defaultValue: PropTypes.arrayOf(PropTypes.string),
 };
 
 CreationTag.defaultProps = {
@@ -118,6 +158,9 @@ CreationTag.defaultProps = {
   onTagCreated: () => null,
   onTagDeleted: () => null,
   disabled: false,
+  onErrorMessage: null,
+  onError: () => null,
+  defaultValue: [],
 };
 
-export default CreationTag;
+export default React.memo(CreationTag);

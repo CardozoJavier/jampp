@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Button } from '../';
 import {
   PaymentRowContainer,
@@ -7,27 +8,61 @@ import {
 } from './styles';
 import { RowContext } from './PaymentMethodTable';
 
-const PaymentRow = ({ children, id }) => {
+/**
+ *  PaymentRow component should be called with
+ *  @param {Node} children - (Required) It's the column's content to be displayed.
+ *  @param {String} id - (Required) It's an unique ID to identifier each option in Payment group.
+ *  @param {Boolean} isSelected - (Optional) Define is row is selected by default.
+ *  @param {Object} style - (Optional) It's define the container styles.
+ */
+const PaymentRow = ({ children, id, isSelected, style }) => {
   const context = useContext(RowContext);
   const { row, handleClick } = context;
-  const isSelected = id === row;
-  const className = isSelected ? 'selected' : '';
+  const selected = id === row;
+  const className = selected ? 'selected' : '';
+
+  useEffect(() => {
+    if (isSelected) {
+      handleClick(id);
+    }
+  }, []);
+
+  const renderButton = (props) => {
+    if (props.textWhenSelect) {
+      return <Button label={selected ? props.textWhenSelect : props.children} type="link-default-left" onClick={() => handleClick(id, props.onClick)} />
+    } else {
+      return <Button label={selected ? null : props.children} icon={selected ? props.iconWhenSelect : null} type="link-check-left" onClick={() => handleClick(id, props.onClick)} />
+    }
+  };
 
   return (
-      <PaymentRowContainer className={className}>
+      <PaymentRowContainer className={className} {...style}>
         {children.map((row, index) => {
+          const button = renderButton(row.props);
           if (row.props.button) {
             return (
               <PaymentColumnFieldButton borderLeft="none" key={index}>
-                <Button label={isSelected ? row.props.textWhenSelect : row.props.children} type="link-default-left" onClick={() => handleClick(id, row.props.onClick)} />
+                {button}
               </PaymentColumnFieldButton>
             );
           } else {
-            return <PaymentColumnField borderLeft={index === 0 ? 'none' : ''} key={index}>{row.props.children}</PaymentColumnField>;
+            return <PaymentColumnField borderLeft={index === 0 ? 'none' : row.props.borderLeft} key={index}>{row.props.children}</PaymentColumnField>;
           }
         })}
       </PaymentRowContainer>
   );
+};
+
+PaymentRow.propTypes = {
+  children: PropTypes.node.isRequired,
+  id: PropTypes.string.isRequired,
+  isSelected: PropTypes.bool,
+  styles: PropTypes.shape({}),
+};
+
+PaymentRow.defaultProps = {
+  isSelected: false,
+  styles: {},
 };
 
 export default PaymentRow;

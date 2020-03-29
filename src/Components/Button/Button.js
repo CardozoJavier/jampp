@@ -17,7 +17,7 @@ import { bemDestruct, getClassName } from '../../utils';
  * @param {String} fontSize - (Optional) It's the font size for text button. Default value depend on button type.
  * @return {React Component} A view for button.
  */
-const Button = ({ type, label, children, icon, disabled, onClick, fixed, fontSize }) => {
+const Button = ({ type, label, children, icon, disabled, onClick, fixed, fontSize, ...props }) => {
   const { defaultClassName, optionalClassName, ButtonContainer, iconProps, iconClassName } = buttonProps[type];
 
   const [className, setClassName] = useState(defaultClassName);
@@ -34,6 +34,7 @@ const Button = ({ type, label, children, icon, disabled, onClick, fixed, fontSiz
       className={bemDestruct(className, disabled)}
       disabled={disabled}
       fixed={fixed}
+      {...props}
     >
       <ButtonInput children={label || children} fontSize={fontSize} />
       {icon &&
@@ -68,4 +69,4 @@ Button.defaultProps = {
   fixed: false,
 };
 
-export default Button;
+export default React.memo(Button);

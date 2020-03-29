@@ -29,7 +29,9 @@ export const PaymentTableContainer = styled(TableContainer)`
   
 export const PaymentRowContainer = styled(RowContainer)`
   grid-template-columns: 8% 17% 25% 25% 25%;
-
+  grid-template-columns: ${({ gridTemplateColumns }) => gridTemplateColumns};
+  padding: ${({ padding }) => padding};
+  margin: ${({ margin }) => margin};
   &.selected {
     background-color: ${violet.v05};
     transition: background-color .3s;
@@ -43,16 +45,19 @@ export const PaymentRowContainer = styled(RowContainer)`
   
 export const PaymentRowTitle = styled(RowTitle)`
   grid-template-columns: 8% 17% 25% 50%;
+  grid-template-columns: ${({ gridTemplateColumns }) => gridTemplateColumns};
+  background-color: ${({ backgroundColor }) => backgroundColor};
 `;
   
 export const PaymentColumnTitle = styled(ColumnTitle)`
   grid-column-start: ${({ start }) => start};
   padding: ${({ padding }) => padding};
-
+  border-left: ${({ borderLeft }) => borderLeft};
 `;
 
 
 export const PaymentColumnField = styled(ColumnField)`
+  border-left: ${({ borderLeft }) => borderLeft};
 `;
 
 export const PaymentColumnFieldButton = styled(ColumnFieldButton)`

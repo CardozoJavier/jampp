@@ -4,6 +4,7 @@ const { gray, violet, action } = palette;
 
 export const Container = styled.div`
   display: flex;
+  flex-direction: ${({ inverted }) => inverted ? 'row': 'row-reverse'};
   align-items: center;
   position: relative;
   min-width: 70px;

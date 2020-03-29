@@ -6,4 +6,6 @@ export default styled.a`
   max-width: ${({ maxWidth }) => maxWidth};
   overflow: ${({ overflow }) => overflow};
   font-size: ${({ fontSize }) => fontSize};
+  white-space: ${({ whiteSpace }) => whiteSpace};
+  text-overflow: ${({ textOverflow }) => textOverflow};
 `;

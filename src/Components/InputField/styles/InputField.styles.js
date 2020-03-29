@@ -73,7 +73,6 @@ export const InputFieldContainer = styled.label`
         visibility: hidden;
         width: 18px;
         height: 18px;
-        margin: 0 5px;
       }
 
       &--default, &--medium, &--small {

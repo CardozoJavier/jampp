@@ -1,18 +1,27 @@
 import styled from 'styled-components';
+import { palette } from '../../styles';
+const { violet, gray } = palette;
 
 export default styled.div`
   position: absolute;
   left: 0;
-  top: 48px;
+  top: 38px;
   border-radius: 4px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, .1);
   background-color: white;
   z-index: 1;
   min-width: ${({ minWidth }) => minWidth || '130px'};
-  width: inherit;
+  width: ${({ width }) => width || 'inherit'};
   max-height: 50vh;
   overflow: scroll;
   margin-bottom: 10px;
+
+  .button.link--customize-left {
+    background-color: ${({ customSelected }) => customSelected ? violet.v05 : 'unset'};
+    &:hover {
+      background-color: ${({ customSelected }) => customSelected ? violet.v05 : gray.g0};
+    }
+  }
 
   &.dropdown, &.expandable {
     &-right {}
@@ -28,10 +37,11 @@ export default styled.div`
         }
 
         label ~ &__opened {
-          transform: translateY(20px);
+          transform: translateY(30px);
         }
 
         &__closed {
+          z-index: -9999;
           opacity: 0;
           visibility: hidden;
           transform: translateY(0);

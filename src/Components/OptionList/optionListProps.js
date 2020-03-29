@@ -46,6 +46,14 @@ const optionListProps = {
     iconClassName: '',
     iconProps: {},
   },
+  "customize-text": {
+    defaultClassName: "unique option--default",
+    optionalClassName: "",
+    OptionContainer: OptionContainer,
+    OptionItem: UniqueOption,
+    iconClassName: '',
+    iconProps: {},
+  },
 };
 
 export default optionListProps;
