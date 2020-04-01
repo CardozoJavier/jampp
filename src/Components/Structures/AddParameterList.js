@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { OptionCheckboxGroup, MenuTitle } from '../OptionList/styles';
 import { bemDestruct, settingClassName } from '../../utils';
 import optionListProps from '../OptionList/optionListProps';
 import { Button } from '../Button';
-import StructurePreviewContext from './Context';
+
 
 /**
  * AddParameterList component should be called with
@@ -17,51 +17,46 @@ import StructurePreviewContext from './Context';
  * @param {Boolean} notCheckIcon - (Optional) It's a modifier to not display the check icon next to text.
  * @param {String} minWidth - (Optional) Specified the min width for options list.
  * @param {String} width - (Optional) Specified the width for options list.
- * @param {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
  * @param {String} buttonList - (Optional) It's the button text to be displayed into list when customize-text type is selected.
+ * @param {String} optionSelected - (Optional) It's the option selected. Should be the Option id.
  * @param {Function} customizeTextClick - (Optional) Callback to trigger when button for customize button text is clicked.
  * @return {React Component} A view in which one option can be selected.
  */
-const AddParameterList = ({ children = [], type, className, menuTitle, onSelect, notCheckIcon, minWidth, wide, width, defaultValue, buttonList, customizeTextClick, optionDropdownId, customParamId }) => {
-  const context = useContext(StructurePreviewContext);
-  const { customParam } = context;
-  const contextDefaultOption = customParam.get(optionDropdownId)?.defaultValue;
+const AddParameterList = ({
+  children = [],
+  type,
+  className,
+  menuTitle,
+  onSelect,
+  notCheckIcon,
+  minWidth,
+  wide,
+  width,
+  buttonList,
+  customizeTextClick,
+  optionSelected
+}) => {
+
   const { defaultClassName, OptionItem } = optionListProps[type];
-  const childrenParsed = settingClassName(children, -1, defaultClassName);
-  const [array, setArray] = useState(childrenParsed);
+  const childrenParsed = settingClassName(children, optionSelected, defaultClassName);
 
   /**
    * When an option is clicked, his className is toggle to selected and everyone else are being uncheck.
    */
-  const handleCheck = (id, label, color, flat, textType) => {
-    const inputsArray = settingClassName(children, id, defaultClassName);
-    // Avoid error with race condition when state is updated.
-    setTimeout(() => setArray(inputsArray), 0);
+  const handleCheck = useCallback((id, label, color, flat, textType) => {
     onSelect(id, label, color, flat, textType);
-  }
+  }, [optionSelected]);
 
   useEffect(() => {
-    const contextDefaultValue = customParam.get(optionDropdownId)?.defaultValue;
-    if (contextDefaultValue) {
-      array.forEach(input => (input.id === contextDefaultValue) && handleCheck(input.id, input.label, input.color, input.flat, type));
+    if (optionSelected) {
+      childrenParsed.forEach(input => (input.id === optionSelected) && handleCheck(input.id, input.label, input.color, input.flat, type));
     };
-  }, [context.customParam, children]);
-
-  useEffect(() => {
-    if (contextDefaultOption === 'custom-param') {
-      const resetList = settingClassName(children, -1, defaultClassName);
-      setArray(resetList);
-    };
-  }, [contextDefaultOption]);
-  
-  useEffect(() => {
-    setArray(childrenParsed);
-  }, [children]);
+  }, [children, optionSelected]);
 
   return (
-    <OptionCheckboxGroup customSelected={contextDefaultOption === 'custom-param'} className={bemDestruct(className)} minWidth={minWidth} wide={wide} width={width}>
+    <OptionCheckboxGroup customSelected={optionSelected === '__custom-param__'} className={bemDestruct(className)} minWidth={minWidth} wide={wide} width={width}>
       {menuTitle && <MenuTitle>{menuTitle}</MenuTitle>}
-      {array.map((input) => (
+      {childrenParsed.map((input) => (
         <OptionItem
           className={input.className}
           handleCheck={handleCheck}
@@ -74,7 +69,7 @@ const AddParameterList = ({ children = [], type, className, menuTitle, onSelect,
         />
       ))}
       {buttonList ?
-        <Button id={customParamId} type="link-customize-left" label={buttonList} onClick={customizeTextClick} />
+        <Button type="link-customize-left" label={buttonList} onClick={customizeTextClick} />
         : null
       }
     </OptionCheckboxGroup>

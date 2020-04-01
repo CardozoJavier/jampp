@@ -315,17 +315,19 @@ const CreationTracking = ({
    * Concat custom param setted by input field to be displayed in url box.
    */
   useEffect(() => {
-    const { paramName, defaultValue, paramValue } = customParam ? customParam.get(optionDropdownId) : {};
-    const parameterValue = concatUrlParam(inputValue) || paramValue;
-    const buttonText = customParam?.get(optionDropdownId).buttonText;
-    handleUrlChange(paramKey, parameterValue, optionDropdownId, defaultValue, buttonText);
+    if (paramKey) {
+      const { defaultValue, paramValue } = customParam?.get(optionDropdownId) || {};
+      const parameterValue = concatUrlParam(inputValue) || paramValue;
+      const buttonText = customParam?.get(optionDropdownId)?.buttonText;
+      handleUrlChange(paramKey, parameterValue, optionDropdownId, defaultValue, buttonText);
+    };
   }, [arrayParameters]);
 
   /**
    * Context listener update props
    */
   useEffect(() => {
-    if (optionDropdownId) {
+    if (optionDropdownId && paramKey) {
       if (!arrayParameters) {
         const parameterValue = customParam.get(optionDropdownId).paramValue;
         setInputValue(parameterValue);
