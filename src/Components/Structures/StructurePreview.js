@@ -48,9 +48,6 @@ const StructurePreview = ({ url, onSave, partnerParameterList, jamppParameterLis
   const globalId = getReferencedId(); 
   const [optionDropdownId, setOptionDropdownId] = useState(globalId);
   const [fullTokenListId, setFullTokenListId] = useState(globalId);
-
-  const [buttonText, setButtonText] = useState('New Param');
-  
   const [paramFocus, setParamFocus] = useState(null);
   const latestParamFocus = useRef(paramFocus);
 
@@ -176,9 +173,8 @@ const StructurePreview = ({ url, onSave, partnerParameterList, jamppParameterLis
     setOptionDropdownId(getUniqueId());
   };
 
-  // TODO: Fix when a new parameter is added and has the same key with other
+  // TODO: Fix when a new parameter is added and has the same key with other, the url is wrong
   const handleOptionChange = useCallback((dropdownId, text, selectedOptionId) => {
-    setButtonText(text);
     const paramName = removeEmptySpace(text);
     const paramValue = removeEmptySpace(customParam.get(dropdownId)?.paramValue);
     handleUrlChange(paramName, paramValue, dropdownId, selectedOptionId, text);
