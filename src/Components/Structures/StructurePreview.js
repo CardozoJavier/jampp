@@ -211,7 +211,11 @@ const StructurePreview = ({ url, onSave, partnerParameterList, jamppParameterLis
       paramKey = customParam.get(key).paramName;
       const structure = document.getElementById(key);
       structure.style.display = 'none';
+      customParam.delete(key);
+      delete arrayParameters.plainText[paramKey];
+      delete arrayParameters.labelTag[paramKey];
     }
+
     const updateUrl = deleteQueryStringParameter(latestUrlValue.current, paramKey);
     setQueryParams(queryParams);
     setUrlValue(updateUrl);
