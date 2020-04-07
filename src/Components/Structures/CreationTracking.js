@@ -1,14 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { LabelContainer, Input, Label, SuggestionsListContainer, SuggestionsList, PreviewContainer, PlainText} from './styles';
+import { LabelContainer, Input, Label, SuggestionsListContainer, SuggestionsList, PreviewContainer, PlainText} from '../CreationTag/styles';
 import { getClassName, bemDestruct, useEventListener, removeEmptySpace } from '../../utils';
-import inputProps from './inputProps';
+import inputProps from '../CreationTag/inputProps';
 import { DefaultLabel } from '../Label';
 import { Text } from '../UI/GenericElements/GenericElements.styles';
 import { Button } from '../Button';
 import { palette, fonts } from '../styles';
 import { XIcon } from '../UI/Icons';
-import InputText from '../Structures/InputText';
+import InputText from './InputText';
+import StructurePreviewContext from './Context';
 const { gray, black } = palette;
 const { size10 } = fonts;
 
@@ -28,23 +29,41 @@ const { size10 } = fonts;
  * @param {Object} flatParameters - (Optional) It's the object with array of parameters created and parsed to plain text.
  * @param {Object} labelParameters - (Optional) It's the object with array of original label tags parameters.
  * @param {String} parameterKey - (Optional) It's the key that correspond with each parameter input text.
+ * @param {Function} urlHighlightHandler - (Optional) Callback to trigger when parameter is on focus, for highlight the url.
  * @return {React Component} A view for input field with icon and action on error.
  */
-const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTagDeleted, disabled, suggestions = [], callback, linkText, textBelowSuggestions, parameterKey, parameters, latestParameters, defaultValue, handleUrlChange }) => {
+const CreationTracking = ({ 
+  type,
+  placeholder,
+  width,
+  label,
+  onTagCreated,
+  onTagDeleted,
+  disabled,
+  suggestions = [],
+  callback,
+  linkText,
+  textBelowSuggestions,
+  parameterKey,
+  defaultValue,
+  handleUrlChange,
+  optionDropdownId,
+  urlHighlightHandler
+}) => {
+  const context = useContext(StructurePreviewContext);
+  disabled = context ? context.disabled : disabled;
+  const { customParam, } = context;
+  const paramKey = customParam?.get(optionDropdownId)?.paramName || parameterKey;
+  const arrayParameters = disabled ? context.arrayParameters.plainText[paramKey] : context.arrayParameters.labelTag[paramKey];
+
   const { defaultClassName, optionalClassName, onBlurClassName, onFocusClassName, InputContainer } = inputProps[type];
   const [className, setClassName] = useState(defaultClassName);
-  
   const [inputValue, setInputValue] = useState('');
   const [matchSuggestion, setMatchSuggestion] = useState([]);
-  const [defaultLabelArray, setDefaultLabelArray] = useState([]);
-  const latestDefaultLabelArray = useRef(defaultLabelArray);
   const [suggestionActive, setSuggestionActive] = useState(-1);
   const [showSuggestion, setShowSuggestion] = useState(false);
   const [previewTracking, setPreviewTracking] = useState('');
   const [labelId, setLabelId] = useState('');
-  const [textArray, setTextArray] = useState([]);
-  const latestTextArray = useRef(textArray);
-  
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
 
   /**
@@ -55,27 +74,39 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
   }
   const handleBlur = () => {
     setClassName(onBlurClassName);
-  }
+    urlHighlightHandler(null);
+  };
   const handleFocus = () => {
+    const latestParamKey = customParam?.get(optionDropdownId).paramName || parameterKey;
     setClassName(onFocusClassName);
-  }
+    urlHighlightHandler(latestParamKey);
+  };
   
   /**
    * Handle input field.
    */
   const handleChange = ({ target: { value }}) => {
+    let regex;
+    let matchSuggestion;
     const [flatValue, trackingValue] = value.split('{');
-    const regex = trackingValue ? new RegExp(trackingValue.toLowerCase()) : { test: () => null };
-    const matchSuggestion = trackingValue === '' ? suggestions : suggestions.filter(suggestion => regex.test(suggestion.toLowerCase()));
 
+    if (trackingValue === undefined) {
+      regex = value.trim() ? new RegExp(`^${value.toLowerCase()}`) : { test: () => null };
+      matchSuggestion = suggestions.filter(suggestion => regex.test(suggestion.toLowerCase()));
+    } else {
+      regex = new RegExp(`^${trackingValue.toLowerCase()}`);
+      matchSuggestion = trackingValue === '' ? suggestions : suggestions.filter(suggestion => regex.test(suggestion.toLowerCase()));
+    }
     setShowSuggestion(!!matchSuggestion.length);
     setInputValue(value);
     setMatchSuggestion(matchSuggestion);
     setClassName(onFocusClassName);
-
     const parameterValue = concatUrlParam(value);
-    handleUrlChange(parameterKey, parameterValue);
-  }
+    // Take from context the default option selected for dropdown if exists
+    const optionDropdownDefaultValue = customParam?.get(optionDropdownId).defaultValue;
+    const buttonText = customParam?.get(optionDropdownId).buttonText;
+    handleUrlChange(paramKey, parameterValue, optionDropdownId, optionDropdownDefaultValue, buttonText);
+  };
 
   /**
    * Update array of tags after one has removed
@@ -83,30 +114,31 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
   const deleteTagHandler = (tagId, tagText) => {
     const updateDefaultLabelArray = [];
     const updateTextArray = [];
+    const paramKeyUpdated = customParam?.get(optionDropdownId).paramName || parameterKey;
+    const parameterValue = customParam?.get(optionDropdownId).paramValue.replace(removeEmptySpace(tagText), '');
 
-    latestParameters.labelTag[parameterKey].forEach(tag => {
+    context.arrayParameters.labelTag[paramKeyUpdated].forEach(tag => {
       if (tag.props.targetId !== tagId) {
         updateDefaultLabelArray.push(tag);
       }
     });
-    
-    latestParameters.plainText[parameterKey].forEach(text => {
+    context.arrayParameters.plainText[paramKeyUpdated].forEach(text => {
       if (text.props.targetId !== tagId) {
         updateTextArray.push(text);
       }
     });
-
-    onTagDeleted(null, parameterKey, updateDefaultLabelArray, updateTextArray);
+    onTagDeleted(parameterValue, paramKeyUpdated, updateDefaultLabelArray, updateTextArray, optionDropdownId);
   };
 
   /**
    * Input value handler for input field pushed into defaultLabelArray.
    */
-  const handleInputChange = (id, value) => {
+  const handleInputChange = useCallback((id, value) => {
     const updateDefaultLabelArray = [];
     const updateTextArray = [];
+    const paramKeyUpdated = customParam?.get(optionDropdownId).paramName || parameterKey;
 
-    latestParameters.labelTag[parameterKey].forEach(labelTag => {
+    context.arrayParameters.labelTag[paramKeyUpdated].forEach(labelTag => {
       if (labelTag.props.targetId == id) {
         const cloneInputField = React.cloneElement(labelTag, {
           defaultValue: value,
@@ -117,8 +149,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
         updateDefaultLabelArray.push(labelTag);
       }
     });
-    
-    latestParameters.plainText[parameterKey].forEach(plainText => {
+    context.arrayParameters.plainText[paramKeyUpdated].forEach(plainText => {
       if (plainText.props.targetId === id) {
         const trimValue = removeEmptySpace(value);
         const cloneElement = React.cloneElement(plainText, {
@@ -131,17 +162,18 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
       }
     });
 
-    onTagCreated(null, parameterKey, updateDefaultLabelArray, updateTextArray);
-    handleUrlChange(parameterKey, removeEmptySpace(value));
-  };
+    onTagCreated(null, paramKeyUpdated, updateDefaultLabelArray, updateTextArray);
+    handleUrlChange(paramKeyUpdated, removeEmptySpace(value));
+  }, [arrayParameters, customParam]);
 
   /**
    * Event handler in key down to move through suggestions list and create tag when Enter or Tab key are pressed
    */
   const handleKeyDown = (key) => {
+    const { optionDropdownId } = context;
     const keyCode = key.keyCode.toString();
     if (keyCode.toString() === '219') {
-      handleUrlChange(parameterKey, inputValue);
+      handleUrlChange(paramKey, inputValue, optionDropdownId);
       pushElement(inputValue, 'input-field');
     };
     if (inputValue.trim() && showSuggestion) {
@@ -166,7 +198,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
    * Push new items into box. Can be DefaultLabel components or InputText that could be modified.
    */
   const pushElement = (value, type) => {
-    const updateDefaultLabelArray = latestParameters.labelTag[parameterKey] ? [...latestParameters.labelTag[parameterKey]] : [];
+    const updateDefaultLabelArray = context.arrayParameters.labelTag[paramKey] ? [...context.arrayParameters.labelTag[paramKey]] : [];
     const trimValue = removeEmptySpace(value);
     const targetId = Math.random().toString();
     const labelId = Math.random().toString();
@@ -175,7 +207,18 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
 
     if (type === 'input-field') {
       updateDefaultLabelArray.push(
-        <InputText id={targetId} key={targetId} targetId={targetId} defaultValue={inputValue.trim()} onChange={handleInputChange} disabled={disabled} />
+        <InputText 
+          id={targetId}
+          key={targetId}
+          fontSize={size10}
+          textAlign="center"
+          targetId={targetId}
+          disabled={disabled}
+          onChange={handleInputChange}
+          onBlur={disabled ? null : handleBlur}
+          onFocus={disabled ? null : handleFocus}
+          defaultValue={removeEmptySpace(inputValue)}
+        />
       );
       setPreviewTracking('preview-tracking');
     } else if (type === 'label-tag'){
@@ -197,13 +240,12 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
     /**
      * It's for displaying the tags like plain text when input is freezed
      */
-    const updateTextArray = latestParameters.plainText[parameterKey] ? [...latestParameters.plainText[parameterKey]] : [];
+    const updateTextArray = context.arrayParameters.plainText[paramKey] ? [...context.arrayParameters.plainText[paramKey]] : [];
     const plainTextId = Math.random().toString();
     updateTextArray.push(
       <PlainText targetId={targetId} text={value} key={plainTextId} id={plainTextId}>{trimValue}</PlainText>
     );
-
-    value.trim() && onTagCreated(value.trim(), parameterKey, updateDefaultLabelArray, updateTextArray);
+    value.trim() && onTagCreated(value.trim(), paramKey, updateDefaultLabelArray, updateTextArray);
     setInputValue('');
     setShowSuggestion(false);
     setMatchSuggestion([]);
@@ -229,7 +271,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
    */
   const concatUrlParam = (customParam = '') => {
     let updateUrlParamValue = '';
-    parameters && parameters.forEach(element => {
+    arrayParameters && arrayParameters.forEach(element => {
       const elementValue = element.props.text || element.props.defaultValue || element.props.children || '';
       updateUrlParamValue = updateUrlParamValue.concat(elementValue);
     });
@@ -265,31 +307,35 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
       updateTextArray.push(
         <PlainText targetId={targetId} text={defaultValue} key={plainTextId} id={plainTextId}>{defaultValue}</PlainText>
       );
-      defaultValue.trim() && onTagCreated(defaultValue, parameterKey, updateDefaultLabelArray, updateTextArray);
+      defaultValue.trim() && onTagCreated(defaultValue, paramKey, updateDefaultLabelArray, updateTextArray);
     }
   }, []);
-
-  /**
-   * Setting updated labels array for handle it in delete tag callback.
-   */
-  useEffect(() => {
-    latestDefaultLabelArray.current = defaultLabelArray;
-  }, [defaultLabelArray]);
-
-  /**
-   * Setting updated plain text array for handle it in delete tag callback.
-   */
-  useEffect(() => {
-    latestTextArray.current = textArray;
-  }, [textArray]);
 
   /**
    * Concat custom param setted by input field to be displayed in url box.
    */
   useEffect(() => {
-    const parameterValue = concatUrlParam(inputValue);
-    handleUrlChange(parameterKey, parameterValue);
-  }, [parameters]);
+    if (paramKey) {
+      const { defaultValue, paramValue } = customParam?.get(optionDropdownId) || {};
+      const parameterValue = concatUrlParam(inputValue) || paramValue;
+      const buttonText = customParam?.get(optionDropdownId)?.buttonText;
+      handleUrlChange(paramKey, parameterValue, optionDropdownId, defaultValue, buttonText);
+    };
+  }, [arrayParameters]);
+
+  /**
+   * Context listener update props
+   */
+  useEffect(() => {
+    if (optionDropdownId && paramKey) {
+      if (!arrayParameters) {
+        const parameterValue = customParam.get(optionDropdownId).paramValue;
+        setInputValue(parameterValue);
+      }
+    };
+    setPreviewTracking('');
+  }, [disabled]);
+  
 
   return (
     <LabelContainer>
@@ -301,8 +347,7 @@ const CreationTracking = ({ type, placeholder, width, label, onTagCreated, onTag
         width={width}
         htmlFor={labelId}
       >
-        
-        {parameters && parameters.map(item => item)}
+        {arrayParameters && arrayParameters.map(item => item)}
 
         <PreviewContainer>
           <Input
@@ -365,8 +410,6 @@ CreationTracking.propTypes = {
   linkText: PropTypes.string,
   textBelowSuggestions: PropTypes.string,
   parameterKey: PropTypes.string,
-  parameters: PropTypes.arrayOf(PropTypes.shape({})),
-  latestParameters: PropTypes.arrayOf(PropTypes.shape({})),
   defaultValue: PropTypes.string,
   handleUrlChange: PropTypes.func,
 };
@@ -382,8 +425,6 @@ CreationTracking.defaultProps = {
   linkText: null,
   textBelowSuggestions: null,
   parameterKey: null,
-  parameters: [],
-  latestParameters: [],
   defaultValue: '',
   handleUrlChange: () => null,
 };

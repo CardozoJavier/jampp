@@ -1,12 +1,13 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { OptionCheckboxGroup, MenuTitle } from './styles';
+import { OptionCheckboxGroup, MenuTitle } from '../OptionList/styles';
 import { bemDestruct, settingClassName } from '../../utils';
-import optionListProps from './optionListProps';
+import optionListProps from '../OptionList/optionListProps';
 import { Button } from '../Button';
 
+
 /**
- * OptionList component should be called with
+ * AddParameterList component should be called with
  * @param {Node} children - (Required) The options to be displayed.
  * @param {String} type - (Required) It's defines the classes for button styles.
  * @param {String} className - (Required) The className determines if list is opened or closed.
@@ -16,12 +17,26 @@ import { Button } from '../Button';
  * @param {Boolean} notCheckIcon - (Optional) It's a modifier to not display the check icon next to text.
  * @param {String} minWidth - (Optional) Specified the min width for options list.
  * @param {String} width - (Optional) Specified the width for options list.
- * @param {String} optionSelected - (Optional) It's the option selected. Should be the Option id.
  * @param {String} buttonList - (Optional) It's the button text to be displayed into list when customize-text type is selected.
+ * @param {String} optionSelected - (Optional) It's the option selected. Should be the Option id.
  * @param {Function} customizeTextClick - (Optional) Callback to trigger when button for customize button text is clicked.
  * @return {React Component} A view in which one option can be selected.
  */
-const OptionList = ({ children = [], type, className, menuTitle, onSelect, notCheckIcon, minWidth, wide, width, optionSelected, buttonList, customizeTextClick }) => {
+const AddParameterList = ({
+  children = [],
+  type,
+  className,
+  menuTitle,
+  onSelect,
+  notCheckIcon,
+  minWidth,
+  wide,
+  width,
+  buttonList,
+  customizeTextClick,
+  optionSelected
+}) => {
+
   const { defaultClassName, OptionItem } = optionListProps[type];
   const childrenParsed = settingClassName(children, optionSelected, defaultClassName);
 
@@ -39,7 +54,7 @@ const OptionList = ({ children = [], type, className, menuTitle, onSelect, notCh
   }, [children, optionSelected]);
 
   return (
-    <OptionCheckboxGroup customSelected={optionSelected === 'custom-param'} className={bemDestruct(className)} minWidth={minWidth} wide={wide} width={width}>
+    <OptionCheckboxGroup customSelected={optionSelected === '__custom-param__'} className={bemDestruct(className)} minWidth={minWidth} wide={wide} width={width}>
       {menuTitle && <MenuTitle>{menuTitle}</MenuTitle>}
       {childrenParsed.map((input) => (
         <OptionItem
@@ -61,29 +76,27 @@ const OptionList = ({ children = [], type, className, menuTitle, onSelect, notCh
   );
 };
 
-OptionList.propTypes = {
-    children: PropTypes.arrayOf(PropTypes.shape({
-      props: PropTypes.shape({
-        id: PropTypes.string,
-        label: PropTypes.string,
-        color: PropTypes.string,
-        children: PropTypes.array,
-      }),
-    })).isRequired,
-    type: PropTypes.string.isRequired,
-    className: PropTypes.string.isRequired,
-    menuTitle: PropTypes.string,
-    onSelect: PropTypes.func,
-    onChange: PropTypes.func,
-    notCheckIcon: PropTypes.bool,
-    minWidth: PropTypes.string,
-    width: PropTypes.string,
-    buttonList: PropTypes.string,
-    customizeTextClick: PropTypes.func,
-    optionSelected: PropTypes.string.isRequired,
-  };
+AddParameterList.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.shape({
+    props: PropTypes.shape({
+      id: PropTypes.string,
+      label: PropTypes.string,
+      color: PropTypes.string,
+      children: PropTypes.array,
+    }),
+  })).isRequired,
+  type: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired,
+  menuTitle: PropTypes.string,
+  onSelect: PropTypes.func,
+  notCheckIcon: PropTypes.bool,
+  minWidth: PropTypes.string,
+  width: PropTypes.string,
+  buttonList: PropTypes.string,
+  customizeTextClick: PropTypes.func,
+};
   
-OptionList.defaultProps = {
+AddParameterList.defaultProps = {
   menuTitle: '',
   onSelect: () => null,
   notCheckIcon: false,
@@ -93,4 +106,4 @@ OptionList.defaultProps = {
   customizeTextClick: () => null,
 };
   
-export default React.memo(OptionList);
+export default React.memo(AddParameterList);

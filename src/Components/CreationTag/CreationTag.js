@@ -27,7 +27,7 @@ const CreationTag = ({ type, placeholder, width, label, onTagCreated, onTagDelet
   
   const [defaultLabelArray, setDefaultLabelArray] = useState([]);
   const [inputValue, setInputValue] = useState('');
-  const [labelId, setLabelId] = useState('');
+  const [labelId, setLabelId] = useState(getUniqueId());
   const [error, setError] = useState(false);
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
@@ -75,18 +75,20 @@ const CreationTag = ({ type, placeholder, width, label, onTagCreated, onTagDelet
     const updateDefaultLabelArray = [...defaultLabelArray];
     
     if (!error && (keyCode === '13' || keyCode === '9')) {
-      key.preventDefault();
-      updateDefaultLabelArray.push(inputValue);
-      setDefaultLabelArray(updateDefaultLabelArray);
-      onTagCreated && onTagCreated(inputValue.trim());
-      setInputValue('');
+      if (inputValue.trim()) {
+        key.preventDefault();
+        updateDefaultLabelArray.push(inputValue);
+        setDefaultLabelArray(updateDefaultLabelArray);
+        onTagCreated && onTagCreated(inputValue);
+        setInputValue('');
+      }
     } 
   };
 
   useEffect(() => {
     const id = getUniqueId();
     setLabelId(id);
-    if (defaultValue) {
+    if (defaultValue.length) {
       const updateDefaultLabelArray = [...defaultLabelArray];
       defaultValue.forEach(value => updateDefaultLabelArray.push(value));
       setDefaultLabelArray(updateDefaultLabelArray);
@@ -160,7 +162,7 @@ CreationTag.defaultProps = {
   disabled: false,
   onErrorMessage: null,
   onError: () => null,
-  defaultValue: [''],
+  defaultValue: [],
 };
 
 export default React.memo(CreationTag);

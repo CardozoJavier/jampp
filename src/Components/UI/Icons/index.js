@@ -6,7 +6,6 @@ export { default as HelpIcon } from './HelpIcon';
 export { default as InfoIcon } from './InfoIcon';
 export { default as UndoIcon } from './UndoIcon';
 export { default as BroomIcon } from './BroomIcon';
-export { default as LockIcon } from './LockIcon';
 export { default as AlertIcon } from './AlertIcon';
 export { default as CheckIcon } from './CheckIcon';
 export { default as TrashIcon } from './TrashIcon';

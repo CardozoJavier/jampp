@@ -5,14 +5,14 @@ import { Input } from '../CreationTag/styles';
 import { fonts } from '../styles';
 const { size10 } = fonts;
 
-const InputText = ({ id, defaultValue, onChange, disabled, minWidth, margin, offset, fontSize, ...props }) => {
+const InputText = ({ id, defaultValue, onChange, disabled, minWidth, margin, offset, fontSize, valueTrimed, ...props }) => {
   const [value, setValue] = useState(defaultValue);
   const trimValue = removeEmptySpace(value);
   const [width, setWidth] = useState(minWidth);
 
   
   const handleChange = (e) => {
-    const inputValue = e.target.value;
+    const inputValue = valueTrimed ? removeEmptySpace(e.target.value) : e.target.value;
     setValue(inputValue);
     onChange(id, inputValue);
   };
@@ -30,7 +30,7 @@ const InputText = ({ id, defaultValue, onChange, disabled, minWidth, margin, off
       onChange={handleChange}
       style={{ display: trimValue.length || minWidth ? 'block' : 'none', }}
       placeholder=""
-      // fontSize={size10}
+      fontSize={fontSize}
       width={width}
       disabled={disabled}
       minWidth={minWidth}

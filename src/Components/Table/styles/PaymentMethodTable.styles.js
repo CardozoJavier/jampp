@@ -30,6 +30,8 @@ export const PaymentTableContainer = styled(TableContainer)`
 export const PaymentRowContainer = styled(RowContainer)`
   grid-template-columns: 8% 17% 25% 25% 25%;
   grid-template-columns: ${({ gridTemplateColumns }) => gridTemplateColumns};
+  padding: ${({ padding }) => padding};
+  margin: ${({ margin }) => margin};
   &.selected {
     background-color: ${violet.v05};
     transition: background-color .3s;

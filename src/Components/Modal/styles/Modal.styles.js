@@ -17,6 +17,7 @@ export const ModalContainer = styled(CardContainer)`
   justify-content: space-between;
   min-height: ${({ minHeight }) => minHeight};
   width: ${({ width }) => width};
+  background-color: white;
 `;
 
 export const ModalTitle = styled(CardTitle)`
@@ -28,12 +29,12 @@ export const ModalHeader = styled(CardHeader)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 15px;
+  margin: 16px 22px;
 
   ${XIconContainer} {
     svg {
-      width: 6px;
-      height: 6px;
+      width: 8px;
+      height: 8px;
     }
   }
 
