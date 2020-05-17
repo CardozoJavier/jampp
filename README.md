@@ -1,6 +1,6 @@
 # Librería de componentes
 
-> > > [Live storybook](http://storybooks-preview.jampp.com/?path=/story/structures--modal-a)
+> [Live storybook](http://storybooks-preview.jampp.com/?path=/story/structures--modal-a)
 
 
 
