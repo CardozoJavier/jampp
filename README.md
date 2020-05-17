@@ -1,6 +1,11 @@
 # Librería de componentes
 
-[Live storybook](http://storybooks-preview.jampp.com/?path=/story/structures--modal-a)
+> > > [Live storybook](http://storybooks-preview.jampp.com/?path=/story/structures--modal-a)
+
+
+
+![Captura de Pantalla 2020-05-17 a la(s) 00 26 53](https://user-images.githubusercontent.com/32943802/82135139-7b426b00-97d5-11ea-8027-4847e2854580.png)
+
 
 **Pasos para levantar la app:**
 
