@@ -18,6 +18,7 @@ import dropdownProps from './dropdownProps';
  */
 const MultipleOptionDropdown = ({ type = 'basic', text, children, leftIcon, disabled }) => {
   const { defaultClassName, optionalClassName, buttonClassName } = dropdownProps[type];
+  const childrenArray = children && !Array.isArray(children) ? [children] : children;
 
   const [className, setClassName] = useState(defaultClassName);
   const [chevron, setChevron] = useState(dropdownProps.chevron.defaultClassName);
@@ -82,7 +83,7 @@ const MultipleOptionDropdown = ({ type = 'basic', text, children, leftIcon, disa
           }}
         />
       </ButtonDropdownContainer>
-      <MultipleOptionList children={children} className={className} listId={listId} />
+      <MultipleOptionList children={childrenArray} className={className} listId={listId} />
     </>
   );
 };

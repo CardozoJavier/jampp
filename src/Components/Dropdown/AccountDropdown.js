@@ -25,10 +25,12 @@ const classesName = {
  *  @param {Node} children - (Optional) They're the options to be display.
  *  @param {String} email - (Optional) It's the email to be displayed above of sign-out button.
  *  @param {Function} signOutCallback - (Optional) Callback to trigger on click button event. It receive the email in first argument.
+ *  @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
  *  @return {React Component} A view for account dropdown with avatar and a selectable list inside.
  */
-const AccountDropdown = ({ name, description, avatarSrc, children, email, signOutCallback }) => {
+const AccountDropdown = ({ name, description, avatarSrc, children, email, signOutCallback, onChange }) => {
   const { defaultClassName, optionalClassName } = classesName['normal'];
+  const childrenArray = children && !Array.isArray(children) ? [children] : children;
 
   const [className, setClassName] = useState(defaultClassName);
   const [chevron, setChevron] = useState(classesName.chevron.defaultClassName);
@@ -94,11 +96,12 @@ const AccountDropdown = ({ name, description, avatarSrc, children, email, signOu
       <OptionListAccount
         type="unique-option"
         OptionItem={UniqueOption}
-        children={children}
+        children={childrenArray}
         className={className}
         email={email}
         listId={listId}
         signOutCallback={signOutCallback}
+        onChange={onChange}
       />
     </>
   );
@@ -111,12 +114,14 @@ AccountDropdown.propTypes = {
   children: PropTypes.node,
   email: PropTypes.string,
   signOutCallback: PropTypes.func,
+  onChange: PropTypes.func,
 };
 
 AccountDropdown.defaultProps = {
   children: null,
   email: '',
   signOutCallback: () => null,
+  onChange: () => null,
 };
 
 

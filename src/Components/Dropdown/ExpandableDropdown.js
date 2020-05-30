@@ -21,6 +21,7 @@ import { UniqueOption } from '../UniqueOption';
  */
 const ExpandableDropdown = ({ type = 'basic', text, children, disabled, defaultValue, onChange }) => {
   const { defaultClassName, optionalClassName, buttonClassName } = dropdownProps[type];
+  const childrenArray = children && !Array.isArray(children) ? [children] : children;
 
   const [className, setClassName] = useState(defaultClassName);
   const [chevron, setChevron] = useState(dropdownProps.chevron.defaultClassName);
@@ -64,7 +65,7 @@ const ExpandableDropdown = ({ type = 'basic', text, children, disabled, defaultV
       <OptionList
         type="unique-option"
         OptionItem={UniqueOption}
-        children={children}
+        children={childrenArray}
         className={className}
         onSelect={onSelect}
         optionSelected={optionSelected}

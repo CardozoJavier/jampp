@@ -38,6 +38,7 @@ const OptionDropdown = ({ type = 'basic',
   buttonList,
 }) => {
   const { defaultClassName, optionalClassName, buttonClassName, typeList, buttonProps } = dropdownProps[type];
+  const childrenArray = children && !Array.isArray(children) ? [children] : children;
   const [className, setClassName] = useState(defaultClassName);
   const [chevron, setChevron] = useState(dropdownProps.chevron.defaultClassName);
 
@@ -162,7 +163,7 @@ const OptionDropdown = ({ type = 'basic',
         wide={wide}
         type={typeList}
         width={listWidth}
-        children={children}
+        children={childrenArray}
         className={className}
         onSelect={onSelect}
         notCheckIcon={notCheckIcon}
