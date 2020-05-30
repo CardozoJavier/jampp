@@ -101,6 +101,7 @@ export const Header = () => (
  *  @prop {String} name - (Required) It's the name to be displayed next to avatar.
  *  @prop {String} description - (Required) It's the description to be displayed below of name.
  *  @prop {String} email - (Required) It's the email to be displayed above of sign-out button.
+ *  @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
  */
 export const BusinessLevel = () => (
   <>
@@ -119,7 +120,7 @@ export const BusinessLevel = () => (
           <HelpIcon props={{ margin: '0 10px', cursor: 'pointer' }} />
           <NotificationsIcon props={{ cursor: 'pointer' }} />
         </NotificationContainer>
-        <AccountDropdown avatarSrc={AvatarSrc} name="Guido Crego" description="Jampp - Head of product" email="guido.crego@jampp.com">
+        <AccountDropdown onChange={e => console.log(`${e} is clicked`)} avatarSrc={AvatarSrc} name="Guido Crego" description="Jampp - Head of product" email="guido.crego@jampp.com">
           <Option label="Organization name A" id="id1" />
           <Option label="Organization name B" id="id2" />
           <Option label="Organization name C" id="id3" />
