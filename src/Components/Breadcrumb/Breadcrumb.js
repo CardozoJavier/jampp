@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Step from './Step';
 import { BreadcrumbContainer } from './styles';
 import { palette } from '../styles';
+
 const { green, gray, action } = palette;
 
 const setBorderColor = (index, currentStep) => {
@@ -16,7 +17,7 @@ const setBorderColor = (index, currentStep) => {
   }
 
   return color;
-}
+};
 
 /**
  * Breadcrumb component should be called with
@@ -29,7 +30,7 @@ const Breadcrumb = ({ children = [], currentStep }) => (
     {children.map((step, index) => (
       <Step
         key={step.props.text}
-        isLast={index === (children.length-1)}
+        isLast={index === (children.length - 1)}
         isCurrent={currentStep === index}
         isDone={currentStep > index}
         isNext={currentStep < index}

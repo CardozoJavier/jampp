@@ -14,4 +14,9 @@ describe('<Breadcrumb /> component', () => {
     render(<Breadcrumb>{children}</Breadcrumb>);
     expect(screen.getAllByText(/text/)).toHaveLength(children.length);
   });
+
+  test('should match snapshot', () => {
+    const { container } = render(<Breadcrumb>{children}</Breadcrumb>);
+    expect(container.firstChild).toMatchSnapshot();
+  });
 });
