@@ -29,6 +29,7 @@ const classesName = {
  */
 const AdAccountsDropdown = ({ name, description, avatarSrc, children, email, signOutCallback }) => {
   const { defaultClassName, optionalClassName } = classesName['normal'];
+  const childrenArray = children && !Array.isArray(children) ? [children] : children;
 
   const [className, setClassName] = useState(defaultClassName);
   const [chevron, setChevron] = useState(classesName.chevron.defaultClassName);
@@ -99,7 +100,7 @@ const AdAccountsDropdown = ({ name, description, avatarSrc, children, email, sig
       <AdAccountsPanel
         type="unique-option"
         OptionItem={UniqueOption}
-        children={children}
+        children={childrenArray}
         className={className}
         email={email}
         listId={listId}

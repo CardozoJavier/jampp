@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import { ButtonInput } from '../Button/styles';
 import { ButtonDropdownContainer } from '../Dropdown/styles';
 import { getClassName, bemDestruct, useEventListener, getReferencedId } from '../../utils';
-import { IconGenerator, DownChevronIcon, EllipseIcon } from '../UI/Icons';
+import { IconGenerator, DownChevronIcon } from '../UI/Icons';
 import AddParameterList from './AddParameterList';
 import dropdownProps from '../Dropdown/dropdownProps';
-import { StatusLabel } from '../Label';
 import StructurePreviewContext from './Context';
 import InputText from './InputText';
 
@@ -50,10 +49,9 @@ const AddParameterDropdown = ({ type = 'basic',
 
   const [className, setClassName] = useState(defaultClassName);
   const [chevron, setChevron] = useState(dropdownProps.chevron.defaultClassName);
-
   const [textButton, setTextButton] = useState(text);
   const [customTextButton, setCustomTextButton] = useState(null);
-  const [defaultOption, setDefaultOption] = useState(defaultValue);
+  const [optionSelected, setOptionSelected] = useState(defaultValue);
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const toggleChevronDirection = getClassName(chevron, dropdownProps.chevron.defaultClassName, dropdownProps.chevron.optionalClassName);
@@ -64,23 +62,13 @@ const AddParameterDropdown = ({ type = 'basic',
   };
   
   const onSelect = useCallback((id, label, color, flat, textType) => {
-    const props = {
-      text: label,
-      color,
-    };
-    const buttonText = textType === 'status-label'
-    ? <StatusLabel {...props} key={id} icon={flat ? null : EllipseIcon} />
-    : label;
     // Avoid error with race condition when state is updated.
-    setTimeout(() => setTextButton(buttonText), 0);
+    setTimeout(() => setTextButton(label), 0);
     onChange(id, label);
     const text = customParam?.get(optionDropdownId)?.buttonText;
     handleOptionChange(optionDropdownId, label, id, text);
-    if (customTextButton) {
-      setDefaultOption('custom-param');
-      setCustomTextButton(false);
-      onChange(textButton);
-    }
+    setTimeout(() => setOptionSelected(id));
+    setCustomTextButton(false);
   }, [children]);
 
   /**
@@ -105,15 +93,10 @@ const AddParameterDropdown = ({ type = 'basic',
     (e) => {
       setClick(e);
       const targetId = e.target.id;
-      if (targetId !== dropdownButton.id && targetId !== customParamButton.id) {
+  
+      if (targetId !== dropdownButton.id) {
         setChevron(dropdownProps.chevron.defaultClassName);
         setClassName(defaultClassName);
-        if (customTextButton) {
-          setDefaultOption('custom-param');
-          setCustomTextButton(false);
-          onChange(textButton);
-          handleOptionChange(optionDropdownId, textButton, 'custom-param');
-        }
       }
     },
     [dropdownButton, setClick, customTextButton, textButton]
@@ -135,7 +118,7 @@ const AddParameterDropdown = ({ type = 'basic',
    * Callback to set custom mode for button text
    */
   const customizeTextClick = () => {
-    setDefaultOption('custom-param');
+    setOptionSelected('__custom-param__');
     setCustomTextButton(true);
   };
 
@@ -145,10 +128,9 @@ const AddParameterDropdown = ({ type = 'basic',
       e.preventDefault();
       setChevron(dropdownProps.chevron.defaultClassName);
       setClassName(defaultClassName);
-      setDefaultOption('custom-param');
       setCustomTextButton(false);
       onChange(textButton);
-      handleOptionChange(optionDropdownId, textButton, 'custom-param');
+      handleOptionChange(optionDropdownId, textButton, '__custom-param__');
     };
   };
 
@@ -185,10 +167,10 @@ const AddParameterDropdown = ({ type = 'basic',
         className={className}
         onSelect={onSelect}
         notCheckIcon={notCheckIcon}
-        optionDropdownId={optionDropdownId}
         buttonList={buttonList}
         customizeTextClick={customizeTextClick}
         customParamId={customParamId}
+        optionSelected={optionSelected}
       />
     </>
   );

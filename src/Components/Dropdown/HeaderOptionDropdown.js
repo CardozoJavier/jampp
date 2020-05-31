@@ -20,6 +20,7 @@ import { ButtonInput } from '../Button/styles';
  */
 const HeaderOptionDropdown = ({ text, type = 'basic', menuTitle, children, onChange, disabled, defaultValue }) => {
   const { defaultClassName, optionalClassName, typeList } = dropdownProps[type];
+  const childrenArray = children && !Array.isArray(children) ? [children] : children;
   const chevronDefaultClassName = dropdownProps.chevron.defaultClassName;
   const chevronOptionalClassName = dropdownProps.chevron.optionalClassName;
 
@@ -104,7 +105,7 @@ const HeaderOptionDropdown = ({ text, type = 'basic', menuTitle, children, onCha
       <OptionList
         menuTitle={menuTitle}
         type={typeList}
-        children={children}
+        children={childrenArray}
         className={className}
         onSelect={onSelect}
         optionSelected={optionSelected}
