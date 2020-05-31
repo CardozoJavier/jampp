@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import {
   EmailFieldContainer,
@@ -23,33 +23,37 @@ import { Button } from '../Button';
  * @param {Function} OptionItem - (Required) It's each option component styled to be displayed into list.
  * @param {String} listId - (Required) It's an unique id to identifier each list on click events.
  * @param {Function} signOutCallback - (Optional) Callback to trigger on click button event. It receive the email in first argument.
+ * @param {Function} onSelect - (Optional) Callback to change text displayed in button dropdown. It receive option ID in first argument, and label option in second argument.
+ * @param {String} optionSelected - (Optional) It's the option selected. Should be the Option id.
  * @return {React Component} A view for panel account with input field, a selectable list and sign out button.
  */
-const OptionListAccount = ({ children = [], type, email, className, OptionItem, listId, signOutCallback }) => {
+const OptionListAccount = ({
+  children = [], type, email, className, OptionItem, listId, signOutCallback, onSelect, optionSelected,
+}) => {
   const { defaultClassName } = optionListProps[type];
-  const isThereChildren = !!children;
-  const childrenParsed = isThereChildren ? settingClassName(children, -1, defaultClassName) : [];
-  const [array, setArray] = useState(childrenParsed);
+  const childrenParsed = children ? settingClassName(children, optionSelected, defaultClassName) : [];
 
   /**
    * When an option is clicked, his className is toggle to selected and everyone else are being uncheck.
    */
-  const handleCheck = (id) => {
-    const inputsArray = settingClassName(children, id, defaultClassName);
-    setArray(inputsArray);
-  }
+  const handleCheck = useCallback((id) => {
+    onSelect(id);
+  }, [onSelect]);
 
   useEffect(() => {
-    setArray(childrenParsed);
-  }, [children]);
+    if (optionSelected) {
+      childrenParsed.map((input) => (input.id === optionSelected) && handleCheck(input.id));
+    }
+  }, [childrenParsed, handleCheck, optionSelected]);
 
   return (
     <OptionListContainer className={bemDestruct(className)} id={listId}>
-      {isThereChildren &&
+      {children
+        && (
         <>
           <InputField placeholder="Filter organization" type="icon-small-left" icon={SearchIcon} />
           <OptionItemContainer>
-            {array.map((input) => (
+            {childrenParsed.map((input) => (
               <OptionItem
                 className={input.className}
                 handleCheck={handleCheck}
@@ -64,7 +68,7 @@ const OptionListAccount = ({ children = [], type, email, className, OptionItem, 
             <EmailField>{email}</EmailField>
           </EmailFieldContainer>
         </>
-      }
+        )}
       <ButtonContainer>
         <Button label="Sign out" type="secondary-gray-medium" onClick={signOutCallback} />
       </ButtonContainer>
@@ -86,10 +90,12 @@ OptionListAccount.propTypes = {
   className: PropTypes.string.isRequired,
   OptionItem: PropTypes.func.isRequired,
   signOutCallback: PropTypes.func,
+  onSelect: PropTypes.func.isRequired,
+  optionSelected: PropTypes.string.isRequired,
 };
 
 OptionListAccount.defaultProps = {
   signOutCallback: () => null,
 };
 
-export default OptionListAccount;
+export default React.memo(OptionListAccount);
