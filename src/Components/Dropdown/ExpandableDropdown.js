@@ -19,14 +19,16 @@ import { UniqueOption } from '../UniqueOption';
  * @param {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
  * @return {React Component} A view for button and expandable dropdown of unique option selectable.
  */
-const ExpandableDropdown = ({ type = 'basic', text, children, disabled, defaultValue, onChange }) => {
+const ExpandableDropdown = ({
+  type = 'basic', text, children, disabled, defaultValue, onChange,
+}) => {
   const { defaultClassName, optionalClassName, buttonClassName } = dropdownProps[type];
   const childrenArray = children && !Array.isArray(children) ? [children] : children;
 
   const [className, setClassName] = useState(defaultClassName);
   const [chevron, setChevron] = useState(dropdownProps.chevron.defaultClassName);
   const [optionSelected, setOptionSelected] = useState(defaultValue);
-  
+
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const toggleChevronDirection = getClassName(chevron, dropdownProps.chevron.defaultClassName, dropdownProps.chevron.optionalClassName);
 
@@ -49,7 +51,7 @@ const ExpandableDropdown = ({ type = 'basic', text, children, disabled, defaultV
   return (
     <>
       <ButtonDropdownContainer className={bemDestruct(buttonClassName, disabled)} onClick={disabled ? null : handleClick}>
-        <ButtonInput children={text} />
+        <ButtonInput>{text}</ButtonInput>
         <DownChevronIcon
           props={{
             className: bemDestruct(chevron),
@@ -65,11 +67,12 @@ const ExpandableDropdown = ({ type = 'basic', text, children, disabled, defaultV
       <OptionList
         type="unique-option"
         OptionItem={UniqueOption}
-        children={childrenArray}
         className={className}
         onSelect={onSelect}
         optionSelected={optionSelected}
-      />
+      >
+        {childrenArray}
+      </OptionList>
     </>
   );
 };
