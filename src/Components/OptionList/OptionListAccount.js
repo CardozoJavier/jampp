@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   EmailFieldContainer,
@@ -84,7 +84,7 @@ OptionListAccount.propTypes = {
       color: PropTypes.string,
       children: PropTypes.array,
     }),
-  })).isRequired,
+  })),
   type: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   className: PropTypes.string.isRequired,
@@ -92,9 +92,11 @@ OptionListAccount.propTypes = {
   signOutCallback: PropTypes.func,
   onSelect: PropTypes.func.isRequired,
   optionSelected: PropTypes.string.isRequired,
+  listId: PropTypes.string.isRequired,
 };
 
 OptionListAccount.defaultProps = {
+  children: [],
   signOutCallback: () => null,
 };
 

@@ -52,9 +52,11 @@ const AccountDropdown = ({
   }, [toggleToClassName, toggleChevronDirection]);
 
   const onSelect = useCallback((id) => {
-    setOptionSelected(id);
-    onChange(id);
-  }, [onChange]);
+    if (optionSelected !== id) {
+      setOptionSelected(id);
+      onChange(id);
+    }
+  }, [onChange, optionSelected]);
 
   /**
    * Hook to handle click events on window
