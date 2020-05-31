@@ -31,9 +31,7 @@ const AdAccountsList = ({ children = [], email, className, disabled, listId, sig
       {children.map(child => (
         <ExpandableDropdown
           key={child.props.text}
-          text={child.props.text}
-          type={child.props.type}
-          children={child.props.children}
+          {...child.props}
         />
       ))}
     </OptionItemContainer>

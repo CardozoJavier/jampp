@@ -23,7 +23,7 @@ import { Button } from '../Button';
  */
 const OptionList = ({ children = [], type, className, menuTitle, onSelect, notCheckIcon, minWidth, wide, width, optionSelected, buttonList, customizeTextClick }) => {
   const { defaultClassName, OptionItem } = optionListProps[type];
-  const childrenParsed = settingClassName(children, optionSelected, defaultClassName);
+  const childrenParsed = children ? settingClassName(children, optionSelected, defaultClassName) : [];
 
   /**
    * When an option is clicked, his className is toggle to selected and everyone else are being uncheck.
