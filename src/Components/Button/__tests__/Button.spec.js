@@ -3,7 +3,7 @@ import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import Button from '../Button';
 
-describe('<Button /> component', () => {
+describe('<Button/> component', () => {
   const type = 'primary-default-large';
   const children = 'Button text';
 
@@ -17,5 +17,10 @@ describe('<Button /> component', () => {
     render(<Button type={type} onClick={handleClick}>{children}</Button>);
     fireEvent.click(screen.getByText(children));
     expect(handleClick).toBeCalled();
+  });
+
+  test('should match snapshot', () => {
+    const { container } = render(<Button type={type}>{children}</Button>);
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
