@@ -1,17 +1,20 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { ExpandableCardContainer, CardTitle, ExpandableCardDescription, ExpandableCardHeader, ChildrenContainer } from './styles';
+import {
+  ExpandableCardContainer, CardTitle, ExpandableCardDescription, ExpandableCardHeader, ChildrenContainer,
+} from './styles';
 import { DownChevronIcon, BoldAddIcon, TrashIcon } from '../UI/Icons';
 import { getClassName } from '../../utils';
 import { palette } from '../styles';
 import { Button } from '../Button';
 import { ModalContainerB, ModalRowContainer } from '../Modal/styles';
 import { Modal } from '../Modal';
+
 const { gray, black } = palette;
 
 const expandableCardClassesName = {
   opennedClassName: 'expandable card--default__expand',
-  closedClassName: 'expandable card--default__collapse'
+  closedClassName: 'expandable card--default__collapse',
 };
 
 /**
@@ -23,15 +26,17 @@ const expandableCardClassesName = {
  * @param {String} padding - (Optional) It's the padding of the card container.
  * @return {React Component} A view for card with title and description.
  */
-const ExpandableCard = ({ children, title, description, width, padding, borderBottom, addStructure }) => {
+const ExpandableCard = ({
+  children, title, description, width, padding, borderBottom, addStructure,
+}) => {
   const childrenCloned = addStructure ? React.cloneElement(children) : null;
   const { opennedClassName, closedClassName } = expandableCardClassesName;
 
-  const [className, setClassName] = useState(closedClassName);  
+  const [className, setClassName] = useState(closedClassName);
   const [expand, setExpand] = useState(false);
   const [structure, setStructure] = useState([children]);
   const [modal, setModal] = useState(false);
-  
+
   const toggleToClassName = getClassName(className, opennedClassName, closedClassName);
 
   const handleClick = () => {
@@ -44,13 +49,13 @@ const ExpandableCard = ({ children, title, description, width, padding, borderBo
    */
   const displayModal = (key) => {
     setModal(renderModal(key));
-  }
+  };
 
   /**
    * Modify 'id' prop from origin children element.
    */
   const settingUniqueStructureId = (clone) => (
-    clone.props.children.map(child => (
+    clone.props.children.map((child) => (
       React.cloneElement(child, {
         id: Math.random().toString(),
         key: Math.random().toString(),
@@ -60,7 +65,7 @@ const ExpandableCard = ({ children, title, description, width, padding, borderBo
 
   /**
    * Add duplicated children structure to be rendered.
-   */ 
+   */
   const handleAddStructure = () => {
     const key = Math.random().toString();
     const structuresArray = Array.isArray(structure) ? [...structure] : [structure];
@@ -70,19 +75,19 @@ const ExpandableCard = ({ children, title, description, width, padding, borderBo
       className: 'trash-icon__visible',
       children: settingUniqueStructureId(childrenCloned),
     });
-    
+
     // Add Trash icon in duplicated structures to allowing remove them.
     newStructure.props.children.unshift(
       <TrashIcon props={{
-          width: '18px',
-          height: '18px',
-          fill: gray.g3,
-          margin: '0 0 0 auto',
-          cursor: 'pointer',
-          onClick: () => displayModal(key),
-          hover: black,
-        }}
-      />
+        width: '18px',
+        height: '18px',
+        fill: gray.g3,
+        margin: '0 0 0 auto',
+        cursor: 'pointer',
+        onClick: () => displayModal(key),
+        hover: black,
+      }}
+      />,
     );
 
     structuresArray.push(newStructure);
@@ -94,7 +99,7 @@ const ExpandableCard = ({ children, title, description, width, padding, borderBo
    */
   const handleRemove = (confirm, key) => {
     if (confirm === 'remove-structure') {
-      const structureDeleted = structure.filter(struct => key !== struct.key);
+      const structureDeleted = structure.filter((struct) => key !== struct.key);
       setStructure(structureDeleted);
       setModal(null);
     } else {
@@ -118,7 +123,8 @@ const ExpandableCard = ({ children, title, description, width, padding, borderBo
 
   return (
     <ExpandableCardContainer width={width} padding={padding} className={className}>
-      {title &&
+      {title
+        && (
         <ExpandableCardHeader flexDirection={description ? 'column' : 'row'} borderBottom={borderBottom} onClick={handleClick}>
           <CardTitle>{ title }</CardTitle>
           {description && !expand && <ExpandableCardDescription>{ description }</ExpandableCardDescription>}
@@ -128,16 +134,15 @@ const ExpandableCard = ({ children, title, description, width, padding, borderBo
             className,
             cursor: 'pointer',
             fill: gray.g4,
-            }}
+          }}
           />
         </ExpandableCardHeader>
-      }
+        )}
       <ChildrenContainer className={className}>
         {structure}
         {modal}
-        {addStructure &&
-          <Button onClick={handleAddStructure} label="Add second tracking" type="duplicate-structure" icon={BoldAddIcon} />
-        }
+        {addStructure
+          && <Button onClick={handleAddStructure} label="Add second tracking" type="duplicate-structure" icon={BoldAddIcon} />}
       </ChildrenContainer>
     </ExpandableCardContainer>
   );
