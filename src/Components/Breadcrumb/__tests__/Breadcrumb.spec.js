@@ -3,7 +3,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Breadcrumb from '../Breadcrumb';
 
-describe('<Breadcrumb /> component', () => {
+describe('<Breadcrumb/> component', () => {
   const children = [
     <div key="key1" text="text 1" className="testing-length" />,
     <div key="key2" text="text 2" className="testing-length" />,
