@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CardContainer, CardTitle, CardDescription, CardHeader } from './styles';
+import {
+  CardContainer, CardTitle, CardDescription, CardHeader,
+} from './styles';
 
 /**
  * Card component can be called with
@@ -12,14 +14,17 @@ import { CardContainer, CardTitle, CardDescription, CardHeader } from './styles'
  * @param {String} backgroundColor - (Optional) It's the color of background card container.
  * @return {React Component} A view for card with title and description.
  */
-const Card = ({ children, title, description, width, padding, borderBottom, backgroundColor, }) => (
+const Card = ({
+  children, title, description, width, padding, borderBottom, backgroundColor,
+}) => (
   <CardContainer width={width} padding={padding} backgroundColor={backgroundColor}>
-    {title &&
+    {title
+      && (
       <CardHeader flexDirection={description ? 'column' : 'row'} borderBottom={borderBottom}>
         <CardTitle>{ title }</CardTitle>
         {description && <CardDescription>{ description }</CardDescription>}
       </CardHeader>
-    }
+      )}
     {children}
   </CardContainer>
 );

@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Card /> component should match snapshot 1`] = `
+<div
+  class="sc-bwzfXH ckYFdM"
+  width=""
+>
+  <div
+    class="sc-bxivhb cHFtKl"
+  >
+    <p
+      class="sc-bdVaJa jyIbrl"
+    >
+      Test title
+    </p>
+    <p
+      class="sc-htpNat eqHuob"
+    >
+      Test long description
+    </p>
+  </div>
+  <p>
+    Paragraph element like children prop
+  </p>
+</div>
+`;
