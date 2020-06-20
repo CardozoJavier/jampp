@@ -9,6 +9,8 @@ import dropdownProps from './dropdownProps';
 import { StatusLabel } from '../Label';
 import InputText from '../Structures/InputText';
 
+const FILTER_INPUT_ID = 'filter-input';
+
 /**
  * OptionDropdown component should be called with
  * @param {String} type - (Required) It's defines the classes for displaying or not the option list, and button styles.
@@ -24,7 +26,8 @@ import InputText from '../Structures/InputText';
  * @param {String} buttonList - (Optional) It's the button text to be displayed into list when customize-text type is selected.
  * @return {React Component} A view for button and dropdown of unique option selectable.
  */
-const OptionDropdown = ({ type = 'basic',
+const OptionDropdown = ({
+  type = 'basic',
   text,
   children,
   leftIcon,
@@ -39,6 +42,7 @@ const OptionDropdown = ({ type = 'basic',
 }) => {
   const { defaultClassName, optionalClassName, buttonClassName, typeList, buttonProps } = dropdownProps[type];
   const childrenArray = children && !Array.isArray(children) ? [children] : children;
+  const [options, setOptions] = useState(childrenArray);
   const [className, setClassName] = useState(defaultClassName);
   const [chevron, setChevron] = useState(dropdownProps.chevron.defaultClassName);
 
@@ -55,7 +59,7 @@ const OptionDropdown = ({ type = 'basic',
     setChevron(toggleChevronDirection);
   }, [toggleToClassName, toggleChevronDirection]);
   
-  const onSelect = useCallback((id, label, color, flat, textType) => {
+  const onSelect = useCallback((id, label, color, flat, textType, rollingUpdate) => {
     const props = {
       text: label,
       color,
@@ -66,9 +70,9 @@ const OptionDropdown = ({ type = 'basic',
     // Avoid error with race condition when state is updated.
     setTimeout(() => setTextButton(buttonText), 0);
     setOptionSelected(id);
-    onChange(id, label);
+    !rollingUpdate && onChange(id, label);
     setIsCustomOption(false);
-  }, [children]);
+  }, []);
 
   /**
    * Callback to set value from input text in custom mode
@@ -95,6 +99,18 @@ const OptionDropdown = ({ type = 'basic',
     };
   };
 
+  const onFilterHandler = useCallback((e) => {
+    const value = e.target.value;
+    const filterOptions = childrenArray.filter(option => {
+      if (value.trim()) {
+        const regex = new RegExp(`^${value.toLowerCase()}`);
+        return regex.test(option.props.label.toLowerCase()) || option.props.id === optionSelected;
+      }
+      return option;
+    });
+    setOptions(filterOptions);
+  }, [optionSelected]);
+
   useEffect(() => {
     if (!isCustomOption) {
       setOptionSelected(defaultValue);
@@ -119,8 +135,8 @@ const OptionDropdown = ({ type = 'basic',
   const eventHandler = useCallback(
     (e) => {
       setClick(e);
-      const id = e.target.dataset.id;
-      if (e.target.id !== dropdownButton.id) {
+      // const id = e.target.dataset.id;
+      if (e.target.id !== dropdownButton.id && e.target.id !== FILTER_INPUT_ID) {
         setChevron(dropdownProps.chevron.defaultClassName);
         setClassName(defaultClassName);
         if (customTextButton) {
@@ -163,14 +179,16 @@ const OptionDropdown = ({ type = 'basic',
         wide={wide}
         type={typeList}
         width={listWidth}
-        children={childrenArray}
         className={className}
         onSelect={onSelect}
         notCheckIcon={notCheckIcon}
         buttonList={buttonList}
         customizeTextClick={customizeTextClick}
         optionSelected={optionSelected}
-      />
+        search={type === 'search'}
+        filterInputId={FILTER_INPUT_ID}
+        onFilterHandler={onFilterHandler}
+        >{options}</OptionList>
     </>
   );
 };
