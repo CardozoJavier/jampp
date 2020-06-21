@@ -2,14 +2,14 @@ import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { ButtonInput } from '../Button/styles';
 import { ButtonDropdownContainer } from './styles';
-import { getClassName, bemDestruct, useEventListener, getReferencedId } from '../../utils';
+import { getClassName, bemDestruct, useEventListener, getReferencedId, getUniqueId } from '../../utils';
 import { IconGenerator, DownChevronIcon, EllipseIcon } from '../UI/Icons';
 import { OptionList } from '../OptionList';
 import dropdownProps from './dropdownProps';
 import { StatusLabel } from '../Label';
 import InputText from '../Structures/InputText';
 
-const FILTER_INPUT_ID = 'filter-input';
+const FILTER_INPUT_ID = getUniqueId();
 
 /**
  * OptionDropdown component should be called with
@@ -100,7 +100,7 @@ const OptionDropdown = ({
   };
 
   const onFilterHandler = useCallback((e) => {
-    const value = e.target.value;
+    const { value } = e.target;
     const filterOptions = childrenArray.filter(option => {
       if (value.trim()) {
         const regex = new RegExp(`^${value.toLowerCase()}`);
