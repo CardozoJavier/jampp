@@ -24,7 +24,7 @@ export default {
 
 export const Basic = () => (
   <>
-    <DropdownContainer> 
+    <DropdownContainer>
       {/**
         * MultipleOptionDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
@@ -58,7 +58,7 @@ export const Basic = () => (
           * @prop {String} listWidth - (Optional) It's the width of the list opened.
         * @prop {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
           */}
-        <OptionDropdown defaultValue="id2" text="Text" type="basic-clean" onChange={optionId => console.log('Option ' + optionId + ' is selected')}>
+        <OptionDropdown defaultValue="id2" text="Text" type="basic-clean" onChange={(optionId) => console.log(`Option ${optionId} is selected`)}>
           {/**
             * Option component should be used with
             * @prop {String} label - (Optional) It's a text to be display inside button.
@@ -71,10 +71,10 @@ export const Basic = () => (
         </OptionDropdown>
       </DropdownListContainer>
     </DropdownContainer>
- 
+
     <DropdownContainer>
       <DropdownListContainer>
-      {/**
+        {/**
         * OptionDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
@@ -85,7 +85,7 @@ export const Basic = () => (
         * @prop {String} listWidth - (Optional) It's the width of the list opened.
         * @prop {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
         */}
-        <OptionDropdown defaultValue="green" text="Text" type="basic-status-label" onChange={optionId => console.log('Option ' + optionId + ' is selected')}>
+        <OptionDropdown defaultValue="green" text="Text" type="basic-status-label" onChange={(optionId) => console.log(`Option ${optionId} is selected`)}>
           {/**
             * Option component should be used with
             * @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
@@ -137,7 +137,7 @@ export const BasicWithLabel = () => (
 
 export const SolidWithIcon = () => (
   <>
-    <DropdownContainer> 
+    <DropdownContainer>
       {/**
         * MultipleOptionDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
@@ -160,7 +160,7 @@ export const SolidWithIcon = () => (
 
     <DropdownContainer>
       <DropdownListContainer>
-      {/**
+        {/**
         * OptionDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
         * @prop {String} text - (Required) Text to be displayed inside button.
@@ -171,17 +171,17 @@ export const SolidWithIcon = () => (
         * @prop {String} listWidth - (Optional) It's the width of the list opened.
         * @prop {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
         */}
-      <OptionDropdown text="Dropdown solid w/icon" type="solid-clean" leftIcon={DownloadFileIcon}>
-        {/**
+        <OptionDropdown text="Dropdown solid w/icon" type="solid-clean" leftIcon={DownloadFileIcon}>
+          {/**
           * Option component should be used with
           * @prop {String} label - (Optional) It's a text to be display inside button.
           * @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
           */}
-        <Option label="Option 1" id="id1" />
-        <Option label="Option 2" id="id2" />
-        <Option label="Option 3" id="id3" />
-        <Option label="Option 4" id="id4" />
-      </OptionDropdown>
+          <Option label="Option 1" id="id1" />
+          <Option label="Option 2" id="id2" />
+          <Option label="Option 3" id="id3" />
+          <Option label="Option 4" id="id4" />
+        </OptionDropdown>
       </DropdownListContainer>
     </DropdownContainer>
 
@@ -199,19 +199,19 @@ export const SolidWithIcon = () => (
         */}
       <DropdownListContainer>
 
-      <OptionDropdown text="Dropdown solid w/icon" type="solid-status-label" leftIcon={DownloadFileIcon}>
-        {/**
+        <OptionDropdown text="Dropdown solid w/icon" type="solid-status-label" leftIcon={DownloadFileIcon}>
+          {/**
           * Option component should be used with
           * @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
           * @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
           * @prop {String} label - (Optional) It's a text to be display inside button.
           * @prop {String} flat - (Optional) Flag to not show small circle next to the text.
           */}
-        <Option label="status" id="red" color="red" flat />
-        <Option label="status" id="yellow" color="yellow" flat />
-        <Option label="status" id="green" color="green" flat />
-        <Option label="status" id="blue" color="blue" flat />
-      </OptionDropdown>
+          <Option label="status" id="red" color="red" flat />
+          <Option label="status" id="yellow" color="yellow" flat />
+          <Option label="status" id="green" color="green" flat />
+          <Option label="status" id="blue" color="blue" flat />
+        </OptionDropdown>
       </DropdownListContainer>
     </DropdownContainer>
 
@@ -229,19 +229,19 @@ export const SolidWithIcon = () => (
         */}
       <DropdownListContainer>
 
-      <OptionDropdown text="Dropdown solid w/icon" type="solid-clean" leftIcon={DownloadFileIcon} disabled={true}>
-        {/**
+        <OptionDropdown text="Dropdown solid w/icon" type="solid-clean" leftIcon={DownloadFileIcon} disabled>
+          {/**
           * Option component should be used with
           * @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
           * @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
           * @prop {String} label - (Optional) It's a text to be display inside button.
           * @prop {String} flat - (Optional) Flag to not show small circle next to the text.
           */}
-        <Option label="status" id="id1" color="red" />
-        <Option label="status" id="id2" color="yellow" />
-        <Option label="status" id="id3" color="green" />
-        <Option label="status" id="id4" color="blue" />
-      </OptionDropdown>
+          <Option label="status" id="id1" color="red" />
+          <Option label="status" id="id2" color="yellow" />
+          <Option label="status" id="id3" color="green" />
+          <Option label="status" id="id4" color="blue" />
+        </OptionDropdown>
       </DropdownListContainer>
     </DropdownContainer>
   </>
@@ -249,7 +249,7 @@ export const SolidWithIcon = () => (
 
 export const NoBorder = () => (
   <>
-    <DropdownContainer> 
+    <DropdownContainer>
       {/**
         * MultipleOptionDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
@@ -334,7 +334,7 @@ export const NoBorder = () => (
         * @prop {String} listWidth - (Optional) It's the width of the list opened.
         * @prop {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
       */}
-      <OptionDropdown text="Text" type="no-border-clean" disabled={true}>
+      <OptionDropdown text="Text" type="no-border-clean" disabled>
         {/**
           * Option component should be used with
           * @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
@@ -353,7 +353,7 @@ export const NoBorder = () => (
 
 export const NoBorderLink = () => (
   <>
-    <DropdownContainer> 
+    <DropdownContainer>
       {/**
         * MultipleOptionDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
@@ -438,7 +438,7 @@ export const NoBorderLink = () => (
         * @prop {String} listWidth - (Optional) It's the width of the list opened.
         * @prop {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
         */}
-      <OptionDropdown text="Advanced Options" type="no-border-link-clean" disabled={true}>
+      <OptionDropdown text="Advanced Options" type="no-border-link-clean" disabled>
         {/**
           * Option component should be used with
           * @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
@@ -457,7 +457,7 @@ export const NoBorderLink = () => (
 
 export const NoBorderPurple = () => (
   <>
-    <DropdownContainer> 
+    <DropdownContainer>
       {/**
         * MultipleOptionDropdown component should be called with
         * @prop {String} type - (Required) Define dropdown classes for styling.
@@ -544,7 +544,7 @@ export const CustomizeText = () => (
         * @prop {String} listWidth - (Optional) It's the width of the list opened.
       * @prop {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
         */}
-      <OptionDropdown defaultValue="id2" text="Text" type="customize-text" buttonList="Custom param" onChange={optionId => console.log('Option ' + optionId + ' is selected')}>
+      <OptionDropdown defaultValue="id2" text="Text" type="customize-text" buttonList="Custom param" onChange={(optionId) => console.log(`Option ${optionId} is selected`)}>
         {/**
           * Option component should be used with
           * @prop {String} label - (Optional) It's a text to be display inside button.
@@ -557,4 +557,85 @@ export const CustomizeText = () => (
       </OptionDropdown>
     </DropdownListContainer>
   </DropdownContainer>
+);
+
+export const SearchDropdown = () => (
+  <>
+    <DropdownContainer>
+      {/**
+      * MultipleOptionDropdown component should be called with
+      * @prop {String} type - (Required) Define dropdown classes for styling.
+      * @prop {String} text - (Required) Text to be displayed inside button.
+      * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+      */}
+      <MultipleOptionDropdown text="Text" type="search">
+        {/**
+        * Checkbox component should be called with
+        * @prop {String} type - (Required) Define dropdown classes for styling.
+        * @prop {Boolean} inverted - (Optional) If true, the checkbox is put on the left text.
+        * @prop {String} label - (Optional) It's a text to be display next to checkbox.
+        */}
+        <Checkbox label="Option 1" type="dropdown" right checked />
+        <Checkbox label="Option 2" type="dropdown" right />
+        <Checkbox label="Option 3" type="dropdown" right />
+        <Checkbox label="Option 4" type="dropdown" right />
+      </MultipleOptionDropdown>
+    </DropdownContainer>
+
+    <DropdownContainer>
+      <DropdownListContainer>
+        {/**
+        * OptionDropdown component should be called with
+        * @prop {String} type - (Required) Define dropdown classes for styling.
+        * @prop {String} text - (Required) Text to be displayed inside button.
+        * @prop {Boolean} notCheckIcon - (Optional) It's a modifier to not display the check icon next to text.
+        * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
+        * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+        * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
+        * @prop {String} listWidth - (Optional) It's the width of the list opened.
+        * @prop {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
+        */}
+        <OptionDropdown defaultValue="id2" text="Text" type="search" onChange={(optionId) => console.log(`Option ${optionId} is selected`)}>
+          {/**
+          * Option component should be used with
+          * @prop {String} label - (Optional) It's a text to be display inside button.
+          * @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
+          */}
+          <Option label="Option 1" id="id1" />
+          <Option label="Option 2" id="id2" />
+          <Option label="Option 3" id="id3" />
+          <Option label="Option 4" id="id4" />
+        </OptionDropdown>
+      </DropdownListContainer>
+    </DropdownContainer>
+
+    <DropdownContainer>
+      <DropdownListContainer>
+        {/**
+      * OptionDropdown component should be called with
+      * @prop {String} type - (Required) Define dropdown classes for styling.
+      * @prop {String} text - (Required) Text to be displayed inside button.
+      * @prop {Boolean} notCheckIcon - (Optional) It's a modifier to not display the check icon next to text.
+      * @prop {Boolean} wide - (Optional) If true, dropdown's width will be 100%.
+      * @prop {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
+      * @prop {Function} onChange - (Optional) Callback to trigger on onChange event. It receive option ID in first argument.
+      * @prop {String} listWidth - (Optional) It's the width of the list opened.
+      * @prop {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
+      */}
+        <OptionDropdown defaultValue="green" text="Text" type="basic-status-label" onChange={(optionId) => console.log(`Option ${optionId} is selected`)}>
+          {/**
+          * Option component should be used with
+          * @prop {String} id - (Required) It's an unique ID to identifier each option in SwitchGroup.
+          * @prop {String} color - (Required) Used for setting the color of label. Can be 'green' (default), 'blue', 'red', 'yellow'.
+          * @prop {String} label - (Optional) It's a text to be display inside button.
+          * @prop {String} flat - (Optional) Flag to not show small circle next to the text.
+          */}
+          <Option label="status" id="red" color="red" />
+          <Option label="status" id="yellow" color="yellow" />
+          <Option label="status" id="green" color="green" />
+          <Option label="status" id="blue" color="blue" />
+        </OptionDropdown>
+      </DropdownListContainer>
+    </DropdownContainer>
+  </>
 );
