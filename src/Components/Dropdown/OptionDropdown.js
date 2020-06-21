@@ -135,7 +135,6 @@ const OptionDropdown = ({
   const eventHandler = useCallback(
     (e) => {
       setClick(e);
-      // const id = e.target.dataset.id;
       if (e.target.id !== dropdownButton.id && e.target.id !== FILTER_INPUT_ID) {
         setChevron(dropdownProps.chevron.defaultClassName);
         setClassName(defaultClassName);
