@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { OptionCheckboxGroup, MenuTitle } from './styles';
+import {
+  OptionCheckboxGroup, MenuTitle, InputSearchContainer, InputSearch,
+} from './styles';
 import { bemDestruct, settingClassName } from '../../utils';
 import optionListProps from './optionListProps';
 import { Button } from '../Button';
@@ -19,28 +21,53 @@ import { Button } from '../Button';
  * @param {String} optionSelected - (Optional) It's the option selected. Should be the Option id.
  * @param {String} buttonList - (Optional) It's the button text to be displayed into list when customize-text type is selected.
  * @param {Function} customizeTextClick - (Optional) Callback to trigger when button for customize button text is clicked.
+ * @param {Boolean} search - (Optional) If true, an input filter is displayed into dropdown list.
+ * @param {String} filterInputId - (Required) It's an unique ID to identifier the filter input and avoid close dropdown when is clicked.
+ * @param {Function} onFilterHandler - (Optional) Callback to trigger when input filter change.
  * @return {React Component} A view in which one option can be selected.
  */
-const OptionList = ({ children = [], type, className, menuTitle, onSelect, notCheckIcon, minWidth, wide, width, optionSelected, buttonList, customizeTextClick }) => {
+const OptionList = ({
+  children = [],
+  type,
+  className,
+  menuTitle,
+  onSelect,
+  notCheckIcon,
+  minWidth,
+  wide,
+  width,
+  optionSelected,
+  buttonList,
+  customizeTextClick,
+  search,
+  filterInputId,
+  onFilterHandler,
+}) => {
   const { defaultClassName, OptionItem } = optionListProps[type];
   const childrenParsed = children ? settingClassName(children, optionSelected, defaultClassName) : [];
 
   /**
    * When an option is clicked, his className is toggle to selected and everyone else are being uncheck.
    */
-  const handleCheck = useCallback((id, label, color, flat, textType) => {
-    onSelect(id, label, color, flat, textType);
-  }, [optionSelected]);
+  const handleCheck = useCallback((id, label, color, flat, textType, rollingUpdate) => {
+    onSelect(id, label, color, flat, textType, rollingUpdate);
+  }, [onSelect]);
 
   useEffect(() => {
     if (optionSelected) {
-      childrenParsed.forEach(input => (input.id === optionSelected) && handleCheck(input.id, input.label, input.color, input.flat, type));
-    };
-  }, [children, optionSelected]);
+      childrenParsed.forEach((input) => (input.id === optionSelected) && handleCheck(input.id, input.label, input.color, input.flat, type, 'rolling-update'));
+    }
+  }, [children, childrenParsed, handleCheck, optionSelected, type]);
 
   return (
     <OptionCheckboxGroup customSelected={optionSelected === 'custom-param'} className={bemDestruct(className)} minWidth={minWidth} wide={wide} width={width}>
       {menuTitle && <MenuTitle>{menuTitle}</MenuTitle>}
+      {search
+        && (
+        <InputSearchContainer>
+          <InputSearch id={filterInputId} onChange={onFilterHandler} type="text" placeholder="Search" />
+        </InputSearchContainer>
+        )}
       {childrenParsed.map((input) => (
         <OptionItem
           className={input.className}
@@ -53,44 +80,50 @@ const OptionList = ({ children = [], type, className, menuTitle, onSelect, notCh
           id={input.id}
         />
       ))}
-      {buttonList ?
-        <Button type="link-customize-left" label={buttonList} onClick={customizeTextClick} />
-        : null
-      }
+      {buttonList
+        ? <Button type="link-customize-left" label={buttonList} onClick={customizeTextClick} />
+        : null}
     </OptionCheckboxGroup>
   );
 };
 
 OptionList.propTypes = {
-    children: PropTypes.arrayOf(PropTypes.shape({
-      props: PropTypes.shape({
-        id: PropTypes.string,
-        label: PropTypes.string,
-        color: PropTypes.string,
-        children: PropTypes.array,
-      }),
-    })).isRequired,
-    type: PropTypes.string.isRequired,
-    className: PropTypes.string.isRequired,
-    menuTitle: PropTypes.string,
-    onSelect: PropTypes.func,
-    onChange: PropTypes.func,
-    notCheckIcon: PropTypes.bool,
-    minWidth: PropTypes.string,
-    width: PropTypes.string,
-    buttonList: PropTypes.string,
-    customizeTextClick: PropTypes.func,
-    optionSelected: PropTypes.string.isRequired,
-  };
-  
+  children: PropTypes.arrayOf(PropTypes.shape({
+    props: PropTypes.shape({
+      id: PropTypes.string,
+      label: PropTypes.string,
+      color: PropTypes.string,
+      children: PropTypes.array,
+    }),
+  })).isRequired,
+  type: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired,
+  menuTitle: PropTypes.string,
+  onSelect: PropTypes.func,
+  notCheckIcon: PropTypes.bool,
+  minWidth: PropTypes.string,
+  wide: PropTypes.bool,
+  width: PropTypes.string,
+  buttonList: PropTypes.string,
+  customizeTextClick: PropTypes.func,
+  optionSelected: PropTypes.string.isRequired,
+  search: PropTypes.bool,
+  filterInputId: PropTypes.string,
+  onFilterHandler: PropTypes.func,
+};
+
 OptionList.defaultProps = {
   menuTitle: '',
   onSelect: () => null,
   notCheckIcon: false,
   minWidth: '',
+  wide: false,
   width: '',
   buttonList: null,
   customizeTextClick: () => null,
+  search: false,
+  filterInputId: null,
+  onFilterHandler: () => null,
 };
-  
+
 export default React.memo(OptionList);
