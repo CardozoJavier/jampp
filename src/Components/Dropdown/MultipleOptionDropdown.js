@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import MultipleOptionList from '../MultipleOptionList';
 import { ButtonInput } from '../Button/styles';
 import { ButtonDropdownContainer } from './styles';
-import { bemDestruct, getClassName, useEventListener, getReferencedId } from '../../utils';
+import {
+  bemDestruct, getClassName, useEventListener, getReferencedId, getUniqueId,
+} from '../../utils';
 import { IconGenerator, DownChevronIcon } from '../UI/Icons';
 import dropdownProps from './dropdownProps';
 
@@ -16,13 +18,18 @@ import dropdownProps from './dropdownProps';
  * @param {Boolean} disabled - (Optional) If true, disable actions triggering and styles in component.
  * @return {React Component} A view for button and dropdown of multiple options.
  */
-const MultipleOptionDropdown = ({ type = 'basic', text, children, leftIcon, disabled }) => {
+const MultipleOptionDropdown = ({
+  type = 'basic', text, children, leftIcon, disabled,
+}) => {
   const { defaultClassName, optionalClassName, buttonClassName } = dropdownProps[type];
   const childrenArray = children && !Array.isArray(children) ? [children] : children;
+  const [options, setOptions] = useState(childrenArray);
+  const [filterOptions, setFilterOptions] = useState(options);
+  const [selectedOptions, setSelectedOptions] = useState({});
 
   const [className, setClassName] = useState(defaultClassName);
   const [chevron, setChevron] = useState(dropdownProps.chevron.defaultClassName);
-  
+
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const toggleChevronDirection = getClassName(chevron, dropdownProps.chevron.defaultClassName, dropdownProps.chevron.optionalClassName);
 
@@ -32,14 +39,76 @@ const MultipleOptionDropdown = ({ type = 'basic', text, children, leftIcon, disa
   };
 
   /**
+   * Filter dropdown options that matchs with input text value or options already selected
+   */
+  const onFilterHandler = useCallback((e) => {
+    const { value } = e.target;
+    const updateFilterOptions = options.filter((option) => {
+      if (value.trim()) {
+        const regex = new RegExp(`^${value.toLowerCase()}`);
+        return regex.test(option.props.label.toLowerCase()) || selectedOptions[option.props.id];
+      }
+      return option;
+    });
+    setFilterOptions(updateFilterOptions);
+  }, [options, selectedOptions]);
+
+  /**
+   * When an option is selected, onSelect updates the options selected (necessary in filter function) and execute the original callback setted to checkbox
+   */
+  const onSelect = useCallback((option, status, originalCallback = () => null) => {
+    const selectedOptionsHandler = (prev) => ({
+      ...prev,
+      [option]: status,
+    });
+    const updateOptionsHandler = ((prevOptions) => (
+      prevOptions.map((prevOption) => {
+        if (prevOption.props.id === option) {
+          return React.cloneElement(prevOption, {
+            ...prevOption.props,
+            checked: status,
+          });
+        }
+        return prevOption;
+      })
+    ));
+    originalCallback(option, status);
+    setOptions(updateOptionsHandler);
+    setSelectedOptions(selectedOptionsHandler);
+  }, []);
+
+  /**
+   * When dropdown is type 'search', here we update the checkbox onChange callback for support filtering options
+   */
+  useEffect(() => {
+    if (type === 'search') {
+      const updateSelectedOptions = {};
+      const updateOptions = childrenArray.map((option) => {
+        const id = getUniqueId();
+        const clone = React.cloneElement(option, {
+          ...option.props,
+          id,
+          key: option.props.label,
+          onChange: (optionId, optionStatus) => onSelect(optionId, optionStatus, option.props.onChange),
+        });
+        updateSelectedOptions[id] = option.props.checked;
+        return clone;
+      });
+      setSelectedOptions(updateSelectedOptions);
+      setFilterOptions(updateOptions);
+      setOptions(updateOptions);
+    }
+  }, [childrenArray, onSelect, type]);
+
+  /**
    * Hook to handle click events on window
    */
   const dropdownId = getReferencedId();
   const listId = getReferencedId();
   const [, setClick] = useState();
   let dropdownButton;
-  let dropdownList; 
-    
+  let dropdownList;
+
   useEffect(() => {
     dropdownButton = document.getElementById(dropdownId) || {};
     dropdownList = document.getElementById(listId) || { contains: () => null };
@@ -49,20 +118,22 @@ const MultipleOptionDropdown = ({ type = 'basic', text, children, leftIcon, disa
     (e) => {
       setClick(e);
 
-      if(e.target.id !== dropdownButton.id && !dropdownList.contains(e.target)) {
+      if (e.target.id !== dropdownButton.id && !dropdownList.contains(e.target)) {
         setChevron(dropdownProps.chevron.defaultClassName);
         setClassName(defaultClassName);
       }
     },
-    [dropdownButton, dropdownList, setClick]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
   );
-  
+
   useEventListener('click', eventHandler);
 
   return (
     <>
       <ButtonDropdownContainer className={bemDestruct(buttonClassName, disabled)} onClick={disabled ? null : handleClick} id={dropdownId}>
-        {leftIcon &&
+        {leftIcon
+          && (
           <IconGenerator
             renderIcon={leftIcon}
             props={{
@@ -70,8 +141,8 @@ const MultipleOptionDropdown = ({ type = 'basic', text, children, leftIcon, disa
             }}
             disabled={disabled}
           />
-        }
-        <ButtonInput children={text} />
+          )}
+        <ButtonInput>{text}</ButtonInput>
         <DownChevronIcon
           props={{
             width: '16px',
@@ -83,7 +154,14 @@ const MultipleOptionDropdown = ({ type = 'basic', text, children, leftIcon, disa
           }}
         />
       </ButtonDropdownContainer>
-      <MultipleOptionList children={childrenArray} className={className} listId={listId} />
+      <MultipleOptionList
+        className={className}
+        listId={listId}
+        search={type === 'search'}
+        onFilterHandler={onFilterHandler}
+      >
+        {filterOptions}
+      </MultipleOptionList>
     </>
   );
 };
@@ -96,7 +174,7 @@ MultipleOptionDropdown.propTypes = {
   disabled: PropTypes.bool,
 };
 
-MultipleOptionDropdown.defaultProps = {
+MultipleOptionDropdown.defaultProps = {
   leftIcon: () => null,
   disabled: false,
 };
