@@ -67,12 +67,11 @@ const OptionDropdown = ({
     const buttonText = textType === 'status-label'
     ? <StatusLabel {...props} key={id} icon={flat ? null : EllipseIcon} />
     : label;
-    // Avoid error with race condition when state is updated.
-    setTimeout(() => setTextButton(buttonText), 0);
+    setTextButton(buttonText);
     setOptionSelected(id);
     !rollingUpdate && onChange(id, label);
     setIsCustomOption(false);
-  }, []);
+  }, [children]);
 
   /**
    * Callback to set value from input text in custom mode
@@ -109,7 +108,7 @@ const OptionDropdown = ({
       return option;
     });
     setOptions(filterOptions);
-  }, [optionSelected]);
+  }, [childrenArray, optionSelected]);
 
   useEffect(() => {
     if (!isCustomOption) {
@@ -119,6 +118,7 @@ const OptionDropdown = ({
 
   useEffect(() => {
     setTextButton(text);
+    setOptions(childrenArray);
   }, [children]);
 
   /**
