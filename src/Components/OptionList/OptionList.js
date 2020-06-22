@@ -22,7 +22,7 @@ import { Button } from '../Button';
  * @param {String} buttonList - (Optional) It's the button text to be displayed into list when customize-text type is selected.
  * @param {Function} customizeTextClick - (Optional) Callback to trigger when button for customize button text is clicked.
  * @param {Boolean} search - (Optional) If true, an input filter is displayed into dropdown list.
- * @param {String} filterInputId - (Required) It's an unique ID to identifier the filter input and avoid close dropdown when is clicked.
+ * @param {String} filterInputId - (Optional) It's an unique ID to identifier the filter input and avoid close dropdown when is clicked.
  * @param {Function} onFilterHandler - (Optional) Callback to trigger when input filter change.
  * @return {React Component} A view in which one option can be selected.
  */

@@ -84,7 +84,7 @@ const MultipleOptionDropdown = ({
     if (type === 'search') {
       const updateSelectedOptions = {};
       const updateOptions = childrenArray.map((option) => {
-        const id = getUniqueId();
+        const id = option.props.id || getUniqueId();
         const clone = React.cloneElement(option, {
           ...option.props,
           id,
