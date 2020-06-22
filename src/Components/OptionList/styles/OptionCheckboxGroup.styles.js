@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { palette } from '../../styles';
+
 const { violet, gray } = palette;
 
 export default styled.div`
@@ -12,14 +13,15 @@ export default styled.div`
   z-index: 1;
   min-width: ${({ minWidth }) => minWidth || '130px'};
   width: ${({ width }) => width || 'inherit'};
+  width: ${({ wide }) => (wide ? '100%' : 'auto')};
   max-height: 50vh;
   overflow: scroll;
   margin-bottom: 10px;
 
   .button.link--customize-left {
-    background-color: ${({ customSelected }) => customSelected ? violet.v05 : 'unset'};
+    background-color: ${({ customSelected }) => (customSelected ? violet.v05 : 'unset')};
     &:hover {
-      background-color: ${({ customSelected }) => customSelected ? violet.v05 : gray.g0};
+      background-color: ${({ customSelected }) => (customSelected ? violet.v05 : gray.g0)};
     }
   }
 
