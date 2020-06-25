@@ -67,7 +67,8 @@ const OptionDropdown = ({
     const buttonText = textType === 'status-label'
     ? <StatusLabel {...props} key={id} icon={flat ? null : EllipseIcon} />
     : label;
-    setTextButton(buttonText);
+    // Avoid error with race condition when state is updated.
+    setTimeout(() => setTextButton(buttonText), 0);
     setOptionSelected(id);
     !rollingUpdate && onChange(id, label);
     setIsCustomOption(false);
