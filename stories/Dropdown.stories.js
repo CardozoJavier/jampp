@@ -595,7 +595,7 @@ export const SearchDropdown = () => (
         * @prop {String} listWidth - (Optional) It's the width of the list opened.
         * @prop {String} defaultValue - (Optional) It's the default option selected. Should be the Option id.
         */}
-        <OptionDropdown defaultValue="id2" text="Text" type="search" onChange={(optionId) => console.log(`Option ${optionId} is selected`)}>
+        <OptionDropdown defaultValue="id2" text="Text" type="strict-search" onChange={(optionId) => console.log(`Option ${optionId} is selected`)}>
           {/**
           * Option component should be used with
           * @prop {String} label - (Optional) It's a text to be display inside button.
