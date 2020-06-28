@@ -6,6 +6,7 @@ import {
 import { bemDestruct, settingClassName } from '../../utils';
 import optionListProps from './optionListProps';
 import { Button } from '../Button';
+import { match } from '../Dropdown/utils';
 
 /**
  * OptionList component should be called with
@@ -45,6 +46,7 @@ const OptionList = ({
 }) => {
   const { defaultClassName, OptionItem } = optionListProps[type];
   const childrenParsed = children ? settingClassName(children, optionSelected, defaultClassName) : [];
+  const isOpen = match('opened', className);
 
   /**
    * When an option is clicked, his className is toggle to selected and everyone else are being uncheck.
@@ -58,6 +60,14 @@ const OptionList = ({
       childrenParsed.forEach((input) => (input.id === optionSelected) && handleCheck(input.id, input.label, input.color, input.flat, type, 'rolling-update'));
     }
   }, [children, childrenParsed, handleCheck, optionSelected, type]);
+
+  useEffect(() => {
+    if (search && isOpen) {
+      const input = document.getElementById(filterInputId);
+      // Set delay for avoid blur before list is open
+      setTimeout(() => input.focus(), 100);
+    }
+  }, [isOpen, filterInputId, search]);
 
   return (
     <OptionCheckboxGroup customSelected={optionSelected === 'custom-param'} className={bemDestruct(className)} minWidth={minWidth} wide={wide} width={width}>
