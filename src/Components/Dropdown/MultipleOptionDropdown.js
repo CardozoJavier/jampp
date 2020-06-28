@@ -8,6 +8,7 @@ import {
 } from '../../utils';
 import { IconGenerator, DownChevronIcon } from '../UI/Icons';
 import dropdownProps from './dropdownProps';
+import { typeFilter, isType } from './utils';
 
 /**
  * MultipleOptionDropdown component should be called with
@@ -32,11 +33,20 @@ const MultipleOptionDropdown = ({
 
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const toggleChevronDirection = getClassName(chevron, dropdownProps.chevron.defaultClassName, dropdownProps.chevron.optionalClassName);
+  const isTypeSearch = isType('search', type);
 
   const handleClick = () => {
     setClassName(toggleToClassName);
     setChevron(toggleChevronDirection);
   };
+
+  /**
+   * Order options by selected
+   */
+  const sortingOptionSelected = useCallback((option) => {
+    if (selectedOptions[option.props.id]) return -1;
+    return 1;
+  }, [selectedOptions]);
 
   /**
    * Filter dropdown options that matchs with input text value or options already selected
@@ -45,13 +55,13 @@ const MultipleOptionDropdown = ({
     const { value } = e.target;
     const updateFilterOptions = options.filter((option) => {
       if (value.trim()) {
-        const regex = new RegExp(`^${value.toLowerCase()}`);
+        const regex = new RegExp(`${typeFilter(type)}${value.toLowerCase()}`);
         return regex.test(option.props.label.toLowerCase()) || selectedOptions[option.props.id];
       }
       return option;
-    });
+    }).sort(sortingOptionSelected);
     setFilterOptions(updateFilterOptions);
-  }, [options, selectedOptions]);
+  }, [options, selectedOptions, sortingOptionSelected, type]);
 
   /**
    * When an option is selected, onSelect updates the options selected (necessary in filter function) and execute the original callback setted to checkbox
@@ -81,7 +91,7 @@ const MultipleOptionDropdown = ({
    * When dropdown is type 'search', here we update the checkbox onChange callback for support filtering options
    */
   useEffect(() => {
-    if (type === 'search') {
+    if (isTypeSearch) {
       const updateSelectedOptions = {};
       const updateOptions = childrenArray.map((option) => {
         const id = option.props.id || getUniqueId();
@@ -98,7 +108,7 @@ const MultipleOptionDropdown = ({
       setFilterOptions(updateOptions);
       setOptions(updateOptions);
     }
-  }, [childrenArray, onSelect, type]);
+  }, [childrenArray, isTypeSearch, onSelect]);
 
   /**
    * Hook to handle click events on window
@@ -157,7 +167,7 @@ const MultipleOptionDropdown = ({
       <MultipleOptionList
         className={className}
         listId={listId}
-        search={type === 'search'}
+        search={isTypeSearch}
         onFilterHandler={onFilterHandler}
       >
         {filterOptions}
