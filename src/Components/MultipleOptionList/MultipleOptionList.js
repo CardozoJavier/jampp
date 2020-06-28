@@ -6,8 +6,6 @@ import { InputSearchContainer, InputSearch } from '../OptionList/styles';
 import { bemDestruct, isLastItem, getUniqueId } from '../../utils';
 import { match } from '../Dropdown/utils';
 
-const INPUT_ID = getUniqueId();
-
 /**
  * MultipleOptionList component should be called with
  * @param {Node} children - (Required) The options to be displayed.
@@ -20,13 +18,15 @@ const MultipleOptionList = ({
   children = [], className, listId, search, onFilterHandler,
 }) => {
   const isOpen = match('opened', className);
+  const INPUT_ID = getUniqueId();
+
   useEffect(() => {
     if (search && isOpen) {
       const input = document.getElementById(INPUT_ID);
       // Set delay for avoid blur before list is open
-      setTimeout(() => input.focus(), 100);
+      setTimeout(() => input.focus(), 150);
     }
-  }, [isOpen, INPUT_ID, search]);
+  }, [isOpen]);
   return (
     <MultipleOptionListContainer className={bemDestruct(className)} id={listId}>
       {search

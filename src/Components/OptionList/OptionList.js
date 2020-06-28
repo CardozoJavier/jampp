@@ -65,9 +65,9 @@ const OptionList = ({
     if (search && isOpen) {
       const input = document.getElementById(filterInputId);
       // Set delay for avoid blur before list is open
-      setTimeout(() => input.focus(), 100);
+      setTimeout(() => input.focus(), 150);
     }
-  }, [isOpen, filterInputId, search]);
+  }, [isOpen]);
 
   return (
     <OptionCheckboxGroup customSelected={optionSelected === 'custom-param'} className={bemDestruct(className)} minWidth={minWidth} wide={wide} width={width}>

@@ -10,8 +10,6 @@ import { StatusLabel } from '../Label';
 import InputText from '../Structures/InputText';
 import { typeFilter, match } from './utils';
 
-const FILTER_INPUT_ID = getUniqueId();
-
 /**
  * OptionDropdown component should be called with
  * @param {String} type - (Required) It's defines the classes for displaying or not the option list, and button styles.
@@ -55,6 +53,7 @@ const OptionDropdown = ({
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const toggleChevronDirection = getClassName(chevron, dropdownProps.chevron.defaultClassName, dropdownProps.chevron.optionalClassName);
   const isTypeSearch = match('search', type);
+  const FILTER_INPUT_ID = getUniqueId();
 
   const handleClick = useCallback(() => {
     setClassName(toggleToClassName);
