@@ -117,6 +117,13 @@ const dropdownProps = {
     typeList: 'unique-option',
     buttonProps: {},
   },
+  'strict-search': {
+    defaultClassName: 'dropdown button--basic-right__closed',
+    optionalClassName: 'dropdown button--basic-right__opened',
+    buttonClassName: 'dropdown button--basic-right',
+    typeList: 'unique-option',
+    buttonProps: {},
+  },
 };
 
 export default dropdownProps;

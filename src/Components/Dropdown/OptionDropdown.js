@@ -8,8 +8,7 @@ import { OptionList } from '../OptionList';
 import dropdownProps from './dropdownProps';
 import { StatusLabel } from '../Label';
 import InputText from '../Structures/InputText';
-
-const FILTER_INPUT_ID = getUniqueId();
+import { typeFilter, match } from './utils';
 
 /**
  * OptionDropdown component should be called with
@@ -53,6 +52,8 @@ const OptionDropdown = ({
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const toggleChevronDirection = getClassName(chevron, dropdownProps.chevron.defaultClassName, dropdownProps.chevron.optionalClassName);
+  const isTypeSearch = match('search', type);
+  const FILTER_INPUT_ID = getUniqueId();
 
   const handleClick = useCallback(() => {
     setClassName(toggleToClassName);
@@ -103,7 +104,7 @@ const OptionDropdown = ({
     const { value } = e.target;
     const filterOptions = childrenArray.filter(option => {
       if (value.trim()) {
-        const regex = new RegExp(`^${value.toLowerCase()}`);
+        const regex = new RegExp(`${typeFilter(type)}${value.toLowerCase()}`);
         return regex.test(option.props.label.toLowerCase()) || option.props.id === optionSelected;
       }
       return option;
@@ -185,7 +186,7 @@ const OptionDropdown = ({
         buttonList={buttonList}
         customizeTextClick={customizeTextClick}
         optionSelected={optionSelected}
-        search={type === 'search'}
+        search={isTypeSearch}
         filterInputId={FILTER_INPUT_ID}
         onFilterHandler={onFilterHandler}
         >{options}</OptionList>
