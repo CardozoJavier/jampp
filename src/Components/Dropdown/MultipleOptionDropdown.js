@@ -8,7 +8,7 @@ import {
 } from '../../utils';
 import { IconGenerator, DownChevronIcon } from '../UI/Icons';
 import dropdownProps from './dropdownProps';
-import { typeFilter, isType } from './utils';
+import { typeFilter, match } from './utils';
 
 /**
  * MultipleOptionDropdown component should be called with
@@ -33,7 +33,7 @@ const MultipleOptionDropdown = ({
 
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const toggleChevronDirection = getClassName(chevron, dropdownProps.chevron.defaultClassName, dropdownProps.chevron.optionalClassName);
-  const isTypeSearch = isType('search', type);
+  const isTypeSearch = match('search', type);
 
   const handleClick = () => {
     setClassName(toggleToClassName);

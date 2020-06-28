@@ -8,7 +8,7 @@ import { OptionList } from '../OptionList';
 import dropdownProps from './dropdownProps';
 import { StatusLabel } from '../Label';
 import InputText from '../Structures/InputText';
-import { typeFilter, isType } from './utils';
+import { typeFilter, match } from './utils';
 
 const FILTER_INPUT_ID = getUniqueId();
 
@@ -54,7 +54,7 @@ const OptionDropdown = ({
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
   const toggleChevronDirection = getClassName(chevron, dropdownProps.chevron.defaultClassName, dropdownProps.chevron.optionalClassName);
-  const isTypeSearch = isType('search', type);
+  const isTypeSearch = match('search', type);
 
   const handleClick = useCallback(() => {
     setClassName(toggleToClassName);

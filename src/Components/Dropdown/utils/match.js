@@ -4,6 +4,6 @@
  * @param {String} type - Is the value of allowed component type
  * @return {Boolean} - If regex and type match
  */
-const isType = (regex, type) => (new RegExp(regex).test(type));
+const match = (regex, type) => (new RegExp(regex).test(type));
 
-export default isType;
+export default match;
