@@ -22,7 +22,7 @@ const DefaultLabel = ({ text, size, onClose, targetId, ...props }) => {
 
   return (
     <DefaultLabelContainer id={id} className={bemDestruct(className)} {...props}>
-      <DefaultLabelText {...props}>{ text }</DefaultLabelText>
+      <DefaultLabelText {...props} title={text}>{ text }</DefaultLabelText>
       <IconGenerator
         renderIcon={XIcon}
         props={{

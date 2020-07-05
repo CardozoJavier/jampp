@@ -9,9 +9,10 @@ const { black, violet, gray } = palette;
 
 export const DefaultLabelText = styled.p`
   margin: 0;
-  max-width: ${({ maxWidth }) => `${maxWidth}px` || 'unset'};
+  max-width: ${({ maxWidth }) => maxWidth ? `${maxWidth}px` : 'unset'};
   overflow: hidden;
-  word-break: break-all;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export const DefaultLabelContainer = styled.div`

@@ -31,8 +31,6 @@ const CreationTag = ({ type, placeholder, width, label, onTagCreated, onTagDelet
   const [error, setError] = useState(false);
   
   const toggleToClassName = getClassName(className, defaultClassName, optionalClassName);
-  const maxWidth = Number(width.split('px')[0]) - 53;
-  const maxLength = Math.ceil(maxWidth * 11/100);
 
   const handleClick = () => {
     if (!error) {
@@ -111,7 +109,6 @@ const CreationTag = ({ type, placeholder, width, label, onTagCreated, onTagDelet
               text={text}
               size="medium"
               margin="5px"
-              maxWidth={maxWidth}
               onClose={handleClose}
             />
           )), [defaultLabelArray])
@@ -121,7 +118,6 @@ const CreationTag = ({ type, placeholder, width, label, onTagCreated, onTagDelet
           width="auto"
           value={inputValue}
           disabled={disabled}
-          maxLength={maxLength}
           placeholder={placeholder}
           onBlur={disabled ? null : handleBlur}
           onFocus={disabled ? null : handleFocus}
